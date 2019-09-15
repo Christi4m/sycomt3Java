@@ -7,7 +7,7 @@
     String htmlcode = "";
             if (firstName != null) {
 
-                htmlcode = " <li class=\"menu-haas-children justify-content-center\"><a href=\"\" id=\"navIngresar\">" + firstName + "</a>\n"
+                htmlcode = " <li class=\"menu-has-children justify-content-center\"><a href=\"\" id=\"navIngresar\">" + firstName + "</a>\n"
                         + "            <ul>\n"
                         + "              <li><a href='LogoutUser' id=\"navLogOut\">Cerrar Sesión</a></li>\n"
                         + "              <li><a href=\"#\" id=\"navMiPerfil\">Mi Perfil</a></li>\n"
