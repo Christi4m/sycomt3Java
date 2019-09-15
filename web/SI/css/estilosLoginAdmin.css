@@ -1,0 +1,89 @@
+
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+/* CONFIGURACIÓN DEL CUERPO O BODY*/
+body {
+  color: #797979;
+	
+  font-family: 'Orbitron', sans-serif;
+  padding: 0px !important;
+  margin: 0px !important;
+  font-size:13px;
+   background-image: url('../img/login-bg.jpg') ;
+background-size:cover;
+background-repeat: no-repeat;
+  
+}
+.btnAgregar{
+	background: #2f323a;
+  box-shadow:  4px 0px 10px #2f323a;
+  border: none;
+	color: white;
+	margin-bottom: 20px;
+}
+.btnAgregar:hover{
+  background: #4ECDC4;
+  box-shadow:  4px 0px 10px #2f323a;
+	color: white;
+}
+.btnAgregar:focus{
+
+	color: white;
+	border: none;
+}
+
+/*ESTILOS DE LA PAGINA DE INICIO*/
+.form-login {
+	max-width: 330px;
+	margin: 100px auto 0;
+	background: #fff;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.form-login h2.form-login-heading {
+	margin: 0;
+	padding: 25px 20px;
+	text-align: center;
+	background: black;
+	border-radius: 5px 5px 0 0;
+	-webkit-border-radius: 5px 5px 0 0;
+	color: #fff;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 300;
+}
+.login-wrap {
+	padding: 20px;
+}
+.login-wrap .registration {
+	text-align: center;
+}
+.login-social-link {
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+.botonIngreso{
+  background: red;
+  color: white;
+  border: 0;
+  width: 50%;
+}
+.botonIngreso:hover{
+  background: #2dc997;
+  color: white;
+}
+.remember-me{
+  margin-left: 10px;
+}
+
+.modal-header{
+  background: black;
+  color: white;
+
+}
+
+.modal-body{
+  color: black;
+}

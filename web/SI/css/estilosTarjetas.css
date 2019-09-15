@@ -1,0 +1,29 @@
+
+.tarjetaRow{
+    padding: 0 10%;
+    text-align: center;
+}
+
+.tarjetaItem{
+    background: white;
+  
+    margin: 10px 0px;
+}
+.subItem{
+    
+    background: white;
+    border-bottom:  solid #3399DF 2px;
+    padding-top: 5%;
+}
+.incono{
+    text-align: center;
+}
+.incono::before{
+    font-size: 60px;
+    text-align: center;
+    
+}
+.textIcono{
+    font-size: 20px;
+    
+}
