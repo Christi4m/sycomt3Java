@@ -73,7 +73,7 @@
                         <div class="col-sm-6">
                             <label id = "ProveedorTelaje" class = "col-md-4 control-label" para = "proveedorProducto"> Proveedor </label>
                             <select id="proveedorProducto" name="proveedorProducto" class="form-control">
-                                <option value="0">---------------------</option>
+                                <option value="0" selected>---------------------</option>
                             </select>
                         </div>
                         <div class="col-sm-6">

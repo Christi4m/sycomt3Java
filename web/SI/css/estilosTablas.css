@@ -58,6 +58,16 @@ body::-webkit-scrollbar {
     box-shadow:  4px 0px 10px #2f323a;
     border: none;
 }
+.colorbtn:active{
+    background: #2f323a;
+    box-shadow:  4px 0px 10px #2f323a;
+    border: none;
+}
+.colorbtn:focus{
+    background: #2f323a;
+    box-shadow:  4px 0px 10px #2f323a;
+    border: none;
+}
 .colorbtn:hover{
     background: #4ECDC4;
     box-shadow:  4px 0px 10px #2f323a;
@@ -111,7 +121,7 @@ body::-webkit-scrollbar {
 
 
     /* Desaparecer el header */
-    table  thead, th {
+    #tableCrud  thead, th {
         border: none;
         clip: rect(0, 0, 0, 0);
         height: 1px;
@@ -124,24 +134,24 @@ body::-webkit-scrollbar {
         justify-content: center;
         align-items: center;
     }
-    table{
+    #tableCrud{
         width: 100%;
 
 
     }
 
 
-    table td {
+    #tableCrud td {
         border-bottom: 1px solid #ddd;
         display: block;
         font-size: 1.2em;
         text-align: right;
         padding: 10px;
     }
-    table td button{
+    #tableCrud td button{
         float: right;
     }
-    table td:before{
+    #tableCrud td:before{
         content: attr(data-label);
         float: left;
         color: #273b47;
@@ -170,7 +180,7 @@ body::-webkit-scrollbar {
 
 }
 
-table{
+#tableCrud{
     color: black;
     width: 100%;
 }

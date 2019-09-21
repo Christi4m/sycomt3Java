@@ -13,8 +13,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloEntregasDao;
-import models.ModeloVentasDao;
+import models.EntregasDao;
+import models.VentasDao;
 
 @MultipartConfig
 public class controllerEntregas extends HttpServlet {
@@ -38,10 +38,10 @@ public class controllerEntregas extends HttpServlet {
         switch (action) {
             case "generarEntrega":
                 int res = 0;
-                ModeloEntregasDao modelo1 = new ModeloEntregasDao();
+                EntregasDao modelo1 = new EntregasDao();
                 Entregas entrega1 = new Entregas(request.getParameter("fechaEntrega"), Integer.parseInt(request.getParameter("idFactura")), Integer.parseInt(request.getParameter("mesajeroAsignar")));
                 if (modelo1.generarEntrega(entrega1)) {
-                    ModeloVentasDao modelo9 = new ModeloVentasDao();
+                    VentasDao modelo9 = new VentasDao();
                     if (modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("idVenta")), request.getParameter("estadoOrdenVenta"))) {
                         res = 1;
                         out.print(res);

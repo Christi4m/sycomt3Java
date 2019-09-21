@@ -18,8 +18,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloTerceroDAO;
-import models.ModeloProductoDAO;
+import models.TerceroDAO;
+import models.ProductoDAO;
 
 /**
  *
@@ -47,7 +47,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
         switch (action) {
             //caso para crear un cliente en el sistema
             case "create":
-                ModeloTerceroDAO modelo1 = new ModeloTerceroDAO();
+                TerceroDAO modelo1 = new TerceroDAO();
                 Tercero tercero1 = new Tercero(0, "Cliente", request.getParameter("typeId"), Integer.parseInt(request.getParameter("numId")),
                         request.getParameter("firstName"), request.getParameter("secondName"), request.getParameter("firstLastName"),
                         request.getParameter("secondLastName"), request.getParameter("email"), request.getParameter("numCellPhone"),
@@ -64,7 +64,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                 JsonObject gson = new JsonObject();
                 JsonArray array = new JsonArray();
 
-                ModeloTerceroDAO modelo2 = new ModeloTerceroDAO();
+                TerceroDAO modelo2 = new TerceroDAO();
                 Tercero tercero2 = (Tercero) modelo2.getTerceroId(Integer.parseInt(request.getParameter("idCliente")));
                 JsonObject item = new JsonObject();
                 item.addProperty("tipoId", tercero2.getTypeId());
@@ -84,7 +84,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
             // caso para crear un empleado en el sistema
             case "crearEmpleado":
 
-                ModeloTerceroDAO modelo3 = new ModeloTerceroDAO();
+                TerceroDAO modelo3 = new TerceroDAO();
                 Tercero empleado = new Tercero(request.getParameter("typeUser"), request.getParameter("tipoIdentificacionEmpleado"), Integer.parseInt(request.getParameter("identificacionTercero")), request.getParameter("firstName"), request.getParameter("secondName"), request.getParameter("firstLastName"), request.getParameter("secondLastName"), request.getParameter("email"), request.getParameter("numCellPhone"), request.getParameter("numLandLine"), request.getParameter("address"), request.getParameter("tipoContrato"), request.getParameter("numContrato"), request.getParameter("fechaInicioContrato"), request.getParameter("FechaFinContrato"), request.getParameter("estadoCivil"), request.getParameter("numHijos"), request.getParameter("eps"), request.getParameter("pensiones"), request.getParameter("cesantias"), request.getParameter("arl"), request.getParameter("cajaCompensacion"), "Activo");
                 if (modelo3.insertEmpleado(empleado)) {
                     out.print("1");
@@ -97,7 +97,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                 JsonObject gsonLE = new JsonObject();
                 JsonArray arrayLE = new JsonArray();
 
-                ModeloTerceroDAO modelo4 = new ModeloTerceroDAO();
+                TerceroDAO modelo4 = new TerceroDAO();
                 for (Tercero empleado1 : modelo4.getAllEmpleados()) {
                     JsonObject itemLE = new JsonObject(); // tabla tiene filas y columnas , tiene datos de tipo json 
                     itemLE.addProperty("id", empleado1.getId());
@@ -118,7 +118,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
             //caso para listar todos los datosetalle de un empleado
             case "listarDetalleEmpleado":
 
-                ModeloTerceroDAO modelo5 = new ModeloTerceroDAO();
+                TerceroDAO modelo5 = new TerceroDAO();
                 Tercero empleado2 = (Tercero) modelo5.getDetailsEmpleado(Integer.parseInt(request.getParameter("idDetails")));
                 JsonObject gsonLDE = new JsonObject();
                 JsonArray arrayLDE = new JsonArray();
@@ -143,7 +143,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
             case "insertUserAccesEmpleado":
                 //caso para asignarle usuario y contraseña a un empleado para que pueda acceder al sistema en caso de ser necesario
                 Tercero empleado3 = new Tercero(Integer.parseInt(request.getParameter("idEmpleado")), request.getParameter("userAccess"), request.getParameter("passwordAccess"));
-                ModeloTerceroDAO modelo6 = new ModeloTerceroDAO();
+                TerceroDAO modelo6 = new TerceroDAO();
                 if (modelo6.insertUserAccesEmpleado(empleado3)) {
                     out.print("1");
                 } else {
@@ -151,7 +151,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                 }
                 break;
             case "validarUserAcces":
-                ModeloTerceroDAO modelo7 = new ModeloTerceroDAO();
+                TerceroDAO modelo7 = new TerceroDAO();
                 if (modelo7.validarUserAccess(Integer.parseInt(request.getParameter("idEmpleado")))) {
                     out.print("1");
                 } else {
@@ -162,7 +162,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                 JsonObject gsonLM = new JsonObject();
                 JsonArray arrayLM = new JsonArray();
 
-                ModeloTerceroDAO modelo8 = new ModeloTerceroDAO();
+                TerceroDAO modelo8 = new TerceroDAO();
                 for (Tercero empleado1 : modelo8.getAllEmpleados()) {
 
                     JsonObject itemLE = new JsonObject(); // tabla tiene filas y columnas , tiene datos de tipo json 

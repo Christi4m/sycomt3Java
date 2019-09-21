@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.ModeloVentasDao;
+import models.VentasDao;
 
 public class controllerVenta extends HttpServlet {
 
@@ -62,7 +62,7 @@ public class controllerVenta extends HttpServlet {
                 String fecha = dia + " " + mes + " " + annio;
                 String numeroSerie = "";
                 //instancia del modeloVentas Dao para acceder a sus metodos 
-                ModeloVentasDao modelo1 = new ModeloVentasDao();
+                VentasDao modelo1 = new VentasDao();
                 //seccion de codigo que crea el numero de la factura
                 numeroSerie = modelo1.generarNumSerie();
                 if (numeroSerie == null) {
@@ -81,9 +81,19 @@ public class controllerVenta extends HttpServlet {
                 }
                 //creacion del objeto de tipo ventas para poder guardar los datos de la venta en la bd 
                 Ventas ventas1 = new Ventas(fecha, total, idCliente, numeroSerie, "En Despacho");
-                ModeloVentasDao modelo2 = new ModeloVentasDao();
+                VentasDao modelo2 = new VentasDao();
 
                 if (modelo2.guardarVentas(ventas1)) {
+                    VentasDao modelo3 = new VentasDao();
+                    int idVenta = Integer.parseInt(modelo3.idVentas());                    
+                    controllerProduct cpr = new controllerProduct();
+                    // traer todos los datos de los productos ingresados en el carrito de compras
+                    for (Articulo ar : articulos) {
+                        Producto producto2 = cpr.getProducto(ar.getIdProducto());
+                        VentasDao modelo4 = new VentasDao();
+                        Ventas VDV = new Ventas(idVenta, producto2.getId(), ar.getCantidad(), producto2.getPrecio() * ar.getCantidad());
+                        modelo4.guardarDetalleVenta(VDV);
+                    }
                     out.print("1");
 
                 } else {
@@ -92,31 +102,12 @@ public class controllerVenta extends HttpServlet {
 
                 break;
 
-            case "newDetalleVenta":
-                //Bloque de codigo para guardar el detalle de la venta
-                //seleccionar el id de la venta
-                ModeloVentasDao modelo3 = new ModeloVentasDao();
-                int idVenta = Integer.parseInt(modelo3.idVentas());
-                int result = 0;
-                controllerProduct cpr = new controllerProduct();
-                // traer todos los datos de los productos ingresados en el carrito de compras
-                for (Articulo ar : articulos) {
-                    Producto producto2 = cpr.getProducto(ar.getIdProducto());
-                    ModeloVentasDao modelo4 = new ModeloVentasDao();
-                    Ventas VDV = new Ventas(idVenta, producto2.getId(), ar.getCantidad(), producto2.getPrecio() * ar.getCantidad());
-
-                    if (modelo4.guardarDetalleVenta(VDV)) {
-                        out.print("1");
-                    } else {
-                        out.print("0");
-                    }
-                }
-                break;
+            
 
             case "listVentas":
                 JsonObject gson = new JsonObject();
                 JsonArray array = new JsonArray();
-                ModeloVentasDao modelo5 = new ModeloVentasDao();
+                VentasDao modelo5 = new VentasDao();
                 for (Ventas ventas2 : modelo5.getAllVEntas()) {
                     JsonObject item = new JsonObject();
                     item.addProperty("Codigo", ventas2.getId());
@@ -138,7 +129,7 @@ public class controllerVenta extends HttpServlet {
                 JsonObject gsonDV = new JsonObject();
                 JsonArray arrayDV = new JsonArray();
                 int idVentaDV = Integer.parseInt(request.getParameter("idVenta"));
-                ModeloVentasDao modelo6 = new ModeloVentasDao();
+                VentasDao modelo6 = new VentasDao();
                 for (Ventas ventas3 : modelo6.getAllDetallesVentas(idVentaDV)) {
                     JsonObject item = new JsonObject();
                     item.addProperty("idDetalleVenta", ventas3.getIdDetalleVenta());
@@ -158,7 +149,7 @@ public class controllerVenta extends HttpServlet {
                 JsonObject gsonLD = new JsonObject();
                 JsonArray arrayLD = new JsonArray();
 
-                ModeloVentasDao modelo7 = new ModeloVentasDao();
+                VentasDao modelo7 = new VentasDao();
                 for (Ventas ventas4 : modelo7.getAllDespachos()) {
                     JsonObject item = new JsonObject();
                     if (ventas4.getEstado().equalsIgnoreCase("En Despacho")) {
@@ -183,7 +174,7 @@ public class controllerVenta extends HttpServlet {
                 JsonObject gsonLE = new JsonObject();
                 JsonArray arrayLE = new JsonArray();
 
-                ModeloVentasDao modelo8 = new ModeloVentasDao();
+                VentasDao modelo8 = new VentasDao();
                 for (Ventas ventas4 : modelo8.getAllVEntas()) {
                     JsonObject item = new JsonObject();
                     if (ventas4.getEstado().equalsIgnoreCase("Confirmada")) {
@@ -206,23 +197,23 @@ public class controllerVenta extends HttpServlet {
                 break;
             case "procesarVenta":
                 int res = 0;
-                ModeloVentasDao modelo9 = new ModeloVentasDao();
+                VentasDao modelo9 = new VentasDao();
                 if (modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("idVenta")), request.getParameter("estadoOrdenVenta"))) {
-                    ModeloVentasDao modelo10 = new ModeloVentasDao();
-                    if(modelo10.insertFactura(request.getParameter("numFactura"), Integer.parseInt(request.getParameter("idVenta")))){
+                    VentasDao modelo10 = new VentasDao();
+                    if (modelo10.insertFactura(request.getParameter("numFactura"), Integer.parseInt(request.getParameter("idVenta")))) {
                         res = 1;
-                    }else{
+                    } else {
                         res = 0;
                     }
                     out.print(res);
-                }else{
+                } else {
                     out.print(res);
                 }
                 break;
             case "deleteVenta":
-                ModeloVentasDao id = new ModeloVentasDao();
+                VentasDao id = new VentasDao();
                 int idVentaDelete = Integer.parseInt(id.idVentas());
-                ModeloVentasDao dv = new ModeloVentasDao();
+                VentasDao dv = new VentasDao();
                 if (dv.deleteVenta(idVentaDelete)) {
                     out.print("1");
                 } else {

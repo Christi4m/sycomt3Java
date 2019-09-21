@@ -3,20 +3,20 @@
         <div class="col-lg-12 col-xl-12 col-md-12  cont">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " >
                 <h2 id="historicalPurchases">Compras</h2>
-                <button id="generateReport" class="btn btnAgregar"data-toggle="modal" data-target="#modalNuevo">
+                <button id="generateReport" class="btn btnAgregar"data-toggle="modal" data-target="#modalCompraNueva">
                     Agregar
                     <span class="fa fa-plus"></span>
                 </button>
-                <table id="tableCrud" class="table col-md-2 table-condensed  table-hover table-striped table-bordered text-center" style="width:100%">
+                <table id="tableCrud" class="table col-md-2 table-condensed  table-hover table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Fecha</th>
+                            <th id="code">#</th>
+                            <th id="name">Fecha</th>
+                            <th id="name">Proveedor</th>
+                            <th>Observaciones</th>
                             <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="locationCellar">Estado</th>
+                            <th id="edit">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,105 +24,176 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Fecha</th>
+                            <th id="code">#</th>
+                            <th id="name">Fecha</th>
+                            <th id="name">Proveedor</th>
+                            <th>Observaciones</th>
                             <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="locationCellar">Estado</th>
+                            <th id="edit">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
     </div>
-</div>
-<!-- Modal para registros nuevos -->
-<div class="modal fade" id="modalNuevo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="fa fa-close close1"aria-hidden="true"></span>
-                </button>
-                <h5 id="sellReport"class="modal-title" id="exampleModalLongTitle">Reporte Ventas</h5>
-            </div>
-            <div class="modal-body">
 
-            </div>
-            <div class="modal-footer">
-                <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button id="botonVaciar" name="botonVaciar" class="colorbtn btn btn-primary">Vaciar</button>
-                <button id="botonGuardar" name="botonEnviar" class="colorbtn btn btn-primary">Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fin del modal Ingresar Nuevo -->
-<!-- Modal editar -->
-<div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="">
-                    <span class="fa fa-close close1" aria-hidden="true"></span>
-                </button>
-                <h5 id="editPurchase" class="modal-title" id="exampleModalCenterTitle">Editar Compra</h5>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal col-sm-12 text-center">
-                    <div class="form-group text-center">
-                        <h4 id="purchaseData" class="tituloDP">Datos de la Compra</h4>
-                        <div class="col-sm-6">
-                            <label id="code" class="col-md-4 control-label" for="codigoCompra">Código</label>
-                            <input id="codigoCompra" name="codigoCompra" type="text" placeholder="Código Compra " class="form-control input-md" required="">
+    <!-- Modal para registros nuevos -->
+    <div class="modal fade" id="modalCompraNueva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="overflow: scroll;">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content modal-lg">
+                <div class="modal-header" style="">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="fa fa-close close1"aria-hidden="true"></span>
+                    </button>
+                    <h5 id="sellReport"class="modal-title" id="exampleModalLongTitle">Pedido</h5>
+                </div>
+                <div class="modal-body" style="color: black;">
+                    <!-- Nav -->
+                    <nav class="navbar  ">
+                        <div class="row container" style="width: 100%;">
+                            <div class="col-md-12">
+                                <button type="button" id="openCart"class="btn btn-primary" data-toggle="modal" data-target="#cart">Carrito (<span class="total-count"></span>)</button>
+                                <button class="clear-cart btn btn-danger">Vaciar Carrito</button>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <label id="Value" class="col-md-4 control-label" for="valorCompra">Valor</label>
-                            <input id="valorCompra" name="valorCompra" type="text" placeholder="Valor Compra" class="form-control input-md" required="">
-                        </div>
-                        <div class="col-sm-6">
-                            <label id="date" class="col-md-4 control-label" for="fechaCompra">Fecha</label>
-                            <input id="fechaCompra" name="fechaCompra" type="text" placeholder="Fecha Compra" class="form-control input-md" required="">
-                        </div>
-                        <div class="col-sm-6">
-                            <label id="products" class="col-md-4 control-label" for="productosCompra">Productos</label>
-                            <select id="productosCompra" name="productosCompra" class="form-control" multiple="multiple">
-                                <option id="product1" value="1">Producto 1</option>
-                                <option id="product2" value="2">Producto 2</option>
-                                <option id="product3"  value="3">Producto 3</option>
-                                <option id="product4" value="4">Producto 4</option>
-                                <option id="product5"  value="5">Producto 5</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-6">
-                            <label id="state" class="col-md-4 control-label" for="estadoCompra">Estado</label>
-                            <select id="estadoCompra" name="estadoCompra" class="form-control">
-                                <option id="requested"  value="1">Solicitada</option>
-                                <option id="dispatched"  value="2">Despachada</option>
-                                <option id="delivered"  value="3">Entregada</option>
-                                <option id="refund-guaranted"  value="4">Devolución - Garantía</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-6">
-                            <label id="provider" class="col-md-4 control-label" for="Proveedor">Proveedor</label>
-                            <input id="Proveedor" name="Proveedor" type="text" placeholder="Proveedor Compra" class="form-control input-md" required="">
+                    </nav>
+
+
+                    <!-- Main -->
+                    <div class="container" style="width: 100%;"  >
+                        <div id="stockShop"class="row">
+
                         </div>
                     </div>
 
-                </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+                </div>
             </div>
-            <div class="modal-footer">
-                <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button id="botonVaciar" name="botonVaciar" class="colorbtn btn btn-primary">Vaciar</button>
-                <button id="botonGuardar" name="botonEnviar" class="colorbtn btn btn-primary">Guardar</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: black;">
+                    <form enctype="multipart/form-data" method="post" action="" name="frmShop" id="frmShop"  class="form-horizontal col-sm-12 text-center">
+                        <button type="submit" id="btnOrderNow"class="btn colorbtn btn-primary">Ordenar Ahora</button>
+                        <div class="form-group text-center">
+
+                            <div class="col-sm-6">
+                                <label id = "Description" class = "col-md-4 control-label" para = "descripcionShop"> Descripción </label>
+                                <textarea placeholder="Acá Descripción producto" class="form-control" id="descripcionShop" cols="30" rows="1"name="descripcionShop"></textarea>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label id = "ProveedorTelaje" class = "col-md-4 control-label" para = "proveedorShop"> Proveedor </label>
+                                <select id="proveedorShop" name="proveedorShop" class="form-control">
+                                    <option selected="selected">Seleccione un proveedor</option>
+                                </select>
+                            </div>   
+                            <div class="col-sm-6" style="display: none;">
+                                <label class="col-md-4 control-label" for="detailsShop">Detalle Compra</label>  
+                                <input id="detailsShop" name="detailsShop" type="text" placeholder="Detalle Compra" class="form-control input-md" required="">
+                            </div>   
+                            <div class="col-sm-6" style="display: none;">
+                                <label class="col-md-4 control-label" for="totalShop">Total</label>  
+                                <input id="totalShop" name="totalShop" type="text" placeholder="Total Compra" class="form-control input-md" required="">
+                            </div>   
+                        </div>   
+                        <table class="show-cart table">
+
+                        </table>
+                        <div>Total: $<span class="total-cart"></span></div>
+                    </form>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button id="closeModalCart"type="button" class="btn colorbtn btn-primary" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!-- Fin del modal Ingresar Nuevo -->
+    <!-- Modal detalles compras-->
+    <div class="modal fade" id="modalDetalleCompras" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="">
+                        <span class="fa fa-close close1" aria-hidden="true"></span>
+                    </button>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                </div>
+                <div class="modal-body">
+                    
+                    <!--tabla detalle Compra-->
+                    <h2>Detalle Compra</h2>
+                    <table id="ShopData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                        <thead>
+                            <tr>                                
+                                <th>#</th>
+                                <th>Producto</th>
+                                <th>Cantidad Mt²</th>
+                                <th>Precio Unitario</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyDC"> 
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button id="botonCerrarDC"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    fin modal detalle compras-->
+<!-- Modal Detalles -->
+<div class="modal fade" id="modalDetallesProveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">                                    
+                <h5 id="editSupplier" class="modal-title" id="exampleModalCenterTitle">Detalles Proveedor</h5>
+            </div>
+            <div class="modal-body" style="border: none;">
+                <table id="tabledetailsProveedor" class="table col-md-2 table-condensed table-hover table-striped table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th id="nameProveedor">Proveedor</th>
+                            <th id="nitProveedor">Nit</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="bodyDP">
+
+
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="modal-footer" style="border: none;">
+                <button id="c"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>                                    
             </div>
         </div>
     </div>
 </div>
-<!-- Fin del modal Editar -->
+<!-- Fin del modal Detalles -->
 </section>
 
+<link rel="stylesheet" href="<%= request.getContextPath()%>/SI/css/styleCart.css">
 <script src="Administrador/Js/Compras.js"></script>
-<script src="<%= request.getContextPath()%>/SI/vistas/Js/responsiveTable.js"></script>

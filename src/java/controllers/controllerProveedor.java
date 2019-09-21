@@ -11,8 +11,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloProductoDAO;
-import models.ModeloProveedoresDAO;
+import models.ProductoDAO;
+import models.ProveedoresDAO;
 
 @MultipartConfig
 public class controllerProveedor extends HttpServlet {
@@ -35,7 +35,7 @@ public class controllerProveedor extends HttpServlet {
 
         switch (accion) {
             case "listarProveedores":
-                ModeloProveedoresDAO mpvd = new ModeloProveedoresDAO();
+                ProveedoresDAO mpvd = new ProveedoresDAO();
                 JsonObject gson = new JsonObject();
                 JsonArray array = new JsonArray();
 
@@ -64,7 +64,7 @@ public class controllerProveedor extends HttpServlet {
                 JsonObject gson1 = new JsonObject();
                 JsonArray array1 = new JsonArray();
                 int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
-                ModeloProveedoresDAO mpvd1 = new ModeloProveedoresDAO();
+                ProveedoresDAO mpvd1 = new ProveedoresDAO();
                 Proveedores prv1 = (Proveedores) mpvd1.getProveedorId(idProveedor);
                 JsonObject item = new JsonObject();
                 item.addProperty("emailP", prv1.getEmailP());
@@ -80,7 +80,7 @@ public class controllerProveedor extends HttpServlet {
                 break;
 
             case "crearProveedor":
-                ModeloProveedoresDAO mpvd2 = new ModeloProveedoresDAO();
+                ProveedoresDAO mpvd2 = new ProveedoresDAO();
                 Proveedores prv24 = new Proveedores(request.getParameter("razonSocial"), request.getParameter("nit"), request.getParameter("emailP"), request.getParameter("numCellPhoneP"), request.getParameter("numLandLineP"), request.getParameter("addressP"), request.getParameter("representanteLegal"), "Activo");
                 if (mpvd2.crearProveedor(prv24)) {
                     out.print("1");
@@ -92,7 +92,7 @@ public class controllerProveedor extends HttpServlet {
                 JsonObject gson2 = new JsonObject();
                 JsonArray array2 = new JsonArray();
                 int idProveedor1 = Integer.parseInt(request.getParameter("idProveedor"));
-                ModeloProveedoresDAO mpvd3 = new ModeloProveedoresDAO();
+                ProveedoresDAO mpvd3 = new ProveedoresDAO();
                 Proveedores prv3 = (Proveedores) mpvd3.getProveedorId(idProveedor1);
                 JsonObject item1 = new JsonObject();
                 item1.addProperty("razonSocial", prv3.getRazonSocial());
@@ -110,7 +110,7 @@ public class controllerProveedor extends HttpServlet {
                 out.print(gson2.toString());
                 break;
             case "ActualizarProveedor":
-                ModeloProveedoresDAO mpvd4 = new ModeloProveedoresDAO();
+                ProveedoresDAO mpvd4 = new ProveedoresDAO();
                 Proveedores prv5 = new Proveedores(Integer.parseInt(request.getParameter("idU")),request.getParameter("razonSocial"), request.getParameter("emailP"), request.getParameter("numCellPhoneP"), request.getParameter("numLandLineP"), request.getParameter("addressP"), request.getParameter("representanteLegal"));
                 if (mpvd4.UpdateProveedor(prv5)) {
                     out.print("1");

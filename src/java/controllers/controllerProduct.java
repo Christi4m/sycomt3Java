@@ -17,7 +17,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ModeloProductoDAO;
+import models.ProductoDAO;
 
 /**
  *
@@ -68,7 +68,7 @@ public class controllerProduct extends HttpServlet {
                     }
 
                     Producto pr = new Producto(request.getParameter("nombreProducto"), request.getParameter("decripcionProducto"), request.getParameter("telajeProducto"), request.getParameter("ubicacionBodega"), Math.round(Double.parseDouble(request.getParameter("precioMC"))), Double.parseDouble(request.getParameter("stock")), "images/productos/" + fileName,Integer.parseInt(request.getParameter("proveedorProducto")));
-                    ModeloProductoDAO mpc = new ModeloProductoDAO();
+                    ProductoDAO mpc = new ProductoDAO();
                     if (mpc.crearProducto(pr)) {
                         out.print("1");
                     } else {
@@ -92,15 +92,16 @@ public class controllerProduct extends HttpServlet {
                 //ser llamado en la vista por medio de ajax y asi pintar o mostrar todos los productos
                 JsonObject gson = new JsonObject();
                 JsonArray array = new JsonArray();
-                ModeloProductoDAO mp = new ModeloProductoDAO();
+                ProductoDAO mp = new ProductoDAO();
                 for (Producto producto : mp.getAllProductos()) {
                     JsonObject item = new JsonObject();
                     item.addProperty("Codigo", producto.getId()); // add property ,, agregar propiedad al objeto json 
                     item.addProperty("Nombre", producto.getNombre());
                     item.addProperty("Telaje", producto.getTelaje());
                     item.addProperty("Ubicacion", producto.getUbicacion());
-                    item.addProperty("Precio", formateador.format(producto.getPrecio()));
+                    item.addProperty("Precio", producto.getPrecio());
                     item.addProperty("Stock", producto.getStock());
+                    item.addProperty("Imagen", producto.getImg());
                     item.addProperty("acciones", "<button id='" + producto.getId() + "'class='btn btnDetallesProducto btn-primary fa fa-eye''></button><button id='" + producto.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button><button id='" + producto.getId() + "' class='btn btnEliminar fa fa-trash btn-danger text-left' data-toggle='modal' data-target='#modalEliminar'></button>");
 
                     array.add(item);
@@ -113,13 +114,13 @@ public class controllerProduct extends HttpServlet {
 
             case "modalUpdate":
                 //caso para llenar los datos del producto en el modal para posteriormente ser editados y actualizados
-                //en este caso instanciamos un metodo del la clase ModeloProductoDAO "getProducto" la cual lista todos los datos de un 
+                //en este caso instanciamos un metodo del la clase ProductoDAO "getProducto" la cual lista todos los datos de un 
                 //producto por su id para posteriormente ser utilizados en la vista y ostrarlos como values en los inputs
                 //del formulario actualizar y aplicar los cambios correspondientes
                 JsonObject gson1 = new JsonObject();
                 JsonArray array1 = new JsonArray();
                 int idUpdate = Integer.parseInt(request.getParameter("idProducto"));
-                ModeloProductoDAO mpuo = new ModeloProductoDAO();
+                ProductoDAO mpuo = new ProductoDAO();
                 Producto prt = (Producto) mpuo.getProducto(idUpdate);
                 JsonObject item = new JsonObject();
                 item.addProperty("Codigo", prt.getId());
@@ -143,14 +144,14 @@ public class controllerProduct extends HttpServlet {
                 //actualizar y se envian a un metodo de la clase ModeloProductoDao "updateProducto" el cual
                 //lleva los datos capturados a la bd y realiza la actualizacion segun aplique
                 Producto pf = new Producto(Integer.parseInt(request.getParameter("id")), request.getParameter("nombre"), "", request.getParameter("telaje"), request.getParameter("ubicacion"), Double.parseDouble(request.getParameter("precioMC")), Double.parseDouble(request.getParameter("stock")), "", "");
-                ModeloProductoDAO mpu = new ModeloProductoDAO();
+                ProductoDAO mpu = new ProductoDAO();
                 mpu.updateProducto(pf);
                 break;
             case "delete":
                 // caso para eliminarlos un producto, en este caso se capturan el id del producto a eliminar enviado
                 // desde la vista y se envia a un metodo de la clase ModeloProductoDao "deleteProducto" el cual
                 //lleva el id capturado a la bd y realiza la eliminacion segun aplique
-                ModeloProductoDAO mpd = new ModeloProductoDAO();
+                ProductoDAO mpd = new ProductoDAO();
                 int idProducto = Integer.parseInt(request.getParameter("iDProducto"));
                 mpd.deleteProducto(idProducto);
 
@@ -160,7 +161,7 @@ public class controllerProduct extends HttpServlet {
     }
 // metodo utilizado para pintar el carrito de compras, metodo que lista todos los productos y los lista en la pagina carritoCOmpras
     public String PrintCart(HttpServletRequest request) {
-        ModeloProductoDAO mppc = new ModeloProductoDAO();
+        ProductoDAO mppc = new ProductoDAO();
         String htmlcode = "";
         DecimalFormat formateador = new DecimalFormat("###,###,###,###.##");
         for (Producto producto : mppc.getAllProductos()) {
@@ -189,7 +190,7 @@ public class controllerProduct extends HttpServlet {
 
     public Producto getProducto(int id) {
 
-        return new ModeloProductoDAO().getProducto(id);
+        return new ProductoDAO().getProducto(id);
 
     }
 

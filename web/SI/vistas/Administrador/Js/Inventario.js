@@ -252,7 +252,7 @@ $(function () {
                 $('#detallesP').html("");
                 $.each(data.datos, function (i, field) {
                     $('#bodyDetailsProduct').append("<tr><td>" + field.proveedor + "</td></tr>");
-                    $('#detallesP').append("<img src='../../../" + field.imagen + "' width='20%' height='20%' alt='Imagen del Producto'/><h4 id='detallesProducto'>" + field.descripcion + "</h4>");
+                    $('#detallesP').append("<img src='../../" + field.imagen + "' width='20%' height='20%' alt='Imagen del Producto'/><h4 id='detallesProducto'>" + field.descripcion + "</h4>");
                 });
             }
         });

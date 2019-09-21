@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.ModeloTerceroDAO;
+import models.TerceroDAO;
 
 /**
  *
@@ -40,13 +40,13 @@ public class controllerLogin extends HttpServlet {
             case "loginUser":
                 String userAccess = request.getParameter("userAccess");
                 String passwordAccess = request.getParameter("paswordAccess");
-                ModeloTerceroDAO mc = new ModeloTerceroDAO();
+                TerceroDAO mc = new TerceroDAO();
                 Tercero c = new Tercero(userAccess, passwordAccess);
 
                 if (mc.loginUser(c)) {
                     //variable de tipo sesion creada o utilizada en caso tal de que el usuario este registrado en el sistema
                    
-                    ModeloTerceroDAO mcd = new ModeloTerceroDAO();
+                    TerceroDAO mcd = new TerceroDAO();
                     Tercero tercero = (Tercero) mcd.getTercero(userAccess);
                     sesion.setAttribute("typeTercero", tercero.getTypeUser());
                     sesion.setAttribute("firstName", tercero.getFirstName());

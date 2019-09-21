@@ -15,4 +15,6 @@
     <link rel="stylesheet" href="<%= request.getContextPath()%>/lib/animate/animate.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/lib/sweetAlert2/sweetalert2.min.css">
     <link rel="stylesheet" href="<%= request.getContextPath()%>/SI/css/estilosTarjetas.css">
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/lib/BootstrapSelect/css/bootstrap-multiselect.css" type="text/css">
+
 </head>

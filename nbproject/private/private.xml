@@ -13,12 +13,21 @@
             <url>src/java/models/ModeloVentasDao.java</url>
             <bookmark id="1">
                 <name/>
-                <line>315</line>
+                <line>346</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Dashboard.jsp</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Bodega/Js/Compras.js</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Bodega/Compras.jsp</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/classes/Compras.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/models/ComprasDao.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Administrador/Js/Compras.js</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Administrador/Compras.jsp</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/controllers/controllerCompras.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -143,7 +143,52 @@
     </div>
 </div>
 <!-- Fin del modal result -->
+<!-- Modal detalle producto -->
 
+<div  class="modal fade" id="modalDetalleProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="">
+                    <span class="fa fa-close close1" aria-hidden="true"></span>
+                </button>
+
+            </div>
+            <div  class="modal-body">
+                <h2>Producto</h2>
+
+                <table id="detalleProductoTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Ubicación</th>
+                            <th>Proveedor</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="bodyDetailsProduct">
+
+
+
+                    </tbody>
+
+                </table>
+                <div class="row">
+                    <div id="detallesP" style="margin: 0px,0px;padding: 0px,0px;width: 100%; height: 20%; text-align: center;">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="buttonCloseModal "type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del modal detalle producto -->
 
 </section>
 

@@ -411,7 +411,7 @@
         <script src="js/carrito.js"></script>
         <script>
             $('#segirComprando').click(function (e) {
-                location.href = "Linos.jsp";
+                location.href = "index.jsp";
             });
         </script>
 
@@ -458,21 +458,8 @@
                                     // crear la venta
                                     $.post("../../processVenta?action=newVenta", data, function (res, est, jqXHR) {
                                         if (res == 1) {
-                                            // crear el detalle de venta
-                                            $.post("../../processVenta?action=newDetalleVenta", data, function (res, est, jqXHR) {
-                                                if (res == 1) {
-                                                    $('#textoModalResultCarrito').text(ventaGuardada);
-                                                    $("#modalResultCarrito").modal("show");
-                                                } else {
-                                                    // borrar la venta en caso tal de que no cree correctamente el detalle de venta
-                                                    $.post("../../processVenta?action=deleteVenta", data, function (res, est, jqXHR) {
-                                                        
-                                                    });
-                                                    $('#textoModalResultCarrito').text(errorVenta);
-                                                    $("#modalResultCarrito").modal("show");
-                                                }
-                                            });
-                                            //fin del proceso de crear detalle de la venta
+                                            $('#textoModalResultCarrito').text(ventaGuardada);
+                                            $("#modalResultCarrito").modal("show");
                                         } else {
                                             $('#textoModalResultCarrito').text(errorVenta);
                                             $("#modalResultCarrito").modal("show");

@@ -102,6 +102,27 @@ var listar = function () {
 
         });
     })
+    $(document).on('click', 'button.btnDetallesProducto', function (e) {
+        e.preventDefault();
+        $("#modalDetalleProducto").modal("show");
+        var idProducto = $(this).attr('id');
+        var data = {idProducto: idProducto};
+        $.ajax({
+            url: "../../methodProduct?accion=modalUpdate",
+            type: "post",
+            data: data,
+            dataSrc: "datos",
+            dataType: "json",
+            success: function (data) {
+                $('#bodyDetailsProduct').html("");
+                $('#detallesP').html("");
+                $.each(data.datos, function (i, field) {
+                    $('#bodyDetailsProduct').append("<tr><td>" + field.Ubicacion + "</td><td>" + field.proveedor + "</td></tr>");
+                    $('#detallesP').append("<img src='../../" + field.imagen + "' width='20%' height='20%' alt='Imagen del Producto'/><h3 id='detallesProducto'>" + field.descripcion + "</h3>");
+                });
+            }
+        });
+    });
     $('#botonCerrarDV').click(function (e) {
         $("#modalDetalleVentas").modal("toggle");
         $('#bodyDV').html("");

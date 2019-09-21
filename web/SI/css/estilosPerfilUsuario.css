@@ -4,13 +4,27 @@
 /* CONFIGURACIÓN DEL TEMA BÁSICO */
 body {
     color: #797979;
-	background: #eaeaea;
+    background: #eaeaea;
     font-family: 'Orbitron', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
     font-size:13px;
 }
+.modal{
+    overflow: scroll;
+}
 
+.show-cart li {
+    display: flex;
+}
+.card {
+    margin-bottom: 20px;
+}
+.card-img-top {
+    width: 200px;
+    height: 200px;
+    align-self: center;
+}
 ul li {
     list-style: none;
 }
@@ -40,74 +54,74 @@ a, a:hover, a:focus {
 
 
 .btn-round {
-	border-radius: 20px;
-	-webkit-border-radius: 20px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
 }
 
 .accordion-heading .accordion-toggle {
-	display: block;
-	cursor: pointer;
-	border-top: 1px solid #F5F5F5;
-	padding: 5px 0px;
-	line-height: 28.75px;
-	text-transform: uppercase;
-	color: #1a1a1a;
-	background-color: #ffffff;
-	outline: none !important;
-	text-decoration: none;
+    display: block;
+    cursor: pointer;
+    border-top: 1px solid #F5F5F5;
+    padding: 5px 0px;
+    line-height: 28.75px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    outline: none !important;
+    text-decoration: none;
 }
 
 /*Ayudas clases con estilos ya cargados*/
 
 .centered {
-	text-align: center;
+    text-align: center;
 }
 
 .goleft {
-	text-align: left;
+    text-align: left;
 }
 
 .goright {
-	text-align: right;
+    text-align: right;
 }
 
 .mt {
-	margin-top: 25px;
+    margin-top: 25px;
 }
 
 .mb {
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 
 .no-padding {
-	padding: 0 !important;
+    padding: 0 !important;
 }
 
 .no-margin {
-	margin: 0 !important;
+    margin: 0 !important;
 }
 
 /*colores de las notificaciones y del boton logout*/
 
 .label-theme {
-	background-color: #4ECDC4;
+    background-color: #4ECDC4;
 }
 
 .bg-theme {
-	background-color: #4ECDC4;
+    background-color: #4ECDC4;
 }
 
 ul.top-menu > li > .logout {
-	color: #f2f2f2;
-	font-size: 12px;
-	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border: 1px solid #64c3c2 !important;
-	padding: 5px 15px;
-	margin-right: 15px;
-	background: #4ECDC4;
-	margin-top: 15px;
+    color: #f2f2f2;
+    font-size: 12px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border: 1px solid #64c3c2 !important;
+    padding: 5px 15px;
+    margin-right: 15px;
+    background: #4ECDC4;
+    margin-top: 15px;
 }
 
 
@@ -121,8 +135,8 @@ ul.top-menu > li > .logout {
 }
 
 #sidebar h5 {
-	color: #f2f2f2;
-	font-weight: 700;
+    color: #f2f2f2;
+    font-weight: 700;
 }
 
 #sidebar ul li {
@@ -175,8 +189,8 @@ ul.sidebar-menu li ul.sub li a {
 }
 
 ul.sidebar-menu li ul.sub li a:hover {
-	color: white;
-	background: transparent;
+    color: white;
+    background: transparent;
 }
 
 ul.sidebar-menu li ul.sub li.active a {
@@ -245,7 +259,7 @@ ul.sidebar-menu li a.active i {
     color: black;
 }
 .sub .sub-a.active{
-  color: #4ECDC4;
+    color: #4ECDC4;
 
 }
 
@@ -254,11 +268,11 @@ ul.sidebar-menu li a.active i {
 
 
 .sub-a{
-  margin-left: -50px;
+    margin-left: -50px;
 }
 
 .nombreUsuario{
-  margin-bottom: 20%;
+    margin-bottom: 20%;
 }
 
 
@@ -268,7 +282,7 @@ ul.sidebar-menu li a.active i {
     min-height: 90vh;
 }
 .cont{
-  height: 100%;
+    height: 100%;
 }
 .header, .footer {
     min-height: 60px;
@@ -437,7 +451,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 /* MAIN CHART CONFIGURATION */
 .main-chart {
-	padding-top: 20px;
+    padding-top: 20px;
 }
 
 .border-head h3 {
@@ -534,16 +548,16 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 /* Font Awesome Showcase */
 .fontawesome-list .fa-hover a {
-	display: block;
-	color: #222;
-	line-height: 32px;
-	height: 32px;
-	padding-left: 10px;
-	border-radius: 4px;
+    display: block;
+    color: #222;
+    line-height: 32px;
+    height: 32px;
+    padding-left: 10px;
+    border-radius: 4px;
 }
 
 .fontawesome-list i {
-	margin-right: 8px;
+    margin-right: 8px;
 }
 
 
@@ -559,11 +573,11 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 }
 
 .site-footer p {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .credits, .credits a {
-  color: #fff;
+    color: #fff;
 }
 
 .go-top {
@@ -588,16 +602,16 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 /* Copyrights */
 
 #copyrights {
-  background: #222222;
-  padding: 20px 0;
-  text-align: center;
+    background: #222222;
+    padding: 20px 0;
+    text-align: center;
 }
 
 #copyrights p {
-  margin-bottom: 5px;
-  color: #fff;
+    margin-bottom: 5px;
+    color: #fff;
 }
 
 #copyrights a {
-  color: #fff;
+    color: #fff;
 }
