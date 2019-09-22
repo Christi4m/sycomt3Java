@@ -145,6 +145,139 @@ public class VentasDao extends Conexion {
         }
         return flag;
     }
+//metodo para listar el reporte de ventas por mes
+
+    public ArrayList<Ventas> getAllVentasMes() {
+
+        ArrayList<Ventas> v = new ArrayList<>();
+        try {
+            String sql = "call ventasPorMes()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                v.add(new Ventas(rs.getString("Mes"), rs.getString("ventasMes")));
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();//cerrar el resultSet
+                }
+                if (pst != null) {
+                    pst.close();//cierra el preperentStament
+                }
+                if (getConnection() != null) {
+                    getConnection().close();//cerrar la conección
+                }
+            } catch (Exception e) {
+            }
+        }
+        return v;
+
+    }
+    public ArrayList<Ventas> reporte2() {
+
+        ArrayList<Ventas> v = new ArrayList<>();
+        try {
+            String sql = "call ventasPorMesLino()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero")+","+rs.getString("Febrero")+","+rs.getString("Marzo")+","+rs.getString("Abril")+","+rs.getString("Mayo")+","+rs.getString("Junio")+","+rs.getString("Julio")+","+rs.getString("Agosto")+","+rs.getString("Septiembre")+","+rs.getString("Octubre")+","+rs.getString("Noviembre")+","+rs.getString("Diciembre");
+                v.add(new Ventas("Lino",ventasLino));
+            }
+            sql = "call ventasPorMesSeda()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero")+","+rs.getString("Febrero")+","+rs.getString("Marzo")+","+rs.getString("Abril")+","+rs.getString("Mayo")+","+rs.getString("Junio")+","+rs.getString("Julio")+","+rs.getString("Agosto")+","+rs.getString("Septiembre")+","+rs.getString("Octubre")+","+rs.getString("Noviembre")+","+rs.getString("Diciembre");
+                v.add(new Ventas("Seda",ventasLino));
+            }
+            sql = "call ventasPorMesUniforme()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero")+","+rs.getString("Febrero")+","+rs.getString("Marzo")+","+rs.getString("Abril")+","+rs.getString("Mayo")+","+rs.getString("Junio")+","+rs.getString("Julio")+","+rs.getString("Agosto")+","+rs.getString("Septiembre")+","+rs.getString("Octubre")+","+rs.getString("Noviembre")+","+rs.getString("Diciembre");
+                v.add(new Ventas("Uniforme",ventasLino));
+            }
+            sql = "call ventasPorMesPano()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero")+","+rs.getString("Febrero")+","+rs.getString("Marzo")+","+rs.getString("Abril")+","+rs.getString("Mayo")+","+rs.getString("Junio")+","+rs.getString("Julio")+","+rs.getString("Agosto")+","+rs.getString("Septiembre")+","+rs.getString("Octubre")+","+rs.getString("Noviembre")+","+rs.getString("Diciembre");
+                v.add(new Ventas("Paño",ventasLino));
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();//cerrar el resultSet
+                }
+                if (pst != null) {
+                    pst.close();//cierra el preperentStament
+                }
+                if (getConnection() != null) {
+                    getConnection().close();//cerrar la conección
+                }
+            } catch (Exception e) {
+            }
+        }
+        return v;
+
+    }
+    public ArrayList<Ventas> reporte3() {
+
+        ArrayList<Ventas> v = new ArrayList<>();
+        try {
+            String sql = "call cantidadVentasMesLino()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero")+","+rs.getString("Febrero")+","+rs.getString("Marzo")+","+rs.getString("Abril")+","+rs.getString("Mayo")+","+rs.getString("Junio")+","+rs.getString("Julio")+","+rs.getString("Agosto")+","+rs.getString("Septiembre")+","+rs.getString("Octubre")+","+rs.getString("Noviembre")+","+rs.getString("Diciembre");
+                v.add(new Ventas("Lino",ventasLino));
+            }
+            sql = "call cantidadVentasMesSeda()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero")+","+rs.getString("Febrero")+","+rs.getString("Marzo")+","+rs.getString("Abril")+","+rs.getString("Mayo")+","+rs.getString("Junio")+","+rs.getString("Julio")+","+rs.getString("Agosto")+","+rs.getString("Septiembre")+","+rs.getString("Octubre")+","+rs.getString("Noviembre")+","+rs.getString("Diciembre");
+                v.add(new Ventas("Seda",ventasLino));
+            }
+            sql = "call cantidadVentasMesUniforme()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero")+","+rs.getString("Febrero")+","+rs.getString("Marzo")+","+rs.getString("Abril")+","+rs.getString("Mayo")+","+rs.getString("Junio")+","+rs.getString("Julio")+","+rs.getString("Agosto")+","+rs.getString("Septiembre")+","+rs.getString("Octubre")+","+rs.getString("Noviembre")+","+rs.getString("Diciembre");
+                v.add(new Ventas("Uniforme",ventasLino));
+            }
+            sql = "call cantidadVentasMesPano()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero")+","+rs.getString("Febrero")+","+rs.getString("Marzo")+","+rs.getString("Abril")+","+rs.getString("Mayo")+","+rs.getString("Junio")+","+rs.getString("Julio")+","+rs.getString("Agosto")+","+rs.getString("Septiembre")+","+rs.getString("Octubre")+","+rs.getString("Noviembre")+","+rs.getString("Diciembre");
+                v.add(new Ventas("Paño",ventasLino));
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();//cerrar el resultSet
+                }
+                if (pst != null) {
+                    pst.close();//cierra el preperentStament
+                }
+                if (getConnection() != null) {
+                    getConnection().close();//cerrar la conección
+                }
+            } catch (Exception e) {
+            }
+        }
+        return v;
+
+    }
 
     //metodo para listar todas las ventas generadas en la base de datos
     public ArrayList<Ventas> getAllVEntas() {
@@ -322,26 +455,5 @@ public class VentasDao extends Conexion {
         return flag;
     }
 
-    public static void main(String[] args) {
-        String id = "28,5,75000.00;34,6,90000.00;";
-        String les = "l,d,f,e,h,t,g,";
-        String auxid = "";
-        String auxles = "";
-
-        String[] arrOfStr = id.split(";");
-        
-        for (String a : arrOfStr) {
-            
-           
-            StringTokenizer misAtributos = new StringTokenizer(a, ",");
-            int idP   = Integer.parseInt(misAtributos.nextToken().trim());
-            int cant   = Integer.parseInt(misAtributos.nextToken().trim());
-            double precio = Double.parseDouble(misAtributos.nextToken().trim());
-            
-            System.out.println(idP +" /" + cant +" /" + precio );
-        }
-        
-
-        
-    }
+    
 }

@@ -122,6 +122,16 @@
                 + "                                        <a id='tajetaEmpleadosA'class=\"textIcono\" href=\"#\">Empleados</a>\n"
                 + "                                    </div>                                                \n"
                 + "                                </div>\n"
+                + "                            </div>"
+                + "                            <div class=\"col-lg-3 tarjetaItem\">\n"
+                + "                                <div class=\"subItem \">\n"
+                + "                                    <div>\n"
+                + "                                        <a id='tajetaReportesA'class=\" incono fa fa-bar-chart\" href=\"#\"></a>\n"
+                + "                                    </div>\n"
+                + "                                    <div>\n"
+                + "                                        <a id='tajetaReportesA'class=\"textIcono\" href=\"#\">Reportes</a>\n"
+                + "                                    </div>                                                \n"
+                + "                                </div>\n"
                 + "                            </div>";
 
     } else if (rol.equalsIgnoreCase("Mensajero")) {

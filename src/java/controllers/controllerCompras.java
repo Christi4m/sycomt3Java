@@ -46,7 +46,7 @@ public class controllerCompras extends HttpServlet {
                 String dia = Integer.toString(c.get(Calendar.DATE));
                 String mes = Integer.toString(c.get(Calendar.MONTH) + 1);
                 String annio = Integer.toString(c.get(Calendar.YEAR));
-                String fecha = dia + " " + mes + " " + annio;
+                String fecha = dia + "-" + mes + "-" + annio;
                 //seccion de codigo para instanciar las clases compras y comprasDao
                 ComprasDao shopDao1 = new ComprasDao();
                 Compras shop1 = new Compras(0, fecha, request.getParameter("descripcionShop"), Double.parseDouble(request.getParameter("totalShop")), Integer.parseInt(request.getParameter("proveedorShop")), 0, 0, 0,"Realizada");

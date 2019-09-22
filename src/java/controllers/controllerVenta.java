@@ -59,7 +59,7 @@ public class controllerVenta extends HttpServlet {
                 String dia = Integer.toString(c.get(Calendar.DATE));
                 String mes = Integer.toString(c.get(Calendar.MONTH) + 1);
                 String annio = Integer.toString(c.get(Calendar.YEAR));
-                String fecha = dia + " " + mes + " " + annio;
+                String fecha = dia + "-" + "04" + "-" + annio;
                 String numeroSerie = "";
                 //instancia del modeloVentas Dao para acceder a sus metodos 
                 VentasDao modelo1 = new VentasDao();
@@ -85,7 +85,7 @@ public class controllerVenta extends HttpServlet {
 
                 if (modelo2.guardarVentas(ventas1)) {
                     VentasDao modelo3 = new VentasDao();
-                    int idVenta = Integer.parseInt(modelo3.idVentas());                    
+                    int idVenta = Integer.parseInt(modelo3.idVentas());
                     controllerProduct cpr = new controllerProduct();
                     // traer todos los datos de los productos ingresados en el carrito de compras
                     for (Articulo ar : articulos) {
@@ -101,8 +101,6 @@ public class controllerVenta extends HttpServlet {
                 }
 
                 break;
-
-            
 
             case "listVentas":
                 JsonObject gson = new JsonObject();
@@ -220,7 +218,50 @@ public class controllerVenta extends HttpServlet {
                     out.print("0");
                 }
                 break;
+            case "reportVentasMes":
+                JsonObject gsonRV = new JsonObject();
+                JsonArray arrayRV = new JsonArray();
 
+                VentasDao modelo11 = new VentasDao();
+                for (Ventas ventas5 : modelo11.getAllVentasMes()) {
+                    JsonObject item = new JsonObject();
+                    item.addProperty("mes", ventas5.getMes());
+                    item.addProperty("ventasMes", ventas5.getVentasMes());
+
+                    arrayRV.add(item);
+                }
+                gsonRV.add("datos", arrayRV);
+
+                out.print(gsonRV.toString());
+                break;
+            case "Reporte2":
+                JsonObject gsonRV1 = new JsonObject();
+                JsonArray arrayRV1 = new JsonArray();
+                VentasDao modelo12 = new VentasDao();
+                for (Ventas ventas6 : modelo12.reporte2()) {
+                    JsonObject item = new JsonObject();
+                    item.addProperty("telaje", ventas6.getMes());
+                    item.addProperty("ventasMes", ventas6.getVentasMes());
+                    arrayRV1.add(item);
+
+                }
+                gsonRV1.add("datos", arrayRV1);
+                out.print(gsonRV1.toString());
+                break;
+            case "Reporte3":
+                JsonObject gsonRV2 = new JsonObject();
+                JsonArray arrayRV2 = new JsonArray();
+                VentasDao modelo13 = new VentasDao();
+                for (Ventas ventas7 : modelo13.reporte3()) {
+                    JsonObject item = new JsonObject();
+                    item.addProperty("telaje", ventas7.getMes());
+                    item.addProperty("ventasMes", ventas7.getVentasMes());
+                    arrayRV2.add(item);
+
+                }
+                gsonRV2.add("datos", arrayRV2);
+                out.print(gsonRV2.toString());
+                break;
             default:
                 break;
         }

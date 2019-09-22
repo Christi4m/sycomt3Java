@@ -17,12 +17,21 @@ public class Ventas {
     private String estado;
     private int idMensajero;
     private int idFactura;
+    private String mes;
+    private String ventasMes;
 
     
     private String detallesProducto;
 
     public Ventas() {
     }
+    //constructor para reporte ventas mes
+    public Ventas(String mes, String ventasMes) {
+        this.mes = mes;
+        this.ventasMes = ventasMes;
+    }
+    
+    
     // constructor para guardar los detelle de cada venta
     public Ventas(int idDetalleVenta, int idProducto, String nameProducto, String detallesProducto, Double cantidadProducto, Double valorProducto){
         this.idDetalleVenta=idDetalleVenta;
@@ -185,6 +194,22 @@ public Ventas(int id, String fechaVenta, Double valorGlobal, int idCliente, Stri
 
     public void setIdFactura(int idFactura) {
         this.idFactura = idFactura;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    public String getVentasMes() {
+        return ventasMes;
+    }
+
+    public void setVentasMes(String ventasMes) {
+        this.ventasMes = ventasMes;
     }
     
     

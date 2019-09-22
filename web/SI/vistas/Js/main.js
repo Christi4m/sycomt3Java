@@ -137,6 +137,11 @@ var ready = function () {
         $('#main-content').load("Administrador/Empleados.jsp");
         cambio();
     });
+    $(document).on('click', '#linkReportesA', function (e) {
+        e.preventDefault();
+        $('#main-content').load("Administrador/Reportes.jsp");
+        cambio();
+    });
     //tarjetas del home Administrador
 
 
@@ -168,6 +173,12 @@ var ready = function () {
         e.preventDefault();
         $("#linkEmpleadosOpenA").click();
         $("#linkEmpleadosA").click();
+        cambio();
+    });
+    $(document).on('click', '#tajetaReportesA', function (e) {
+        e.preventDefault();
+        $("#linkReportesOpenA").click();
+        $("#linkReportesA").click();
         cambio();
     });
 }

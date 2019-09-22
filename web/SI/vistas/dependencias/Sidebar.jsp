@@ -134,6 +134,17 @@ A<%@page contentType="text/html" pageEncoding="UTF-8"%>
                 + "                    <li><a id=\"linkEmpleadosA\" class=\"sub-a\" href=\"#\">Gestión de Empleados</a></li>\n"
                 + "                </ul>\n"
                 + "            </li>\n"
+                + "            <!-- Fin sub menu de inventario -->"
+                + "            <!-- Inicio sub menu de reportes -->\n"
+                + "            <li class=\"sub-menu\">\n"
+                + "                <a id=\"linkReportesOpenA\"class=\"sub-menu-a\" href=\"javascript:;\">\n"
+                + "                    <i class=\"fa fa-bar-chart\"></i>\n"
+                + "                    <span id=\"employees\">Reportes</span>\n"
+                + "                </a>\n"
+                + "                <ul class=\"sub text-center\">\n"
+                + "                    <li><a id=\"linkReportesA\" class=\"sub-a\" href=\"#\">Gestión de Reportes</a></li>\n"
+                + "                </ul>\n"
+                + "            </li>\n"
                 + "            <!-- Fin sub menu de inventario -->";
     } else if (rol.equalsIgnoreCase("Mensajero")) {
 
