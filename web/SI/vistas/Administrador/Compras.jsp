@@ -7,7 +7,7 @@
                     Agregar
                     <span class="fa fa-plus"></span>
                 </button>
-                <table id="tableCrud" class="table col-md-2 table-condensed  table-hover table-striped table-bordered" style="width:100%">
+                <table id="tableCrud" class="table  table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
                             <th id="code">#</th>

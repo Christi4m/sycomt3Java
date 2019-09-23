@@ -7,7 +7,46 @@ $(document).ready(function () {
 });
 var listar = function () {
     var table = $("#tableCrud").DataTable({
+        dom: 'lBfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-copy"></i>',
+                titleAttr: 'Copiar Dstos',
+                className: 'btn btn-info',
+                exportOptions: {
+                    columns: [0, 1, 3, 4, 5, 'visible']
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-file-excel"></i>',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                exportOptions: {
+                    columns: [0, 1, 3, 4, 5, 'visible']
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i style="font-size:25px;" class="fas fa-file-pdf"></i>',
+                titleAttr: 'Exportar a Pdf',
+                className: 'btn btn-danger',
+                exportOptions: {
+                    columns: [0, 1, 3, 4, 5]
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-file-csv"></i>',
+                titleAttr: 'Exportar a Csv',
+                className: 'btn btn-warning',
+                exportOptions: {
+                    columns: [0, 1, 3, 4, 5]
+                }
+            }
 
+        ],
         destroy: true,
         order: [[0, "desc"]],
         ajax: {

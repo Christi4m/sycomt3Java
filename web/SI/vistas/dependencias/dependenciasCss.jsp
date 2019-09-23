@@ -5,7 +5,7 @@
     <!-- Dependencias Css -->
     <link rel="icon" type="image/png" href="<%= request.getContextPath()%>/images/img/isologo.png" />
     <link href="<%= request.getContextPath()%>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<%= request.getContextPath()%>/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" rel="stylesheet" />
     <link href="<%= request.getContextPath()%>/SI/css/estilosTablas.css" rel="stylesheet">
     <link href="<%= request.getContextPath()%>/SI/css/estilosPerfilUsuario.css" rel="stylesheet">
     <link href="<%= request.getContextPath()%>/css/estilos-responsive.css" rel="stylesheet">

@@ -138,7 +138,7 @@ A<%@page contentType="text/html" pageEncoding="UTF-8"%>
                 + "            <!-- Inicio sub menu de reportes -->\n"
                 + "            <li class=\"sub-menu\">\n"
                 + "                <a id=\"linkReportesOpenA\"class=\"sub-menu-a\" href=\"javascript:;\">\n"
-                + "                    <i class=\"fa fa-bar-chart\"></i>\n"
+                + "                    <i class=\"fas fa-chart-bar\"></i>\n"
                 + "                    <span id=\"employees\">Reportes</span>\n"
                 + "                </a>\n"
                 + "                <ul class=\"sub text-center\">\n"
@@ -147,7 +147,27 @@ A<%@page contentType="text/html" pageEncoding="UTF-8"%>
                 + "            </li>\n"
                 + "            <!-- Fin sub menu de inventario -->";
     } else if (rol.equalsIgnoreCase("Mensajero")) {
-
+        sidebar = "  <!-- Inicio sub menu de home -->\n"
+                + "                        <li class=\"sub-menu\">\n"
+                + "                            <a class=\"sub-menu-a active\" href=\"Dashboard.jsp\">\n"
+                + "                                <i class=\"fa fa-home\"></i>\n"
+                + "                                <span id=\"idInicio\">Inicio</span>\n"
+                + "                            </a>\n"
+                + "\n"
+                + "                        </li>\n"
+                + "                        <!-- Fin sub menu de home -->\n"
+                + "                        <!-- Inicio sub menu de entregas  -->\n"
+                + "                        <li class=\"sub-menu\">\n"
+                + "                            <a id='linkEntregasOpen'class=\"sub-menu-a\" href=\"javascript:;\">\n"
+                + "                                <i class=\"fa fa-send\"></i>\n"
+                + "                                <span id=\"suppliers\">Entregas</span>\n"
+                + "                            </a>\n"
+                + "                            <ul class=\"sub text-center\">\n"
+                + "                                <li><a id=\"linkEntregasPendientesM\" class=\"sub-a \" href=\"#\"><i class=\"fa fa-truck\"></i> Pendientes</a></li>\n"
+                + "                                <li><a id=\"linkEntregasRealizadasM\" class=\"sub-a \" href=\"#\"><i class=\"fa fa-check-square\"></i> Realizadas</a></li>\n"
+                + "                            </ul>\n"
+                + "                        </li>\n"
+                + "                        <!-- Fin sub menu de entregas  -->";
     }
 
 
@@ -158,7 +178,7 @@ A<%@page contentType="text/html" pageEncoding="UTF-8"%>
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
             <p class="centered"><a class=""href="#" ><img src="<%= request.getContextPath()%>/SI/img/usuario.png" class="img-circle" width="80"></a></p>
-            <h5 id="idAdmin" class="centered nombreUsuario"></h5>
+            <h5 id="idAdmin" class="centered nombreUsuario"><%= usuario%></h5>
             <%= sidebar%>
         </ul>
         <!-- sidebar menu end-->

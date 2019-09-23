@@ -172,7 +172,7 @@ var options1 = {
         text: '<strong>Cantidad De Producto En Metros Vendidos<br>' + output + '</strong>'
     },
     subtitle: {
-        text: '<h4 style="color:black;font-size:15px;">En este reporte se evidencia cantidad de producto en metros  por tipo de telaje vendidos mes a mes</h4>'
+        text: '<h4 style="color:black;font-size:15px;">En este reporte se evidencia cantidad de producto en metros vendidos por tipo de telas mes a mes</h4>'
     },
     xAxis: {
         categories: [
@@ -283,11 +283,11 @@ var options2 ={
     },
     yAxis: {
         title: {
-            text: 'Cant. Ventas'
-        }
-    },
-    tooltip: {
-        shared: true,
+                text: 'Cant. Ventas'
+            }
+        },
+        tooltip: {
+            shared: true,
         valueSuffix: ' Ventas'
     },
     credits: {

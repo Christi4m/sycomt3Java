@@ -10,26 +10,11 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
 
-
-
-        <!-- Bootstrap core CSS -->
-        <link href="../../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <!--Libreria de iconos-->
-        <link href="../../lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <%@include file="dependencias/dependenciasCss.jsp"%>
         <!-- Estilos personalizados -->
         <link href="../css/estilosLoginAdmin.css" rel="stylesheet">
-        <link href="../css/estilos-responsive.css" rel="stylesheet">
-        <!--estilos sweetalert-->
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
-        <link rel="stylesheet" href="../plugins/animate.css/animate.css">
-        <link rel="stylesheet" href="../plugins/sweetAlert2/sweetalert2.min.css">
-
     </head>
-
     <body>
-
         <!-- *****************************
             Formulario de ingreso
           ******************************* -->
@@ -48,7 +33,7 @@
                         <input  class="remember-me" type="checkbox" value="remember-me">
                         <label style="margin-bottom: 10px;" id="recuerdame"for="[recuerdame]">Recuerdame</label>
 
-                        <button style="margin: auto;margin-bottom: 20px;"id="buttonLogin" type="submit" class=" btn-block botonIngreso" href="#" >INGRESAR  <i class="fa fa-sign-in"></i></button>
+                        <button style="margin: auto;margin-bottom: 20px;"id="buttonLogin" type="submit" class="rounded btn-block botonIngreso" href="#" >INGRESAR  <i class="fa fa-sign-in"></i></button>
 
 
                         <button onclick="translateEnglish()"id="buttonTranslateEn"class="btn btnAgregar" type="button">EN</button>
@@ -64,28 +49,20 @@
 
         </div>
         <!-- archivos JavaScript -->
-        <script src="../../lib/jquery/jquery.min.js"></script>
-        <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../../js/main.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
-        <script src="../plugins/sweetAlert2/sweetalert2.all.min.js"></script>
-
+        <%@include file="dependencias/dependenciasJS.jsp"%>
         <!--seccion de codigo para traducir la pagina-->
         <script>
-                            function translateEnglish() {
+            function translateEnglish() {
 
-                                document.getElementById('buttonLogin').innerHTML = 'LOGIN  ';
-                                $('#buttonLogin').append('<i class="fa fa-sign-in"></i>');
-                                document.getElementById('recuerdame').innerHTML = 'Remember Me';
-                            }
-                            function translateSpanish() {
-                                document.getElementById('buttonLogin').innerHTML = 'INGRESAR  ';
-                                $('#buttonLogin').append('<i class="fa fa-sign-in"></i>');
-                                document.getElementById('recuerdame').innerHTML = 'Recuerdame';
-                            }
+                document.getElementById('buttonLogin').innerHTML = 'LOGIN  ';
+                $('#buttonLogin').append('<i class="fa fa-sign-in"></i>');
+                document.getElementById('recuerdame').innerHTML = 'Remember Me';
+            }
+            function translateSpanish() {
+                document.getElementById('buttonLogin').innerHTML = 'INGRESAR  ';
+                $('#buttonLogin').append('<i class="fa fa-sign-in"></i>');
+                document.getElementById('recuerdame').innerHTML = 'Recuerdame';
+            }
         </script>
         <!--fin de la seccion de traduccion de la pagina-->
 
@@ -118,14 +95,8 @@
                                     padding: '5em',
                                     showConfirmButton: false,
                                     timer: 6000 //el tiempo que dura el mensaje en ms
-
-
-
                                 });
                             }
-
-
-
                         });
 
                     } else {
@@ -139,17 +110,10 @@
                             padding: '5em',
                             showConfirmButton: false,
                             timer: 4000 //el tiempo que dura el mensaje en ms
-
-
-
                         });
-
                     }
                 });
             });
-           
         </script>
-
     </body>
-
 </html>

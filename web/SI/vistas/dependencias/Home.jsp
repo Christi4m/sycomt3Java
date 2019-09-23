@@ -126,7 +126,7 @@
                 + "                            <div class=\"col-lg-3 tarjetaItem\">\n"
                 + "                                <div class=\"subItem \">\n"
                 + "                                    <div>\n"
-                + "                                        <a id='tajetaReportesA'class=\" incono fa fa-bar-chart\" href=\"#\"></a>\n"
+                + "                                        <a id='tajetaReportesA'class=\" incono fas fa-chart-bar\" href=\"#\"></a>\n"
                 + "                                    </div>\n"
                 + "                                    <div>\n"
                 + "                                        <a id='tajetaReportesA'class=\"textIcono\" href=\"#\">Reportes</a>\n"
@@ -135,7 +135,29 @@
                 + "                            </div>";
 
     } else if (rol.equalsIgnoreCase("Mensajero")) {
-
+        home = " <div class=\"col-lg-6 tarjetaItem\"   >\n"
+                + "                                            <div class=\"subItem\" style=\"height: 120px;\">\n"
+                + "                                                <div>\n"
+                + "                                                   <a id=\"tarjetaEntregasPendientesM\"class=\" incono fa fa-truck\" href=\"#\"></a> \n"
+                + "                                                </div>\n"
+                + "                                                <div>\n"
+                + "                                                    <a id=\"tarjetaEntregasPendientesM\"class=\"textIcono\" href=\"#\">Entregas Pendientes</a>\n"
+                + "                                                </div>\n"
+                + "                                                \n"
+                + "                                            </div>\n"
+                + "                                        </div>\n"
+                + "                                        <div class=\"col-lg-6 tarjetaItem\">\n"
+                + "                                            <div class=\"subItem \"style=\"height: 120px;\">\n"
+                + "                                                <div>\n"
+                + "                                                    <a id=\"tarjetaEntregasRealizadasM\"class=\" incono fa fa-check-square\" href=\"#\"></a>\n"
+                + "                                                </div>\n"
+                + "                                                <div>\n"
+                + "                                                    <a id=\"tarjetaEntregasRealizadasM\"href=\"#\" class=\"textIcono\">Entregas Realizadas</a>\n"
+                + "                                                </div>\n"
+                + "\n"
+                + "                                            </div>\n"
+                + "                                        </div>\n"
+                + "                                        ";
     }
 
 

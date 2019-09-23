@@ -7,7 +7,28 @@ $(document).ready(function () {
 });
 var listar = function () {
     var table = $("#tableCrud").DataTable({
-
+         dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: [ 0, ':visible' ]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: [ 0, 1, 2, 5 ]
+                }
+            },
+            'colvis'
+        ],
         destroy: true,
         order: [[0, "desc"]],
         ajax: {

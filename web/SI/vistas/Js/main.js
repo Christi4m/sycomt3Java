@@ -181,5 +181,33 @@ var ready = function () {
         $("#linkReportesA").click();
         cambio();
     });
+    
+    
+    ////////////////////////////////////////////////////////////////////
+    //navegacion vistas Mensajero
+    //navegacion sidebar
+     $(document).on('click', '#linkEntregasPendientesM', function (e) {
+        e.preventDefault();
+        $('#main-content').load("Mensajero/EntregasPendientes.jsp");
+        cambio();    
+    });
+     $(document).on('click', '#linkEntregasRealizadasM', function (e) {
+        e.preventDefault();
+        $('#main-content').load("Mensajero/EntregasRealizadas.jsp");
+        cambio();    
+    });
+    //navegacion home
+    $(document).on('click', '#tarjetaEntregasPendientesM', function (e) {
+        e.preventDefault();
+        $("#linkEntregasOpen").click();
+        $("#linkEntregasPendientesM").click();
+        cambio();
+    });
+    $(document).on('click', '#tarjetaEntregasRealizadasM', function (e) {
+        e.preventDefault();
+        $("#linkEntregasOpen").click();
+        $("#linkEntregasRealizadasM").click();
+        cambio();
+    });
 }
 

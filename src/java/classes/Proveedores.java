@@ -1,7 +1,6 @@
 package classes;
 
 public class Proveedores {
-
     
     private int id;
     private String razonSocial;
