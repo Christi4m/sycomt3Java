@@ -49,7 +49,7 @@ A<%@page contentType="text/html" pageEncoding="UTF-8"%>
                 + "            <!-- Inicio sub menu de orden de compra -->\n"
                 + "            <li class=\"sub-menu\">\n"
                 + "                <a id=\"linkEntregasOpen\"class=\"sub-menu-a\" href=\"javascript:;\">\n"
-                + "                    <i class=\"fa fa-send\"></i>\n"
+                + "                    <i class=\"fas fa-paper-plane\"></i>\n"
                 + "                    <span>Entregas</span>\n"
                 + "                </a>\n"
                 + "                <ul class=\"sub text-center\">\n"

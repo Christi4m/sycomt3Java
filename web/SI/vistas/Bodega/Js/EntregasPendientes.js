@@ -114,8 +114,9 @@ var listar = function () {
                 dataType: "json",
                 success: function (data) {
                     console.log(data);
+                    $('#bodyDV').html("");
                     $.each(data.datos, function (i, field) {
-                        $('#bodyDV').html("");
+                        
                         $('#bodyDV').append("<tr><td>" + field.idProducto + "</td><td>" + field.nombreProducto + "</td><td>" + field.cantidad + "</td><td>" + field.precio + "</td><td>" + field.detalles + "</td></tr>");
                         $("#modalDetalleVentas").modal("show");
                     });

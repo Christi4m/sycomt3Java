@@ -8,7 +8,7 @@ var listar = function () {
     //terceros que es el que controla la gestion de los empleados, este a su vez
     //se conecta con el modelo que trae los datos desde la base de datos                            
     var table = $("#tableCrud").DataTable({
-        
+
         destroy: true,
         order: [[0, "desc"]],
         ajax: {
@@ -18,8 +18,8 @@ var listar = function () {
         },
         columns: [
 
-            {data: "id"},            
-            {data: "name"},         
+            {data: "id"},
+            {data: "name"},
             {data: "typeTercero"},
             {data: "estadoTercero"},
             {data: "acciones"}
@@ -151,10 +151,11 @@ $(function () {
 
             }
 
-        }).on('success.form.bv', function (e) {
+        });
+        $('$frmCrearEmpleado').on('success.form.bv', function (e) {
             // Prevent form submission
             e.preventDefault();
-
+            e.stopImmediatePropagation();
             var data = new FormData($('#frmCrearEmpleado')[0]);
 //                                for (var entrie of data.entries()) {
 //                                    console.log(entrie[0] + ': ' + entrie[1]);
@@ -206,6 +207,7 @@ $(function () {
     //controlador y trae los datos asignados a ese empleado en particular
     $(document).on('click', 'button.btnDetalles', function (e) {
         e.preventDefault();
+        e.stopImmediatePropagation();
         var idDetails = $(this).attr('id');
         var data = {idDetails: idDetails};
         //Funcion ajax que trae los datos detalle del empleado                         
@@ -231,6 +233,7 @@ $(function () {
     // en caso tal de que  no despliega un modal solicitando el usuario y la contraseña a aignar
     $(document).on('click', 'button.btnInsertUserAccess', function (e) {
         e.preventDefault();
+        e.stopImmediatePropagation();
         var idEmpleado = $(this).attr('id');
         var data = {idEmpleado: idEmpleado};
         $.ajax({
@@ -255,7 +258,7 @@ $(function () {
                     $("#ModalUserAccess").modal("show");
                     $(document).on('click', 'button#btnCrearUserAccess', function (e) {
                         e.preventDefault();
-
+                        e.stopImmediatePropagation();
                         var data = new FormData($('#frmUserAccesEmpleado')[0]);
 
                         $.ajax({

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     //
     $(document).on('click', 'button#buttonTranslateEn', function (e) {
+        
         idiomaEsp = {
             "sEmptyTable": "No data available in table",
             "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",

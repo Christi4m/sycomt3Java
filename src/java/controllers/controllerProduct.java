@@ -145,7 +145,11 @@ public class controllerProduct extends HttpServlet {
                 //lleva los datos capturados a la bd y realiza la actualizacion segun aplique
                 Producto pf = new Producto(Integer.parseInt(request.getParameter("id")), request.getParameter("nombre"), "", request.getParameter("telaje"), request.getParameter("ubicacion"), Double.parseDouble(request.getParameter("precioMC")), Double.parseDouble(request.getParameter("stock")), "", "");
                 ProductoDAO mpu = new ProductoDAO();
-                mpu.updateProducto(pf);
+                if(mpu.updateProducto(pf)){
+                    out.print("1");
+                }else{
+                    out.print("0");
+                }
                 break;
             case "delete":
                 // caso para eliminarlos un producto, en este caso se capturan el id del producto a eliminar enviado

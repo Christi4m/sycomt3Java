@@ -37,6 +37,8 @@ var listar = function () {
 //Funcion de trae los datos detalles de los provedores debido a que son demasiados datos para mostrarlos en la tabla
 //principal, estos datos son pintados en una ventana modal
 $(document).on('click', 'button.btnDetails', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
     var idProveedor = $(this).attr('id');
     var data = {idProveedor: idProveedor};
     //Funcion ajax que lista todos los campos detalles
@@ -86,6 +88,7 @@ $('#btnRegisterP').click(function (e) {
     $('#frmRegisterP').on('success.form.bv', function (e) {
         // Prevent form submission
         e.preventDefault();
+        e.stopImmediatePropagation();
         //Valiable FormData que lista todos los datos registrados en el formulario para registrar el proveedor
         var data = new FormData($('#frmRegisterP')[0]);
         //Seccion de codigo para mostrar en consola los datos de la variable data
@@ -142,6 +145,8 @@ $('#btnRegisterP').click(function (e) {
 
 //Funcion para llenar el formulario"actualizar"
 $(document).on('click', 'button.btnUpdate', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
     var idProveedor = $(this).attr('id');
     var data = {idProveedor: idProveedor};
     $.ajax({
@@ -193,7 +198,7 @@ $('#btnUpdateP').click(function (e) { //Funcion para validar el formulario
     $('#frmUpdateP').on('success.form.bv', function (e) {
         // Prevent form submission
         e.preventDefault();
-
+        e.stopImmediatePropagation();
         var data = new FormData($('#frmUpdateP')[0]);
 
         for (var entrie of data.entries()) {

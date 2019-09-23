@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.ProductoDAO;
 import models.VentasDao;
 
 public class controllerVenta extends HttpServlet {
@@ -59,7 +60,7 @@ public class controllerVenta extends HttpServlet {
                 String dia = Integer.toString(c.get(Calendar.DATE));
                 String mes = Integer.toString(c.get(Calendar.MONTH) + 1);
                 String annio = Integer.toString(c.get(Calendar.YEAR));
-                String fecha = dia + "-" + "04" + "-" + annio;
+                String fecha = dia + "-" + "06" + "-" + annio;
                 String numeroSerie = "";
                 //instancia del modeloVentas Dao para acceder a sus metodos 
                 VentasDao modelo1 = new VentasDao();
@@ -196,17 +197,40 @@ public class controllerVenta extends HttpServlet {
             case "procesarVenta":
                 int res = 0;
                 VentasDao modelo9 = new VentasDao();
-                if (modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("idVenta")), request.getParameter("estadoOrdenVenta"))) {
-                    VentasDao modelo10 = new VentasDao();
-                    if (modelo10.insertFactura(request.getParameter("numFactura"), Integer.parseInt(request.getParameter("idVenta")))) {
-                        res = 1;
+                int idVentas = Integer.parseInt(request.getParameter("idVenta"));
+                int buc = 0;
+                VentasDao modeloDetails = new VentasDao();
+                for (Ventas ventas3 : modeloDetails.getAllDetallesVentas(idVentas)) {
+                    ProductoDAO prDAO = new ProductoDAO();
+                    Producto pr = (Producto) prDAO.getProducto(ventas3.getIdProducto());
+
+                    if (pr.getStock() > ventas3.getCantidadProducto()) {
+                        buc += buc;
                     } else {
-                        res = 0;
+                        buc += 1;
                     }
-                    out.print(res);
-                } else {
-                    out.print(res);
                 }
+                if (buc != 0) {
+                    res = 3;
+                } else {
+                    VentasDao modeloDetails1 = new VentasDao();
+                    for (Ventas ventas4 : modeloDetails1.getAllDetallesVentas(idVentas)) {
+                        ProductoDAO prDAO = new ProductoDAO();
+                        Producto pr1 = (Producto) prDAO.getProducto(ventas4.getIdProducto());
+                        ProductoDAO prDAO3 = new ProductoDAO();
+                        prDAO3.updateStockProducto(ventas4.getIdProducto(), pr1.getStock() - ventas4.getCantidadProducto());
+
+                    }
+                    if (modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("idVenta")), request.getParameter("estadoOrdenVenta"))) {
+                        VentasDao modelo10 = new VentasDao();
+                        if (modelo10.insertFactura(request.getParameter("numFactura"), Integer.parseInt(request.getParameter("idVenta")))) {
+                            res = 1;
+                        } else {
+                            res = 0;
+                        }
+                    }
+                }
+                out.print(res);
                 break;
             case "deleteVenta":
                 VentasDao id = new VentasDao();

@@ -101,10 +101,11 @@ $(function () {
 
             }
 
-        }).on('success.form.bv', function (e) {
+        });
+        $('#frmCrearProducto').on('success.form.bv', function (e) {
             // Prevent form submission
             e.preventDefault();
-
+            e.stopImmediatePropagation();
             var data = new FormData($('#frmCrearProducto')[0]);
 
             for (var entrie of data.entries()) {
@@ -116,7 +117,7 @@ $(function () {
             $("#modalNuevo").modal("toggle");
 
             $.ajax({
-                url: "../../../methodProduct?accion=create",
+                url: "../../methodProduct?accion=create",
                 type: "post",
                 data: data,
                 contentType: false,
@@ -155,31 +156,36 @@ $(function () {
 
     });
     $(document).on('click', 'button.btnEliminar', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
         var idProducto = $(this).attr('id');
-        var fila = $(this).parent().parent();       
+        var fila = $(this).parent().parent();
     });
-     $('#botonModalEliminar').click(function (e) {
-            e.preventDefault();
-            var data = {iDProducto: idProducto};
-            $.ajax({
-                url: "../../../methodProduct?accion=delete",
-                type: "post",
-                data: data,
-                success: function (data) {
-                    $('#textoModalResult').text("Producto Eliminado exitosamente");
-                    $("#modalResult").modal("show");
-                    listar();
-                }
-            });
+    $('#botonModalEliminar').click(function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var data = {iDProducto: idProducto};
+        $.ajax({
+            url: "../../methodProduct?accion=delete",
+            type: "post",
+            data: data,
+            success: function (data) {
+                $('#textoModalResult').text("Producto Eliminado exitosamente");
+                $("#modalResult").modal("show");
+                listar();
+            }
         });
+    });
 
-    
+
     //funcion para cargar los datos en el modal de editar
     $(document).on('click', 'button.btnUpdate', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
         var idProducto = $(this).attr('id');
         var data = {idProducto: idProducto};
         $.ajax({
-            url: "../../../methodProduct?accion=modalUpdate",
+            url: "../../methodProduct?accion=modalUpdate",
             type: "post",
             data: data,
             dataSrc: "datos",
@@ -206,6 +212,7 @@ $(function () {
 
     $('#botonUpdateModal').click(function (e) {
         e.preventDefault();
+        e.stopImmediatePropagation();
         $("#modalEdicion").modal("toggle");
         var id = document.getElementById('idProductoA').value;
         var nombre = document.getElementById('nombreProductoA').value;
@@ -214,7 +221,7 @@ $(function () {
         var precioMC = document.getElementById('precioMCA').value;
         var stock = document.getElementById('stockA').value;
         $.ajax({
-            url: "../../../methodProduct?accion=update",
+            url: "../../methodProduct?accion=update",
             type: "post",
             data: {
                 id: id,
@@ -225,20 +232,45 @@ $(function () {
                 stock: stock,
             },
             success: function (data) {
-                $('#textoModalResult').text("Producto acualizado exitosamente");
-                $("#modalResult").modal("show");
+                if (data == 1) {
+                    Swal.fire({
+                        //error
+                        type: 'success',
+                        title: '¡ Producto Actualizado exitosamente ! ',
+                        width: 500,
+                        padding: '5em',
+                        showConfirmButton: false,
+                        timer: 2000 //el tiempo que dura el mensaje en ms
+                    });
+
+                } else {
+                    Swal.fire({
+                        //error
+                        type: 'error',
+                        title: '¡Error al Actualizar! ',
+                        text: 'Intentelo de nuevo',
+                        width: 500,
+                        padding: '5em',
+                        showConfirmButton: false,
+                        timer: 4000 //el tiempo que dura el mensaje en ms
+                    });
+                }
                 listar();
+
+
+
             }
         });
     });
     //funcion para llamar los detalles de un producto dentro del detalle de ventas
     $(document).on('click', 'button.btnDetallesProducto', function (e) {
         e.preventDefault();
+        e.stopImmediatePropagation();
         $("#modalDetalleProducto").modal("show");
         var idProducto = $(this).attr('id');
         var data = {idProducto: idProducto};
         $.ajax({
-            url: "../../../methodProduct?accion=modalUpdate",
+            url: "../../methodProduct?accion=modalUpdate",
             type: "post",
             data: data,
             dataSrc: "datos",

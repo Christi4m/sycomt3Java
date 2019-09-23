@@ -7,7 +7,7 @@
                     Agregar
                     <span class="fa fa-plus"></span>
                 </button>
-                <table id="listProductos" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                <table id="listProductos" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%;  color:black">
                     <thead>
                         <tr>
                             <th id="code">Codigo</th>

@@ -32,7 +32,7 @@ public class ProductoDAO extends Conexion {
             pst = getConnection().prepareCall(sql);//abriendo la conexión a la base de datos y los parametros que le voy a enviar (sentencia sql)
             rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
             while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
-                productos.add(new Producto(rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), rs.getString("tipoTelaje"), rs.getString("ubicacionBodega"), rs.getDouble("precioMC"), rs.getDouble("stock"), rs.getString("imagenProducto"),rs.getString("razonSocial")));
+                productos.add(new Producto(rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), rs.getString("tipoTelaje"), rs.getString("ubicacionBodega"), rs.getDouble("precioMC"), rs.getDouble("stock"), rs.getString("imagenProducto"), rs.getString("razonSocial")));
             }
         } catch (Exception e) {
 
@@ -42,7 +42,7 @@ public class ProductoDAO extends Conexion {
                     rs.close();//cerrar el resultSet
                 }
                 if (pst != null) {
-                        pst.close();//cierra el preperentStament
+                    pst.close();//cierra el preperentStament
                 }
                 if (getConnection() != null) {
                     getConnection().close();//cerrar la conexión
@@ -53,14 +53,12 @@ public class ProductoDAO extends Conexion {
         return productos;
     }
 
-   
-
     public Producto getProducto(int id) {
         Producto producto = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
-            String sql = "call selectProduct(?)"; 
+            String sql = "call selectProduct(?)";
             pst = getConnection().prepareCall(sql);
             pst.setInt(1, id);
             rs = pst.executeQuery();
@@ -105,6 +103,35 @@ public class ProductoDAO extends Conexion {
                 flag = true;
             }
 
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+            } catch (Exception e) {
+            }
+        }
+        return flag;
+    }
+// mentodo para actualizar el stock de un producto en los casos donde se realice un compra de producto a
+// los proveedores o en el caso en el que se realice una venta a un cliente final
+
+    public boolean updateStockProducto(int idProducto, Double stock) {
+        boolean flag = false;
+
+        try {
+            String sql = "call updateStockProducto(?,?)";
+            pst = getConnection().prepareCall(sql);
+            pst.setInt(1, idProducto);
+            pst.setDouble(2, stock);
+            if (pst.executeUpdate() == 1) {
+                flag = true;
+            }
         } catch (Exception e) {
 
         } finally {
