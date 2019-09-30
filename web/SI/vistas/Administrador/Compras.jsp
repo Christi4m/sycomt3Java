@@ -24,13 +24,13 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th id="code">#</th>
-                            <th id="name">Fecha</th>
+                            <<th id="code">#</th>
+                            <th id="dateShop">Fecha</th>
                             <th id="name">Proveedor</th>
-                            <th>Observaciones</th>
-                            <th>Valor</th>
-                            <th id="locationCellar">Estado</th>
-                            <th id="edit">Acciones</th>
+                            <th id="obsShop">Observaciones</th>
+                            <th id="totlaShop">Total</th>
+                            <th id="stateShop">Estado</th>
+                            <th id="accions">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>

@@ -1,0 +1,422 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+  font-family: 'Orbitron', sans-serif;
+}
+body {
+  background: #fff;
+  color: #666666;
+}
+
+a {
+  color: #2dc997;
+}
+
+a:hover, a:active, a:focus {
+  color: #2dca98;
+  outline: none;
+  text-decoration: none;
+}
+
+p {
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+/* Estilos del Header*/
+
+.imagen{
+background-image: url('../img/collage4.jpg');
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+width: 100%;
+height: 92px;
+}
+#header {
+  padding-top: 50px;
+  height: 92px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+  z-index: 997;
+   background: black;
+}
+
+
+
+
+
+#header #logo img {
+  padding: 0;
+  margin-top: -45px;
+}
+
+@media (max-width: 7680px) {
+  #header #logo h1 {
+    font-size: 26px;
+  }
+  #header #logo img {
+    max-height: 65px;
+  }
+}
+
+#header.header-fixed {
+  background: black;
+  padding: 20px 0;
+  height: 92px;
+  transition: all 0.5s;
+}
+
+#header.header-fixed #logo img{
+	margin-top: -10px;
+}
+
+
+
+
+/*Estilos del menu de navegacion*/
+/* Estilos de Elementos esenciales del menú de navegación */
+.nav-menu, .nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu ul {
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  z-index: 99;
+}
+
+.nav-menu li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu > li {
+  float: left;
+}
+
+.nav-menu li:hover > ul,
+.nav-menu li.sfHover > ul {
+  display: block;
+}
+
+.nav-menu ul ul {
+  top: 0;
+  left: 100%;
+}
+
+.nav-menu ul li {
+  min-width: 180px;
+}
+
+/* Estilos de las flechas del menú de navegación */
+.sf-arrows .sf-with-ul {
+  padding-right: 30px;
+}
+
+.sf-arrows .sf-with-ul:after {
+  content: "\f107";
+  position: absolute;
+  right: 15px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.sf-arrows ul .sf-with-ul:after {
+  content: "\f105";
+}
+
+/*
+Contenedor de menú de navegación */
+#nav-menu-container {
+  float: right;
+  margin: 0;
+
+}
+
+@media (max-width: 768px) {
+  #nav-menu-container {
+    display: none;
+  }
+}
+
+/* Estilo de menú de navegación */
+.nav-menu a {
+  padding: 0 8px 10px 8px;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 13px;
+  outline: none;
+}
+
+.nav-menu > li {
+  margin-left: 10px;
+}
+
+.nav-menu > li > a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #2dc997;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .menu-active > a:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.nav-menu ul {
+  margin: 4px 0px 0 -100px;
+  border: 1px solid white;
+}
+
+.nav-menu ul li {
+  background: black;
+}
+
+.nav-menu ul li:first-child {
+  border-top: 0;
+}
+
+.nav-menu ul li a {
+  padding: 10px;
+  color: white;
+  transition: 0.3s;
+  display: block;
+  font-size: 13px;
+  text-transform: none;
+	text-align: center;
+}
+
+.nav-menu ul li a:hover {
+  background: #2dc997;
+  color: #fff;
+}
+
+.nav-menu ul ul {
+  margin: 0;
+}
+
+/* barra de navegacion para dispositivos moviles */
+#mobile-nav-toggle {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  margin: 20px 20px 0 0;
+  border: 0;
+  background: none;
+  font-size: 24px;
+  display: none;
+  transition: all 0.4s;
+  outline: none;
+  cursor: pointer;
+}
+
+#mobile-nav-toggle i {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  #mobile-nav-toggle {
+    display: inline;
+  }
+}
+
+/*Estilo de navegación móvil */
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  padding-top: 18px;
+  bottom: 0;
+  z-index: 998;
+  background: rgba(0, 0, 0, 0.7);
+  left: -260px;
+  width: 260px;
+  overflow-y: auto;
+  transition: 0.4s;
+}
+
+#mobile-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#mobile-nav ul li {
+  position: relative;
+}
+
+#mobile-nav ul li a {
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+  padding: 10px 22px 10px 15px;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  outline: none;
+}
+
+#mobile-nav ul li a:hover {
+  color: #fff;
+}
+
+#mobile-nav ul li li {
+  padding-left: 30px;
+}
+
+#mobile-nav ul .menu-has-children i {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+  padding: 15px;
+  cursor: pointer;
+  color: #fff;
+}
+
+#mobile-nav ul .menu-has-children i.fa-chevron-up {
+  color: #2dc997;
+}
+
+#mobile-nav ul .menu-item-active {
+  color: #2dc997;
+}
+
+#mobile-body-overly {
+  width: 100%;
+  height: 100%;
+  z-index: 997;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+}
+
+/*Clases de cuerpo de nav móvil */
+body.mobile-nav-active {
+  overflow: hidden;
+}
+
+body.mobile-nav-active #mobile-nav {
+  left: 0;
+}
+
+body.mobile-nav-active #mobile-nav-toggle {
+  color: #fff;
+}
+/* estilos de las migas de pan */
+.breadcrumb{
+	background: white;
+}
+/*Estilos de las Secciones*/
+
+#catalogo {
+  background: #fff;
+  padding: 30px 0;
+	height: 100%;
+	margin-top: 1%;
+}
+
+.catalogo-titulo{
+	color: #000000;
+	text-shadow: 11px 5px 5px rgba(146, 150, 150, 1);
+}
+.catalogo-subtitulo{
+	color: #000000;
+	font-size: 20px;
+}
+
+#catalogo #portafolio-lista {
+  padding: 0;
+  margin: 0 0 45px 0;
+  list-style: none;
+  text-align: center;
+
+}
+
+#catalogo .portfolio-item {
+  position: relative;
+  height: 200px;
+  overflow: hidden !important;
+  margin-bottom: 15px;
+  transform: scale(1);
+	justify-content: center;
+}
+
+#catalogo .portfolio-item a {
+	  display: block;
+}
+
+#catalogo .portfolio-item a h3 {
+	  color: black;
+		font-size: 18px;
+
+}
+
+#catalogo .portfolio-item .botonesE:hover{
+	background: black;
+}
+
+#catalogo .portfolio-item img {
+	width: 100%;
+	height: 180px;
+	border: solid black 1px;
+}
+
+#catalogo .portfolio-item img:hover {
+	filter: blur(1px) brightness(45%);
+	-webkit-filter: blur(1px) brightness(45%);
+	-moz-transition: .4s linear;
+	-webkit-transition: .4s ease-out;
+	transition: .4s linear;
+}
+
+/*Estilo de la seccion del footer*/
+#footer {
+  background: #343b40;
+  padding: 30px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+#footer .copyright {
+  text-align: center;
+}
+
+#footer .credits {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
+}

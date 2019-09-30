@@ -34,7 +34,7 @@ public class controllerLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();// Clase utilizada para imprimir texto u objetos en el servlet
-         HttpSession sesion = request.getSession(true);
+        HttpSession sesion = request.getSession(true);
         String action = request.getParameter("action");
         switch (action) {
             case "loginUser":
@@ -45,7 +45,7 @@ public class controllerLogin extends HttpServlet {
 
                 if (mc.loginUser(c)) {
                     //variable de tipo sesion creada o utilizada en caso tal de que el usuario este registrado en el sistema
-                   
+
                     TerceroDAO mcd = new TerceroDAO();
                     Tercero tercero = (Tercero) mcd.getTercero(userAccess);
                     sesion.setAttribute("typeTercero", tercero.getTypeUser());
@@ -61,7 +61,7 @@ public class controllerLogin extends HttpServlet {
                 }
                 break;
             case "validarLogin":
-                    
+
                 Object firstName = sesion.getAttribute("firstName") == null ? null : sesion.getAttribute("firstName");
                 if (firstName != null) {
                     out.print("1");
@@ -69,21 +69,25 @@ public class controllerLogin extends HttpServlet {
                     out.print("0");
                 }
                 break;
-            case "obtenerRol":  
-                    
+            case "obtenerRol":
+
                 out.print(sesion.getAttribute("typeTercero").toString());
                 break;
-            case "logOut":{
-                sesion.invalidate();
-                out.print("1");
-            }    
+            case "logOut": {
+                String Rol = sesion.getAttribute("typeTercero").toString();
+
+                if (Rol.equalsIgnoreCase("Cliente")) {
+                    sesion.invalidate();
+                    out.print("2");
+                } else {
+                    sesion.invalidate();
+                    out.print("1");
+                }
+            }
 
         }
 
-
     }
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

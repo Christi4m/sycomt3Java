@@ -132,6 +132,16 @@
                 + "                                        <a id='tajetaReportesA'class=\"textIcono\" href=\"#\">Reportes</a>\n"
                 + "                                    </div>                                                \n"
                 + "                                </div>\n"
+                + "                            </div>"
+                + "                            <div class=\"col-lg-3 tarjetaItem\">\n"
+                + "                                <div class=\"subItem \">\n"
+                + "                                    <div>\n"
+                + "                                        <a id='tajetaCorreosA'class=\" incono fas fa-envelope\" href=\"#\"></a>\n"
+                + "                                    </div>\n"
+                + "                                    <div>\n"
+                + "                                        <a id='tajetaCorreosA'class=\"textIcono\" href=\"#\">Correos Multiples</a>\n"
+                + "                                    </div>                                                \n"
+                + "                                </div>\n"
                 + "                            </div>";
 
     } else if (rol.equalsIgnoreCase("Mensajero")) {

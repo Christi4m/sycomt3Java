@@ -2,9 +2,8 @@ $(document).ready(function () {
     datosReporte1();
     datosReporte2();
     datosReporte3();
-
-
 });
+
 //seccion de codigo para capturar la fecha del dia en curso
 var d = new Date();
 
@@ -95,7 +94,7 @@ var options = {
         plotShadow: false,
         type: 'pie',
         renderTo: 'container',
-        type: 'pie',
+        
         options3d: {
             enabled: true,
             alpha: 45
@@ -121,7 +120,7 @@ var options = {
                 enabled: true,
                 format: '<b style="font-size:15px;">{point.name}</b>: {point.y} '
             },
-            showInLegend: true
+           
         }
     },
     legend: {

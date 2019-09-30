@@ -16,7 +16,7 @@ public class TerceroDAO extends Conexion {
     public boolean createClient(Tercero c) {
 
         try {
-            String sql = "call insertTercero(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "call insertCliente(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,)";
             pst = getConnection().prepareStatement(sql);
             pst.setString(1, c.getTypeId());
             pst.setInt(2, c.getNumId());
@@ -32,6 +32,8 @@ public class TerceroDAO extends Conexion {
             pst.setString(12, c.getUserAccess());
             pst.setString(13, c.getPasswordAccess());
             pst.setString(14, c.getTypeUser());
+            pst.setString(15, c.getLocalidad());
+            pst.setString(16, c.getBarrrio());
 
             if (pst.executeUpdate() == 1) {
                 flag = true;
@@ -68,7 +70,7 @@ public class TerceroDAO extends Conexion {
             pst.setString(7, te.getEmail());
             pst.setString(8, te.getNumCellPhone());
             pst.setString(9, te.getNumLandLine());
-            pst.setString(10, te.getAddress());            
+            pst.setString(10, te.getAddress());
             pst.setString(11, te.getTipoContrato());
             pst.setString(12, te.getNumContrato());
             pst.setString(13, te.getFechaInicioContrato());
@@ -207,13 +209,14 @@ public class TerceroDAO extends Conexion {
 
         return flag;
     }
+
     public boolean validarUserAccess(int id) {
 
         try {
             String sql = "call validarUserAccess(?)";
             pst = getConnection().prepareStatement(sql);
             pst.setInt(1, id);
-            
+
             rs = pst.executeQuery();
 
             if (rs.absolute(1)) {
@@ -267,6 +270,41 @@ public class TerceroDAO extends Conexion {
         }
         return empleado;
     }
+//metodo para listar los emails de los clientes
+    
+     public ArrayList<Tercero> listEmailClientes() {//creo el metodo producto de tipo arraylist
+        ArrayList<Tercero> emailsClientes = new ArrayList<>();//creando el arraylist de tipo producto
+        ResultSet rs = null;// trae el resultado de lo que haga en la base de datos
+        try {
+            String sql = "call listEmailClientes()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la conexión a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                emailsClientes.add(new Tercero(rs.getString("email")));
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();//cerrar el resultSet
+                }
+                if (pst != null) {
+                    pst.close();//cierra el preperentStament
+                }
+                if (getConnection() != null) {
+                    getConnection().close();//cerrar la conexión
+                }
+            } catch (Exception e) {
+            }
+        }
+        return emailsClientes;
+    }
+     
+     
+   
+    
+    
 //metodo para listar los datos detalles de un empleado
 
     public Tercero getDetailsEmpleado(int id) {
@@ -301,7 +339,7 @@ public class TerceroDAO extends Conexion {
         return empleadoDetails;
 
     }
-    
+
     public boolean insertUserAccesEmpleado(Tercero userAccessEmpleado) {
         try {
             String sql = "call insertUserAccess(?,?,?)";
@@ -310,7 +348,6 @@ public class TerceroDAO extends Conexion {
             pst.setInt(1, userAccessEmpleado.getId()); // parametros para los procedimientos almacenados // 
             pst.setString(2, userAccessEmpleado.getUserAccess());
             pst.setString(3, userAccessEmpleado.getPasswordAccess());
-            
 
             if (pst.executeUpdate() == 1) {
                 flag = true;
@@ -337,16 +374,12 @@ public class TerceroDAO extends Conexion {
     }
 
     public static void main(String[] args) {
+        ArrayList<String> email = new ArrayList<>();
 
-//        TerceroDAO mpfr = new TerceroDAO();
-//        Tercero detail = (Tercero) mpfr.getDetailsEmpleado(26);
-        TerceroDAO mpd = new TerceroDAO();
-       Tercero tercero = new Tercero(26, "cfaguilar", "12345");
-        if(mpd.insertUserAccesEmpleado(tercero)){
-            System.out.println("ok");
-        }else{
-            System.out.println("error");
+        TerceroDAO modelo4 = new TerceroDAO();
+        for (Tercero empleado1 : modelo4.getAllEmpleados()) {
+            email.add(empleado1.getEmail());
         }
-
+        System.out.println(email.toString());
     }
 }

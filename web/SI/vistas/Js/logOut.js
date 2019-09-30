@@ -8,6 +8,10 @@ $(document).ready(function () {
                 setTimeout(function () {
                     window.location = "loginAdmin.jsp";
                 }, 300);
+            }else if(res ==="2"){
+                setTimeout(function () {
+                    window.location = "../../index.jsp";
+                }, 300);
             }
         });
     });

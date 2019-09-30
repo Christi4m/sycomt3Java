@@ -12,6 +12,8 @@ public class Tercero {
     private String email;
     private String numCellPhone;
     private String numLandLine;
+    private String localidad;
+    private String barrrio;
     private String address;
     private String detailsAddress;
     private String userAccess;
@@ -33,6 +35,12 @@ public class Tercero {
     //Constructor vacio
     public Tercero() {
     }
+
+    public Tercero(String email) {
+        this.email = email;
+    }
+    
+    
     // constructor para listar datos principales de un empleados
 
     public Tercero(int id,int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String typeUser, String estadoTercero) {
@@ -129,7 +137,7 @@ public class Tercero {
     }
     
 //Contructor para registrar un cliente en el sistema
-    public Tercero(int id,String typeUser, String typeId, int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String numLandLine, String address, String detailsAddress, String userAccess, String passwordAccess) {
+    public Tercero(int id,String typeUser, String typeId, int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String numLandLine,String localidad,String barrio, String address, String detailsAddress, String userAccess, String passwordAccess) {
         this.id = id;
         this.typeUser = typeUser ;
         this.typeId = typeId;
@@ -141,6 +149,8 @@ public class Tercero {
         this.email = email;
         this.numCellPhone = numCellPhone;
         this.numLandLine = numLandLine;
+        this.localidad = localidad;
+        this.barrrio = barrio;
         this.address = address;
         this.detailsAddress = detailsAddress;
         this.userAccess = userAccess;
@@ -247,6 +257,22 @@ public class Tercero {
         this.numLandLine = numLandLine;
     }
 
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getBarrrio() {
+        return barrrio;
+    }
+
+    public void setBarrrio(String barrrio) {
+        this.barrrio = barrrio;
+    }
+    
     public String getAddress() {
         return address;
     }

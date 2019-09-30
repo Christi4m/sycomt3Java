@@ -10,7 +10,7 @@
                 <table id="tableCrud" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th id="code">Código</th>
+                            <th id="code">#</th>
                             <th id="name">Nombre</th>
                             <th id="clothMaterial">Material de tela</th>
                             <th id="cellarLocation">Ubicacion Bodega</th>
@@ -24,7 +24,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th id="code1">Código</th>
+                            <th id="code1">#</th>
                             <th id="name1">Nombre</th>
                             <th id="clothMaterial1">Material de tela</th>
                             <th id="cellarLocation1">Ubicacion Bodega</th>
@@ -63,7 +63,7 @@
                         <div class="col-sm-6">
                             <label id = "ProductTelaje" class = "col-md-4 control-label" para = "telajeProducto"> Telaje </label>
                             <select id="telajeProducto" name="telajeProducto" class="form-control">
-                                <option value="0">---------------------</option>
+                                <option value="">---------------------</option>
                                 <option id = "paño" value = "Paño"> Paño </option>
                                 <option id = "Lino" value = "Lino"> Lino </option>
                                 <option id = "Seda" value = "Seda"> Seda </option>
@@ -73,7 +73,7 @@
                         <div class="col-sm-6">
                             <label id = "ProveedorTelaje" class = "col-md-4 control-label" para = "proveedorProducto"> Proveedor </label>
                             <select id="proveedorProducto" name="proveedorProducto" class="form-control">
-                                <option value="0" selected>---------------------</option>
+                                <option value="" selected>---------------------</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
@@ -119,7 +119,7 @@
             </div>
             <div class="modal-body">
 
-                <form class="form-horizontal col-sm-12 text-center">
+                <form id="frmUpdateProducto"class="form-horizontal col-sm-12 text-center"enctype="multipart/form-data">
                     <div class="form-group text-center">
                         <h4 class="tituloDP">Datos Del Producto</h4>
                         <div class="col-sm-6">

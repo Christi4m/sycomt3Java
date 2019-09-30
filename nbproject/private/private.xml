@@ -20,14 +20,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Js/main.js</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/classes/Ventas.java</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Dashboard.jsp</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Administrador/Js/Reportes.js</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/models/VentasDao.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/models/TerceroDAO.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/controllers/correosClass.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/controllers/controllerCorreos.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Administrador/Correos.jsp</file>
             <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/controllers/controllerVenta.java</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/dependencias/dependenciasJS.jsp</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Administrador/Js/Compras.js</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Administrador/Js/Correos.js</file>
         </group>
     </open-files>
 </project-private>

@@ -51,12 +51,12 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                 Tercero tercero1 = new Tercero(0, "Cliente", request.getParameter("typeId"), Integer.parseInt(request.getParameter("numId")),
                         request.getParameter("firstName"), request.getParameter("secondName"), request.getParameter("firstLastName"),
                         request.getParameter("secondLastName"), request.getParameter("email"), request.getParameter("numCellPhone"),
-                        request.getParameter("numLandLine"), request.getParameter("address"), request.getParameter("detailsAddress"),
-                        request.getParameter("userAccess"), request.getParameter("passwordAccess"));
+                        request.getParameter("numLandLine"),request.getParameter("localidadCliente"),request.getParameter("barrioCliente"), 
+                        request.getParameter("address"), request.getParameter("detailsAddress"),request.getParameter("userAccess"), request.getParameter("passwordAccess"));
                 if (modelo1.createClient(tercero1)) {
-                    out.print("0");
-                } else {
                     out.print("1");
+                } else {
+                    out.print("0");
                 }
                 break;
             // caso para listar a un cliente por su id   

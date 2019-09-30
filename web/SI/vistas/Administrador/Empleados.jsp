@@ -10,7 +10,7 @@
                 <table id="tableCrud" class="table table-striped table-bordered dt-responsive nowrap" style="width:100% ">
                     <thead>
                         <tr>
-                            <th id="titleIdentification">Id Sistema</th>
+                            <th id="titleIdentification">#</th>
                             <th id="titleName">Nombre</th>                            
                             <th id="titleCharge">Cargo</th>
                             <th id="titleDetails">Estado</th>
@@ -22,7 +22,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th id="titleIdentification">Id Sistema</th>
+                            <th id="titleIdentification">#</th>
                             <th id="titleName2">Nombre</th>
                             <th id="titleCharge2">Cargo</th>
                             <th id="titleDetails2">Estado</th>
@@ -51,7 +51,7 @@
                         <div class="col-sm-6 inputForm">
                             <label class=" col-md-9 text-left" for="typeUser">Tipo Empleado</label>
                             <select id="typeUser" name="typeUser" class="form-control" >
-                                <option value="0">------------------------</option>
+                                <option value="">Seleccione Una Opción</option>
                                 <option value="Administrador">Administrador</option>
                                 <option value="Bodega-Jefe">Bodega-Jefe</option>
                                 <option value="Mensajero">Mensajero</option>
@@ -61,7 +61,7 @@
                         <div class="col-sm-6 inputForm">
                             <label class="col-md-9 text-left" for="tipoIdentificacionCliente">Tipo Identificación *</label>
                             <select id="tipoIdentificacionEmpleado" name="tipoIdentificacionEmpleado" class="form-control ">
-                                <option value="0">------------------------</option>
+                                <option value="">Seleccione Una Opción</option>
                                 <option value="C.C">C.C (Cédula de Ciudadanía)</option>
                                 <option value="C.E">C.E (Cédula de Extranjería)</option>
                                 <option value="Nit">NIT</option>
@@ -110,6 +110,7 @@
                         <div class="col-md-6 inputForm">
                             <label class=" col-md-9 text-left" for="tipoContrato">Tipo Contrato </label>
                             <select id="tipoContrato" name="tipoContrato" class="form-control">
+                                <option value="">Seleccione Una Opción</option>
                                 <option value="Termino Fijo">Termino Fijo</option>
                                 <option value="Termino Indefinido">Termino Indefinido</option>
                                 <option value="Obra o Labor">Obra o Labor</option>
@@ -123,18 +124,18 @@
                         </div>
                         <div class="col-md-6 c">
                             <label class=" col-md-9 text-left" for="fechaInicioContrato">Fecha Inicial *</label>
-                            <input id="fechaInicioContrato" name="fechaInicioContrato" type="date" placeholder="Fecha Inicial " class="form-control input-md" required="">
+                            <input id="fechaInicioContrato" type="date" name="fechaInicioContrato" placeholder="Fecha Inicial " class="form-control input-md" required="">
 
                         </div>
                         <div class="col-md-6 inputForm">
                             <label class="col-md-9 text-left" for="FechaFinContrato">Fecha Final *</label>   
-                            <input id="FechaFinContrato" name="FechaFinContrato" type="date" placeholder="Fecha Final " class="form-control input-md" required="">
+                            <input disabled id="FechaFinContrato"  type="date"name="FechaFinContrato"  placeholder="Fecha Final " class="form-control input-md" required="">
 
                         </div>
                         <div class="col-md-6 inputForm">
                             <label class=" col-md-9 text-left" for="estadoCivil">Estado Civil *</label>
                             <select id="estadoCivil" name="estadoCivil" class="form-control" >
-                                <option value="0">------------------------</option>
+                                <option value="">Seleccione Una Opción</option>
                                 <option value="Casado">Casado</option>
                                 <option value="Soltero">Soltero</option>
                                 <option value="Union Libre">Union Libre</option>
@@ -143,7 +144,7 @@
                         <div class="col-md-6 inputForm">
                             <label class=" col-md-9 text-left" for="numHijos">Numero De Hijos </label>
                             <select id="numHijos" name="numHijos" class="form-control" >
-                                <option value="0">------------------------</option>
+                                <option value="">Seleccione Una Opción</option>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>

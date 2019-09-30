@@ -1,341 +1,358 @@
-﻿
+
+<%@page import="javax.servlet.http.HttpServletRequest"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%@page import="controllers.controllerProduct"%>
 <%
-    HttpSession sesion = request.getSession(true);
+    controllerProduct cp = new controllerProduct();
+
+
+%>
+<%    HttpSession sesion = request.getSession(true);
     Object firstName = sesion.getAttribute("firstName") == null ? null : sesion.getAttribute("firstName");
     String htmlcode = "";
-            if (firstName != null) {
+    String list = "";
+    if (firstName != null) {
 
-                htmlcode = " <li class=\"menu-has-children justify-content-center\"><a href=\"\" id=\"navIngresar\">" + firstName + "</a>\n"
-                        + "            <ul>\n"
-                        + "              <li><a href='LogoutUser' id=\"navLogOut\">Cerrar Sesión</a></li>\n"
-                        + "              <li><a href=\"#\" id=\"navMiPerfil\">Mi Perfil</a></li>\n"
-                        + "              <li class=\"dropdown-divider\"></li>\n"
-                        + "            </ul>\n"
-                        + "          </li>";
+        list = "<li class=\"dropdown\">\n"
+                    + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">"+firstName+"<span class=\"caret\"></span></a>\n"
+                    + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
+                    + "<li><a href=\"LogoutUser\">Cerrar Sesión</a></li>\n"
+                    + "<li><a href=\"#\">Mi Perfil</a></li>\n"                    
+                    + "</ul>\n"
+                    + "</li>";
 
-            } else {
-
-                htmlcode = " <li class=\"menu-has-children justify-content-center\"><a href=\"\" id=\"navIngresar\">Login</a>\n"
-                        + "            <ul>\n"
-                        + "              <li><a href=\"vistasAux/login.jsp\" id=\"navInicieSesion\">Inicie Sesión</a></li>\n"
-                        + "              <li><a href=\"vistasAux/login.jsp\" id=\"navRegistrese\">Regístrese</a></li>\n"
-                        + "              <li class=\"dropdown-divider\"></li>\n"
-                        + "              <li><a href=\"#\" id=\"navOlvideContraseña\">Olvide Mi Contraseña </a></li>\n"
-                        + "            </ul>\n"
-                        + "          </li>";
-            }
+    } else {
+               list = "<li class=\"dropdown\">\n"
+                    + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Iniciar Sesión<span class=\"caret\"></span></a>\n"
+                    + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
+                    + "<li><a href=\"vistasAux/login.jsp\">Iniciar Sesión</a></li>\n"
+                    + "<li><a href=\"vistasAux/login.jsp\">Registrarme</a></li>\n"
+                    + "<li><a href=\"vistasAux/login.jsp\">Olvide Mi Contraseña</a></li>\n"
+                    + "</ul>\n"
+                    + "</li>";       
+    }
 %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>Luna Textil</title>
-        <link rel="shortcut icon" href="img/isologo-final2.png">
+        <title>Luna Textil - Shop</title>
+        <link rel="shortcut icon" href="../../img/isologo-final2.png">
         <meta content="" name="keywords">
         <meta content="" name="description">
 
         <!-- Bootstrap CSS -->
-        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Librerias CSS -->
-        <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="lib/animate/animate.min.css" rel="stylesheet">
-
+        <link href="<%= request.getContextPath()%>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<%= request.getContextPath()%>/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="<%= request.getContextPath()%>/lib/sweetAlert2/sweetalert2.min.css">
+        <link rel="stylesheet" href="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.css">
+        <link rel="stylesheet" href="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.min.css">
 
         <!-- Estilo css -->
-        <link href="css/estilosLandingPage.css" rel="stylesheet">
+        <link rel="stylesheet" href="vistasAux/css/styleCart.css">
+        <link rel="stylesheet" href="vistasAux/css/estilos-responsive.css">
+
+
+
 
     </head>
 
     <body>
-       
-        <!-- Aqui Inicia el Header-->
-        <header id="header">
-            <div class="container  fadeIn" data-wow-delay="0.4s">
-                <!-- Aqui va el logo -->
-                <div id="logo" class="pull-left">
-                    <a href="#hero"><img src="img/isologo.png" alt="" title=""  /></a>
+
+
+
+
+        <header id="header"><!--header-->
+            <div class="header_top wow fadeInDown" data-wow-delay="0.8s" style="margin-bottom: 40px;"><!--header_top-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="contactinfo">
+                                <ul class="nav nav-pills">
+                                    <li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
+                                    <li><a href=""><i class="fa fa-envelope"></i> info@lunatextil.com</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="">
+                            <div class="social-icons ">
+                                <ul class="nav navbar-nav socialPerson" >
+                                    <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href=""><i class="fa fa-dribbble"></i></a></li>
+                                    <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="menu" id="" >
+                                <ul class="nav navbar-nav nav-pills" style="float: right">
+
+                                    <li><a href="<%= request.getContextPath()%>/vistasAux/Nosotros.jsp">Nosotros</a></li>                                    
+                                    <%= list%>
+                                    <li title="Idioma"class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style="font-size: 20px;"class="fa fa-globe"></span> <span class="caret"></span></a>
+                                        <ul class="dropdown-menu menuIdioma" aria-labelledby="about-us">
+                                            <li><a href="#">Es</a></li>
+                                            <li><a href="#">En</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Aqui va la Barra de Navegacion -->
-                <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                        <li class="menu-active"><a href="#hero" id="navInicio">Inicio</a></li>
-                        <li><a href="#about" id="navNosotros">Nosotros</a></li>
-                        <li><a href="#services" id="navServicios">Servicios</a></li>
-                        <li><a href="#portfolio" id="navPortafolio">Catalogo</a></li>
-                        <li><a href="#contact" id="navContacto">Contacto</a></li>
-                        <li><a href="vistasAux/Catalogo/cart.jsp" id="navContacto">Carrito</a></li>
-                            <%=htmlcode%>
-                    </ul>
-                </nav>
-                <!-- Aqui acaba la Barra de Navegacion -->
-            </div>
-        </header>
+            </div><!--/header_top-->
+
+            <div class="header-middle"><!--header-middle-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 rowHead">
+                            <div class="row wow fadeInUp">
+                                <div class="logo pull-left">
+                                    <a href="index.jsp" class="logo"><span><img style="width: 10%;"src="images/img/isologo-final2.png" alt="Lina Textil Logo"></span><b> LUNATEXTIL<span>.com</span></b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 rowHead">
+                            <div class="flipkart-navbar-search smallsearch ">
+                                <div class="row itemRow">
+                                    <input class="flipkart-navbar-input inputSearch col-xs-11" type="" placeholder="Busque productos, marcas y más" name="">
+                                    <button class="flipkart-navbar-button buttonSearch col-xs-1">
+
+                                        <span class="fa fa-search"></span>
+
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 rowBtnCart rowHead">
+                            <div class="itemRow">
+                                <button title="Carrito de Compras"type="button" id="openCart"class="btn btn-primary btnCart" data-toggle="modal" data-target="#cart"><span class="fa fa-cart-plus"></span> (<span class="total-count"></span>)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/header-middle-->
+
+
+        </header><!--/header-->
         <!-- Aqui Finaliza el Header -->
 
-
-        <!-- Aqui empieza el Inicio-->
-        <section id="hero">
-
-            <div class="hero-container wow fadeIn" data-wow-delay="0.4s">
-                <h1 id="IniBienvenido">Bienvenido a Luna Textil</h1>
-                <h2 id="iniSlogan">Telas soñadas a un clic de distancia</h2>
-                <a href="#about" class="btn-get-started" id="btnEmpecemos">Empecemos</a>
-                <button type="button" name="button" class="btn btn-primary" onclick="Traduccion()">Traducir</button>
-            </div>
-
-        </section>
-        <!-- Aqui finaliza el Inicio -->
-
-        <main id="main">
-
-            <!-- Aqui empieza la Seccion Nosotros-->
-            <section id="about">
-                <div class="container">
-                    <div class="row about-container">
-
-                        <div class="col-lg-12 content order-lg-1 order-2 container wow fadeIn">
-                            <h2 class="title text-center" id="Quienes">Quienes Somos</h2>
-                            <p class="text-justify text-dark" id="Quienes1">
-                                Chávez Gómez S.A., es una sociedad anónima fundada en 1973 a través de los almacenes “Luna Textil” y “Marfil”, dedicados a la distribución de textiles nacionales e importados, con un gran surtido en telas decorativas para hogar y oficinas.
-                            </p>
-
-                            <div class="col-lg-6 container">
-
-                                <div class="icon-box wow fadeInUp">
-                                    <div class="icon"><i class="fa fa-shopping-bag"></i></div>
-                                    <h4 class="title font-weight-bold"><a href=""id="Cantidad">Cantidad</a></h4>
-                                    <p class="description text-justify text-dark" id="Cantidad1">Ofrecemos una variada y amplia cantidad de telas de todo tipo únicamente pensando en sus necesidades. </p>
-                                </div>
-
-                                <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
-                                    <div class="icon"><i class="fa fa-photo"></i></div>
-                                    <h4 class="title font-weight-bold"><a href="" id="ColorImagen">Colores - Imagen</a></h4>
-                                    <p class="description text-justify text-dark" id="ColorImagen1">Ofrecemos una variada y amplia cantidad de telas de todo tipo únicamente pensando en sus necesidades.</p>
-                                </div>
-
-                                <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
-                                    <div class="icon"><i class="fa fa-bar-chart"></i></div>
-                                    <h4 class="title font-weight-bold"><a href="" id="Negocio" >Negocio</a></h4>
-                                    <p class="description text-justify text-dark" id="Negocio1">Pensando en el  futuro implementamos un sistema de compra online para que pueda acceder a nuestros servicios desde la comodidad de su casa o empleo.</p>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-3">
-
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </div>
-            </section><!-- Fin de la seccion Nosotros -->
-
-            <!--Seccion Mision y Vision -->
-            <section id="facts">
-                <div class="container wow fadeInDown" data-wow-delay="0.8s">
-                    <div class="section-header">
-                        <h3 class="section-title font-weight-bold" id="MVtitulo">Misión Y Visión</h3>
-                        <p class="section-description text-dark" id="MVtitulo1">En luna textil tenemos muy claro nuestro presente y nuestro futuro</p>
-                    </div>
-                    <div class="row counters">
-
-                        <div class="col-lg-6 col-6 col-sm-6 text-center">
-                            <h3 class="titulo" id="Mision">Nuestra Misión</h3>
-                            <p class="text-justify" id="Mision1">Nuestra misión fundamental es el servicio amable, servicio efectivo y servicio rápido a nuestros clientes, que nos han distinguido durante casi 40 años de permanencia en el comercio textilero del 7 de Agosto, Galerías, y Cedritos en Bogotá.</p>
-                        </div>
-
-                        <div class="col-lg-6 col-6 col-sm-6 text-center">
-                            <h3 class="titulo" id="Vision">Nuestra Visión</h3>
-                            <p class="text-justify" id="Vision1">La visión de la empresa es mantenernos actualizados en las últimas tendencias de la moda, disponiendo de un amplio surtido en telas, que satisfagan las necesidades del hogar, hoteles y oficinas.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </section><!-- Fin de la seccion Mision y Vision -->
-
-            <!--Seccion de Servicios-->
-
-            <section id="services">
-                <div class="container wow fadeIn"data-wow-delay="0.3s">
-                    <div class="section-header">
-                        <h3 class="section-title" id="Servicios">Servicios <br> <br> </h3>
-                        <p class="section-description text-white text" id="Servicios1">En luna textil te ofrecemos distintos servicios pensando únicamente en tu comodidad y satisfacción</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 wow fadeInLeft" data-wow-delay="0.4s">
-                            <div class="box">
-                                <h4 class="title" id="Cotizar">Cotizar</h4>
-                                <a title="cotizar" href="#portfolio"><img src="img/cotizar.jpg" src="cotizar"></a>
-                                <p class="description text-justify text-white" id="Cotizar1">Ofrecemos la oportunidad de cotizar nuestros productos con el fin de evitar el desplazamiento físico hasta nuestro almacén para saber el preció y características de nuestros productos, utilizando únicamente un computador o dispositivo movil.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4  col-md-6 wow fadeIn" data-wow-delay="0.8s">
-                            <div class="box">
-                                <h4 class="title" id="Comprar">Comprar</h4>
-                                <a title="cotizar" href="#portfolio"><img src="img/comprar.jpg" src="cotizar"></a>
-                                <p class="description text-justify text-white" id="Comprar1">Ofrecemos un catalogo completo de diferentes tipos de telas, junto con un servicio de entrega puerta a puerta para su mayor comodidad y un registro en nuestro sistema el cual va a permitir ver su historial de compras, registrar garantías y otras mas opciones.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 wow fadeInRight" data-wow-delay="0.4s">
-                            <div class="box">
-                                <h4 class="title" id="Personalizada">Personalizada</h4>
-                                <a title="cotizar" href="#portfolio"><img src="img/personalizada.png" src="cotizar"></a>
-                                <p class="description text-justify text-white" id="Personalizada1">Ofrecemos la posibilidad de solicitar un producto con caracteristicas unicas en caso de que no encuentres el producto en el catalogo oferta.</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </section><!-- Fin de la Seccion Servicios -->
-
-
-
-            <!--Aqui inicia la seccion Portafolio-->
-            <section id="portfolio">
-                <div class="container wow fadeIn" data-wow-delay="0.8s">
-                    <div class="section-header">
-                        <h3 class="section-title pt-5" id="Portafolio">Catalogo</h3>
-                        <p class="section-description" id="Protafolio1">En el almacén LUNA TEXTIL contamos con la distribución, ventas al por mayor a nivel nacional.</p>
-                    </div>
-                    <div class="">
-
-                        <div class="row" id="portfolio-wrapper">
-
-                            <div class="col-lg-3 col-md-6 portfolio-item fadeInLeft">
-                                <a href="vistasAux/Catalogo/Linos.jsp">
-                                    <ul class="botonesE" id="linos">Linos</ul>
-                                    <img src="img/portfolio/lino1.png" alt="">
-                                </a>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 portfolio-item filter-uniforme">
-                                <a href="vistasAux/Catalogo/Uniformes.jsp">
-                                    <ul class="botonesE" id="uniforme">Uniformes</ul>
-                                    <img src="img/portfolio/uniforme1.png" alt="">
-                                </a>
-                            </div>
-
-                            <div class="col-lg-3 col-md-6 portfolio-item filter-paño">
-                                <a href="vistasAux/Catalogo/Paños.jsp">
-                                    <ul class="botonesE" id="paño">Paños</ul>
-                                    <img src="img/portfolio/paño1.png" alt="">
-                                </a>
-                            </div>
-
-
-                            <div class="col-lg-3 col-md-6 portfolio-item filter-seda">
-                                <a href="vistasAux/Catalogo/Sedas.jsp">
-                                    <ul class="botonesE" id="seda">Sedas</ul>
-                                    <img src="img/portfolio/seda1.png" alt="">
-                                </a>
-                            </div>
-
-                        </div>
-
-                    </div>
-            </section>
-            <!-- Aqui finaliza la seccion portafolio -->
-
-
-
-            <!--Aqui inicia la seccion de contacto-->
-            <section id="contact">
-                <div class="container wow fadeInUp">
-                    <div class="section-header">
-                        <h3 class="section-title" id="Contacto">Contacto</h3>
-                        <p class="section-description text-dark" id="Contacto1">A continuación desplegamos todos nuestros datos de contacto para que en caso tal de que necesite comunicarse con nosotros pueda hacerlo con la mayor facilidad.</p>
-                    </div>
-                </div>
-
-                <!-- Frame de google maps -->
-                <iframe class="wow fadeIn" data-wow-delay="0.8s" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15906.590153720488!2d-74.071288!3d4.6567872!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x587846dea31ecdc3!2salmacen+luna+textil!5e0!3m2!1ses!2sco!4v1553040407527" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-                <div class="container  mt-5">
-                    <div class="row justify-content-center">
-
-                        <div class="col-lg-3 col-md-4 wow fadeInLeft">
-
-                            <div class="info">
-                                <div>
-                                    <i class="fa fa-map-marker"></i>
-                                    <p>Ak. 24 #65 - 19 <br> Bogotá</p>
-                                </div>
-
-                                <div>
-                                    <i class="fa fa-envelope"></i>
-                                    <p>lunatextil@hotmail.com</p>
-                                </div>
-
-                                <div>
-                                    <i class="fa fa-phone"></i>
-                                    <p>+57 (1) 311-6337 <br>+57 (1) 311-1501</p>
-                                </div>
-
-                                <div>
-                                    <i class="fa fa-fax"></i>
-                                    <p>+57 (1) 240-4471</p>
-                                </div>
-                            </div>
-
-                            <div class="social-links">
-                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-5 col-md-8 wow fadeInRight">
-                            <div class="form">
-                                <div id="sendmessage">Tu mensaje ha sido enviado. ¡Gracias!</div>
-                                <div id="errormessage"></div>
-                                <form action="" method="post" role="form" class="contactForm">
-                                    <div class="form-group">
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Tu Nombre" data-rule="required" data-msg="Por favor ingrese al menos 4 caracteres" />
-                                        <div class="validation"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Tu Correo" data-rule="required" data-msg="Por favor introduzca una dirección de correo electrónico válida" />
-                                        <div class="validation"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" data-rule="required" data-msg="Por favor ingrese el motivo de su mensaje" />
-                                        <div class="validation"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" name="message" id="mensaje" rows="5" data-rule="required" data-msg="Por favor escribe algo para nosotros" placeholder="Mensaje"></textarea>
-                                        <div class="validation"></div>
-                                    </div>
-                                    <div class="text-center"><button type="submit" id="BotonEnviar">Enviar Mensaje</button></div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </section>
-            <!-- Aqui finaliza la seccion de contact -->
-
-        </main>
-
-        <!--Aca inicia el footer-->
-        <footer id="footer">
-            <div class="footer-top">
-                <div class="container">
-
-                </div>
-            </div>
-
+        <section id="catalogo fadeInRight">
             <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="left-sidebar">
+                            <h2>Categorias</h2>
+                            <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                                                <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                                Telas
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="sportswear" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ul id="listCategorias">
+                                                <li><a href="">Paño </a></li>
+                                                <li><a href="">Lino </a></li>
+                                                <li><a href="">Seda </a></li>
+                                                <li><a href="">Uniforme </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--/category-productsr-->
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10 padding-right">
+                        <div id="carProduct"class="features_items"><!--features_items-->
+                            <h2 class="title text-center">Stock -Telas</h2>
+                            <!--Cargar productos-->
+                            <!-- Nav -->
+                            <nav class="navbar  ">
+                                <div class="row container" style="width: 100%;">
+                                    <div class="col-md-12">
+
+
+                                    </div>
+                                </div>
+                            </nav>
+
+
+                            <!-- Main -->
+                            <div class="container" style="width: 100%;"  >
+                                <div id="stockShop"class="row">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="pagination " style=" justify-content: center;display: flex;">
+                            <ul id="pagination"class="pagination pagination-sm" style="margin: auto;">
+                                <li class="active "><a href="">1</a></li>
+
+                            </ul>
+                        </div>
+                    </div><!--features_items-->
+                    <!-- modal insertar cantidad-->
+                    <!-- The modal -->
+                    <div class="modal fade" id="modalInsertCant" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content modal-lg">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="modalLabel">Caracteristicas</h4>
+                                </div>
+                                <div class="modal-body modalCPr">
+                                    <div class="row">
+                                        <div style="padding-top: 30px;"class="col-md-6 colImg"></div> 
+                                        
+                                        <div class="col-md-6 colDetails"></div> 
+                                        
+                                    </div>                                  
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="exampleModalLabel">Carrito</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color: black; border: none">
+                                    <form enctype="multipart/form-data" method="post" action="" name="frmShop" id="frmShop"  class="form-horizontal col-sm-12 text-center">
+                                        <button type="submit" id="btnOrderNow"class="btn colorbtn btn-primary">Ordenar Ahora</button>
+                                        <button class="clear-cart btn btn-danger">Vaciar Carrito</button>
+                                        <div class="form-group text-center">
+
+
+                                            <div class="col-sm-6" style="display: none">
+                                                <label class="col-md-4 control-label" for="detailsShop">Detalle Compra</label>  
+                                                <input id="detailsShop" name="detailsShop" type="text" placeholder="Detalle Compra" class="form-control input-md" required="">
+                                            </div>   
+                                            <div class="col-sm-6" style="display: none">
+                                                <label class="col-md-4 control-label" for="totalShop">Total</label>  
+                                                <input id="totalShop" name="totalShop" type="text" placeholder="Total Compra" class="form-control input-md" required="">
+                                            </div>   
+                                        </div>   
+                                        <table class="show-cart table">
+
+                                        </table>
+                                        <div>Total: $<span class="total-cart"></span></div>
+                                    </form>
+
+
+                                </div>
+
+                                <div class="modal-footer" style="border:none    ">
+                                    <button id="closeModalCart"type="button" class="btn colorbtn btn-primary" data-dismiss="modal">Cerrar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- Fin del modal Ingresar Nuevo -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer"><!--Footer-->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="companyinfo col-sm-12">
+                            <h2><span>Luna</span>-Textil</h2>
+                            <p>Telas soñadas a un clic de distancia</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="address">
+                            <img src="images/home/map.png" alt="" />
+                            <p class="text-center">Ak. 24 #65 - 19, Bogotá</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="footer-widget">
+                <div class="container">
+
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Servicios</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="">Ayuda en linea</a></li>
+                                <li><a href="">Contáctenos</a></li>
+                                <li><a href="">Estado del pedido</a></li>
+                                <li><a href="">Cambiar locación</a></li>
+                                <li><a href="">Preguntas frecuentes</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Compra Rápida</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="">Paño</a></li>
+                                <li><a href="">Lino</a></li>
+                                <li><a href="">Seda</a></li>
+                                <li><a href="">Uniforme</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Políticas</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="">Términos de Uso</a></li>
+                                <li><a href="">Política de privacidad</a></li>
+                                <li><a href="">Politica de reembolso</a></li>
+                                <li><a href="">Sistema de cobranza</a></li>
+                                <li><a href="">Sistema de entradas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Acerca de Luna Textil</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="">Información de la empresa</a></li>
+                                <li><a href="">Ubicación de la tienda</a></li>
+                                <li><a href="">Copyright</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="container containerCopyRiht">
                 <div class="copyright" id="Copyright">
                     &copy; Copyright SiComT3. Todos los derechos reservados
                 </div>
@@ -343,31 +360,34 @@
                     Diseñado por Gaes !8!
                 </div>
             </div>
-        </footer>
-        <!-- fin de la seccion del footer -->
 
+
+    </footer><!--/Footer-->
+
+
+
+    <div class="up">
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    </div>
 
-        <!-- JavaScript Librerias -->
-        <!--Biblioteca JS minificada -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- Compilado y minimizado Bootstrap JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="lib/jquery/jquery-migrate.min.js"></script>
-        <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/superfish/hoverIntent.js"></script>
-        <script src="lib/superfish/superfish.min.js"></script>
 
-        <!-- Formulario de contacto Archivo de JavaScript -->
-        <script src="contactform/contactform.js"></script>
+    <!-- JavaScript Librerias -->
+    <!--Biblioteca JS minificada -->
 
-        <!-- Plantilla de archivo principal de Javascript -->
-        <script src="js/main.js"></script>
+    <script src="<%= request.getContextPath()%>/lib/jquery/jquery.min.js"></script>
+    <script src="<%= request.getContextPath()%>/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="<%= request.getContextPath()%>/lib/sweetAlert2/sweetalert2.all.min.js"></script>
+    <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.js"></script>
+    <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
 
-    </body>
+
+    <script src="Js/index.js"></script>
+
+
+
+
+
+</body>
 </html>

@@ -7,14 +7,14 @@
                     Agregar
                     <span class="fa fa-plus"></span>
                 </button>
-                <table id="tableCrud" class="table col-md-2  table-hover table-striped table-bordered" style="width:100%">
+                <table id="tableCrud" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th id="businessName">Id Sistema</th>
+                            <th>#</th>
                             <th id="businessName">Razón Social</th>
                             <th >Nit</th>                                           
-                            <th id="nameLegal">Estado</th>
-                            <th id="edit">Acciones</th>
+                            <th id="state">Estado</th>
+                            <th id="actions">Acciones</th>
 
                         </tr>
                     </thead>
@@ -24,11 +24,11 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th id="businessName">Id Sistema</th>
+                            <th>#</th>
                             <th id="businessName">Razón Social</th>
-                            <th>Nit</th>                                            
-                            <th id="nameLegal">Estado</th>
-                            <th id="edit">Acciones</th>
+                            <th >Nit</th>                                           
+                            <th id="state">Estado</th>
+                            <th id="actions">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -78,7 +78,7 @@
                                 <input style="margin-bottom: 2%;" id="addressP" name="addressP" type="text" placeholder="Dirección" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class=" control-label" for="representanteLegal">Nombre *</label>  
+                                <label class=" control-label" for="representanteLegal">Representante Legal *</label>  
                                 <input style="margin-bottom: 2%;" id="representanteLegal" name="representanteLegal" type="text" placeholder="Representante Legal" class="form-control input-md" required="">
                             </div>
                         </div>                                           

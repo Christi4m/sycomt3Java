@@ -32,7 +32,37 @@ public class ProductoDAO extends Conexion {
             pst = getConnection().prepareCall(sql);//abriendo la conexión a la base de datos y los parametros que le voy a enviar (sentencia sql)
             rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
             while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
-                productos.add(new Producto(rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), rs.getString("tipoTelaje"), rs.getString("ubicacionBodega"), rs.getDouble("precioMC"), rs.getDouble("stock"), rs.getString("imagenProducto"), rs.getString("razonSocial")));
+                productos.add(new Producto(rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcion"), rs.getString("tipoTelaje"), rs.getString("ubicacionBodega"), rs.getDouble("precioMC"), rs.getDouble("stock"), rs.getString("imagenProducto"), rs.getString("razonSocial")));
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();//cerrar el resultSet
+                }
+                if (pst != null) {
+                    pst.close();//cierra el preperentStament
+                }
+                if (getConnection() != null) {
+                    getConnection().close();//cerrar la conexión
+                }
+            } catch (Exception e) {
+            }
+        }
+        return productos;
+    }
+
+    public ArrayList<Producto> getAllSearchProductos(String valSearch) {//creo el metodo producto de tipo arraylist
+        ArrayList<Producto> productos = new ArrayList<>();//creando el arraylist de tipo producto
+        ResultSet rs = null;// trae el resultado de lo que haga en la base de datos
+        try {
+            String sql = "call selectProductsSearch(?)";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la conexión a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            pst.setString(1, valSearch);
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                productos.add(new Producto(rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcion"), rs.getString("tipoTelaje"), rs.getString("ubicacionBodega"), rs.getDouble("precioMC"), rs.getDouble("stock"), rs.getString("imagenProducto"), rs.getString("razonSocial")));
             }
         } catch (Exception e) {
 
@@ -63,7 +93,7 @@ public class ProductoDAO extends Conexion {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
-                producto = new Producto(rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), rs.getString("tipoTelaje"), rs.getString("ubicacionBodega"), rs.getDouble("precioMC"), rs.getDouble("stock"), rs.getString("imagenProducto"), rs.getString("razonSocial"));
+                producto = new Producto(rs.getInt("idProducto"), rs.getString("nombreProducto"), rs.getString("descripcion"), rs.getString("tipoTelaje"), rs.getString("ubicacionBodega"), rs.getDouble("precioMC"), rs.getDouble("stock"), rs.getString("imagenProducto"), rs.getString("razonSocial"));
             }
         } catch (Exception e) {
 
@@ -157,6 +187,8 @@ public class ProductoDAO extends Conexion {
             pst.setInt(1, idProducto);
             if (pst.executeUpdate() == 1) {
                 flag = true;
+            } else if (pst.executeUpdate() == 1) {
+
             }
         } catch (Exception e) {
 
@@ -178,15 +210,14 @@ public class ProductoDAO extends Conexion {
 
         boolean flag = false;
         try {
-            String sql = "call updateProduct(?,?,?,?,?,?,?)";
+            String sql = "call updateProduct(?,?,?,?,?,?)";
             pst = getConnection().prepareStatement(sql);
             pst.setInt(1, p.getId());
             pst.setString(2, p.getNombre());
-            pst.setString(3, p.getDescripcion());
-            pst.setString(4, p.getTelaje());
-            pst.setString(5, p.getUbicacion());
-            pst.setDouble(6, p.getPrecio());
-            pst.setDouble(7, p.getStock());
+            pst.setString(3, p.getTelaje());
+            pst.setString(4, p.getUbicacion());
+            pst.setDouble(5, p.getPrecio());
+            pst.setDouble(6, p.getStock());
 
             if (pst.executeUpdate() == 1) {
                 flag = true;
@@ -209,10 +240,13 @@ public class ProductoDAO extends Conexion {
     }
 
     public static void main(String[] args) {
-        ProductoDAO mp = new ProductoDAO();
-        Producto producto = (Producto) mp.getProducto(20);
-
-        System.out.println(producto.getNombre());
+        String var1 = "Hola";
+        String var2 = "peee";
+        if (var1.indexOf(var2) == -1) {
+            System.out.println("Encontrado");
+        } else {
+            System.out.println("No Encontrado");
+        }
     }
 
 }

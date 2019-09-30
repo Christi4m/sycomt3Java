@@ -40,7 +40,9 @@ public class Producto {
         this.idProveedor = idProveedor;
     }
 
-    public Producto(int id, String nombre, String descripcion, String telaje, String ubicacion, double precio, double stock, String img,String proveedor) {
+ 
+
+    public Producto(int id, String nombre, String descripcion,String telaje, String ubicacion, double precio, double stock, String img,String proveedor) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -51,10 +53,9 @@ public class Producto {
         this.img = img;
         this.proveedor = proveedor;
     }
-    public Producto(int id, String nombre, String descripcion, String telaje, String ubicacion, double precio, double stock) {
+    public Producto(int id, String nombre,  String telaje, String ubicacion, double precio, double stock) {
         this.id = id;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.telaje = telaje;
         this.ubicacion = ubicacion;
         this.precio = precio;

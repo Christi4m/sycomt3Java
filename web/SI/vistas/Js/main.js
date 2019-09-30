@@ -142,6 +142,11 @@ var ready = function () {
         $('#main-content').load("Administrador/Reportes.jsp");
         cambio();
     });
+    $(document).on('click', '#linkCorreosA', function (e) {
+        e.preventDefault();
+        $('#main-content').load("Administrador/Correos.jsp");
+        cambio();
+    });
     //tarjetas del home Administrador
 
 
@@ -179,6 +184,12 @@ var ready = function () {
         e.preventDefault();
         $("#linkReportesOpenA").click();
         $("#linkReportesA").click();
+        cambio();
+    });
+    $(document).on('click', '#tajetaCorreosA', function (e) {
+        e.preventDefault();
+        $("#linkCorreosOpenA").click();
+        $("#linkCorreosA").click();
         cambio();
     });
     

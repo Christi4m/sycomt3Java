@@ -17,7 +17,6 @@
 <script src="<%= request.getContextPath()%>/SI/vistas/Js/main.js"></script>
 <script src="<%= request.getContextPath()%>/SI/vistas/Js/Translate.js"></script>
 <script src="<%= request.getContextPath()%>/SI/vistas/Js/logOut.js"></script>
-<script src="<%= request.getContextPath()%>/lib/BootstrapSelect/js/bootstrap-multiselect.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
@@ -26,6 +25,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script src="https://oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<!-- Libreria español -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/i18n/es.js"></script>
+
+
 
 
 

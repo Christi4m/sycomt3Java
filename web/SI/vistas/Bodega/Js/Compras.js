@@ -2,32 +2,146 @@ $(document).ready(function () {
     listar();
     Print();
     listarProveedor();
-
-
 });
 var listar = function () {
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        return canvas.toDataURL("image/png");
+    }
+    //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
+    var myGlyph = new Image();
+    myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
+
     var table = $("#tableCrud").DataTable({
-         dom: 'Bfrtip',
+        dom: 'Bfrtip',
         buttons: [
             {
                 extend: 'copyHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-copy"></i>',
+                titleAttr: 'Copiar Dstos',
+                className: 'btn btn-info',
                 exportOptions: {
-                    columns: [ 0, ':visible' ]
+                    columns: [0, 1, 4, 5, 'visible']
                 }
             },
             {
                 extend: 'excelHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-file-excel"></i>',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
                 exportOptions: {
-                    columns: ':visible'
+                    columns: [0, 1, 4, 5, 'visible']
                 }
             },
             {
                 extend: 'pdfHtml5',
+                text: '<i style="font-size:25px;" class="fas fa-file-pdf"></i>',
+                titleAttr: 'Exportar a Pdf',
+                className: 'btn btn-danger',
+                title: 'Compras',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 5 ]
-                }
+                    columns: [0, 1, 4, 5],
+                },
+                customize: function (doc) {
+
+                    //Dar el 100% de ancho a la tabla 
+                    doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    //Funcion que convierte la imagen a mostrar a data uri base 64
+                    doc.images = doc.images || {};
+                    doc.images['myGlyph'] = getBase64Image(myGlyph);
+                    for (var i = 1; i < doc.content[1].table.body.length; i++) {
+                        if (doc.content[1].table.body[i][0].text == '<img src="../img/LogoSycomt3FondoBlanco.png">') {
+                            delete doc.content[1].table.body[i][0].text;
+                            doc.content[1].table.body[i][0].image = 'myGlyph';
+                        }
+                    }
+                    //Crear una cadena de fecha que usamos en el pie y encabezado de página. El formato es dd-mm-aaaa
+                    var now = new Date();
+                    var jsDate = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
+                    //Asignacion de estilos personalizados al reporte 
+                    //margenes del page (seccion donde se encuentra la tabla)
+                    doc.pageMargins = [20, 150, 20, 30];
+                    // Establecer el tamaño de fuente para todo el documento
+                    doc.defaultStyle.fontSize = 10;
+                    // Establecer el tamaño de fuente, para el encabezado de la tabla
+                    doc.styles.tableHeader.fontSize = 10;
+                    // Establecer el background, para el encabezado de la tabla
+                    doc.styles.tableHeader.fillColor = '#000000';
+                    //Alinear a la izquierda los encabezados de la tabla
+                    doc.styles.tableHeader.alignment = 'left';
+                    //funcion que crear el encabezado del pdf
+                    doc['header'] = (function () {
+                        return {
+                            //Division del header en 3 columnas
+                            columns: [
+                                {
+                                    //Columna que muestra la fecha en curso
+                                    alignment: 'left',
+                                    italics: true,
+                                    text: jsDate.toString(),
+                                    fontSize: 18,
+                                    margin: [10, 0]
+                                },
+                                {
+                                    //columna que muestra el logo del sistema en el reporte
+                                    image: 'myGlyph',
+                                    width: 200
+                                },
+                                {
+                                    //Columna que muesta el titulo del reporte al lado derecho
+                                    alignment: 'center',
+                                    fontSize: 14,
+                                    text: 'Listado de Compras Realizadas en el Almacen'
+                                }
+                            ],
+                            margin: 20
+                        }
+                    });
+                    // Creacion un objeto de pie de página con 2 columnas.
+                    // Lado izquierdo: fecha de creación del informe
+                    // Lado derecho: página actual y páginas totales
+                    doc['footer'] = (function (page, pages) {
+                        return {
+                            columns: [
+                                {
+                                    alignment: 'left',
+                                    text: ['Creado el ', {text: jsDate.toString()}]
+                                },
+                                {
+                                    alignment: 'right',
+                                    text: ['Pagina ', {text: page.toString()}, ' de ', {text: pages.toString()}]
+                                }
+                            ],
+                            margin: 10,
+                            fillColor: '#000000'
+                        }
+                    });
+                },
+
             },
-            'colvis'
+            {
+                extend: 'csvHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-file-csv"></i>',
+                titleAttr: 'Exportar a Csv',
+                className: 'btn btn-warning',
+                title: 'Compras',
+                exportOptions: {
+                    columns: [0, 1, 4, 5],
+
+                },
+                fieldSeparator: ",",
+                fieldBoundary: '',
+                escapeChar: '"',
+                charset: null,
+                header: null,
+                footer: null
+
+            }
+
         ],
         destroy: true,
         order: [[0, "desc"]],
@@ -45,6 +159,16 @@ var listar = function () {
             {data: "Estado"},
             {data: "acciones"}
         ],
+        createdRow: function (row, data, dataIndex) {
+            $(row).find('td:eq(0)').attr('data-label', '#')
+            $(row).find('td:eq(1)').attr('data-label', 'Fecha')
+            $(row).find('td:eq(2)').attr('data-label', 'Proveedor')
+            $(row).find('td:eq(3)').attr('data-label', 'Observaciones')
+            $(row).find('td:eq(4)').attr('data-label', 'Total')
+            $(row).find('td:eq(5)').attr('data-label', 'Estado')
+            $(row).find('td:eq(6)').attr('data-label', 'Acciones')
+
+        },
         language: idiomaEsp
     });
 }
@@ -81,7 +205,6 @@ var listarProveedor = function () {
         }
     });
 };
-
 //$('#boton').click(function () {
 //    console.log($('.select1').val());
 //
@@ -94,7 +217,6 @@ $('#btnOrderNow').click(function (e) {
             proveedorShop: {
                 validators: {
                     notEmpty: {message: 'Seleccione un proveedor'},
-
                 }
             },
             decripcionShop: {
@@ -110,6 +232,7 @@ $('#btnOrderNow').click(function (e) {
 });
 $('#frmShop').on('success.form.bv', function (e) {
     e.preventDefault();
+    e.stopImmediatePropagation();
     var cartArrayOrder = shoppingCart.listCart();
     var detailsShop = "";
     var totalShop = shoppingCart.totalCart();
@@ -122,7 +245,6 @@ $('#frmShop').on('success.form.bv', function (e) {
         $('#detailsShop').val(detailsShop);
         $('#totalShop').val(totalShop);
         var data = new FormData($('#frmShop')[0]);
-
         for (var entrie of data.entries()) {
             console.log(entrie[0] + ': ' + entrie[1]);
         }
@@ -170,7 +292,6 @@ $('#frmShop').on('success.form.bv', function (e) {
 
             }
         });
-
     } else {
 
         Swal.fire({
@@ -190,10 +311,9 @@ $(document).on('click', '#closeModalCart', function (e) {
     $("#frmShop")[0].reset();
     $("#frmShop").data('bootstrapValidator').resetForm();
 });
-
-
 $(document).on('click', 'button.btnDetalles', function (e) {
     e.preventDefault();
+    e.stopImmediatePropagation();
     var idShop = $(this).attr("id");
     var data = ""
     $.ajax({
@@ -232,8 +352,6 @@ $(document).on('click', 'a.idproveedor', function (e) {
         }
     });
 });
-
-
 // ************************************************
 // Shopping Cart API
 // Seccion de cosigo para el carrito de compras
@@ -244,7 +362,6 @@ var shoppingCart = (function () {
     // Private methods and propeties
     // =============================
     cart = [];
-
     // Constructor
     function Item(name, price, count, idSis) {
         this.name = name;
@@ -271,7 +388,6 @@ var shoppingCart = (function () {
     // Public methods and propeties
     // =============================
     var obj = {};
-
     // Add to cart
     obj.addItemToCart = function (name, price, count, idSis) {
         for (var item in cart) {
@@ -351,7 +467,6 @@ var shoppingCart = (function () {
             itemCopy = {};
             for (p in item) {
                 itemCopy[p] = item[p];
-
             }
             itemCopy.total = Number(item.price * item.count).toFixed(2);
             cartCopy.push(itemCopy)
@@ -372,8 +487,6 @@ var shoppingCart = (function () {
     // loadCart : Function
     return obj;
 })();
-
-
 // *****************************************
 // Triggers / Events
 // ***************************************** 
@@ -394,24 +507,18 @@ $(document).on('click', '#openCart', function (e) {
 $(document).on('click', '#closeModalCart', function (e) {
     $('#modalCompraNueva').modal('show');
 });
-
-
 // Clear items
 $('.clear-cart').click(function () {
     shoppingCart.clearCart();
     displayCart();
 });
-
 $(document).ready(function () {
     shoppingCart.clearCart();
     displayCart();
-
-
 });
 function displayCart() {
     var cartArray = shoppingCart.listCart();
     var output = "";
-
     for (var i in cartArray) {
 
 
@@ -430,7 +537,6 @@ function displayCart() {
     }
 
     $('.show-cart').html(output);
-
     $('.total-cart').html(shoppingCart.totalCart());
     $('.total-count').html(shoppingCart.totalCount());
 }
@@ -464,7 +570,6 @@ $('.show-cart').on("change", ".item-count", function (event) {
     shoppingCart.setCountForItem(name, count);
     displayCart();
 });
-
 displayCart();
 
 

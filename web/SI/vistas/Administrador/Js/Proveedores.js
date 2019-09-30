@@ -3,7 +3,144 @@ $(document).ready(function () {
 });
 //Funcion para listar los provedores registrados, usando el plugin dataTable.
 var listar = function () {
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        return canvas.toDataURL("image/png");
+    }
+    //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
+    var myGlyph = new Image();
+    myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
     var table = $("#tableCrud").DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-copy"></i>',
+                titleAttr: 'Copiar Datos',
+                className: 'btn btn-info',
+                exportOptions: {
+                    columns: [0, 1, 2, 3]
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-file-excel"></i>',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 'visible']
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i style="font-size:25px;" class="fas fa-file-pdf"></i>',
+                titleAttr: 'Exportar a Pdf',
+                className: 'btn btn-danger',
+                title: 'Proveedores',
+                exportOptions: {
+                    columns: [0, 1, 2, 3],
+                },
+                customize: function (doc) {
+
+                    //Dar el 100% de ancho a la tabla 
+                    doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    //Funcion que convierte la imagen a mostrar a data uri base 64
+                    doc.images = doc.images || {};
+                    doc.images['myGlyph'] = getBase64Image(myGlyph);
+                    for (var i = 1; i < doc.content[1].table.body.length; i++) {
+                        if (doc.content[1].table.body[i][0].text == '<img src="../img/LogoSycomt3FondoBlanco.png">') {
+                            delete doc.content[1].table.body[i][0].text;
+                            doc.content[1].table.body[i][0].image = 'myGlyph';
+                        }
+                    }
+                    //Crear una cadena de fecha que usamos en el pie y encabezado de página. El formato es dd-mm-aaaa
+                    var now = new Date();
+                    var jsDate = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
+                    //Asignacion de estilos personalizados al reporte 
+                    //margenes del page (seccion donde se encuentra la tabla)
+                    doc.pageMargins = [20, 150, 20, 30];
+                    // Establecer el tamaño de fuente para todo el documento
+                    doc.defaultStyle.fontSize = 10;
+                    // Establecer el tamaño de fuente, para el encabezado de la tabla
+                    doc.styles.tableHeader.fontSize = 10;
+                    // Establecer el background, para el encabezado de la tabla
+                    doc.styles.tableHeader.fillColor = '#000000';
+                    //Alinear a la izquierda los encabezados de la tabla
+                    doc.styles.tableHeader.alignment = 'left';
+                    //funcion que crear el encabezado del pdf
+                    doc['header'] = (function () {
+                        return {
+                            //Division del header en 3 columnas
+                            columns: [
+                                {
+                                    //Columna que muestra la fecha en curso
+                                    alignment: 'left',
+                                    italics: true,
+                                    text: jsDate.toString(),
+                                    fontSize: 10,
+                                    margin: [10, 0]
+                                },
+                                {
+                                    //columna que muestra el logo del sistema en el reporte
+                                    image: 'myGlyph',
+                                    width: 200
+                                },
+                                {
+                                    //Columna que muesta el titulo del reporte al lado derecho
+                                    alignment: 'center',
+                                    fontSize: 12,
+                                    text: 'Listado de Proveedores del Almacen'
+                                }
+                            ],
+                            margin: 20
+                        }
+                    });
+                    // Creacion un objeto de pie de página con 2 columnas.
+                    // Lado izquierdo: fecha de creación del informe
+                    // Lado derecho: página actual y páginas totales
+                    doc['footer'] = (function (page, pages) {
+                        return {
+                            columns: [
+                                {
+                                    alignment: 'left',
+                                    text: ['Creado el ', {text: jsDate.toString()}]
+                                },
+                                {
+                                    alignment: 'right',
+                                    text: ['Pagina ', {text: page.toString()}, ' de ', {text: pages.toString()}]
+                                }
+                            ],
+                            margin: 10,
+                            fillColor: '#000000'
+                        }
+                    });
+                },
+
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i style="font-size:25px;"class="fas fa-file-csv"></i>',
+                titleAttr: 'Exportar a Csv',
+                className: 'btn btn-warning',
+                title: 'Proveedores',
+                exportOptions: {
+                    columns: [0, 1, 2, 3],
+
+                },
+                fieldSeparator: ",",
+                fieldBoundary: '',
+                escapeChar: '"',
+                charset: null,
+                header: null,
+                footer: null
+
+            }
+
+        ],
         destroy: true,
         order: [[0, "desc"]],
         //Funcion ajax para traer los datos desde la capa logica que a su vez trae los datos desde la base de datos
@@ -24,7 +161,7 @@ var listar = function () {
         //Funcion para agregar a los datos el atributo data label necesario para los estilos responsive
         //de la tabla
         createdRow: function (row, data, dataIndex) {
-            $(row).find('td:eq(0)').attr('data-label', 'Id Sistema')
+            $(row).find('td:eq(0)').attr('data-label', '#')
             $(row).find('td:eq(1)').attr('data-label', 'Razón Social')
             $(row).find('td:eq(2)').attr('data-label', 'Nit')
             $(row).find('td:eq(3)').attr('data-label', 'Estado')
@@ -79,6 +216,40 @@ $('#btnRegisterP').click(function (e) {
                 validators: {
                     notEmpty: {message: 'El email es requerido'},
                     emailAddress: {message: 'Ingrese un correo valido'}
+                }
+            },
+            numCellPhoneP: {
+                validators: {
+                    notEmpty: {message: 'El celular es requerido'},
+                    regexp: {
+                        regexp: /^\d{10}$/,
+                        message: 'Proporcione un número de teléfono celular válido'
+                    }
+                }
+            },
+            numLandLineP: {
+                validators: {
+                    notEmpty: {enabled: false},
+                    regexp: {
+                        regexp: /^\d{7}$/,
+                        message: 'Proporcione un número de teléfono fijo válido'
+                    }
+                }
+            },
+            addressP: {
+                validators: {
+                    notEmpty: {message: 'La direccion es requerida'},
+                    stringLength: {
+                        max: 60,
+                        min: 6,
+                        message: 'Ingrese una direccion valida, minimo 6 caracteres maximo 60'
+                    }
+                }
+            },
+            representanteLegal: {
+                validators: {
+                    notEmpty: {message: 'El representante legal es requerido'},
+
                 }
             }
         }

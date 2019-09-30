@@ -67,7 +67,7 @@ public class controllerProduct extends HttpServlet {
                         outputStream.write(bytes, 0, read);
                     }
 
-                    Producto pr = new Producto(request.getParameter("nombreProducto"), request.getParameter("decripcionProducto"), request.getParameter("telajeProducto"), request.getParameter("ubicacionBodega"), Math.round(Double.parseDouble(request.getParameter("precioMC"))), Double.parseDouble(request.getParameter("stock")), "images/productos/" + fileName,Integer.parseInt(request.getParameter("proveedorProducto")));
+                    Producto pr = new Producto(request.getParameter("nombreProducto"), request.getParameter("telajeProducto"),request.getParameter("decripcionProducto"), request.getParameter("ubicacionBodega"), Math.round(Double.parseDouble(request.getParameter("precioMC"))), Double.parseDouble(request.getParameter("stock")), "images/productos/" + fileName,Integer.parseInt(request.getParameter("proveedorProducto")));
                     ProductoDAO mpc = new ProductoDAO();
                     if (mpc.crearProducto(pr)) {
                         out.print("1");
@@ -102,7 +102,8 @@ public class controllerProduct extends HttpServlet {
                     item.addProperty("Precio", producto.getPrecio());
                     item.addProperty("Stock", producto.getStock());
                     item.addProperty("Imagen", producto.getImg());
-                    item.addProperty("acciones", "<button id='" + producto.getId() + "'class='btn btnDetallesProducto btn-primary fa fa-eye''></button><button id='" + producto.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button><button id='" + producto.getId() + "' class='btn btnEliminar fa fa-trash btn-danger text-left' data-toggle='modal' data-target='#modalEliminar'></button>");
+                    item.addProperty("descripcion", producto.getDescripcion());
+                    item.addProperty("acciones", "<button title='Ver Detalles'id='" + producto.getId() + "'class='btn btnDetallesProducto btn-primary fa fa-eye''></button><button title='Actualizar Produccto'id='" + producto.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button><button title'Eliminar Productos' id='" + producto.getId() + "' class='btn btnEliminar fa fa-trash btn-danger text-left' ></button>");
 
                     array.add(item);
 
@@ -110,6 +111,33 @@ public class controllerProduct extends HttpServlet {
                 gson.add("datos", array);
 
                 out.print(gson.toString());
+                break;
+            case "listSearch":
+                //caso para listar todos los productos almacenados en la bd, en este caso traemos todos los productos de la bn 
+                //instanciando un medoto de la clase modeloProductoDAO "getAllProductos" y una vez teniendo los
+                //datos en un for each se crea un objeto de tipo json que posteriormente es lo que retorna para poder
+                //ser llamado en la vista por medio de ajax y asi pintar o mostrar todos los productos
+                JsonObject gson2 = new JsonObject();
+                JsonArray array2 = new JsonArray();
+                ProductoDAO mp2 = new ProductoDAO();
+                for (Producto producto : mp2.getAllSearchProductos(request.getParameter("valSearch"))) {
+                    JsonObject item = new JsonObject();
+                    item.addProperty("Codigo", producto.getId()); // add property ,, agregar propiedad al objeto json 
+                    item.addProperty("Nombre", producto.getNombre());
+                    item.addProperty("Telaje", producto.getTelaje());
+                    item.addProperty("Ubicacion", producto.getUbicacion());
+                    item.addProperty("Precio", producto.getPrecio());
+                    item.addProperty("Stock", producto.getStock());
+                    item.addProperty("Imagen", producto.getImg());
+                    item.addProperty("descripcion", producto.getDescripcion());
+                    item.addProperty("acciones", "<button title='Ver Detalles'id='" + producto.getId() + "'class='btn btnDetallesProducto btn-primary fa fa-eye''></button><button title='Actualizar Produccto'id='" + producto.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button><button title'Eliminar Productos' id='" + producto.getId() + "' class='btn btnEliminar fa fa-trash btn-danger text-left' ></button>");
+
+                    array2.add(item);
+
+                }
+                gson2.add("datos", array2);
+
+                out.print(gson2.toString());
                 break;
 
             case "modalUpdate":
@@ -127,11 +155,12 @@ public class controllerProduct extends HttpServlet {
                 item.addProperty("Nombre", prt.getNombre());
                 item.addProperty("Telaje", prt.getTelaje());
                 item.addProperty("Ubicacion", prt.getUbicacion());
-                item.addProperty("Precio", formateador.format(prt.getPrecio()));
+                item.addProperty("Precio", prt.getPrecio());
                 item.addProperty("Stock", prt.getStock());
                 item.addProperty("proveedor", prt.getProveedor());
                 item.addProperty("imagen", prt.getImg());
                 item.addProperty("descripcion", prt.getDescripcion());
+                
 
                 array1.add(item);
                 gson1.add("datos", array1);
@@ -143,7 +172,7 @@ public class controllerProduct extends HttpServlet {
                 // caso para actualizar los datos de un producto, en este caso se capturan los datos del formulario
                 //actualizar y se envian a un metodo de la clase ModeloProductoDao "updateProducto" el cual
                 //lleva los datos capturados a la bd y realiza la actualizacion segun aplique
-                Producto pf = new Producto(Integer.parseInt(request.getParameter("id")), request.getParameter("nombre"), "", request.getParameter("telaje"), request.getParameter("ubicacion"), Double.parseDouble(request.getParameter("precioMC")), Double.parseDouble(request.getParameter("stock")), "", "");
+                Producto pf = new Producto(Integer.parseInt(request.getParameter("idProducto")), request.getParameter("nombreProducto"), request.getParameter("telajeProducto"), request.getParameter("ubicacionBodega"), Double.parseDouble(request.getParameter("precioMC")), Double.parseDouble(request.getParameter("stock")));
                 ProductoDAO mpu = new ProductoDAO();
                 if(mpu.updateProducto(pf)){
                     out.print("1");
@@ -157,39 +186,15 @@ public class controllerProduct extends HttpServlet {
                 //lleva el id capturado a la bd y realiza la eliminacion segun aplique
                 ProductoDAO mpd = new ProductoDAO();
                 int idProducto = Integer.parseInt(request.getParameter("iDProducto"));
-                mpd.deleteProducto(idProducto);
+                if(mpd.deleteProducto(idProducto)){
+                    out.print("1");
+                }else{
+                    out.print("0");
+                }
 
                 break;
 
         }
-    }
-// metodo utilizado para pintar el carrito de compras, metodo que lista todos los productos y los lista en la pagina carritoCOmpras
-    public String PrintCart(HttpServletRequest request) {
-        ProductoDAO mppc = new ProductoDAO();
-        String htmlcode = "";
-        DecimalFormat formateador = new DecimalFormat("###,###,###,###.##");
-        for (Producto producto : mppc.getAllProductos()) {
-            htmlcode += "<div class=\"col-sm-4\">\n"
-                    + "							<div class=\"product-image-wrapper\">\n"
-                    + "								<div class=\"single-products\">\n"
-                    + "									<div class=\"productinfo text-center\">\n"
-                    + "										<img src=\"../../" + producto.getImg() + "\" alt=\"\" />\n"
-                    + "										<h2>$" + formateador.format(producto.getPrecio()) + "</h2>\n"
-                    + "										<p>" + producto.getNombre() + "</p>\n"
-                    + "										<a href=\"product-details.jsp?id=" + producto.getId() + "\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Ver detalles</a>\n"
-                    + "									</div>\n"
-                    + "									<div class=\"product-overlay\">\n"
-                    + "										<div class=\"overlay-content\">\n"
-                    + "											<h2>$" + formateador.format(producto.getPrecio()) + "</h2>\n"
-                    + "											<p>" + producto.getNombre() + "</p>\n"
-                    + "											<a href=\"product-details.jsp?id=" + producto.getId() + "\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Ver Detalles</a>\n"
-                    + "										</div>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "							</div>\n"
-                    + "						</div>";
-        }
-        return htmlcode;
     }
 
     public Producto getProducto(int id) {

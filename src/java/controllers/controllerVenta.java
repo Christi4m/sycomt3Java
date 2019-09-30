@@ -1,7 +1,9 @@
 package controllers;
 
 import classes.Articulo;
+import classes.Correos;
 import classes.Producto;
+import classes.Tercero;
 import classes.numeroSerie;
 import classes.Ventas;
 import com.google.gson.JsonArray;
@@ -10,14 +12,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.StringTokenizer;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.ProductoDAO;
+import models.TerceroDAO;
 import models.VentasDao;
 
+@MultipartConfig
 public class controllerVenta extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -45,15 +51,8 @@ public class controllerVenta extends HttpServlet {
                 break;
 
             case "newVenta":
-//Linea de codigo que trae el nombre del cliente que inicio sesion
-                Object nombreCompleto = sesion.getAttribute("nameCliente");
                 //Linea de codigo que trae el id  del cliente que inicio sesion
                 int idCliente = Integer.parseInt(sesion.getAttribute("idCliente").toString());
-                //Linea de codigo que instancia la clase producto para poder traer los datos de los productos que estan en el carrito
-
-                controllerProduct cp = new controllerProduct();
-                double total = 0;
-                //Condicional que valida si el carrito tiene articulos o no
 
                 //seccion de codigo que obtiene la fecha en la que se genera la venta
                 Calendar c = new GregorianCalendar();
@@ -61,6 +60,7 @@ public class controllerVenta extends HttpServlet {
                 String mes = Integer.toString(c.get(Calendar.MONTH) + 1);
                 String annio = Integer.toString(c.get(Calendar.YEAR));
                 String fecha = dia + "-" + "06" + "-" + annio;
+
                 String numeroSerie = "";
                 //instancia del modeloVentas Dao para acceder a sus metodos 
                 VentasDao modelo1 = new VentasDao();
@@ -73,28 +73,50 @@ public class controllerVenta extends HttpServlet {
                     numeroSerie ns = new numeroSerie();
                     numeroSerie = ns.numeroSerie(incrementar);
                 }
-                //Seccion de codigo para Guardar Venta       
-                // ciclo repetitivo para traer el valor global o total de la factura generado en el carrito de compras
-                for (Articulo a : articulos) {
-                    Producto producto1 = cp.getProducto(a.getIdProducto());
-                    total += a.getCantidad() * producto1.getPrecio();
-
-                }
+                Double ValorGlobal = Double.parseDouble(request.getParameter("totalShop"));
                 //creacion del objeto de tipo ventas para poder guardar los datos de la venta en la bd 
-                Ventas ventas1 = new Ventas(fecha, total, idCliente, numeroSerie, "En Despacho");
+                Ventas ventas1 = new Ventas(fecha, ValorGlobal, idCliente, numeroSerie, "En Despacho");
+
                 VentasDao modelo2 = new VentasDao();
 
                 if (modelo2.guardarVentas(ventas1)) {
                     VentasDao modelo3 = new VentasDao();
                     int idVenta = Integer.parseInt(modelo3.idVentas());
-                    controllerProduct cpr = new controllerProduct();
+
                     // traer todos los datos de los productos ingresados en el carrito de compras
-                    for (Articulo ar : articulos) {
-                        Producto producto2 = cpr.getProducto(ar.getIdProducto());
+                    String[] arrOfStr = request.getParameter("detailsShop").split(";");
+                    String detalleVenta = "";
+                    for (String a : arrOfStr) {
+                        StringTokenizer misAtributos = new StringTokenizer(a, ",");
+                        int idP = Integer.parseInt(misAtributos.nextToken().trim());
+                        double cant = Double.parseDouble(misAtributos.nextToken().trim());
+                        double precio = Double.parseDouble(misAtributos.nextToken().trim());
+
+                        ProductoDAO mpuo = new ProductoDAO();
+                        Producto prt = (Producto) mpuo.getProducto(idP);
+
+                        detalleVenta += "Producto: " + prt.getNombre() + " Cantidad: " + Math.round(cant) + " Valor Unitario: " + formateador.format(precio) + "<br>";
+
                         VentasDao modelo4 = new VentasDao();
-                        Ventas VDV = new Ventas(idVenta, producto2.getId(), ar.getCantidad(), producto2.getPrecio() * ar.getCantidad());
+                        Ventas VDV = new Ventas(idVenta, idP, cant, precio);
                         modelo4.guardarDetalleVenta(VDV);
                     }
+
+                    String cuerpo = "<h2>!Felicitaciones¡</h2>\n"
+                            + "  <h4>Su compra se ha realizado exitosamente\n"
+                            + "  <br>Su compra re ha realizado con:\n"
+                            + "  <br><Strong>Numero de facturacion: </Strong>"+numeroSerie+"\n"
+                            + "  <br><Strong>Valor: </Strong>"+formateador.format(ValorGlobal)+" \n"
+                            + "  <br>Detalle de la compra: \n"
+                            + "  <br>"+detalleVenta+" \n"
+                            + "  </h4>";
+
+                    TerceroDAO modelo5 = new TerceroDAO();
+                    Tercero tercero2 = (Tercero) modelo5.getTerceroId(idCliente);
+                    Correos cor = new Correos("sycomt3A@gmail.com", "ealvrtizdmmxvsgp", "", "", tercero2.getEmail(), "Compra Realizada LunaTextil.com", cuerpo);
+                    
+                    correosClass cco = new correosClass();
+                    cco.correoUnitario(cor);
                     out.print("1");
 
                 } else {
@@ -115,7 +137,11 @@ public class controllerVenta extends HttpServlet {
                     item.addProperty("Cliente", "<a class='idCliente' id='" + ventas2.getIdCliente() + "' role=\"button\" href=\"#\">" + ventas2.getIdCliente() + " </a>");
                     item.addProperty("Factura", ventas2.getNumSerie());
                     item.addProperty("Estado", ventas2.getEstado());
-                    item.addProperty("acciones", "<button id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button onclick=\"detailsPerson()\" id='" + ventas2.getId() + "' class='btn btnEliminar fa fa-check btn-success text-left'></button>");
+                    if (sesion.getAttribute("typeTercero").toString().equalsIgnoreCase("Administrador")) {
+                        item.addProperty("acciones", "<button id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
+                    } else {
+                        item.addProperty("acciones", "<button id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button onclick=\"detailsPerson()\" id='" + ventas2.getId() + "' class='btn btnEliminar fa fa-check btn-success text-left'></button>");
+                    }
 
                     array.add(item);
 
@@ -285,6 +311,16 @@ public class controllerVenta extends HttpServlet {
                 }
                 gsonRV2.add("datos", arrayRV2);
                 out.print(gsonRV2.toString());
+                break;
+            case "Reporte4":
+                JsonObject gsonRV3 = new JsonObject();
+                JsonArray arrayRV3 = new JsonArray();
+                VentasDao modelo14 = new VentasDao();
+                JsonObject item = new JsonObject();
+                item.addProperty("gananciasMes", modelo14.reporte4());
+                arrayRV3.add(item);
+                gsonRV3.add("datos", arrayRV3);
+                out.print(gsonRV3.toString());
                 break;
             default:
                 break;

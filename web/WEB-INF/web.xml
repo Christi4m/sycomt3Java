@@ -48,6 +48,10 @@
         <servlet-name>controllerCompras</servlet-name>
         <servlet-class>controllers.controllerCompras</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controllerCorreos</servlet-name>
+        <servlet-class>controllers.controllerCorreos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controllerProduct</servlet-name>
         <url-pattern>/methodProduct</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>controllerCompras</servlet-name>
         <url-pattern>/controllerCompras</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controllerCorreos</servlet-name>
+        <url-pattern>/controllerCorreos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

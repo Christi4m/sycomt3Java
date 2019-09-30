@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class VentasDao extends Conexion {
-    
+
     PreparedStatement pst = null;//Abre flujo y manda parametros
     ResultSet rs = null;
     boolean flag = false;
@@ -18,7 +18,7 @@ public class VentasDao extends Conexion {
     //metodo para seleccionar el numero de serie "factura" de la ultima venta ingresada
     public String generarNumSerie() {
         String numSerie = "";
-        
+
         try {
             String sql = "select max(numSerie) from ordenventa";
             pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
@@ -27,7 +27,7 @@ public class VentasDao extends Conexion {
                 numSerie = rs.getString(1);
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -48,7 +48,7 @@ public class VentasDao extends Conexion {
     //metodo para seleccionar el id de la ultima venta ingresada
     public String idVentas() {
         String idVentas = "";
-        
+
         try {
             String sql = "select max(idOrdenVenta) from ordenventa";
             pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
@@ -57,7 +57,7 @@ public class VentasDao extends Conexion {
                 idVentas = rs.getString(1);
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -87,13 +87,13 @@ public class VentasDao extends Conexion {
             pst.setInt(3, v.getIdCliente());
             pst.setString(4, v.getNumSerie());
             pst.setString(5, v.getEstado());
-            
+
             if (pst.executeUpdate() == 1) {
                 flag = true;
             }
-            
+
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -122,13 +122,13 @@ public class VentasDao extends Conexion {
             pst.setInt(2, vent.getIdProducto());
             pst.setDouble(3, vent.getCantidadProducto());
             pst.setDouble(4, vent.getValorProducto());
-            
+
             if (pst.executeUpdate() == 1) {
                 flag = true;
             }
-            
+
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -148,7 +148,7 @@ public class VentasDao extends Conexion {
 //metodo para listar el reporte de ventas por mes
 
     public ArrayList<Ventas> getAllVentasMes() {
-        
+
         ArrayList<Ventas> v = new ArrayList<>();
         try {
             String sql = "call ventasPorMes()";//crea la sentencia sql que voy a mandar a la base de datos
@@ -158,7 +158,7 @@ public class VentasDao extends Conexion {
                 v.add(new Ventas(rs.getString("Mes"), rs.getString("ventasMes")));
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -174,11 +174,11 @@ public class VentasDao extends Conexion {
             }
         }
         return v;
-        
+
     }
 
     public ArrayList<Ventas> reporte2() {
-        
+
         ArrayList<Ventas> v = new ArrayList<>();
         try {
             String sql = "call ventasPorMesLino()";//crea la sentencia sql que voy a mandar a la base de datos
@@ -210,7 +210,7 @@ public class VentasDao extends Conexion {
                 v.add(new Ventas("Paño", ventasLino));
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -226,11 +226,11 @@ public class VentasDao extends Conexion {
             }
         }
         return v;
-        
+
     }
 
     public ArrayList<Ventas> reporte3() {
-        
+
         ArrayList<Ventas> v = new ArrayList<>();
         try {
             String sql = "call cantidadVentasMesLino()";//crea la sentencia sql que voy a mandar a la base de datos
@@ -262,7 +262,7 @@ public class VentasDao extends Conexion {
                 v.add(new Ventas("Paño", ventasLino));
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -278,12 +278,44 @@ public class VentasDao extends Conexion {
             }
         }
         return v;
-        
+
+    }
+
+    public String reporte4() {
+
+        String v = "";
+        try {
+            String sql = "call gananciasMes()";//crea la sentencia sql que voy a mandar a la base de datos
+            pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
+            rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
+            while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
+                String ventasLino = rs.getString("Enero") + "," + rs.getString("Febrero") + "," + rs.getString("Marzo") + "," + rs.getString("Abril") + "," + rs.getString("Mayo") + "," + rs.getString("Junio") + "," + rs.getString("Julio") + "," + rs.getString("Agosto") + "," + rs.getString("Septiembre") + "," + rs.getString("Octubre") + "," + rs.getString("Noviembre") + "," + rs.getString("Diciembre");
+                v = ventasLino;
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();//cerrar el resultSet
+                }
+                if (pst != null) {
+                    pst.close();//cierra el preperentStament
+                }
+                if (getConnection() != null) {
+                    getConnection().close();//cerrar la conección
+                }
+            } catch (Exception e) {
+            }
+        }
+        return v;
+
     }
 
     //metodo para listar todas las ventas generadas en la base de datos
     public ArrayList<Ventas> getAllVEntas() {
-        
+
         ArrayList<Ventas> v = new ArrayList<>();
         try {
             String sql = "call getAllVentas()";//crea la sentencia sql que voy a mandar a la base de datos
@@ -293,7 +325,7 @@ public class VentasDao extends Conexion {
                 v.add(new Ventas(rs.getInt("idOrdenVenta"), rs.getString("fechaOrdenVenta"), rs.getDouble("valorGlobal"), rs.getInt("idTerceroF1"), rs.getString("numSerie"), rs.getString("estadoOrdenVenta"), 0));
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -309,11 +341,11 @@ public class VentasDao extends Conexion {
             }
         }
         return v;
-        
+
     }
-    
+
     public ArrayList<Ventas> getAllDespachos() {
-        
+
         ArrayList<Ventas> v = new ArrayList<>();
         try {
             String sql = "call getAllDespachos()";//crea la sentencia sql que voy a mandar a la base de datos
@@ -323,7 +355,7 @@ public class VentasDao extends Conexion {
                 v.add(new Ventas(rs.getInt("idOrdenVenta"), rs.getString("fechaOrdenVenta"), rs.getDouble("valorGlobal"), rs.getInt("idTerceroF1"), rs.getString("numSerie"), rs.getString("estadoOrdenVenta"), 0));
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -339,7 +371,7 @@ public class VentasDao extends Conexion {
             }
         }
         return v;
-        
+
     }
 
     // metodo para listar todos los detalles de venta assignados a una venta es decir todos lo productos 
@@ -356,7 +388,7 @@ public class VentasDao extends Conexion {
                 ventas.add(new Ventas(rs.getInt("idDetalleVenta"), rs.getInt("idProductoFK1"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), rs.getDouble("cantidadProductoOrden"), rs.getDouble("precioProducto")));
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (rs != null) {
@@ -377,7 +409,7 @@ public class VentasDao extends Conexion {
     //metodo para eliminar una venta
     public boolean deleteVenta(int idVenta) {
         boolean flag = false;
-        
+
         try {
             String sql = "delete from ordenventa where idOrdenVenta = (?)";
             pst = getConnection().prepareCall(sql);
@@ -386,7 +418,7 @@ public class VentasDao extends Conexion {
                 flag = true;
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (pst != null) {
@@ -405,7 +437,7 @@ public class VentasDao extends Conexion {
     // despachar las ventas dandeles un estado confirmada o una finalizar el proceso dandole un estado entregada
     public boolean ProcesarVenta(int idVenta, String estadoOrdenVenta) {
         boolean flag = false;
-        
+
         try {
             String sql = "call procesarVenta(?,?)";
             pst = getConnection().prepareCall(sql);
@@ -415,7 +447,7 @@ public class VentasDao extends Conexion {
                 flag = true;
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (pst != null) {
@@ -429,10 +461,10 @@ public class VentasDao extends Conexion {
         }
         return flag;
     }
-    
+
     public boolean insertFactura(String numFactura, int idVenta) {
         boolean flag = false;
-        
+
         try {
             String sql = "call insertFactura(?,?)";
             pst = getConnection().prepareCall(sql);
@@ -442,7 +474,7 @@ public class VentasDao extends Conexion {
                 flag = true;
             }
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 if (pst != null) {
@@ -458,24 +490,24 @@ public class VentasDao extends Conexion {
     }
 
     public static void main(String[] args) {
-         int buc = 0;
-                VentasDao modeloDetails = new VentasDao();
-                for (Ventas ventas3 : modeloDetails.getAllDetallesVentas(33)) {
-                    ProductoDAO prDAO = new ProductoDAO();
-                    Producto pr = (Producto) prDAO.getProducto(ventas3.getIdProducto());
-                    
-                    if (pr.getStock() > ventas3.getCantidadProducto()) {
-                        buc += buc;
-                    } else {
-                        buc += 1;
+        int buc = 0;
+        VentasDao modeloDetails = new VentasDao();
+        for (Ventas ventas3 : modeloDetails.getAllDetallesVentas(33)) {
+            ProductoDAO prDAO = new ProductoDAO();
+            Producto pr = (Producto) prDAO.getProducto(ventas3.getIdProducto());
 
-                    }
-                }
-                if(buc != 0){
-                    System.out.println("No se puede despachar"); 
-                }else{
-                    System.out.println("Si se puede despachar");
-                }
+            if (pr.getStock() > ventas3.getCantidadProducto()) {
+                buc += buc;
+            } else {
+                buc += 1;
+
+            }
+        }
+        if (buc != 0) {
+            System.out.println("No se puede despachar");
+        } else {
+            System.out.println("Si se puede despachar");
+        }
     }
-    
+
 }
