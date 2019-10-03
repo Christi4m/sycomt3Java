@@ -21,7 +21,7 @@ function traducir() {
 var register = function () {
 
     $('#buttonRegisterCustomerOP').click(function (e) {
-        alert();
+       
 
         $('#frmRegisterUserCustomer').bootstrapValidator({
             feedbackIcons: {valid: 'glyphicon glyphicon-ok', invalid: 'glyphicon glyphicon-remove', validating: 'glyphicon glyphicon-refresh'},
@@ -105,6 +105,12 @@ var register = function () {
                     validators: {
                         notEmpty: {message: 'La contraseña de acceso es requerida'}
                     }
+                },
+                passwordConfirm: {
+                    identical: {
+                        field: 'password',
+                        message: 'Las contraseñas no coinciden'
+                    }
                 }
 
             }
@@ -130,13 +136,15 @@ var register = function () {
                 confirmButtonText: 'Si, Realizalo!',
                 cancelButtonText: 'Cancelar',
                 width: 500,
-                padding: '5em',
+                padding: '5em'
             }).then((result) => {
-                $("#frmRegisterUserCustomer")[0].reset();
+
                 $.ajax({
                     url: "../methodClient?accion=create",
                     type: "post",
                     data: data,
+                    contentType: false,
+                    processData: false,
                     success: function (data) {
                         if (data == 1) {
                             Swal.fire({
@@ -148,6 +156,7 @@ var register = function () {
                                 showConfirmButton: false,
                                 timer: 2000 //el tiempo que dura el mensaje en ms
                             });
+                            $("#frmRegisterUserCustomer")[0].reset();
                         } else {
                             Swal.fire({
                                 //error
@@ -300,7 +309,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayAntonioNariño.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayAntonioNariño[i] + ">" + arrayAntonioNariño[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayAntonioNariño[i] + "'>" + arrayAntonioNariño[i] + "</option>");
             }
         }
         if ($(this).val() === "Barrios Unidos") {
@@ -308,7 +317,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayBarriosUnidos.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayBarriosUnidos[i] + ">" + arrayBarriosUnidos[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayBarriosUnidos[i] + "'>" + arrayBarriosUnidos[i] + "</option>");
             }
         }
         if ($(this).val() === "Bosa") {
@@ -316,7 +325,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayBosa.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayBosa[i] + ">" + arrayBosa[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayBosa[i] + "'>" + arrayBosa[i] + "</option>");
             }
         }
         if ($(this).val() === "La Candelaria") {
@@ -324,7 +333,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayCandelaria.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayCandelaria[i] + ">" + arrayCandelaria[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayCandelaria[i] + "'>" + arrayCandelaria[i] + "</option>");
             }
         }
 
@@ -333,7 +342,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayChapinero; i++) {
-                $("#barrioCliente").append("<option value=" + arrayChapinero[i] + ">" + arrayChapinero[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayChapinero[i] + "'>" + arrayChapinero[i] + "</option>");
             }
         }
         if ($(this).val() === "Engativá") {
@@ -341,7 +350,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayEngativa.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayEngativa[i] + ">" + arrayEngativa[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayEngativa[i] + "'>" + arrayEngativa[i] + "</option>");
             }
         }
         if ($(this).val() === "Fontibón") {
@@ -349,7 +358,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayFontibon.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayFontibon[i] + ">" + arrayFontibon[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayFontibon[i] + "'>" + arrayFontibon[i] + "</option>");
             }
         }
         if ($(this).val() === "Kennedy") {
@@ -357,7 +366,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayKennedy; i++) {
-                $("#barrioCliente").append("<option value=" + arrayKennedy[i] + ">" + arrayKennedy[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayKennedy[i] + "'>" + arrayKennedy[i] + "</option>");
             }
         }
         if ($(this).val() === "Los Mártires") {
@@ -365,7 +374,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayLosMartires.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayLosMartires[i] + ">" + arrayLosMartires[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayLosMartires[i] + "'>" + arrayLosMartires[i] + "</option>");
             }
         }
         if ($(this).val() === "Puente Aranda") {
@@ -373,7 +382,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayPuenteAranda.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayPuenteAranda[i] + ">" + arrayPuenteAranda[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayPuenteAranda[i] + "'>" + arrayPuenteAranda[i] + "</option>");
             }
         }
         if ($(this).val() === "Rafael Uribe Uribe") {
@@ -381,7 +390,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayRafaelUribe.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayRafaelUribe[i] + ">" + arrayRafaelUribe[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayRafaelUribe[i] + "'>" + arrayRafaelUribe[i] + "</option>");
             }
         }
         if ($(this).val() === "San Cristobal") {
@@ -389,7 +398,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arraySanCristobal.length; i++) {
-                $("#barrioCliente").append("<option value=" + arraySanCristobal[i] + ">" + arraySanCristobal[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arraySanCristobal[i] + "'>" + arraySanCristobal[i] + "</option>");
             }
         }
         if ($(this).val() === "Santa Fe") {
@@ -397,7 +406,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arraySantaFe.length; i++) {
-                $("#barrioCliente").append("<option value=" + arraySantaFe[i] + ">" + arraySantaFe[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arraySantaFe[i] + "'>" + arraySantaFe[i] + "</option>");
             }
         }
         if ($(this).val() === "Suba") {
@@ -405,7 +414,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arraySuba.length; i++) {
-                $("#barrioCliente").append("<option value=" + arraySuba[i] + ">" + arraySuba[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arraySuba[i] + "'>" + arraySuba[i] + "</option>");
             }
         }
         if ($(this).val() === "Teusaquillo") {
@@ -413,15 +422,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayTeusaquillo.length; i++) {
-                $("#barrioCliente").append("<option value=" + Teusaquillo[i] + ">" + Teusaquillo[i] + "</option>");
-            }
-        }
-        if ($(this).val() === "Tunjuelito") {
-            $("#barrioCliente").prop("disabled", false);
-            $("#barrioCliente").append("<option value=''></option>");
-            $("#barrioCliente").html("");
-            for (var i = 0; i < arrayTunjuelito.length; i++) {
-                $("#barrioCliente").append("<option value=" + Tunjuelito[i] + ">" + Tunjuelito[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayTeusaquillo[i] + "'>" + arrayTeusaquillo[i] + "</option>");
             }
         }
         if ($(this).val() === "Usaquén") {
@@ -429,7 +430,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayUsaquen.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayUsaquen[i] + ">" + arrayUsaquen[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayUsaquen[i] + "'>" + arrayUsaquen[i] + "</option>");
             }
         }
         if ($(this).val() === "Usme") {
@@ -437,7 +438,7 @@ var listarBarrios = function () {
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
             for (var i = 0; i < arrayUsme.length; i++) {
-                $("#barrioCliente").append("<option value=" + arrayUsme[i] + ">" + arrayUsme[i] + "</option>");
+                $("#barrioCliente").append("<option value='" + arrayUsme[i] + "'>" + arrayUsme[i] + "</option>");
             }
         }
 

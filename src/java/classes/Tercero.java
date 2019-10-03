@@ -31,6 +31,7 @@ public class Tercero {
     private String arl ;     
     private String cajaCompensacion ;
     private String estadoTercero;
+    private String zona ; 
    
     //Constructor vacio
     public Tercero() {
@@ -137,7 +138,7 @@ public class Tercero {
     }
     
 //Contructor para registrar un cliente en el sistema
-    public Tercero(int id,String typeUser, String typeId, int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String numLandLine,String localidad,String barrio, String address, String detailsAddress, String userAccess, String passwordAccess) {
+    public Tercero(int id,String typeUser, String typeId, int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String numLandLine,String localidad,String barrio, String address, String detailsAddress, String userAccess, String passwordAccess, String zona) {
         this.id = id;
         this.typeUser = typeUser ;
         this.typeId = typeId;
@@ -155,6 +156,8 @@ public class Tercero {
         this.detailsAddress = detailsAddress;
         this.userAccess = userAccess;
         this.passwordAccess = passwordAccess;
+        this.zona = zona;
+        
     }
         //constructor para logear un usuario en el sistema
     public Tercero(String userAccess, String passwordAccess) {
@@ -400,5 +403,14 @@ public class Tercero {
     public void setEstadoTercero(String estadoTercero) {
         this.estadoTercero = estadoTercero;
     }
+
+    public String getZona() {
+        return zona;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
+    }
+    
 
 }

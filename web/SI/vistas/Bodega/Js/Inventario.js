@@ -205,7 +205,7 @@ $(function () {
                     validators: {
                         notEmpty: {message: 'Ingrese el tipo de tela'},
                         callback: {
-                            message: 'Ingrese el numero de hijos del empleado',
+                            message: 'Seleccione un tipo de tela valido',
                             callback: function (value, validator, $field) {
                                 if (value === '') {
                                     return true;
@@ -261,14 +261,14 @@ $(function () {
             }
 
         });
-        $('#frmCrearProducto').on('success.form.bv', function (e) {
-            // Prevent form submission
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            var data = new FormData($('#frmCrearProducto')[0]);
+            $('#frmCrearProducto').on('success.form.bv', function (e) {
+                // Prevent form submission
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var data = new FormData($('#frmCrearProducto')[0]);
 
-            for (var entrie of data.entries()) {
-                console.log(entrie[0] + ': ' + entrie[1]);
+                for (var entrie of data.entries()) {
+                    console.log(entrie[0] + ': ' + entrie[1]);
             }
 
             $("#frmCrearProducto")[0].reset();
@@ -418,7 +418,7 @@ $(function () {
             processData: false,
             success: function (data) {
                 console.log(data);
-                if (data == 1) {
+               if (data == 1) {
                     Swal.fire({
                         //error
                         type: 'success',
@@ -427,7 +427,7 @@ $(function () {
                         padding: '5em',
                         showConfirmButton: false,
                         timer: 2000 //el tiempo que dura el mensaje en ms
-                    });
+                    }); 
 
                 } else {
                     Swal.fire({

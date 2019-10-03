@@ -16,7 +16,7 @@ public class TerceroDAO extends Conexion {
     public boolean createClient(Tercero c) {
 
         try {
-            String sql = "call insertCliente(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,)";
+            String sql = "call insertCliente(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             pst = getConnection().prepareStatement(sql);
             pst.setString(1, c.getTypeId());
             pst.setInt(2, c.getNumId());
@@ -34,6 +34,7 @@ public class TerceroDAO extends Conexion {
             pst.setString(14, c.getTypeUser());
             pst.setString(15, c.getLocalidad());
             pst.setString(16, c.getBarrrio());
+            pst.setString(17, c.getZona());
 
             if (pst.executeUpdate() == 1) {
                 flag = true;
@@ -371,6 +372,32 @@ public class TerceroDAO extends Conexion {
         }
         return flag;
 
+    }
+    public boolean updateZonaEntrega(int idMensajero, String zona) {
+        boolean flag = false;
+
+        try {
+            String sql = "call asignarZonaEntrega(?,?)";
+            pst = getConnection().prepareCall(sql);
+            pst.setString(1,zona);
+            pst.setInt(2, idMensajero);
+            if (pst.executeUpdate() == 1) {
+                flag = true;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+            } catch (Exception e) {
+            }
+        }
+        return flag;
     }
 
     public static void main(String[] args) {

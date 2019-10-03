@@ -152,11 +152,11 @@
                                             <option value="Tunjuelito">Tunjuelito</option>
                                             <option value="Usaquén">Usaquén</option>
                                             <option value="Usme">Usme</option>
-
+                                                
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
-                                        <label class="col-md-9 text-left" for="barrioCliente">Barrio *</label>
+                                        <label data-select-search="true" class="col-md-9 text-left" for="barrioCliente">Barrio *</label>
                                         <select disabled id="barrioCliente" name="barrioCliente" class="form-control">
                                             <option value="">Seleccione una opción</option>
 

@@ -47,12 +47,31 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
         switch (action) {
             //caso para crear un cliente en el sistema
             case "create":
+                String zona = "";
+                String localidad = request.getParameter("localidadCliente");
+                if (localidad.equalsIgnoreCase("Usaquén") || localidad.equalsIgnoreCase("Suba") || localidad.equalsIgnoreCase("Chapinero") || localidad.equalsIgnoreCase("Barrios Unidos") || localidad.equalsIgnoreCase("Teusaquillo")) {
+
+                    zona = "zona1";
+                }
+                if (localidad.equalsIgnoreCase("Engativá") || localidad.equalsIgnoreCase("Fontibón")) {
+                    zona = "zona2";
+                }
+                if (localidad.equalsIgnoreCase("La Candelaria") || localidad.equalsIgnoreCase("Santa Fe") || localidad.equalsIgnoreCase("Los Mártires") || localidad.equalsIgnoreCase("Antonio Nariño") || localidad.equalsIgnoreCase("Rafael Uribe Uribe")) {
+
+                    zona = "zona3";
+                }
+                if (localidad.equalsIgnoreCase("San Cristobal") || localidad.equalsIgnoreCase("Usme")) {
+                    zona = "zona4";
+                }
+                if (localidad.equalsIgnoreCase("Puente Aranda") || localidad.equalsIgnoreCase("Bosa") || localidad.equalsIgnoreCase("Kennedy") || localidad.equalsIgnoreCase("Tunjuelito")) {
+                    zona = "zona5";
+                }
                 TerceroDAO modelo1 = new TerceroDAO();
-                Tercero tercero1 = new Tercero(0, "Cliente", request.getParameter("typeId"), Integer.parseInt(request.getParameter("numId")),
+                Tercero tercero1 = new Tercero(0, "Cliente", request.getParameter("tipoIdentificacionCliente"), Integer.parseInt(request.getParameter("identificacionCliente")),
                         request.getParameter("firstName"), request.getParameter("secondName"), request.getParameter("firstLastName"),
                         request.getParameter("secondLastName"), request.getParameter("email"), request.getParameter("numCellPhone"),
-                        request.getParameter("numLandLine"),request.getParameter("localidadCliente"),request.getParameter("barrioCliente"), 
-                        request.getParameter("address"), request.getParameter("detailsAddress"),request.getParameter("userAccess"), request.getParameter("passwordAccess"));
+                        request.getParameter("numLandLine"), request.getParameter("localidadCliente"), request.getParameter("barrioCliente"),
+                        request.getParameter("address"), request.getParameter("detailsAddress"), request.getParameter("userAccess"), request.getParameter("passwordAccess"), zona);
                 if (modelo1.createClient(tercero1)) {
                     out.print("1");
                 } else {
@@ -173,12 +192,20 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                         itemLE.addProperty("email", empleado1.getEmail());
                         itemLE.addProperty("numCellPhone", empleado1.getNumCellPhone());
                         itemLE.addProperty("estadoTercero", empleado1.getEstadoTercero());
-                        itemLE.addProperty("acciones", "<button id='" + empleado1.getId() + "' class='btn btnAsignarZona fa fa-map-marker btn-success text-left' data-toggle='' data-target='#'></button>");
+                        itemLE.addProperty("acciones", "<button id='" + empleado1.getId() + "' class='btn btnAsignarZona fa fa-map-marker btn-success text-left' data-toggle='modal' data-target='#modalAsignarZona'></button>");
                         arrayLM.add(itemLE);
                     }
                 }
                 gsonLM.add("datos", arrayLM);
                 out.print(gsonLM.toString());
+                break;
+            case "asignaZonaEntrega":
+                TerceroDAO modelo9 = new TerceroDAO();
+                if (modelo9.updateZonaEntrega(Integer.parseInt(request.getParameter("idMensajero")), request.getParameter("zona"))) {
+                    out.print("1");
+                } else {
+                    out.print("0");
+                }
                 break;
 
         }

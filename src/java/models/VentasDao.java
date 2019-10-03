@@ -385,7 +385,7 @@ public class VentasDao extends Conexion {
             pst.setInt(1, id);
             rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
             while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
-                ventas.add(new Ventas(rs.getInt("idDetalleVenta"), rs.getInt("idProductoFK1"), rs.getString("nombreProducto"), rs.getString("descripcionProducto"), rs.getDouble("cantidadProductoOrden"), rs.getDouble("precioProducto")));
+                ventas.add(new Ventas(rs.getInt("idDetalleVenta"), rs.getInt("idProductoFK1"), rs.getString("nombreProducto"), rs.getString("descripcion"), rs.getDouble("cantidadProductoOrden"), rs.getDouble("precioProducto")));
             }
         } catch (Exception e) {
 
