@@ -3,15 +3,14 @@
         <div class="col-lg-12 col-xl-12 col-md-12 cont ">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
                 <h2>Entregas</h2>
-                <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                <table id="tableCrud" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
+                            <th>#</th>
                             <th>Fecha</th>
                             <th>Valor</th>
                             <th>Cliente</th>
                             <th>Factura</th>
-                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -22,12 +21,11 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Codigo</th>
+                            <th>#</th>
                             <th>Fecha</th>
                             <th>Valor</th>
                             <th>Cliente</th>
                             <th>Factura</th>
-                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </tfoot>

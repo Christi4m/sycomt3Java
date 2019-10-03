@@ -2,18 +2,18 @@
     <div class="row">
         <div class="col-lg-12 col-xl-12 col-md-12  ">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
-                <h2>Correos Multiples</h2>
+                <h2 id="emailTittle">Correos Multiples</h2>
                 <form id="frmSendEmail"style="color: black; margin-top: 80px;" enctype="multipart/form-data"class="align-items-center form-horizontal">
                     <fieldset>           
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="Destinatarios">Destinatarios</label>
+                            <label id="addressee" class="col-md-4 control-label" for="Destinatarios">Destinatarios</label>
                             <div class="col-md-6">
                                 <select id="Destinatarios" name="Destinatarios" class="form-control">
-                                    <option value="">Seleccione un destinatario</option>
-                                    <option value="Clientes">Clientes</option>
-                                    <option value="Empleados">Empleados</option>
-                                    <option value="Proveedores">Proveedores</option>
+                                    <option id="sd" value="">Seleccione un destinatario</option>
+                                    <option id="client" value="Clientes">Clientes</option>
+                                    <option id="employees" value="Empleados">Empleados</option>
+                                    <option id="suppliers" value="Proveedores">Proveedores</option>
                                 </select>
                             </div>
                         </div>
@@ -21,7 +21,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="Asunto">Asunto</label>  
+                            <label id="issue" class="col-md-4 control-label" for="Asunto">Asunto</label>  
                             <div class="col-md-6">
                                 <input id="Asunto" name="Asunto" type="text" placeholder="Ingrese el asunto" class="form-control input-md" required="">
 

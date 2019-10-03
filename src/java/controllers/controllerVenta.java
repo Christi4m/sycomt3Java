@@ -322,6 +322,25 @@ public class controllerVenta extends HttpServlet {
                 gsonRV3.add("datos", arrayRV3);
                 out.print(gsonRV3.toString());
                 break;
+                case "entregasPendientes":
+                JsonObject gsonRV4 = new JsonObject();
+                JsonArray arrayRV4 = new JsonArray();
+                VentasDao modelo15 = new VentasDao();
+                for (Ventas ventas7 : modelo15.getAllEntregasPendientes()) {
+                    JsonObject item1 = new JsonObject();
+                    item1.addProperty("idVenta", ventas7.getId());
+                    item1.addProperty("fechaVenta", ventas7.getFechaVenta());
+                    item1.addProperty("valorGlobal", ventas7.getValorGlobal());
+                    item1.addProperty("idCliente", ventas7.getIdCliente());
+                    item1.addProperty("numFactura", ventas7.getNumSerie());
+                    item1.addProperty("zona", ventas7.getZonaCliente());                  
+                    item1.addProperty("acciones", "<button id='" + ventas7.getId() + "'class='btn btnAsignarMensajero btn-success fa fa-user''></button>");
+                    arrayRV4.add(item1);
+
+                }
+                gsonRV4.add("datos", arrayRV4);
+                out.print(gsonRV4.toString());
+                break;
             default:
                 break;
         }

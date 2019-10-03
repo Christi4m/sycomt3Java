@@ -168,7 +168,15 @@ var translate = function () {
         $('.tajetaReportesA').text('Reports');
         $('.tajetaCorreosA').text('Emails');
 
-
+        //Traduccion corrreos admin
+        $('#emailTittle').text('Multiple Emails');
+        $('#addressee').text('Addressee');
+        $('#issue').text('Affair');
+        $('#sd').text('select addressee');
+        $('#client').text('Clients');
+        $('#employees').text('Employees');
+        
+        
 
 
     }

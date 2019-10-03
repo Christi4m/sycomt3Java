@@ -1,7 +1,9 @@
-$(document).ready(function () {
+ $(document).ready(function () {
     listar();
     Print();
     listarProveedor();
+    translate();
+    trans();
 });
 var listar = function () {
     function getBase64Image(img) {

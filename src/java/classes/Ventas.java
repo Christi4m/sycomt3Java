@@ -19,6 +19,7 @@ public class Ventas {
     private int idFactura;
     private String mes;
     private String ventasMes;
+    private String zonaCliente;
 
     
     private String detallesProducto;
@@ -67,6 +68,16 @@ public Ventas(int id, String fechaVenta, Double valorGlobal, int idCliente, Stri
         this.estado = estado;
         this.idFactura = idFactura;
     }
+
+    public Ventas(int id, int idCliente, String numSerie, String fechaVenta, Double valorGlobal, String zonaCliente) {
+        this.id = id;
+        this.idCliente = idCliente;
+        this.numSerie = numSerie;
+        this.fechaVenta = fechaVenta;
+        this.valorGlobal = valorGlobal;
+        this.zonaCliente = zonaCliente;
+    }
+
     
     
 
@@ -210,6 +221,14 @@ public Ventas(int id, String fechaVenta, Double valorGlobal, int idCliente, Stri
 
     public void setVentasMes(String ventasMes) {
         this.ventasMes = ventasMes;
+    }
+
+    public String getZonaCliente() {
+        return zonaCliente;
+    }
+
+    public void setZonaCliente(String zonaCliente) {
+        this.zonaCliente = zonaCliente;
     }
     
     
