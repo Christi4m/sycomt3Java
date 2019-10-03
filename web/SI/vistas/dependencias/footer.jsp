@@ -1,7 +1,7 @@
 <footer class="site-footer footer">
     <div class="text-center">
         <p>
-            &copy; Copyrights <strong>Sycomt3</strong>. Todos los derechos reservados
+            &copy; Copyrights <strong>Sycomt3</strong>. <span id="spanFoot">Todos los derechos reservados</span>
         </p>
         <br>
         <a href="index.html#" class="go-top">

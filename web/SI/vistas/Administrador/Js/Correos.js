@@ -1,5 +1,7 @@
 $(document).ready(function (e) {
     senCorreo();
+    translate();
+    trans();
 });
 var senCorreo = function () {
     $(document).on('click', '#sendCorreo', function (e) {
@@ -48,8 +50,8 @@ var senCorreo = function () {
         e.stopImmediatePropagation();
         var data = new FormData($('#frmSendEmail')[0]);
         for (var entrie of data.entries()) {
-                console.log(entrie[0] + ': ' + entrie[1]);
-            }
+            console.log(entrie[0] + ': ' + entrie[1]);
+        }
 
         $.ajax({
             url: "../../controllerCorreos?accion=sendMasivos",
@@ -59,7 +61,7 @@ var senCorreo = function () {
             processData: false,
             success: function (data) {
                 console.log(data);
-                
+
                 $("#frmSendEmail")[0].reset();
                 if (data == 1) {
                     //alerta postiva sweetalert2 emitida dependiendo la respuesta del controlador
@@ -71,7 +73,7 @@ var senCorreo = function () {
                         showConfirmButton: false,
                         timer: 3000 //el tiempo que dura el mensaje en ms
                     });
-                    
+
                 } else {
                     //alerta negativa sweetalert2 emitida dependiendo la respuesta del controlador
                     Swal.fire({

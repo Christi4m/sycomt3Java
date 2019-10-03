@@ -221,7 +221,8 @@ var listar = function () {
 
                 }
             });
-            var idVenta = $(this).parents("tr").find("td").eq(0).text();
+            var idVenta = $(this).attr("id");
+            
             var dato = {idVenta: idVenta}
             $.ajax({
                 url: "../../processVenta?action=detalleVentas",

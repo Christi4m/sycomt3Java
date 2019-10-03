@@ -2,7 +2,12 @@ $(document).ready(function () {
     listar();
     Print();
     listarProveedor();
+    translate();
+    trans();
 });
+
+
+
 var listar = function () {
     function getBase64Image(img) {
         var canvas = document.createElement("canvas");
@@ -260,15 +265,27 @@ $('#frmShop').on('success.form.bv', function (e) {
             success: function (data) {
                 console.log(data);
                 if (data == 1) {
+                    if (lang == "es" || lang == "") {
                     Swal.fire({
                         //error
                         type: 'success',
-                        title: '¡ Compra registrada exitosamente ! ',
+                        title: '¡Compra registrada exitosamente! ',
                         width: 500,
                         padding: '5em',
                         showConfirmButton: false,
                         timer: 2000 //el tiempo que dura el mensaje en ms
                     });
+                }else{
+                    Swal.fire({
+                        //error
+                        type: 'success',
+                        title: '¡Purchase registered successfully! ',
+                        width: 500,
+                        padding: '5em',
+                        showConfirmButton: false,
+                        timer: 2000 //el tiempo que dura el mensaje en ms
+                    });
+                }
                     $("#frmShop")[0].reset();
                     $("#frmShop").data('bootstrapValidator').resetForm();
                     $('#cart').modal('toggle');

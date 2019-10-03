@@ -2,21 +2,21 @@
     <div class="row">
         <div class="col-lg-12 col-xl-12 col-md-12  cont">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " >
-                <h2 id="historicalPurchases">Compras</h2>
-                <button id="generateReport" class="btn btnAgregar"data-toggle="modal" data-target="#modalCompraNueva">
-                    Agregar
+                <h2  id="Purchases">Compras</h2>
+                <button  id="btnAgregarShop" class="btn btnAgregar"data-toggle="modal" data-target="#modalCompraNueva">
+                    <span id="titleaddPurchasesbtn">Agregar</span>
                     <span class="fa fa-plus"></span>
                 </button>
                 <table id="tableCrud" class="table  table-hover table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th id="code">#</th>
-                            <th id="dateShop">Fecha</th>
-                            <th id="name">Proveedor</th>
-                            <th id="obsShop">Observaciones</th>
-                            <th id="totlaShop">Total</th>
-                            <th id="stateShop">Estado</th>
-                            <th id="accions">Acciones</th>
+                            <th  id="code">#</th>
+                            <th  id="dateShop">Fecha</th>
+                            <th  id="previeder">Proveedor</th>
+                            <th  id="obsShop">Observaciones</th>
+                            <th  id="totlaShop">Precio Total</th>
+                            <th  id="stateShop">Estado</th>
+                            <th  id="accions">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,13 +24,13 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <<th id="code">#</th>
-                            <th id="dateShop">Fecha</th>
-                            <th id="name">Proveedor</th>
-                            <th id="obsShop">Observaciones</th>
-                            <th id="totlaShop">Total</th>
-                            <th id="stateShop">Estado</th>
-                            <th id="accions">Acciones</th>
+                            <th  id="code1">#</th>
+                            <th  id="dateShop1">Fecha</th>
+                            <th  id="previeder1">Proveedor</th>
+                            <th  id="obsShop1">Observaciones</th>
+                            <th  id="totlaShop1">Precio Total</th>
+                            <th  id="stateShop1">Estado</th>
+                            <th  id="accions1">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -46,7 +46,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span class="fa fa-close close1"aria-hidden="true"></span>
                     </button>
-                    <h5 id="sellReport"class="modal-title" id="exampleModalLongTitle">Pedido</h5>
+                    <h5  data-translate=""id="sellReport"class="modal-title" id="exampleModalLongTitle">Pedido</h5>
                 </div>
                 <div class="modal-body" style="color: black;">
                     <!-- Nav -->
@@ -54,7 +54,7 @@
                         <div class="row container" style="width: 100%;">
                             <div class="col-md-12">
                                 <button type="button" id="openCart"class="btn btn-primary" data-toggle="modal" data-target="#cart">Carrito (<span class="total-count"></span>)</button>
-                                <button class="clear-cart btn btn-danger">Vaciar Carrito</button>
+                                <button  data-translate=""class="clear-cart btn btn-danger">Vaciar Carrito</button>
                             </div>
                         </div>
                     </nav>
@@ -69,7 +69,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button  data-translate=""id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
                 </div>
             </div>
@@ -81,14 +81,14 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
+                    <h5  data-translate=""class="modal-title" id="exampleModalLabel">Carrito</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" style="color: black;">
                     <form enctype="multipart/form-data" method="post" action="" name="frmShop" id="frmShop"  class="form-horizontal col-sm-12 text-center">
-                        <button type="submit" id="btnOrderNow"class="btn colorbtn btn-primary">Ordenar Ahora</button>
+                        <button  data-translate=""type="submit" id="btnOrderNow"class="btn colorbtn btn-primary">Ordenar Ahora</button>
                         <div class="form-group text-center">
 
                             <div class="col-sm-6">
@@ -99,15 +99,15 @@
                             <div class="col-sm-6">
                                 <label id = "ProveedorTelaje" class = "col-md-4 control-label" para = "proveedorShop"> Proveedor </label>
                                 <select id="proveedorShop" name="proveedorShop" class="form-control">
-                                    <option selected="selected">Seleccione un proveedor</option>
+                                    <option  data-translate=""selected="selected">Seleccione un proveedor</option>
                                 </select>
                             </div>   
                             <div class="col-sm-6" style="display: none;">
-                                <label class="col-md-4 control-label" for="detailsShop">Detalle Compra</label>  
+                                <label  data-translate=""class="col-md-4 control-label" for="detailsShop">Detalle Compra</label>  
                                 <input id="detailsShop" name="detailsShop" type="text" placeholder="Detalle Compra" class="form-control input-md" required="">
                             </div>   
                             <div class="col-sm-6" style="display: none;">
-                                <label class="col-md-4 control-label" for="totalShop">Total</label>  
+                                <label  data-translate=""class="col-md-4 control-label" for="totalShop">Total</label>  
                                 <input id="totalShop" name="totalShop" type="text" placeholder="Total Compra" class="form-control input-md" required="">
                             </div>   
                         </div>   
@@ -121,7 +121,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button id="closeModalCart"type="button" class="btn colorbtn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button  data-translate=""id="closeModalCart"type="button" class="btn colorbtn btn-primary" data-dismiss="modal">Cerrar</button>
 
                 </div>
             </div>
@@ -136,19 +136,19 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="">
                         <span class="fa fa-close close1" aria-hidden="true"></span>
                     </button>
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                    <h5  data-translate=""class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
                 </div>
                 <div class="modal-body">
                     
                     <!--tabla detalle Compra-->
-                    <h2>Detalle Compra</h2>
+                    <h2 data-translate="">Detalle Compra</h2>
                     <table id="ShopData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>                                
                                 <th>#</th>
-                                <th>Producto</th>
-                                <th>Cantidad Mt²</th>
-                                <th>Precio Unitario</th>
+                                <th data-translate="">Producto</th>
+                                <th data-translate="">Cantidad Mt²</th>
+                                <th data-translate="">Precio Unitario</th>
                             </tr>
                         </thead>
                         <tbody id="bodyDC"> 
@@ -157,7 +157,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button id="botonCerrarDC"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                    <button  data-translate=""id="botonCerrarDC"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>
@@ -168,14 +168,14 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content modal-lg">
             <div class="modal-header">                                    
-                <h5 id="editSupplier" class="modal-title" id="exampleModalCenterTitle">Detalles Proveedor</h5>
+                <h5  data-translate=""id="editSupplier" class="modal-title" id="exampleModalCenterTitle">Detalles Proveedor</h5>
             </div>
             <div class="modal-body" style="border: none;">
                 <table id="tabledetailsProveedor" class="table col-md-2 table-condensed table-hover table-striped table-bordered text-center">
                     <thead>
                         <tr>
-                            <th id="nameProveedor">Proveedor</th>
-                            <th id="nitProveedor">Nit</th>
+                            <th  data-translate=""id="nameProveedor">Proveedor</th>
+                            <th  data-translate=""id="nitProveedor">Nit</th>
                             
                         </tr>
                     </thead>
@@ -187,7 +187,7 @@
                 </table>
             </div>
             <div class="modal-footer" style="border: none;">
-                <button id="c"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>                                    
+                <button  data-translate=""id="c"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>                                    
             </div>
         </div>
     </div>

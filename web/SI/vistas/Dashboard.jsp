@@ -20,11 +20,12 @@
 <!DOCTYPE html>
 <html>
     <%@include file="dependencias/dependenciasCss.jsp"%>
+    <%@include file="dependencias/dependenciasJS.jsp"%>
     <body>
         <%@include file="dependencias/header.jsp"%>        
         <%@include file="dependencias/Sidebar.jsp"%>
         <%@include file="dependencias/Home.jsp"%>  
         <%@include file="dependencias/footer.jsp"%>       
     </body>
-    <%@include file="dependencias/dependenciasJS.jsp"%>
+    
 </html>
