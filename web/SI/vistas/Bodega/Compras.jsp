@@ -25,12 +25,12 @@
                     <tfoot>
                         <tr>
                             <<th id="code">#</th>
-                            <th id="dateShop">Fecha</th>
-                            <th id="name">Proveedor</th>
-                            <th id="obsShop">Observaciones</th>
-                            <th id="totlaShop">Total</th>
-                            <th id="stateShop">Estado</th>
-                            <th id="accions">Acciones</th>
+                            <th id="dateShop1">Fecha</th>
+                            <th id="name1">Proveedor</th>
+                            <th id="obsShop1">Observaciones</th>
+                            <th id="totlaShop1">Total</th>
+                            <th id="stateShop1">Estado</th>
+                            <th id="accions1">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -53,7 +53,7 @@
                     <nav class="navbar  ">
                         <div class="row container" style="width: 100%;">
                             <div class="col-md-12">
-                                <button type="button" id="openCart"class="btn btn-primary" data-toggle="modal" data-target="#cart">Carrito (<span class="total-count"></span>)</button>
+                                <button id="shoppingCart" type="button" id="openCart"class="btn btn-primary" data-toggle="modal" data-target="#cart">Carrito (<span class="total-count"></span>)</button>
                                 <button class="clear-cart btn btn-danger">Vaciar Carrito</button>
                             </div>
                         </div>
@@ -136,19 +136,19 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="">
                         <span class="fa fa-close close1" aria-hidden="true"></span>
                     </button>
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                    <h5 id="details" class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
                 </div>
                 <div class="modal-body">
                     
                     <!--tabla detalle Compra-->
-                    <h2>Detalle Compra</h2>
+                    <h2 id="purchasesDetails">Detalle Compra</h2>
                     <table id="ShopData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>                                
                                 <th>#</th>
-                                <th>Producto</th>
-                                <th>Cantidad Mt²</th>
-                                <th>Precio Unitario</th>
+                                <th id="product">Producto</th>
+                                <th id="quantity">Cantidad Mt²</th>
+                                <th id="unitPrice">Precio Unitario</th>
                             </tr>
                         </thead>
                         <tbody id="bodyDC"> 

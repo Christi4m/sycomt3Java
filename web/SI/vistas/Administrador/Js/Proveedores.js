@@ -1,5 +1,7 @@
 $(document).ready(function () {
     listar();
+    translate();
+    trans();
 });
 //Funcion para listar los provedores registrados, usando el plugin dataTable.
 var listar = function () {

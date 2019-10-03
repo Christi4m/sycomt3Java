@@ -1,5 +1,7 @@
 $(document).ready(function () {
     listar();
+    translate();
+    trans();
 
 });
 var listar = function () {

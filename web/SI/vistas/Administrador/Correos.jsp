@@ -30,7 +30,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="Adjunto">Adjunto</label>  
+                            <label id="attached" class="col-md-4 control-label" for="Adjunto">Adjunto</label>  
                             <div class="col-md-6">
                                 <input id="Adjunto" name="Adjunto" type="file" placeholder="Seleccione un archivo" class="form-control input-md" required="">
 
@@ -39,13 +39,13 @@
 
                         <!-- Textarea -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="Mensaje">Mensaje</label>
+                            <label id="message" class="col-md-4 control-label" for="Mensaje">Mensaje</label>
                             <div class="col-md-6">                     
                                 <textarea Rows="6" class="form-control" id="Mensaje" name="Mensaje"></textarea>
                             </div>
                         </div>
                         <div class="form-group justify-content-center "style="padding-left: 35%;">
-                            <button style="margin-left: auto;margin-right: auto;"id="sendCorreo" class="btn btnAgregar">
+                            <button id="send" style="margin-left: auto;margin-right: auto;"id="sendCorreo" class="btn btnAgregar">
                                 Enviar
                                 <span class="fas fa-send"></span>
                             </button>

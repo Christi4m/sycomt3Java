@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 col-xl-12 col-md-12 cont">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " >
-                <h2 id="historicalSuppliers">Proveedores</h2>
+                <h2 id="historicalSuppliers1">Proveedores</h2>
                 <button  id="addNew" class="btn btnAgregar"data-toggle="modal" data-target="#modalRegistrarProveedor">
                     Agregar
                     <span class="fa fa-plus"></span>
@@ -25,10 +25,10 @@
                     <tfoot>
                         <tr>
                             <th>#</th>
-                            <th id="businessName">Razón Social</th>
+                            <th id="businessName1">Razón Social</th>
                             <th >Nit</th>                                           
-                            <th id="state">Estado</th>
-                            <th id="actions">Acciones</th>
+                            <th id="state1">Estado</th>
+                            <th id="actions3">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -50,11 +50,11 @@
                 <form enctype="multipart/form-data" id="frmRegisterP"class="form-horizontal">
                     <fieldset>
                         <!-- Form Name -->
-                        <legend>Registrar Proveedor</legend>
+                        <legend id="supplierRegistration12" >Registrar Proveedor</legend>
                         <!-- Text input-->
                         <div class="form-group row">
                             <div class="col-md-4" >
-                                <label class="control-label" for="razonSocial">Razón Social * </label>  
+                                <label id="socialReason" class="control-label" for="razonSocial">Razón Social * </label>  
                                 <input id="razonSocial" name="razonSocial" type="text" placeholder="Razón Social" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
@@ -66,19 +66,19 @@
                                 <input style="margin-bottom: 2%;" id="emailP" name="emailP" type="text" placeholder="Email" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class="control-label" for="numCellPhoneP">Numero *</label>  
+                                <label id="num" class="control-label" for="numCellPhoneP">´Número *</label>  
                                 <input style="margin-bottom: 2%;" id="numCellPhoneP" name="numCellPhoneP" type="text" placeholder="Celular" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class=" control-label" for="numLandLineP">Numero *</label>  
+                                <label id="num1" class=" control-label" for="numLandLineP">Número *</label>  
                                 <input style="margin-bottom: 2%;" id="numLandLineP" name="numLandLineP" type="text" placeholder="Fijo" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class=" control-label" for="addressP">Dirección *</label>  
+                                <label id="address1" class=" control-label" for="addressP">Dirección *</label>  
                                 <input style="margin-bottom: 2%;" id="addressP" name="addressP" type="text" placeholder="Dirección" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class=" control-label" for="representanteLegal">Representante Legal *</label>  
+                                <label id="legalRepresentative" class=" control-label" for="representanteLegal">Representante Legal *</label>  
                                 <input style="margin-bottom: 2%;" id="representanteLegal" name="representanteLegal" type="text" placeholder="Representante Legal" class="form-control input-md" required="">
                             </div>
                         </div>                                           
@@ -103,7 +103,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 id="editSupplier" class="modal-title" id="exampleModalCenterTitle">Editar Proveedor</h5>
+                <h5 id="editSupplier1" class="modal-title" id="exampleModalCenterTitle">Editar Proveedor</h5>
             </div>
             <div class="modal-body">
                 <form enctype="multipart/form-data" id="frmUpdateP"class="form-horizontal">
@@ -114,7 +114,7 @@
                                 <input readonly="readonly" id="idU" name="idU" type="text" placeholder="Id" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class="control-label" for="razonSocial">Razón Social </label>  
+                                <label id="socialReason1" class="control-label" for="razonSocial">Razón Social </label>  
                                 <input id="razonSocialU" name="razonSocial" type="text" placeholder="Razón Social" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
@@ -126,29 +126,29 @@
                                 <input style="margin-bottom: 2%;" id="emailPU" name="emailP" type="text" placeholder="Email" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class="control-label" for="numCellPhoneP">Numero Celular</label>  
+                                <label id="cellPhone1" class="control-label" for="numCellPhoneP">Numero Celular</label>  
                                 <input style="margin-bottom: 2%;" id="numCellPhonePU" name="numCellPhoneP" type="text" placeholder="Celular" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class=" control-label" for="numLandLineP">Numero Fijo</label>  
+                                <label id="landline1" class=" control-label" for="numLandLineP">Numero Fijo</label>  
                                 <input style="margin-bottom: 2%;" id="numLandLinePU" name="numLandLineP" type="text" placeholder="Fijo" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class=" control-label" for="addressP">Dirección </label>  
+                                <label id="address2" class=" control-label" for="addressP">Dirección </label>  
                                 <input style="margin-bottom: 2%;" id="addressPU" name="addressP" type="text" placeholder="Dirección" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4" >
-                                <label class=" control-label" for="representanteLegal">Representante Legal </label>  
+                                <label id="legalRepresentative1" class=" control-label" for="representanteLegal">Representante Legal </label>  
                                 <input style="margin-bottom: 2%;" id="representanteLegalU" name="representanteLegal" type="text" placeholder="Representante Legal" class="form-control input-md" required="">
                             </div>
                             <div class="col-md-4">
-                                <label class="control-label" for="estadoU">Estado</label>  
+                                <label id="state2" class="control-label" for="estadoU">Estado</label>  
                                 <input readonly="readonly" id="estadoU" name="estadoU" type="text" placeholder="Estado" class="form-control input-md" required="">
                             </div>
                         </div>                                           
                     </fieldset>
                     <div class="modal-footer">
-                        <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button id="botonCerrar2"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         <button id="btnUpdateP" name="botonEnviar" class="colorbtn btn btn-primary">Guardar</button>
                     </div>
                 </form>

@@ -14,7 +14,7 @@
                             <th id="titleName">Nombre</th>                            
                             <th id="titleCharge">Cargo</th>
                             <th id="titleDetails">Estado</th>
-                            <th id="titleDetails">Acciones</th>
+                            <th id="titleDetails1">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,7 +26,7 @@
                             <th id="titleName2">Nombre</th>
                             <th id="titleCharge2">Cargo</th>
                             <th id="titleDetails2">Estado</th>
-                            <th id="titleDetails2">Acciones</th>
+                            <th id="titleDetails3">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -49,42 +49,42 @@
                     <div class="form-group text-center">
                         <h4 id = "productDates" class = "tituloDP"> Datos Del Empleado </h4>
                         <div class="col-sm-6 inputForm">
-                            <label class=" col-md-9 text-left" for="typeUser">Tipo Empleado</label>
+                            <label id="typeEmployee" class=" col-md-9 text-left" for="typeUser">Tipo Empleado</label>
                             <select id="typeUser" name="typeUser" class="form-control" >
-                                <option value="">Seleccione Una Opción</option>
-                                <option value="Administrador">Administrador</option>
+                                    <option id="selectOption" value="">Seleccione Una Opción</option>
+                                <option id="administrator" value="Administrador">Administrador</option>
                                 <option value="Bodega-Jefe">Bodega-Jefe</option>
                                 <option value="Mensajero">Mensajero</option>
                                 <option value="Vendedor">Vendedor</option>
                             </select>
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="tipoIdentificacionCliente">Tipo Identificación *</label>
+                            <label id="idType" class="col-md-9 text-left" for="tipoIdentificacionCliente">Tipo Identificación *</label>
                             <select id="tipoIdentificacionEmpleado" name="tipoIdentificacionEmpleado" class="form-control ">
-                                <option value="">Seleccione Una Opción</option>
+                                <option id="selectOption1" value="">Seleccione Una Opción</option>
                                 <option value="C.C">C.C (Cédula de Ciudadanía)</option>
                                 <option value="C.E">C.E (Cédula de Extranjería)</option>
                                 <option value="Nit">NIT</option>
                             </select>
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="identificacionTercero">Identificación *</label>  
+                            <label id="identification" class="col-md-9 text-left" for="identificacionTercero">Identificación *</label>  
                             <input id="identificacionTercero" name="identificacionTercero" type="text" placeholder="Numero de Identificación " class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="firstName">Nombre *</label>    
+                            <label id="name" class="col-md-9 text-left" for="firstName">Nombre *</label>    
                             <input id="firstName" name="firstName" type="text" placeholder="Primer Nombre" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="secondName">Nombre</label>
+                            <label id="secondName" class="col-md-9 text-left" for="secondName">Nombre</label>
                             <input id="secondName" name="secondName" type="text" placeholder="Segundo Nombre" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="firstLastName">Apellido *</label>  
+                            <label id="lastName" class="col-md-9 text-left" for="firstLastName">Apellido *</label>  
                             <input id="firstLastName" name="firstLastName" type="text" placeholder="Primer Apellido" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="secondLastName">Apellido *</label> 
+                            <label id="secondLastName" class="col-md-9 text-left" for="secondLastName">Apellido *</label> 
                             <input id="secondLastName" name="secondLastName" type="text" placeholder="Segundo Apellido" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6 inputForm">
@@ -92,48 +92,48 @@
                             <input id="email" name="email" type="text" placeholder="Correo Electrónico" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="numCellPhone">Telefono Celular *</label>  
+                            <label id="cellPhone" class="col-md-9 text-left" for="numCellPhone">Telefono Celular *</label>  
                             <input id="numCellPhone" name="numCellPhone" type="text" placeholder="Numero de Celular" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="numLandLine">Telefono Fijo *</label>  
+                            <label id="landline" class="col-md-9 text-left" for="numLandLine">Telefono Fijo *</label>  
                             <input id="numLandLine" name="numLandLine" type="text" placeholder="Numero de Teléfono Fijo " class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6 inputForm">
-                            <label class="col-md-9 text-left" for="address">Dirección *</label>  
+                            <label id="addressP" class="col-md-9 text-left" for="address">Dirección *</label>  
                             <input id="address" name="address" type="text" placeholder="Dirección" class="form-control input-md" required="">
                         </div>
 
                     </div>
                     <div class="form-group text-center" >
-                        <h4 id = "productDates" class = "tituloDP"> Datos Del Contrato </h4>
+                        <h4 id = "contractData" class = "tituloDP"> Datos Del Contrato </h4>
                         <div class="col-md-6 inputForm">
-                            <label class=" col-md-9 text-left" for="tipoContrato">Tipo Contrato </label>
+                            <label id="typeContract" class=" col-md-9 text-left" for="tipoContrato">Tipo Contrato </label>
                             <select id="tipoContrato" name="tipoContrato" class="form-control">
-                                <option value="">Seleccione Una Opción</option>
+                                <option id="so" value="">Seleccione Una Opción</option>
                                 <option value="Termino Fijo">Termino Fijo</option>
                                 <option value="Termino Indefinido">Termino Indefinido</option>
                                 <option value="Obra o Labor">Obra o Labor</option>
                             </select>
                         </div>
                         <div class="col-md-6 inputForm">
-                            <label class=" col-md-9 text-left" for="numContrato">Numero De Contrato *</label>  
+                            <label id="contractNum" class=" col-md-9 text-left" for="numContrato">Numero De Contrato *</label>  
                             <input id="numContrato" name="numContrato" type="text" placeholder="Numero Contrato" class="form-control input-md" required="">
 
 
                         </div>
                         <div class="col-md-6 c">
-                            <label class=" col-md-9 text-left" for="fechaInicioContrato">Fecha Inicial *</label>
+                            <label id="initialDate" class=" col-md-9 text-left" for="fechaInicioContrato">Fecha Inicial *</label>
                             <input id="fechaInicioContrato" type="date" name="fechaInicioContrato" placeholder="Fecha Inicial " class="form-control input-md" required="">
 
                         </div>
                         <div class="col-md-6 inputForm">
-                            <label class="col-md-9 text-left" for="FechaFinContrato">Fecha Final *</label>   
+                            <label id="finalDate" class="col-md-9 text-left" for="FechaFinContrato">Fecha Final *</label>   
                             <input disabled id="FechaFinContrato"  type="date"name="FechaFinContrato"  placeholder="Fecha Final " class="form-control input-md" required="">
 
                         </div>
                         <div class="col-md-6 inputForm">
-                            <label class=" col-md-9 text-left" for="estadoCivil">Estado Civil *</label>
+                            <label id="estadoCivil" class=" col-md-9 text-left" for="estadoCivil">Estado Civil *</label>
                             <select id="estadoCivil" name="estadoCivil" class="form-control" >
                                 <option value="">Seleccione Una Opción</option>
                                 <option value="Casado">Casado</option>
@@ -142,7 +142,7 @@
                             </select>
                         </div>
                         <div class="col-md-6 inputForm">
-                            <label class=" col-md-9 text-left" for="numHijos">Numero De Hijos </label>
+                            <label id="numberChildren" class=" col-md-9 text-left" for="numHijos">Numero De Hijos </label>
                             <select id="numHijos" name="numHijos" class="form-control" >
                                 <option value="">Seleccione Una Opción</option>
                                 <option value="0">0</option>
@@ -160,12 +160,12 @@
 
                         </div>
                         <div class="col-md-6 inputForm">
-                            <label class=" col-md-9 text-left" for="pensiones">Pensiones *</label> 
+                            <label id="pensiones1" class=" col-md-9 text-left" for="pensiones">Pensiones *</label> 
                             <input id="pensiones" name="pensiones" type="text" placeholder="Entidad Prestadora de Pensiones " class="form-control input-md" required="">
 
                         </div>
                         <div class="col-md-6 inputForm">
-                            <label class=" col-md-9 text-left" for="cesantias">censantias *</label> 
+                            <label id="layoffs" class=" col-md-9 text-left" for="cesantias">censantias *</label> 
                             <input id="cesantias" name="cesantias" type="text" placeholder="Entidad prestadora de Censantias" class="form-control input-md" required="">
 
                         </div>
@@ -175,7 +175,7 @@
 
                         </div>
                         <div class="col-md-6 inputForm">
-                            <label class=" col-md-9 text-left" for="cajaCompesscion">Compensación *</label> 
+                            <label id="compensation" class=" col-md-9 text-left" for="cajaCompesscion">Compensación *</label> 
                             <input id="cajaCompensacion" name="cajaCompensacion" type="text" placeholder="Caja de Compensación" class="form-control input-md" required="">
 
                         </div>
@@ -208,17 +208,17 @@
                 <table id="example" class="table col-md-2 table-condensed  table-hover table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th id="titleIdentification">Tipo Contrato</th>
-                            <th id="titleIdentification">Numero Contrato</th>
-                            <th id="titleName">Fecha Inicio</th>
+                            <th id="titleIdentification0">Tipo Contrato</th>
+                            <th id="titleIdentification1">Numero Contrato</th>
+                            <th id="titleName1">Fecha Inicio</th>
                             <th id="titleEmail">Fecha Fin</th>
                             <th id="titleCellphone">Estado Civil</th>
-                            <th id="titleCharge">Hijos</th>
+                            <th id="titleCharge1">Hijos</th>
                             <th id="titleDetails">Eps</th>
-                            <th id="titleDetails">Pensiones</th>
-                            <th id="titleDetails">Cesantias</th>
+                            <th id="titleDetails12">Pensiones</th>
+                            <th id="titleDetails13">Cesantias</th>
                             <th id="titleDetails">Arl</th>
-                            <th id="titleDetails">Caja Compensación</th>
+                            <th id="titleDetails14">Caja Compensación</th>
                         </tr>
                     </thead>
                     <tbody id="bodyDV">
@@ -244,26 +244,26 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span class="fa fa-close close1"aria-hidden="true"></span>
                 </button>
-                <h5 id = "botonAdd" class = "modal-title" id = "exampleModalLongTitle"> Asignar </h5>
+                <h5 id = "botonAdd1" class = "modal-title" id = "exampleModalLongTitle"> Asignar </h5>
             </div>
             <div class="modal-body">
                 <form method="post" action="../../../methodClient?accion=insertUserAccesEmpleado" style="margin-top: 30px;" name="frmUserAccesEmpleado" id="frmUserAccesEmpleado" enctype="multipart/form-data"  class="form-horizontal col-sm-12 text-center">
                     <div class="form-group text-center">
-                        <h4 id = "productDates" class = "tituloDP"> Datos de Acceso </h4>
+                        <h4 id = "productDates1" class = "tituloDP"> Datos de Acceso </h4>
 
                         <div class="col-sm-6">
-                            <label class="col-md-9 text-left" for="username">Usuario *</label>  
+                            <label id="user" class="col-md-9 text-left" for="username">Usuario *</label>  
                             <input id="userAccess" name="userAccess" type="text" placeholder="Usuario de Acceso " class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6">
-                            <label class="col-md-9 text-left" for="password">Contraseña *</label>  
+                            <label id="password" class="col-md-9 text-left" for="password">Contraseña *</label>  
                             <input  id="passwordAccess" name="passwordAccess" type="text" placeholder="Contraseña de Acceso" class="form-control input-md" required="">
 
                         </div>
 
                         <div class="col-sm-12" style="margin-top: 30px;">
-                            <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button id="botonVaciar" type="reset" name="botonVaciar" class="colorbtn btn btn-primary">Limpiar</button>
+                            <button id="botonCerra"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button id="botonVacia" type="reset" name="botonVaciar" class="colorbtn btn btn-primary">Limpiar</button>
                             <button id="btnCrearUserAccess" type="submit" name="botonEnviar" class="colorbtn btn btn-primary">Guardar</button>
                         </div>
                     </div>

@@ -8,18 +8,18 @@
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
 
 
-                <h2>Entregas</h2>
+                <h2 id="deliveries">Entregas</h2>
 
                 <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="code">Codigo</th>
+                            <th id="date">Fecha</th>
+                            <th id="value">Valor</th>
+                            <th id="client">Cliente</th>
+                            <th id="bill">Factura</th>
+                            <th id="state">Estado</th>
+                            <th id="actions">Acciones</th>
 
                         </tr>
                     </thead>
@@ -30,13 +30,13 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="code1">Codigo</th>
+                            <th id="date1">Fecha</th>
+                            <th id="value1">Valor</th>
+                            <th id="client1">Cliente</th>
+                            <th id="bill1">Factura</th>
+                            <th id="state1">Estado</th>
+                            <th id="actions1">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -54,21 +54,21 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                <h5 id="details" class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
             </div>
             <div class="modal-body">
-                <h2>Cliente</h2>
+                <h2 id="client2">Cliente</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Tipo Id</th>
-                            <th>Documento</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Celular</th>
-                            <th>Dirección</th>
-                            <th>Detalles</th>
+                            <th id="typeId">Tipo Id</th>
+                            <th id="document">Documento</th>
+                            <th id="name">Nombre</th>
+                            <th id="email">Correo</th>
+                            <th id="cellPhone">Celular</th>
+                            <th id="address">Dirección</th>
+                            <th id="details1">Detalles</th>
 
                         </tr>
                     </thead>
@@ -86,17 +86,17 @@
 
                 </table>
                 <!--tabla detalle venta-->
-                <h2>Detalle Venta</h2>
+                <h2 id="saleDetail">Detalle Venta</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
 
-                            <th>Id Producto</th>                                                
-                            <th>Nombre Producto</th>                                                
-                            <th>Cantidad</th>
-                            <th>Valor Unitario</th>
-                            <th>Detalles</th>
+                            <th id="ip">Id Producto</th>                                                
+                            <th id="np">Nombre Producto</th>                                                
+                            <th id="quantity">Cantidad</th>
+                            <th id="unitValue">Valor Unitario</th>
+                            <th id="details2">Detalles</th>
                         </tr>
                     </thead>
                     <tbody id="bodyDV"> 

@@ -3,7 +3,7 @@
         <div class="col-lg-12 col-xl-12 col-md-12  cont">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
                 <h2>Stock</h2>
-                <button id="add" class="btn btnAgregar"data-toggle="modal" data-target="#modalNuevo">
+                <button id="add1" class="btn btnAgregar"data-toggle="modal" data-target="#modalNuevo">
                     agregar
                     <span class="fa fa-plus"></span>
                 </button>
@@ -11,12 +11,12 @@
                     <thead>
                         <tr>
                             <th id="code">#</th>
-                            <th id="name">Nombre</th>
+                            <th id="name2">Nombre</th>
                             <th id="clothMaterial">Material de tela</th>
                             <th id="cellarLocation">Ubicacion Bodega</th>
                             <th id="price">Precio M²</th>
                             <th>Stock</th>
-                            <th id="actions">Acciones</th>
+                            <th id="actions2">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,7 +25,7 @@
                     <tfoot>
                         <tr>
                             <th id="code1">#</th>
-                            <th id="name1">Nombre</th>
+                            <th id="name">Nombre</th>
                             <th id="clothMaterial1">Material de tela</th>
                             <th id="cellarLocation1">Ubicacion Bodega</th>
                             <th id="price1">Precio M²</th>
@@ -115,24 +115,24 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 class="modal-title" id="exampleModalCenterTitle">Editar</h5>
+                <h5 id="edit" class="modal-title" id="exampleModalCenterTitle">Editar</h5>
             </div>
             <div class="modal-body">
 
                 <form id="frmUpdateProducto"class="form-horizontal col-sm-12 text-center"enctype="multipart/form-data">
                     <div class="form-group text-center">
-                        <h4 class="tituloDP">Datos Del Producto</h4>
+                        <h4 id="datesProduct" class="tituloDP">Datos Del Producto</h4>
                         <div class="col-sm-6">
                             <label class="col-md-4 control-label" for="idProducto">Id</label>
                             <input id="idProductoA" readonly="readonly"  name="idProducto" type="text" placeholder="Id Producto" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6">
-                            <label class="col-md-4 control-label" for="nombreProducto">Nombre</label>
+                            <label id="name1" class="col-md-4 control-label" for="nombreProducto">Nombre</label>
                             <input id="nombreProductoA" name="nombreProducto" type="text" placeholder="Nombre Producto" class="form-control input-md" required="">
                         </div>
 
                         <div class="col-sm-6">
-                            <label class="col-md-4 control-label" for="telajeProducto">Telaje</label>
+                            <label id="weaving" class="col-md-4 control-label" for="telajeProducto">Telaje</label>
                             <select id="telajeProductoA" name="telajeProducto" class="form-control">
                                 <option value="0">---------------------</option>
                                 <option value="Paño">Paño</option>
@@ -142,11 +142,11 @@
                             </select>
                         </div>
                         <div class="col-sm-6">
-                            <label class="col-md-4 control-label" for="ubicacionBodega">Ubicación</label>
+                            <label id="location1" class="col-md-4 control-label" for="ubicacionBodega">Ubicación</label>
                             <input id="ubicacionBodegaA" name="ubicacionBodega" type="text" placeholder="Ubicación Bodega" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6">
-                            <label id = "price" class = "col-md-4 control-label" para = "precioMC"> Precio </label>
+                            <label id = "price3" class = "col-md-4 control-label" para = "precioMC"> Precio </label>
                             <input id="precioMCA" name="precioMC" type="text" placeholder="Precio Metro Cuadrado" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6">
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12" style="margin-top: 30px;">
-                        <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="botonCerrar1"type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button id="botonUpdateModal" type="submit" name="botonEnviar" class="btnUpdateModal colorbtn btn btn-primary">Aceptar</button>
                     </div>
                 </form>
@@ -175,12 +175,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 class="modal-title" id="exampleModalCenterTitle">Eliminar</h5>
+                <h5 id="delete" class="modal-title" id="exampleModalCenterTitle">Eliminar</h5>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal col-sm-12 text-center">
                     <div class="" style="margin-top:25px;">
-                        <h4>Esta seguro que desea eliminar este registro?</h4>
+                        <h4 id="ccc" >¿Esta seguro que desea eliminar este registro?</h4>
                     </div>
                     <div class="col-sm-12" style="margin-top: 30px;">
                         <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
