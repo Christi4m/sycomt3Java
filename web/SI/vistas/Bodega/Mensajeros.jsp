@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12 col-xl-12 col-md-12  cont">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
-                <h2>Stock</h2>
+                <h2>Mensajeros</h2>
                 <table id="example" class="table   table-hover table-striped table-bordered " style="width: 100%; color: black">
                     <thead>
                         <tr>

@@ -156,7 +156,7 @@ public class TerceroDAO extends Conexion {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
-                tercero = new Tercero(rs.getInt("idTercero"), rs.getString("typeId"), rs.getInt("numId"), rs.getString("firstName"), rs.getString("secondName"), rs.getString("firstLastName"), rs.getString("secondLastName"), rs.getString("email"), rs.getString("numCellPhone"), rs.getString("numLandLine"), rs.getString("address"), rs.getString("detailsAddress"));
+                tercero = new Tercero(rs.getInt("idTercero"), rs.getString("typeId"), rs.getInt("numId"), rs.getString("firstName"), rs.getString("secondName"), rs.getString("firstLastName"), rs.getString("secondLastName"), rs.getString("email"), rs.getString("numCellPhone"), rs.getString("numLandLine"), rs.getString("address"), rs.getString("detailsAddress"), rs.getString("zona"));
             }
 
         } catch (Exception e) {
@@ -251,7 +251,7 @@ public class TerceroDAO extends Conexion {
             pst = getConnection().prepareCall(sql);//abriendo la conexión a la base de datos y los parametros que le voy a enviar (sentencia sql)
             rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
             while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
-                empleado.add(new Tercero(rs.getInt("idTercero"), rs.getInt("numId"), rs.getString("firstName"), rs.getString("secondName"), rs.getString("firstLastName"), rs.getString("secondLastName"), rs.getString("email"), rs.getString("numCellPhone"), rs.getString("typeTercero"), rs.getString("estadoTercero")));
+                empleado.add(new Tercero(rs.getInt("idTercero"), rs.getInt("numId"), rs.getString("firstName"), rs.getString("secondName"), rs.getString("firstLastName"), rs.getString("secondLastName"), rs.getString("email"), rs.getString("numCellPhone"), rs.getString("typeTercero"), rs.getString("estadoTercero"), rs.getString("zona")));
             }
         } catch (Exception e) {
 

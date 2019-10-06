@@ -331,8 +331,8 @@ public class controllerVenta extends HttpServlet {
                     item1.addProperty("idVenta", ventas7.getId());
                     item1.addProperty("fechaVenta", ventas7.getFechaVenta());
                     item1.addProperty("valorGlobal", ventas7.getValorGlobal());
-                    item1.addProperty("idCliente", ventas7.getIdCliente());
-                    item1.addProperty("numFactura", ventas7.getNumSerie());
+                    item1.addProperty("idCliente", "<a class='idCliente' id='" + ventas7.getIdCliente() + "' role=\"button\" href=\"#\">" + ventas7.getIdCliente() + " </a>");
+                    item1.addProperty("numFactura", "<span id='"+ventas7.getIdFactura()+"'>"+ventas7.getNumSerie()+"<span>");
                     item1.addProperty("zona", ventas7.getZonaCliente());                  
                     item1.addProperty("acciones", "<button id='" + ventas7.getId() + "'class='btn btnAsignarMensajero btn-success fa fa-user''></button>");
                     arrayRV4.add(item1);
@@ -340,6 +340,24 @@ public class controllerVenta extends HttpServlet {
                 }
                 gsonRV4.add("datos", arrayRV4);
                 out.print(gsonRV4.toString());
+                break;
+                case "entregasAsijgnadas":
+                JsonObject gsonRV5 = new JsonObject();
+                JsonArray arrayRV5 = new JsonArray();
+                VentasDao modelo16 = new VentasDao();
+                for (Ventas ventas7 : modelo16.getAllEntregasAsignadas()) {
+                    JsonObject item1 = new JsonObject();
+                    item1.addProperty("idVenta", ventas7.getId());
+                    item1.addProperty("fechaVenta", ventas7.getFechaVenta());
+                    item1.addProperty("valorGlobal", ventas7.getValorGlobal());
+                    item1.addProperty("idCliente", "<a class='idCliente' id='" + ventas7.getIdCliente() + "' role=\"button\" href=\"#\">" + ventas7.getIdCliente() + " </a>");
+                    item1.addProperty("numFactura", "<span id='"+ventas7.getIdFactura()+"'>"+ventas7.getNumSerie()+"<span>");
+                    item1.addProperty("acciones", "<button id='" + ventas7.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
+                    arrayRV5.add(item1);
+
+                }
+                gsonRV5.add("datos", arrayRV5);
+                out.print(gsonRV5.toString());
                 break;
             default:
                 break;

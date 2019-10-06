@@ -218,6 +218,18 @@
                             <label class="col-md-9 text-left" for="fechaEntrega">Fecha de Entrega *</label>  
                             <input id="fechaEntrega" name="fechaEntrega" type="date" placeholder="Fecha de entrega" class="form-control input-md" required="">
                         </div>
+                        <div class="col-sm-6" style="display: none">
+                            <label class="col-md-9 text-left" for="Factura">Factura *</label>  
+                            <input id="Factura" name="Factura" type="text" placeholder="Factura" class="form-control input-md" required="">
+                        </div>
+                        <div class="col-sm-6" style="display: none">
+                            <label class="col-md-9 text-left" for="Ventas">Ventas *</label>  
+                            <input id="Ventas" name="Ventas" type="text" placeholder="Ventas" class="form-control input-md" required="">
+                        </div>
+                        <div class="col-sm-6" style="display: none">
+                            <label class="col-md-9 text-left" for="numVentas">Ventas *</label>  
+                            <input id="numVentas" name="numVentas" type="text" placeholder="numVentas" class="form-control input-md" required="">
+                        </div>
                         <div class="col-sm-6">
                             <label id = "labelMensajero" class = "col-md-4 control-label" para = "mesajeroAsignar"> Mensajero *</label>
                             <select id="mesajeroAsignar" name="mesajeroAsignar" class="form-control">

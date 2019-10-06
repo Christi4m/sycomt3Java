@@ -44,7 +44,7 @@ public class Tercero {
     
     // constructor para listar datos principales de un empleados
 
-    public Tercero(int id,int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String typeUser, String estadoTercero) {
+    public Tercero(int id,int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String typeUser, String estadoTercero, String zona) {
         this.id = id;
         this.numId = numId;
         this.firstName = firstName;
@@ -55,6 +55,7 @@ public class Tercero {
         this.numCellPhone = numCellPhone;
         this.typeUser = typeUser;
         this.estadoTercero = estadoTercero;
+        this.zona = zona;
     }
     
     //constructor para traer los detalles de contrato de un empleado
@@ -76,7 +77,7 @@ public class Tercero {
     
     
     //constructor para listar un tercero por su Id
-    public Tercero(int id, String typeId, int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String numLandLine, String address, String detailsAddress){
+    public Tercero(int id, String typeId, int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String numLandLine, String address, String detailsAddress, String zona){
         this.id = id;
         this.typeId = typeId;
         this.numId = numId;
@@ -89,6 +90,7 @@ public class Tercero {
         this.numLandLine = numLandLine;
         this.address = address;
         this.detailsAddress = detailsAddress; 
+        this.zona = zona;
     }
     //Constructor para Crear un empleado en la base de datos //
 

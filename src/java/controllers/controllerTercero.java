@@ -93,6 +93,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                 item.addProperty("numCellPhone", tercero2.getNumCellPhone());
                 item.addProperty("address", tercero2.getAddress());
                 item.addProperty("details", tercero2.getDetailsAddress());
+                item.addProperty("zona", tercero2.getZona());
 
                 array.add(item);
                 gson.add("datos", array);
@@ -192,6 +193,7 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                         itemLE.addProperty("email", empleado1.getEmail());
                         itemLE.addProperty("numCellPhone", empleado1.getNumCellPhone());
                         itemLE.addProperty("estadoTercero", empleado1.getEstadoTercero());
+                        itemLE.addProperty("zona", empleado1.getZona());
                         itemLE.addProperty("acciones", "<button id='" + empleado1.getId() + "' class='btn btnAsignarZona fa fa-map-marker btn-success text-left' data-toggle='modal' data-target='#modalAsignarZona'></button>");
                         arrayLM.add(itemLE);
                     }

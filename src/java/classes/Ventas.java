@@ -69,9 +69,10 @@ public Ventas(int id, String fechaVenta, Double valorGlobal, int idCliente, Stri
         this.idFactura = idFactura;
     }
 
-    public Ventas(int id, int idCliente, String numSerie, String fechaVenta, Double valorGlobal, String zonaCliente) {
+    public Ventas(int id, int idCliente, int idFactura,String numSerie, String fechaVenta, Double valorGlobal, String zonaCliente) {
         this.id = id;
         this.idCliente = idCliente;
+        this.idFactura = idFactura;
         this.numSerie = numSerie;
         this.fechaVenta = fechaVenta;
         this.valorGlobal = valorGlobal;

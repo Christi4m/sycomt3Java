@@ -6,6 +6,9 @@
 package controllers;
 
 import classes.Entregas;
+import classes.Ventas;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -39,10 +42,10 @@ public class controllerEntregas extends HttpServlet {
             case "generarEntrega":
                 int res = 0;
                 EntregasDao modelo1 = new EntregasDao();
-                Entregas entrega1 = new Entregas(request.getParameter("fechaEntrega"), Integer.parseInt(request.getParameter("idFactura")), Integer.parseInt(request.getParameter("mesajeroAsignar")));
+                Entregas entrega1 = new Entregas(request.getParameter("fechaEntrega"), Integer.parseInt(request.getParameter("Factura")), Integer.parseInt(request.getParameter("mesajeroAsignar")),"Asignada");
                 if (modelo1.generarEntrega(entrega1)) {
                     VentasDao modelo9 = new VentasDao();
-                    if (modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("idVenta")), request.getParameter("estadoOrdenVenta"))) {
+                    if (modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("Ventas")), "Asignada")) {
                         res = 1;
                         out.print(res);
                     }else{
@@ -51,6 +54,28 @@ public class controllerEntregas extends HttpServlet {
                 } else {
                     out.print(res);
                 }
+                break;
+            case "datosEntrega":
+                JsonObject gsonLE = new JsonObject();
+                JsonArray arrayLE = new JsonArray();
+
+                EntregasDao modelo8 = new EntregasDao();
+                for (Entregas entregas4 : modelo8.getAllEntregasAsignadas(Integer.parseInt(request.getParameter("idFactura")))) {
+                    JsonObject item = new JsonObject();
+                    
+                        item.addProperty("fechaEntrega", entregas4.getFechaEntrega());
+                        item.addProperty("name", entregas4.getNameMensajero()+" "+entregas4.getNameMensajero1());
+                        item.addProperty("numCellPhone", entregas4.getCelMensajero());
+                        item.addProperty("email", entregas4.getEmailMensajero());
+                        
+
+                        arrayLE.add(item);
+                    }
+
+                
+                gsonLE.add("datos", arrayLE);
+
+                out.print(gsonLE.toString());
                 break;
             default:
                 break;
