@@ -380,7 +380,7 @@
     <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.js"></script>
     <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4 .2/jquery.twbsPagination.min.js"></script>
 
 
     <script src="Js/index.js"></script>

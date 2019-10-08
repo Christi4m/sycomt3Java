@@ -7,11 +7,11 @@ import java.sql.DriverManager;
 
 public class Conexion {
     
-    private String username = "bf1a95b571de59";
-    private String password = "65fbef8b";
-    private String hostname = "us-cdbr-iron-east-05.cleardb.net";
+    private String username = "root";
+    private String password = "";
+    private String hostname = "localhost";
     private String port = "3306";
-    private String database = "heroku_f0754d19cf0929d";
+    private String database = "sycomt3";
     private String classname = "com.mysql.jdbc.Driver";
     private String url = "jdbc:mysql://"+hostname+":"+port+"/"+database;
     private Connection conn;

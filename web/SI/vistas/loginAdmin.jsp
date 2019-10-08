@@ -82,9 +82,13 @@
                             console.log(res);
                             if (res === "Administrador" || res === "Bodega-Jefe" || res === "Mensajero") {
                                 setTimeout(function () {
-                                    window.location = "Dashboard.jsp";
+                                    window.location = "SI/vistas/Dashboard.jsp";
                                 }, 300);
-                            } else {
+                            } else if(res === "Cliente"){
+                                 setTimeout(function () {
+                                    window.location = "../index.jsp";
+                                }, 300);
+                            }else {
                                 Swal.fire({
                                     //error
                                     type: 'error',
