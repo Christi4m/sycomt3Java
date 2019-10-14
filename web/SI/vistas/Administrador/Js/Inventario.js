@@ -23,7 +23,7 @@ var listarProveedor = function () {
         }
     });
 };
-var listar = function () {
+listar = function () {
     function getBase64Image(img) {
         var canvas = document.createElement("canvas");
         canvas.width = img.width;

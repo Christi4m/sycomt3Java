@@ -1,10 +1,11 @@
+var listar = "";
 var lang = "";
 var trans = function () {
 
     $(document).on('click', '#es', function (e) {
         e.preventDefault();
         lang = "es";
-        translate(lang);
+        
         idiomaEsp = {
             "decimal": "",
             "emptyTable": "No hay datos",
@@ -29,13 +30,15 @@ var trans = function () {
                 "sortDescending": ": Activar orden de columna desendente"
             }
         }
-
+        if ($.fn.DataTable.isDataTable('#tableCrud')) {
+            listar();
+        }
+        translate(lang);
 
     });
     $(document).on('click', '#en', function (e) {
         e.preventDefault();
         lang = "en";
-        translate(lang);
         idiomaEsp = {
             "sEmptyTable": "No data available in table",
             "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
@@ -58,8 +61,13 @@ var trans = function () {
                 "sSortAscending": ": activate to sort column ascending",
                 "sSortDescending": ": activate to sort column descending"
             }
-        }
 
+        }
+        if ($.fn.DataTable.isDataTable('#tableCrud')) {
+            listar();
+        }
+        
+        translate(lang);
     });
 
 }
@@ -73,7 +81,7 @@ var translate = function () {
         $('#spanFoot').text('Todos los derechos reservados');
         $('#buttonLogout').text('Cerrar Sesión');
         $('#myPerfil').text('Mi Perfil');
-          //tradyccion compras admin   
+        //tradyccion compras admin   
         $('#dateShop').text('Fecha');
         $('#previeder').text('Proveedor');
         $('#obsShop').text('Observaciones');
@@ -88,7 +96,7 @@ var translate = function () {
         $('#accions1').text('Acciones');
         $('#Purchases').text('Compras');
         $('#titleaddPurchasesbtn').text('Agregar');
-        
+
         $('#dateShop').text('Fecha');
         $('#previeder').text('Proveedor');
         $('#obsShop').text('Observaciones');
@@ -123,7 +131,7 @@ var translate = function () {
 
     } else if (lang == "en") {
         $('#spanFoot').text('All rights reserved');
-        
+
         $('#buttonLogout').text('Log Out');
         $('#myPerfil').text('My Profile');
         //tradyccion compras admin   
@@ -170,14 +178,14 @@ var translate = function () {
 
         //Traduccion correos admin
         $('#emailTittle').text('Multiple Emails');
-        $('#addressee').text('Addressee');
+        $('#addressee').text('Address');
         $('#issue').text('Affair');
-        $('#sd').text('select addressee');
+        $('#sd').text('select address');
         $('#client').text('Clients');
         $('#attached').text('Attached');
         $('#message').text('Message');
         $('#send').text('Send');
-        
+
         //Traduccion empleados admin
         $('#principalEmployees').text('Employees');
         $('#botonGenerateReport').text('Add');
@@ -237,7 +245,7 @@ var translate = function () {
         $('#botonCerra').text('Close');
         $('#botonVacia').text('Clean');
         $('#btnCrearUserAccess').text('Save');
-        
+
         //Traducción inventario admin
         $('#add1').text('Add');
         $('#name2').text('Name');
@@ -267,8 +275,8 @@ var translate = function () {
         $('#price3').text('Price');
         $('#botonCerrar1').text('Cancel');
         $('#botonUpdateModal').text('Acept');
-        
-        
+
+
         //traducción proveedores admin
         $('#historicalSuppliers1').text('Suppliers');
         $('#addNew').text('Add');
@@ -320,7 +328,7 @@ var translate = function () {
         $('#unitPrice').text('Unit Price');
         $('#botonCerrarDC').text('Acept');
         $('#sellReport').text('Order');
-        
+
         //Traduccion Entregas asignadas bodega
         $('#deliveries').text('Deliveries');
         $('#code').text('Code');
@@ -353,6 +361,6 @@ var translate = function () {
         $('#unitValue').text('Unit Value');
         $('#details2').text('Details');
         $('#botonCerrarDV').text('Acept');
-        
+
     }
 }

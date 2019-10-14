@@ -1,199 +1,442 @@
+//function to load the neighborhoods depending on the locality
 $(document).ready(function () {
-    listarBarrios();
-    register();
+    listNeighborhoods();
 });
-function traducir() {
-    document.getElementById('usuario').placeholder = 'User';
-    document.getElementById('contrasena').placeholder = 'Password';
-    document.getElementById('accerdert').innerHTML = "Login";
-    document.getElementById('recuerdame').innerHTML = "Remember Me";
-    document.getElementById('olvide').innerHTML = "I forgot my password";
-    document.getElementById('bingresar').innerHTML = "Login";
-    document.getElementById('aunno').innerHTML = "Do not you have an account yet?";
-    document.getElementById('crear').innerHTML = "Create an account";
-    document.getElementById('Recuperar').innerHTML = "Recover password?";
-    document.getElementById('ingresesu').innerHTML = "Enter your email address below to reset your password.";
-    document.getElementById('btncancelar').innerHTML = "Cancel";
-    document.getElementById('btnenviar').innerHTML = "Send";
-    document.getElementById('inputcorreo').placeholder = 'E-mail';
+//function to destroy the plugin of the validations if it is active, with the button close or accept
+$("#botonCerrar").on('click', function () {
+    if ($('#frmRegisterUserCustomer').on('init.form.bv').data('bootstrapValidator')) {
+        $("#frmRegisterUserCustomer").data('bootstrapValidator').destroy();
+    }
+    $("#frmRegisterUserCustomer")[0].reset();
+});
+$("#botonVaciar").on('click', function () {
+    if ($('#frmRegisterUserCustomer').on('init.form.bv').data('bootstrapValidator')) {
+        $("#frmRegisterUserCustomer").data('bootstrapValidator').destroy();
+    }
+    $("#frmRegisterUserCustomer")[0].reset();
+});
 
-}
-var register = function () {
-
-    $('#buttonRegisterCustomerOP').click(function (e) {
-       
-
-        $('#frmRegisterUserCustomer').bootstrapValidator({
-            feedbackIcons: {valid: 'glyphicon glyphicon-ok', invalid: 'glyphicon glyphicon-remove', validating: 'glyphicon glyphicon-refresh'},
-            fields: {
-                tipoIdentificacionCliente: {
-                    validators: {
-                        notEmpty: {message: 'El tipo de identificacion es requerido'},
-                        callback: function (value, validator, $field) {
-                            if (value === '') {
-                                return true;
-                            }
-                            return true;
-                        }
-                    }
-                },
-                firstName: {
-                    validators: {
-                        notEmpty: {message: 'El primer nombre es requerido'}
-                    }
-                },
-                secondName: {
-                    validators: {
-                        notEmpty: {enabled: false}
-
-                    }
-                },
-                firstLastName: {
-                    validators: {
-                        notEmpty: {message: 'El primer apellido es requerido'}
-                    }
-                },
-                secondLastName: {
-                    validators: {
-                        notEmpty: {enabled: false}
-                    }
-                },
-                email: {
-                    validators: {
-                        notEmpty: {message: 'El correo es requerido'},
-                        email: {message: 'Ingrese un correo electronico valido'}
-                    }
-                },
-                numCellPhone: {
-                    validators: {
-                        notEmpty: {message: 'Ingrese el numero celular'},
-                        digits: {message: 'Ingrese solo numeros'}
-                    }
-                },
-                numLandLine: {
-                    validators: {
-                        notEmpty: {enabled: false},
-                        digits: {message: 'Ingrese solo numeros'}
-                    }
-                },
-                address: {
-                    validators: {
-                        notEmpty: {message: 'La dirección es requerida'}
-                    }
-                },
-                localidadCliente: {
-                    validators: {
-                        notEmpty: {message: 'La localidad es requerida'}
-                    }
-                },
-                barrioCliente: {
-                    validators: {
-                        notEmpty: {message: 'El barrio es requerido'}
-                    }
-                },
-                detailsAddress: {
-                    validators: {
-                        notEmpty: {message: 'Los detalles de la dirección son requeridos'}
-                    }
-                },
-                username: {
-                    validators: {
-                        notEmpty: {message: 'El usuario de acceso es requerido'}
-                    }
-                },
-                password: {
-                    validators: {
-                        notEmpty: {message: 'La contraseña de acceso es requerida'}
-                    }
-                },
-                passwordConfirm: {
-                    identical: {
-                        field: 'password',
-                        message: 'Las contraseñas no coinciden'
-                    }
-                }
-
-            }
-
-        });
-        $('#frmRegisterUserCustomer').on('success.form.bv', function (e) {
-            // Prevent form submission
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            var data = new FormData($('#frmRegisterUserCustomer')[0]);
-
-            for (var entrie of data.entries()) {
-                console.log(entrie[0] + ': ' + entrie[1]);
-            }
-            $("#modalRegisterCustomer").modal("toggle");
-            Swal.fire({
-                title: 'Estás Seguro?',
-                text: "De realizar el registro!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, Realizalo!',
-                cancelButtonText: 'Cancelar',
-                width: 500,
-                padding: '5em'
-            }).then((result) => {
-
-                $.ajax({
-                    url: "../methodClient?accion=create",
-                    type: "post",
-                    data: data,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        if (data == 1) {
-                            Swal.fire({
-                                //error
-                                type: 'success',
-                                title: '<strong>¡ Registrado Exitosamente ! </strong>',
-                                width: 500,
-                                padding: '5em',
-                                showConfirmButton: false,
-                                timer: 2000 //el tiempo que dura el mensaje en ms
-                            });
-                            $("#frmRegisterUserCustomer")[0].reset();
-                        } else {
-                            Swal.fire({
-                                //error
-                                type: 'error',
-                                title: '<strong>¡Error al Registrar!</strong> ',
-                                html: '<h4 style="font-size:15px;">Intentelo Nuevamente</4>',
-                                width: '62em',
-                                padding: '5em',
-                                showConfirmButton: false,
-                                timer: 7000 //el tiempo que dura el mensaje en ms
-                            });
-                        }
-                    }
-                });
-            })
-        });
-    });
-}
-//        }sección del codigo para logear al usuario
+//Function to login user into system
 $('#buttonLogin').click(function (e) {
-
     e.preventDefault();
+    //variable to save user and user password
     var data = $('#formLogin').serialize();
+    //function to validate if user are registered into system
     $.post("../loginUser?action=loginUser", data, function (res, est, jqXHR) {
-        if (res == 1) {
-
-            setTimeout(function () {
-                window.location = "../index.jsp"
-            }, 300);
+        console.log(res);
+        if (res === "1") {
+            var data = "";
+            //function to verify the user's role and redirect it to their profile
+            $.post("../loginUser?action=obtenerRol", data, function (res, est, jqXHR) {
+                console.log(res);
+                if (res === "Administrador" || res === "Bodega-Jefe" || res === "Mensajero") {
+                    setTimeout(function () {
+                        window.location = "../SI/vistas/Dashboard.jsp";
+                    }, 300);
+                } else if (res === "Cliente") {
+                    setTimeout(function () {
+                        window.location = "../index.jsp";
+                    }, 300);
+                } else {
+                    Swal.fire({
+                        //error
+                        type: 'error',
+                        confirmButtonColor: '#2f323a',
+                        title: accessDenied,
+                        html: '<h4 style="font-size:15px;">' + accessDeneidSub + '</4>',
+                        width: 500,
+                        padding: '5em',
+                        showConfirmButton: false,
+                        timer: 3000 //how long the message lasts in ms
+                    });
+                }
+            });
         } else {
-            $('#textoModalResult').text("Error Credenciales incorrectas intentelo nuevamente");
-            $("#modalResult").modal("show");
+            Swal.fire({
+                //error
+                type: 'error',
+                confirmButtonColor: '#2f323a',
+                title: accessErrorM,
+                html: '<h4 style="font-size:15px;">' + alertRegisteredErrorSub + '</4>',
+                width: 500,
+                padding: '5em',
+                showConfirmButton: false,
+                timer: 4000 //how long the message lasts in ms
+            });
         }
     });
 });
 
-var listarBarrios = function () {
+
+//function to register a user in the system
+$('#buttonRegisterCustomerOP').click(function (e) {
+    //function to start forms validation plugin (bootstrapValidator)
+    $('#frmRegisterUserCustomer').bootstrapValidator({
+        feedbackIcons: {valid: 'glyphicon glyphicon-ok', invalid: 'glyphicon glyphicon-remove', validating: 'glyphicon glyphicon-refresh'},
+        resetForm: true,
+        fields: {
+            tipoIdentificacionCliente: {
+                validators: {
+                    notEmpty: {message: tipoIdentificacionClienteM},
+                    callback: function (value, validator, $field) {
+                        if (value === '') {
+                            return true;
+                        }
+                        return true;
+                    }
+                }
+            },
+            identificacionCliente: {
+                validators: {
+                    notEmpty: {message: IdentificacionClienteM},
+                    digits: {message: digitsM}
+                }
+            },
+            firstName: {
+                validators: {
+                    notEmpty: {message: firstNameM}
+                }
+            },
+            secondName: {
+                validators: {
+                    notEmpty: {enabled: false}
+
+                }
+            },
+            firstLastName: {
+                validators: {
+                    notEmpty: {message: firstLastNameM}
+                }
+            },
+            secondLastName: {
+                validators: {
+                    notEmpty: {enabled: false}
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {message: emailM},
+                    email: {message: emailMType}
+                }
+            },
+            numCellPhone: {
+                validators: {
+                    notEmpty: {message: numCellPhoneM},
+                    digits: {message: digitsM}
+                }
+            },
+            numLandLine: {
+                validators: {
+                    notEmpty: {enabled: false},
+                    digits: {message: digitsM}
+                }
+            },
+            address: {
+                validators: {
+                    notEmpty: {message: addressM}
+                }
+            },
+            localidadCliente: {
+                validators: {
+                    notEmpty: {message: localidadClienteM}
+                }
+            },
+            barrioCliente: {
+                validators: {
+                    notEmpty: {message: barrioClienteM}
+                }
+            },
+            detailsAddress: {
+                validators: {
+                    notEmpty: {message: detailsAddressM}
+                }
+            },
+            username: {
+                validators: {
+                    notEmpty: {message: usernameM}
+                }
+            },
+            password: {
+                validators: {
+                    identical: {
+                        field: 'passwordConfirm',
+                        message: passwordConfirmM
+                    },
+                    notEmpty: {message: passwordM}
+                }
+            },
+            passwordConfirm: {
+                validators: {
+                    identical: {
+                        field: 'password',
+                        message: passwordConfirmM
+                    },
+                    notEmpty: {message: passwordM}
+                }
+            }
+
+        }
+
+    });
+
+});
+$('#frmRegisterUserCustomer').on('success.form.bv', function (e) {
+    // Prevent form submission
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var data = new FormData($('#frmRegisterUserCustomer')[0]);
+
+    for (var entrie of data.entries()) {
+        console.log(entrie[0] + ': ' + entrie[1]);
+    }
+    $("#modalRegisterCustomer").modal("toggle");
+    Swal.fire({
+        title: areYouSure,
+        text: toResgister,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonTextM,
+        width: 500,
+        padding: '5em'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                url: "../methodClient?accion=create",
+                type: "post",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data == 1) {
+                        Swal.fire({
+                            //error
+                            type: 'success',
+                            title: '<strong>' + alertRegisteredOk + ' </strong>',
+                            width: 500,
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 2000 //el tiempo que dura el mensaje en ms
+                        });
+                        $("#frmRegisterUserCustomer")[0].reset();
+                        $("#frmRegisterUserCustomer").data('bootstrapValidator').destroy();
+                    } else {
+                        Swal.fire({
+                            //error
+                            type: 'error',
+                            title: '<strong>' + alertRegisteredError + '</strong> ',
+                            html: '<h4 style="font-size:15px;">' + alertRegisteredErrorSub + '</4>',
+                            width: '62em',
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 7000 //el tiempo que dura el mensaje en ms
+                        });
+                    }
+                }
+            });
+        }
+    })
+});
+//function to translate the login page in English
+$(document).on('click', '#buttonTranslateEn', function (e) {
+    if ($('#frmRegisterUserCustomer').on('init.form.bv').data('bootstrapValidator')) {
+        $("#frmRegisterUserCustomer").data('bootstrapValidator').destroy();
+    }
+    e.preventDefault();
+    $('#userAccess').attr('placeholder', 'User');
+    $('#paswordAccess').attr('placeholder', 'Password');
+    $('#recuerdame').text('Remember Me');
+    $('#olvide').text('I forgot my password');
+    $('#textLogin').text('Login');
+    $('#aunno').text('Do not you have an account yet?');
+    $('#crear').text('Create an account');
+    $('#Recuperar').text('Recover password?');
+    $('#ingresesu').text('Enter your email address below to reset your password.');
+    $('#btncancelar').text('Cancel');
+    $('#btnenviar').text('Send');
+    $('#inputcorreo').attr('placeholder', 'E-mail');
+    //Translate modal window to register user
+    $('#modalRegisterCustomerTitle').text('Register User');
+    $('#titleDateContct').text('Contact Information');
+    $('#labelTypeIdenty').text('ID Type *');
+    $('#typeIdSelect').text('Select an Option');
+    $('#typeIdCC').text('C.C (Citizenship Card)');
+    $('#typeIdCE').text('C.E (Foreigner ID)');
+    $('#ladelID').text('Id *');
+    $('#identificacionCliente').attr('placeholder', 'Identification number');
+    $('#labelName').text('Name *');
+    $('#firstName').attr('placeholder', 'First Name');
+    $('#labelSecondName').text('Name');
+    $('#secondName').attr('placeholder', 'Second Name');
+    $('#labelFirstLastName').text('Last Name *');
+    $('#firstLastName').attr('placeholder', 'First Last Name');
+    $('#labelSecondLastName').text('Last Name');
+    $('#secondLastName').attr('placeholder', 'Second Last Name');
+    $('#email').attr('placeholder', 'E-mail');
+    $('#labelCellPhone').text('Cell Phone *');
+    $('#numCellPhone').attr('placeholder', 'Cell phone number');
+    $('#labelLandLineNumber').text('Land Line');
+    $('#numLandLine').attr('placeholder', 'Land Line Number');
+    $('#labelAddress').text('Address *');
+    $('#address').attr('placeholder', 'Address');
+    $('#labelLocality').text('Locality *');
+    $('#typeIdSelect1').text('Select an Option');
+    $('#typeIdSelect2').text('Select an Option');
+    $('#labelDetailsAddress').text('Details *');
+    $('#textAreaDetailsAddress').attr('placeholder', 'In this field, please enter all the details of your address (neighborhood, residence name or any special feature to locate the address).');
+    $('#legendAccessSystem').text('System Access Data');
+    $('#labelUserName').text('User *');
+    $('#username').attr('placeholder', 'Login User');
+    $('#labelPassword').text('Password *');
+    $('#password').attr('placeholder', 'Access Password');
+    $('#labelConfirmPassword').text('Confirm Password *');
+    $('#passwordConfirm').attr('placeholder', 'Confirm your Access Password');
+    //Variables to translate plugin of forms validation (bootstrapValidator) and the alerts(sweetalert2)
+    tipoIdentificacionClienteM = "The type of identification is required";
+    IdentificacionClienteM = "The identification number is required.";
+    firstNameM = "The first name is required.";
+    firstLastNameM = "The first last name is required.";
+    emailM = "Mail is required.";
+    emailMType = "Enter a valid email.";
+    numCellPhoneM = "Enter the cell number.";
+    digitsM = "Enter numbers only.";
+    addressM = "The address is required.";
+    localidadClienteM = "The locality is required.";
+    barrioClienteM = "The neighborhood is required.";
+    detailsAddressM = "Address details are required.";
+    usernameM = "The access user is required.";
+    passwordM = "The access password is required.";
+    passwordConfirmM = "Passwords do not match.";
+    alertRegisteredOk = "Registered Successfully!";
+    alertRegisteredError = "Registration failed!";
+    alertRegisteredErrorSub = "Try again";
+    confirmButtonText = "Yes, do it!";
+    cancelButtonTextM = "Cancel";
+    accessDenied = "Access Denied!";
+    accessDeneidSub = "Verifique con el administrador si está autorizado para el ingreso al sistema.";
+    accessErrorM = "Incorrect username or password!";
+    areYouSure = "Are you sure?";
+    toResgister = "To register!";
+    $('#botonCerrar').text('Cancel');
+    $('#botonVaciar').text('Clean');
+    $('#buttonRegisterCustomerOP').text('Acept');
+});
+//function to translate the login page in Spanish
+$(document).on('click', '#buttonTranslateEs', function (e) {
+    if ($('#frmRegisterUserCustomer').on('init.form.bv').data('bootstrapValidator')) {
+        $("#frmRegisterUserCustomer").data('bootstrapValidator').destroy();
+    }
+    e.preventDefault();
+    $('#userAccess').attr('placeholder', 'Usuario');
+    $('#paswordAccess').attr('placeholder', 'Contraseña');
+    $('#recuerdame').text('Recuerdame');
+    $('#olvide').text('Olvide mi Contraseña');
+    $('#textLogin').text('Ingresar');
+    $('#aunno').text('Aún no tienes una cuenta?');
+    $('#crear').text('Crea una cuenta');
+    $('#Recuperar').text('¿Recuperar contraseña?');
+    $('#ingresesu').text('Ingrese su dirección de correo electrónico a continuación para restablecer su contraseña.');
+    $('#btncancelar').text('Cancelar');
+    $('#btnenviar').text('Enviar');
+    $('#inputcorreo').attr('placeholder', 'Correo');
+    //Translate modal window to register user
+    $('#modalRegisterCustomerTitle').text('Registro Usuario');
+    $('#titleDateContct').text('Datos de contacto');
+    $('#labelTypeIdenty').text('Tipo Identificación *');
+    $('#typeIdSelect').text('Seleccione una Opción');
+    $('#typeIdCC').text('C.C (Cédula de Ciudadanía)');
+    $('#typeIdCE').text('C.E (Cédula de Extranjería)');
+    $('#ladelID').text('Identificación *');
+    $('#identificacionCliente').attr('placeholder', 'Número de Identificación');
+    $('#labelName').text('Nombre *');
+    $('#firstName').attr('placeholder', 'Primer Nombre');
+    $('#labelSecondName').text('Nombre');
+    $('#secondName').attr('placeholder', 'Segundo Nombre');
+    $('#labelFirstLastName').text('Apellido *');
+    $('#firstLastName').attr('placeholder', 'Primer Apellido');
+    $('#labelSecondLastName').text('Apellido');
+    $('#secondLastName').attr('placeholder', 'Segundo Apellido');
+    $('#email').attr('placeholder', 'Correo');
+    $('#labelCellPhone').text('Celular *');
+    $('#numCellPhone').attr('placeholder', 'Número de Celular');
+    $('#labelLandLineNumber').text('Fijo');
+    $('#numLandLine').attr('placeholder', 'Número de Teléfono Fijo');
+    $('#labelAddress').text('Dirección *');
+    $('#address').attr('placeholder', 'Dirección');
+    $('#labelLocality').text('Localidad *');
+    $('#typeIdSelect1').text('Seleccione una Opción');
+    $('#typeIdSelect2').text('Seleccione una Opción');
+    $('#labelDetailsAddress').text('Detalles *');
+    $('#textAreaDetailsAddress').attr('placeholder', 'En este campo por favor ingrese todos los detalles de su dirección (barrio, nombre de conjunto resindencial o alguna característica en especial para ubicar la dirección).');
+    $('#legendAccessSystem').text('Datos de acceso al sistema');
+    $('#labelUserName').text('Usuario *');
+    $('#username').attr('placeholder', 'Usuario de Acceso');
+    $('#labelPassword').text('Contraseña *');
+    $('#password').attr('placeholder', 'Contraseña de Acceso');
+    $('#labelConfirmPassword').text('Confirmar Contraseña *');
+    $('#passwordConfirm').attr('placeholder', 'Confirme su Contraseña de Acceso');
+    $('#botonCerrar').text('Cancelar');
+    $('#botonVaciar').text('Vaciar');
+    $('#buttonRegisterCustomerOP').text('Aceptar');
+    //Variables to translate plugin of forms validation (bootstrapValidator) and the alerts(sweetalert2)
+    tipoIdentificacionClienteM = "El tipo de identificacion es requerido.";
+    IdentificacionClienteM = "El numero de identificacion es requerido.";
+    firstNameM = "El primer nombre es requerido.";
+    firstLastNameM = "El primer apellido es requerido.";
+    emailM = "El correo es requerido.";
+    emailMType = "Ingrese un correo valido.";
+    numCellPhoneM = "Ingrese el numero celular.";
+    digitsM = "Ingrese solo numeros.";
+    addressM = "La dirección es requerida.";
+    localidadClienteM = "La localidad es requerida.";
+    barrioClienteM = "El barrio es requerido.";
+    detailsAddressM = "Los detalles de la dirección son requeridos.";
+    usernameM = "El usuario de acceso es requerido.";
+    passwordM = "La contraseña de acceso es requerida.";
+    passwordConfirmM = "Las contraseñas no coinciden.";
+    alertRegisteredOk = "¡Registrado Exitosamente!";
+    alertRegisteredError = "¡Error al Registrar!";
+    alertRegisteredErrorSub = "Intentelo Nuevamente";
+    confirmButtonText = "Si, Realizalo!";
+    cancelButtonText = "Cancelar";
+    accessDenied = "¡Acceso Denegado!";
+    accessDeneidSub = "Verifique con el administrador si esta autorizado para el ingreso al sistema";
+    accessErrorM = "¡Usuario o Contraseña incorrectos!";
+    areYouSure = "¿Estás Seguro?";
+    toResgister = "!De realizar el registro!";
+});
+
+//Global Variables
+var tipoIdentificacionClienteM = "El tipo de identificacion es requerido.";
+var IdentificacionClienteM = "El numero de identificacion es requerido.";
+var firstNameM = "El primer nombre es requerido.";
+var firstLastNameM = "El primer apellido es requerido.";
+var emailM = "El correo es requerido.";
+var emailMType = "Ingrese un correo valido.";
+var numCellPhoneM = "Ingrese el numero celular.";
+var digitsM = "Ingrese solo numeros.";
+var addressM = "La dirección es requerida.";
+var localidadClienteM = "La localidad es requerida.";
+var barrioClienteM = "El barrio es requerido.";
+var detailsAddressM = "Los detalles de la dirección son requeridos.";
+var usernameM = "El usuario de acceso es requerido.";
+var passwordM = "La contraseña de acceso es requerida.";
+var passwordConfirmM = "Las contraseñas no coinciden.";
+var alertRegisteredOk = "¡Registrado Exitosamente!";
+var alertRegisteredError = "¡Error al Registrar!";
+var alertRegisteredErrorSub = "Intentelo Nuevamente";
+var confirmButtonText = "Si, Realizalo!";
+var cancelButtonTextM = "Cancelar";
+var accessDenied = "¡Acceso Denegado!";
+var accessDeneidSub = "Verifique con el administrador si esta autorizado para el ingreso al sistema";
+var accessErrorM = "¡Usuario o Contraseña incorrectos!";
+var areYouSure = "¿Estás Seguro?";
+var toResgister = "!De realizar el registro!";
+
+
+var listNeighborhoods = function () {
     var arrayAntonioNariño = ['Caracas', 'Ciudad Berna', 'Ciudad Jardín', 'Eduardo Frey', 'Fragua', 'Hortua',
         'Policarpa', 'Restrepo', 'San Antonio', 'Santander', 'Sena', 'Sevilla', 'Villa Mayor Oriental'];
     var arrayBarriosUnidos = ['Alcazares', 'Alcazares Norte', 'Baquero', 'Benjamin Herrera', 'Colombia', 'Concepción Norte',
@@ -212,11 +455,11 @@ var listarBarrios = function () {
         'San Jose', 'San Pablo', 'San Pedro', 'Santa Fe de Bosa'];
     var arrayCandelaria = ['Belen', 'Centro Administrativo', 'Egipto', 'La Catedral', 'La Concordia', 'Las Aguas',
         'Santa Barbara'];
-    var arrayChapinero = [, 'Antiguo Country', 'Bellavista', 'Bosque Calderon', 'Cataluna', 'Chapinero Central', 'Chapinero Norte',
+    var arrayChapinero = ['Antiguo Country', 'Bellavista', 'Bosque Calderon', 'Cataluna', 'Chapinero Central', 'Chapinero Norte',
         'Chico', 'Chico Norte', 'Chico Norte II', 'Chico Norte III', 'La Espartillal', 'El Nogal', 'El Paraiso', 'El Refugio',
         'El Retiro', 'El Seminario', 'Emaus', 'Granada', 'Ingemar', 'La Cabrera', 'La Porciuncula', 'La Salle',
         'Lago Gaitan', 'Las Acasias', 'Los Rosales', 'Maria Cristina', 'Marly', 'Pardo Rubio', 'Quinta Camacho',
-        'San Martin', 'Santa Ana', 'Sucre', 'Via a La Calera', ''];
+        'San Martin', 'Santa Ana', 'Sucre', 'Via a La Calera'];
     var arrayEngativa = ['Alamos Norte', 'Autopista Medellin', 'Bellavista Occidental', 'Bochica', 'Bochica II',
         'Bolivia', 'Bonanza', 'Bosque Polular', 'Boyaca', 'Centro Engativa', 'Ciudad Bachue', 'Ciudadela Colsubsidio',
         'El Cedro', 'El Cortijo', 'El Dorado', 'El Encanto', 'El Laurel', 'El Madrigal', 'El Muelle', 'El Real',
@@ -341,7 +584,7 @@ var listarBarrios = function () {
             $("#barrioCliente").prop("disabled", false);
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
-            for (var i = 0; i < arrayChapinero; i++) {
+            for (var i = 0; i < arrayChapinero.length; i++) {
                 $("#barrioCliente").append("<option value='" + arrayChapinero[i] + "'>" + arrayChapinero[i] + "</option>");
             }
         }
@@ -365,7 +608,7 @@ var listarBarrios = function () {
             $("#barrioCliente").prop("disabled", false);
             $("#barrioCliente").append("<option value=''></option>");
             $("#barrioCliente").html("");
-            for (var i = 0; i < arrayKennedy; i++) {
+            for (var i = 0; i < arrayKennedy.length; i++) {
                 $("#barrioCliente").append("<option value='" + arrayKennedy[i] + "'>" + arrayKennedy[i] + "</option>");
             }
         }

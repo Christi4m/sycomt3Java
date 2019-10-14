@@ -9,7 +9,7 @@
 <script src="<%= request.getContextPath()%>/lib/dataTable/jquery.dataTables.min.js"></script>
 <script src="<%= request.getContextPath()%>/lib/dataTable/dataTables.bootstrap4.min.js"></script>
 <script src="<%= request.getContextPath()%>/lib/common-scripts.js"></script>
-<script src="<%= request.getContextPath()%>/lib/dataTable/Español.js"></script>
+<script src="<%= request.getContextPath()%>/lib/dataTable/Espanol.js"></script>
 <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.js"></script>
 <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.min.js"></script>
 <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/language/es_ES.js"></script>

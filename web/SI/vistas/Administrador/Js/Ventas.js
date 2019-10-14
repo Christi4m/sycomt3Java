@@ -4,7 +4,7 @@ $(document).ready(function () {
 });
 
 
-var listar = function () {
+listar = function () {
     function getBase64Image(img) {
         var canvas = document.createElement("canvas");
         canvas.width = img.width;
@@ -222,7 +222,7 @@ var listar = function () {
                 }
             });
             var idVenta = $(this).attr("id");
-            
+
             var dato = {idVenta: idVenta}
             $.ajax({
                 url: "../../processVenta?action=detalleVentas",
@@ -298,7 +298,7 @@ var datosReporteVetas1 = function () {
     });
 }
 
-    
+
 var options = {
     chart: {
         events: {
@@ -332,7 +332,7 @@ var options = {
         scale: 0
     },
     title: {
-        text: '<strong>Ventas Por Mes</strong><br><div></div>'+ output + ''
+        text: '<strong>Ventas Por Mes</strong><br><div></div>' + output + ''
     },
     subtitle: {
         text: '<h3 style="font-size: 15px;color:black;margin-top:25px;">El siguiente gráfico muestra el valor gloabla de las ventas realizadas mes a mes permitiendo ver de manera ágil y rápida el mes con más mayor margen de ventas en cuanto a dinero hasta la fecha</h3>'

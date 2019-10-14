@@ -25,11 +25,13 @@ body {
     background: #4ECDC4;
     box-shadow:  4px 0px 10px #2f323a;
     color: white;
+    border: none;
 }
 .btnAgregar:active{
     background: #4ECDC4;
     box-shadow:  4px 0px 10px #2f323a;
     color: white;
+    border: none;
 }
 .btnAgregar:focus{
 

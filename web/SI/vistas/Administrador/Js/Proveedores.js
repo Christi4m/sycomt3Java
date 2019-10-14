@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    listar();
     translate();
     trans();
+    listar();
 });
 //Funcion para listar los provedores registrados, usando el plugin dataTable.
-var listar = function () {
+listar = function () {
     function getBase64Image(img) {
         var canvas = document.createElement("canvas");
         canvas.width = img.width;

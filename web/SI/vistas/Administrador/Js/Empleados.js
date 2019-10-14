@@ -4,7 +4,7 @@ $(document).ready(function () {
     trans();
 
 });
-var listar = function () {
+listar = function () {
     //seccion de cosigo que controla la el campo date fecha inicio contrato para que no se puedan ingresar fechas anteriores al dia en curso
     //variiable que captura la fecha del dia en curso
     var d = new Date();
