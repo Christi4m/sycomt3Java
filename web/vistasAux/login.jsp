@@ -32,7 +32,7 @@
                         <input style="margin-bottom: 10px;" name="paswordAccess"id="paswordAccess" type="password" class="form-control" placeholder="Contraseña">
 
                         <input  class="remember-me" type="checkbox" value="remember-me">
-                        <label style="margin-bottom: 10px;" id="recuerdame"for="[recuerdame]">Recuerdame</label>
+                        <label style="margin-bottom: 10px;" id="recuerdame"for="[recuerdame]">Recuerdamer</label>
                         <span class="pull-right">
                             <label class="checkbox">
                                 <a id="olvide" data-toggle="modal" href="login.html#myModal"> Olvide mi Contraseña?</a>
