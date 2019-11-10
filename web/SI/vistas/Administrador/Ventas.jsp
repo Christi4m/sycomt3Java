@@ -116,7 +116,7 @@
             </div>
         </div>
     </div>
-    <!-- Fin del modal Editar -->
+    <!-- Fin del modal detalles -->
 
     <!-- Modal Detalle Cliente -->
     <div  class="modal fade" id="modalResult" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

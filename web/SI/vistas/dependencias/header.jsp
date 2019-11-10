@@ -57,7 +57,7 @@
             <a style="color:white;"href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= usuario%><span class="caret"></span></a>
             <ul class="dropdown-menu pull-right" aria-labelledby="about-us" >
                 <li><a id="buttonLogout"href="#">Cerrar Sesión</a></li>
-                <li><a id="myPerfil" href="#">Mi Perfil</a></li>                   
+                <li><a id="myPerfil" href="#">Mis Datos</a></li>                   
             </ul>
         </li>
     </div>

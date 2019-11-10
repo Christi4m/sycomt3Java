@@ -180,6 +180,39 @@ A<%@page contentType="text/html" pageEncoding="UTF-8"%>
                 + "                        </li>\n"
                 + "                        <!-- Fin sub menu de entregas  -->";
     }
+    else if (rol.equalsIgnoreCase("Cliente")) {
+        sidebar = "  <!-- Inicio sub menu de home -->\n"
+                + "                        <li class=\"sub-menu\">\n"
+                + "                            <a class=\"sub-menu-a active\" href=\"Dashboard.jsp\">\n"
+                + "                                <i class=\"fa fa-home\"></i>\n"
+                + "                                <span id=\"idInicio\">Inicio</span>\n"
+                + "                            </a>\n"
+                + "\n"
+                + "                        </li>\n"
+                + "                        <!-- Fin sub menu de home -->\n"
+                + "                        <!-- Inicio sub menu de pqrs  -->\n"
+                + "                        <li class=\"sub-menu\">\n"
+                + "                            <a id='linkPqrsCOpen'class=\"sub-menu-a\" href=\"javascript:;\">\n"
+                + "                                <i class=\"fa fa-info-circle\"></i>\n"
+                + "                                <span id=\"pqrsSpan\">PQRS's</span>\n"
+                + "                            </a>\n"
+                + "                            <ul class=\"sub text-center\">\n"
+                + "                                <li><a id=\"linkPqrsC\" class=\"sub-a \" href=\"#\"><i class=\"\"></i> Gestión PQR's</a></li>\n"
+                + "                            </ul>\n"
+                + "                        </li>\n"
+                + "                        <!-- Fin sub menu de pqr's  -->"
+                + "                        <!-- Inicio sub menu de compras  -->\n"
+                + "                        <li class=\"sub-menu\">\n"
+                + "                            <a id='linkComprasCOpen'class=\"sub-menu-a\" href=\"javascript:;\">\n"
+                + "                                <i class=\"fa fa-cart-plus\"></i>\n"
+                + "                                <span id=\"shopSpan\">Compras</span>\n"
+                + "                            </a>\n"
+                + "                            <ul class=\"sub text-center\">\n"
+                + "                                <li><a id=\"linkCOmprasC\" class=\"sub-a \" href=\"#\"><i class=\"\"></i> Gestión Compras</a></li>\n"
+                + "                            </ul>\n"
+                + "                        </li>\n"
+                + "                        <!-- Fin sub menu de compras  -->";
+    }
 
 
 %>
@@ -187,7 +220,7 @@ A<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <sidebar>
     <div id="sidebar" class="nav-collapse menumio">
         <!-- sidebar menu start-->
-        <ul class="sidebar-menu" id="nav-accordion">
+        <ul class="sidebar-menu" id="nav-accordion" style="margin-bottom: 200px;">
             <p class="centered"><a class=""href="#" ><img src="<%= request.getContextPath()%>/SI/img/usuario.png" class="img-circle" width="80"></a></p>
             <h5 id="idAdmin" class="centered nombreUsuario"><%= usuario%></h5>
             <%= sidebar%>

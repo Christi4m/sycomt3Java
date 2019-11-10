@@ -1,38 +1,30 @@
 <section class="wrapper">
     <div class="row">
-        <div class="col-lg-12 col-xl-12 col-md-12  ">
+        <div class="col-lg-12 col-xl-12 col-md-12 cont">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
                 <h2>Compras</h2>
-                <button class="btn btnAgregar"data-toggle="modal" data-target="#modalNuevo">
-                    Agregar
-                    <span class="fa fa-plus"></span>
-                </button>
-                <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                
+                <table id="tableCrud" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Telaje</th>
-                            <th>Ubicacion Bodega</th>
-                            <th>Precio M²</th>
-                            <th>Stock</th>
+                            <th>#</th>
+                            <th>Fecha</th>
+                            <th>Valor</th>
+                            <th>Factura</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
-
                         </tr>
                     </thead>
                     <tbody>
 
-                    
-
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Telaje</th>
-                            <th>Ubicacion Bodega</th>
-                            <th>Precio M²</th>
-                            <th>Stock</th>
+                            <th>#</th>
+                            <th>Fecha</th>
+                            <th>Valor</th>
+                            <th>Factura</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </tfoot>
@@ -42,6 +34,44 @@
         </div>
 
     </div>
-</div>
+        <!-- Modal detalles -->
+    <div class="modal fade" id="modalDetalleVentas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="">
+                        <span class="fa fa-close close1" aria-hidden="true"></span>
+                    </button>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                </div>
+                <div class="modal-body">
+                                     
+                    <!--tabla detalle venta-->
+                    <h2>Detalle Venta</h2>
+                    <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Id Producto</th>
+                                <th>Nombre P</th>
+                                <th>Detalles P</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyDV"> 
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button id="botonCerrarDV"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del modal detalles -->
+
 
 </section>
+<script src="Cliente/Js/Compras.js"></script>

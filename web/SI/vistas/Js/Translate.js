@@ -1,5 +1,6 @@
 var listar = "";
 var lang = "";
+
 var trans = function () {
 
     $(document).on('click', '#es', function (e) {

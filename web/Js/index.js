@@ -70,11 +70,13 @@ var PrintAll = function () {
                         success: function (data) {
                             $('#stockShop').html("");
                             for (var h = (contador * page) - 10; h < contador2 * page; h++) {
-
+                                console.clear();
                                 if (data.datos[h] != '\0') {
                                     $('#stockShop').append(' <div class="col-md-4" ><div class="card view overlay zoom"><a id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" class="btnCharacters" data-toggle="modal" data-target="#modalInsertCant"role="button"><img class="card-img-top img-fluid"  src="' + data.datos[h].Imagen + '" title="' + data.datos[h].Nombre + '"alt="' + data.datos[h].Nombre + '"></a><div class="card-block"><h4 style="font-size:13px;" class="card-title">' + data.datos[h].Nombre + '</h4><p class="card-text">Precio: $' + data.datos[h].Precio + ' Mt²</p><a href="#" id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" style="background: #2f323a;color: white;border:none; margin-left:2px;" title="Ver Detalles"class="btn btnCharacters colorbtn btn-primary"data-toggle="modal" data-target="#modalInsertCant"><span class ="fa fa-eye"></span></a></div></div></div>');
                                 }
+
                             }
+
                         }
                     });
                 }
@@ -127,10 +129,10 @@ var search = function () {
                         success: function (data) {
                             $('#stockShop').html("");
                             for (var h = (contador * page) - 10; h < contador2 * page; h++) {
-                                
+
                                 if (data.datos.length != 0) {
                                     $('#stockShop').append(' <div class="col-md-4" ><div class="card view overlay zoom"><a id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" class="btnCharacters" data-toggle="modal" data-target="#modalInsertCant"role="button"><img class="card-img-top img-fluid"  src="' + data.datos[h].Imagen + '" title="' + data.datos[h].Nombre + '"alt="' + data.datos[h].Nombre + '"></a><div class="card-block"><h4 style="font-size:13px;" class="card-title">' + data.datos[h].Nombre + '</h4><p class="card-text">Precio: $' + data.datos[h].Precio + ' Mt²</p><a href="#" id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" style="background: #2f323a;color: white;border:none; margin-left:2px;" title="Ver Detalles"class="btn btnCharacters colorbtn btn-primary"data-toggle="modal" data-target="#modalInsertCant"><span class ="fa fa-eye"></span></a></div></div></div>');
-                                }else{
+                                } else {
                                     $('#stockShop').html("<h4 style='text-align: center'>Resultados de la busqueda: Ningún producto encontrado</h4>");
                                 }
                             }

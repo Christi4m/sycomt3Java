@@ -168,6 +168,30 @@
                 + "                                            </div>\n"
                 + "                                        </div>\n"
                 + "                                        ";
+    }else if (rol.equalsIgnoreCase("Cliente")) {
+        home = " <div class=\"col-lg-6 tarjetaItem\"   >\n"
+                + "                                            <div class=\"subItem\" style=\"height: 120px;\">\n"
+                + "                                                <div>\n"
+                + "                                                   <a id=\"tarjetaPqrsC\"class=\" incono fa fa-info-circle\" href=\"#\"></a> \n"
+                + "                                                </div>\n"
+                + "                                                <div>\n"
+                + "                                                    <a id=\"tarjetaPqrsC\"class=\"textIcono\" href=\"#\">PQR's</a>\n"
+                + "                                                </div>\n"
+                + "                                                \n"
+                + "                                            </div>\n"
+                + "                                        </div>\n"
+                + "                                        <div class=\"col-lg-6 tarjetaItem\">\n"
+                + "                                            <div class=\"subItem \"style=\"height: 120px;\">\n"
+                + "                                                <div>\n"
+                + "                                                    <a id=\"tarjetaComprasC\"class=\" incono fa fa-cart-plus\" href=\"#\"></a>\n"
+                + "                                                </div>\n"
+                + "                                                <div>\n"
+                + "                                                    <a id=\"tarjetaComprasC\"href=\"#\" class=\"textIcono\">Compras</a>\n"
+                + "                                                </div>\n"
+                + "\n"
+                + "                                            </div>\n"
+                + "                                        </div>\n"
+                + "                                        ";
     }
 
 

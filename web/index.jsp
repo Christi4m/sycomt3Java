@@ -11,14 +11,24 @@
 <%    HttpSession sesion = request.getSession(true);
     Object firstName = sesion.getAttribute("firstName") == null ? null : sesion.getAttribute("firstName");
     String htmlcode = "";
+   
     String list = "";
+    if (firstName != null) {
+         String rol = "";
+         rol = sesion.getAttribute("typeTercero").toString();
+         if(rol.equalsIgnoreCase("Administrador") ||rol.equalsIgnoreCase("Bodega-Jefe") ||rol.equalsIgnoreCase("Mensajero")){
+             sesion.invalidate();
+             out.print("<script>location.reload()</script>");
+         }
+    }
+
     if (firstName != null) {
 
         list = "<li class=\"dropdown\">\n"
                     + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">"+firstName+"<span class=\"caret\"></span></a>\n"
                     + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
                     + "<li><a href=\"LogoutUser\">Cerrar Sesión</a></li>\n"
-                    + "<li><a href=\"#\">Mi Perfil</a></li>\n"                    
+                    + "<li><a href=\"SI/vistas/Dashboard.jsp\">Mi Perfil</a></li>\n"                    
                     + "</ul>\n"
                     + "</li>";
 
@@ -53,17 +63,8 @@
         <!-- Estilo css -->
         <link rel="stylesheet" href="vistasAux/css/styleCart.css">
         <link rel="stylesheet" href="vistasAux/css/estilos-responsive.css">
-
-
-
-
     </head>
-
     <body>
-
-
-
-
         <header id="header"><!--header-->
             <div class="header_top wow fadeInDown" data-wow-delay="0.8s" style="margin-bottom: 40px;"><!--header_top-->
                 <div class="container">
@@ -380,7 +381,7 @@
     <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.js"></script>
     <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4 .2/jquery.twbsPagination.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
 
 
     <script src="Js/index.js"></script>

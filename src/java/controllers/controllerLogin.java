@@ -50,10 +50,10 @@ public class controllerLogin extends HttpServlet {
                     Tercero tercero = (Tercero) mcd.getTercero(userAccess);
                     sesion.setAttribute("typeTercero", tercero.getTypeUser());
                     sesion.setAttribute("firstName", tercero.getFirstName());
-                    sesion.setAttribute("idCliente", tercero.getId());
+                    sesion.setAttribute("idUser", tercero.getId());
                     sesion.setAttribute("typeId", tercero.getTypeId());
                     sesion.setAttribute("numId", tercero.getNumId());
-                    sesion.setAttribute("nameCliente", tercero.getFirstName() + " " + tercero.getSecondName() + " " + tercero.getFirstLastName() + " " + tercero.getSecondLastName());
+                    sesion.setAttribute("nameUser", tercero.getFirstName() + " " + tercero.getSecondName() + " " + tercero.getFirstLastName() + " " + tercero.getSecondLastName());
 
                     out.print("1");
                 } else {
@@ -74,15 +74,8 @@ public class controllerLogin extends HttpServlet {
                 out.print(sesion.getAttribute("typeTercero").toString());
                 break;
             case "logOut": {
-                String Rol = sesion.getAttribute("typeTercero").toString();
-
-                if (Rol.equalsIgnoreCase("Cliente")) {
                     sesion.invalidate();
-                    out.print("2");
-                } else {
-                    sesion.invalidate();
-                    out.print("1");
-                }
+                    out.print("1");                
             }
 
         }

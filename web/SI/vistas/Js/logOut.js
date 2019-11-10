@@ -6,11 +6,7 @@ $(document).ready(function () {
             console.log(res);
             if (res === "1") {
                 setTimeout(function () {
-                    window.location = "loginAdmin.jsp";
-                }, 300);
-            }else if(res ==="2"){
-                setTimeout(function () {
-                    window.location = "../../index.jsp";
+                     window.location = "../../index.jsp";
                 }, 300);
             }
         });

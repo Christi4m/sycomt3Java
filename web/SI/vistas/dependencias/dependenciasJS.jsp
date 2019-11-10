@@ -1,9 +1,9 @@
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="<%= request.getContextPath()%>/lib/jquery/jquery.min.js"></script>
 <script class="include" type="text/javascript" src="<%= request.getContextPath()%>/lib/jquery.dcjqaccordion.2.7.js"></script>
 <script src="<%= request.getContextPath()%>/lib/jquery.scrollTo.min.js"></script>
 <script src="<%= request.getContextPath()%>/lib/jquery.nicescroll.js" type="text/javascript"></script>
 <script src="<%= request.getContextPath()%>/lib/jquery.sparkline.js"></script>
-<script src="<%= request.getContextPath()%>/lib/jquery.sparkline.js"></script>
+
 
 <script src="<%= request.getContextPath()%>/lib/bootstrap/js/bootstrap.js"></script>
 <script src="<%= request.getContextPath()%>/lib/dataTable/jquery.dataTables.min.js"></script>
@@ -12,7 +12,7 @@
 <script src="<%= request.getContextPath()%>/lib/dataTable/Espanol.js"></script>
 <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.js"></script>
 <script src="<%= request.getContextPath()%>/lib/BootstrapValidator/bootstrapValidator.min.js"></script>
-<script src="<%= request.getContextPath()%>/lib/BootstrapValidator/language/es_ES.js"></script>
+
 <script src="<%= request.getContextPath()%>/lib/sweetAlert2/sweetalert2.all.min.js"></script>
 <script src="<%= request.getContextPath()%>/SI/vistas/Js/main.js"></script>
 <script src="<%= request.getContextPath()%>/SI/vistas/Js/Translate.js"></script>
@@ -25,10 +25,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-<script src="https://oss.maxcdn.com/momentjs/2.8.2/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<!-- Libreria español -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/i18n/es.js"></script>
+
+
 
 
 

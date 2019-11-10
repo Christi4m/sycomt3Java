@@ -11,7 +11,7 @@ public class Compras {
      private double cantProductShop;
      private double valorUnitario;
      private String estadoShop;
-
+     
     public Compras() {
     }
 

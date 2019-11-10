@@ -67,7 +67,7 @@ var ready = function () {
         $('#main-content').load("Bodega/Mensajeros.jsp");
         cambio();
     });
-    //funciones del menu tarjetas
+    //---funciones del menu tarjetas---
     //activar sub-menu despachos
     $(document).on('click', '#tarjetaDespachos', function (e) {
         e.preventDefault();
@@ -218,6 +218,33 @@ var ready = function () {
         e.preventDefault();
         $("#linkEntregasOpen").click();
         $("#linkEntregasRealizadasM").click();
+        cambio();
+    });
+    /////////////////////////////////////////////////////////////////////////////////
+    //main del usuario Cliente
+    /////////////////////////////////////////////////////////////////////////////////
+    //navegacion sidebar
+     $(document).on('click', '#linkPqrsC', function (e) {
+        e.preventDefault();
+        $('#main-content').load("Cliente/Pqrs.jsp");
+        cambio();    
+    });
+     $(document).on('click', '#linkCOmprasC', function (e) {
+        e.preventDefault();
+        $('#main-content').load("Cliente/Compras.jsp");
+        cambio();    
+    });
+    //navegacion home
+    $(document).on('click', '#tarjetaPqrsC', function (e) {
+        e.preventDefault();
+        $("#linkPqrsCOpen").click();
+        $("#linkPqrsC").click();
+        cambio();
+    });
+    $(document).on('click', '#tarjetaComprasC', function (e) {
+        e.preventDefault();
+        $("#linkComprasCOpen").click();
+        $("#linkCOmprasC").click();
         cambio();
     });
 }

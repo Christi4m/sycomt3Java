@@ -323,6 +323,7 @@ $('#frmShop').on('success.form.bv', function (e) {
         $('#btnOrderNow').attr("disabled", false);
     }
 });
+
 $(document).on('click', '#closeModalCart', function (e) {
     $("#frmShop")[0].reset();
     $("#frmShop").data('bootstrapValidator').resetForm();
