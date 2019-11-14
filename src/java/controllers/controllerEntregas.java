@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.EntregasDAO;
-import models.VentasDao;
+import models.VentasDAO;
 
 @MultipartConfig
 public class controllerEntregas extends HttpServlet {
@@ -44,7 +44,7 @@ public class controllerEntregas extends HttpServlet {
                 EntregasDAO modelo1 = new EntregasDAO();
                 Entregas entrega1 = new Entregas(request.getParameter("fechaEntrega"), Integer.parseInt(request.getParameter("Factura")), Integer.parseInt(request.getParameter("mesajeroAsignar")),"Asignada");
                 if (modelo1.generarEntrega(entrega1)) {
-                    VentasDao modelo9 = new VentasDao();
+                    VentasDAO modelo9 = new VentasDAO();
                     if (modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("Ventas")), "Asignada")) {
                         res = 1;
                         out.print(res);

@@ -65,7 +65,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button id="botonCerrarDV"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                    <button id="botonCerrarDV"type="button" style="color: white;"class="btn btn-secondary colorbtn" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="buttonCloseModal "type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                    <button id="buttonCloseModal "type="button" style="color: white;"class="btn colorbtn btn-secondary" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>

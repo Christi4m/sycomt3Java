@@ -40,12 +40,12 @@ public class VentasDaoTest {
     }
 
     /**
-     * Test of generarNumSerie method, of class VentasDao.
+     * Test of generarNumSerie method, of class VentasDAO.
      */
     @Test
     public void testGenerarNumSerie() {
         System.out.println("generarNumSerie");
-        VentasDao instance = new VentasDao();
+        VentasDAO instance = new VentasDAO();
         String expResult = "00000017";
         String result = instance.generarNumSerie();
         assertEquals(expResult, result);
@@ -54,12 +54,12 @@ public class VentasDaoTest {
     }
 
     /**
-     * Test of idVentas method, of class VentasDao.
+     * Test of idVentas method, of class VentasDAO.
      */
     @Test
     public void testIdVentas() {
         System.out.println("idVentas");
-        VentasDao instance = new VentasDao();
+        VentasDAO instance = new VentasDAO();
         String expResult = "51";
         String result = instance.idVentas();
         assertEquals(expResult, result);
@@ -68,13 +68,13 @@ public class VentasDaoTest {
     }
 
     /**
-     * Test of guardarVentas method, of class VentasDao.
+     * Test of guardarVentas method, of class VentasDAO.
      */
     @Test
     public void testGuardarVentas() {
         System.out.println("guardarVentas");
         Ventas v = new Ventas("08-10-2019", 30000.00, 1, "00000017", "En Despacho");
-        VentasDao instance = new VentasDao();
+        VentasDAO instance = new VentasDAO();
         boolean expResult = true;
         boolean result = instance.guardarVentas(v);
         assertEquals(expResult, result);
@@ -83,13 +83,13 @@ public class VentasDaoTest {
     }
 
     /**
-     * Test of guardarDetalleVenta method, of class VentasDao.
+     * Test of guardarDetalleVenta method, of class VentasDAO.
      */
     @Test
     public void testGuardarDetalleVenta() {
         System.out.println("guardarDetalleVenta");
         Ventas vent = new Ventas(46, 28, 24.00, 288000.00);
-        VentasDao instance = new VentasDao();
+        VentasDAO instance = new VentasDAO();
         boolean expResult = true;
         boolean result = instance.guardarDetalleVenta(vent);
         assertEquals(expResult, result);
@@ -99,13 +99,13 @@ public class VentasDaoTest {
     
 
     /**
-     * Test of deleteVenta method, of class VentasDao.
+     * Test of deleteVenta method, of class VentasDAO.
      */
     @Test
     public void testDeleteVenta() {
         System.out.println("deleteVenta");
         int idVenta = 34;
-        VentasDao instance = new VentasDao();
+        VentasDAO instance = new VentasDAO();
         boolean expResult = true;
         boolean result = instance.deleteVenta(idVenta);
         assertEquals(expResult, result);
@@ -114,14 +114,14 @@ public class VentasDaoTest {
     }
 
     /**
-     * Test of ProcesarVenta method, of class VentasDao.
+     * Test of ProcesarVenta method, of class VentasDAO.
      */
     @Test
     public void testProcesarVenta() {
         System.out.println("ProcesarVenta");
         int idVenta = 36;
         String estadoOrdenVenta = "Confirmada";
-        VentasDao instance = new VentasDao();
+        VentasDAO instance = new VentasDAO();
         boolean expResult = true;
         boolean result = instance.ProcesarVenta(idVenta, estadoOrdenVenta);
         assertEquals(expResult, result);
@@ -130,14 +130,14 @@ public class VentasDaoTest {
     }
 
     /**
-     * Test of insertFactura method, of class VentasDao.
+     * Test of insertFactura method, of class VentasDAO.
      */
     @Test
     public void testInsertFactura() {
         System.out.println("insertFactura");
         String numFactura = "00000016";
         int idVenta = 46;
-        VentasDao instance = new VentasDao();
+        VentasDAO instance = new VentasDAO();
         boolean expResult = true;
         boolean result = instance.insertFactura(numFactura, idVenta);
         assertEquals(expResult, result);

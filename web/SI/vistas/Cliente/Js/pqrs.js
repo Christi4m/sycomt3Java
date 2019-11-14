@@ -7,7 +7,7 @@ var create = function () {
     $(document).on('click', '#btncrearpqrs', function (e) {
         $('#formPqrs').bootstrapValidator({
             feedbackIcons: {valid: 'glyphicon glyphicon-ok', invalid: 'glyphicon glyphicon-remove', validating: 'glyphicon glyphicon-refresh'},
-            fields: {               
+            fields: {
                 typePqrs: {
                     validators: {
                         notEmpty: {message: 'Seleccione el el tipo de PQR\'s'},
@@ -27,10 +27,10 @@ var create = function () {
                         notEmpty: {message: 'Ingrese la descripción'}
                     }
                 },
-               
+
                 imagenProducto: {
                     validators: {
-                         
+
                         file: {
                             extension: 'jpeg,png,jpg',
                             type: 'image/jpeg,image/png,img/jpg',
@@ -70,14 +70,14 @@ var create = function () {
                             //error
                             type: 'success',
                             title: '¡ PQR\'s radicada exitosamente ! ',
-                            html: '<h5>Su numero de radicado es el LTC'+data+'. Su PQR\'s sera respondida en un plazo no mayor a 15 días habiles</h5>',
+                            html: '<h5>Su numero de radicado es el LTC' + data + '. Su PQR\'s sera respondida en un plazo no mayor a 15 días habiles</h5>',
                             width: 500,
                             padding: '5em',
                             showConfirmButton: false,
                             timer: 7000 //el tiempo que dura el mensaje en ms
                         });
 
-                    } else if(data == 0){
+                    } else if (data == 0) {
                         Swal.fire({
                             //error
                             type: 'error',
@@ -97,11 +97,11 @@ var create = function () {
         });
 
 
-    
+
     });
-   
+
 }
-    //function to read the pqrs created by the user in the system
+//function to read the pqrs created by the user in the system
 var read = function () {
     function getBase64Image(img) {
         var canvas = document.createElement("canvas");
@@ -192,7 +192,7 @@ var read = function () {
                                     //Columna que muesta el titulo del reporte al lado derecho
                                     alignment: 'center',
                                     fontSize: 14,
-                                    text: 'Listado del pqr\'s asignadas por '+nameUser+' al almacen'
+                                    text: 'Listado del pqr\'s asignadas por ' + nameUser + ' al almacen'
                                 }
                             ],
                             margin: 20
@@ -245,7 +245,7 @@ var read = function () {
         order: [[0, "desc"]],
         ajax: {
             method: "POST",
-            url: "../../controllerPqrs?action=readArrayId&idUser="+idUser+"",
+            url: "../../controllerPqrs?action=readArrayId&idUser=" + idUser + "",
             dataSrc: "datos"
         },
         columns: [
@@ -255,16 +255,43 @@ var read = function () {
             {data: "CUN"},
             {data: "type"},
             {data: "accions"}
-            
+
         ],
         createdRow: function (row, data, dataIndex) {
             $(row).find('td:eq(0)').attr('data-label', '#')
             $(row).find('td:eq(1)').attr('data-label', 'Fecha')
             $(row).find('td:eq(2)').attr('data-label', 'CUN')
             $(row).find('td:eq(3)').attr('data-label', 'Tipo')
-            $(row).find('td:eq(4)').attr('data-label', 'Acciones')            
+            $(row).find('td:eq(4)').attr('data-label', 'Acciones')
         },
         language: idiomaEsp
+    });
+
+    //Listar detalles producto
+    $(document).on('click', 'button.btnDetallesPqrs', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        $("#modalDetallePqrs").modal("show");
+        var idPqrs = $(this).attr('id');
+        var data = {idPqrs: idPqrs};
+        $.ajax({
+            url: "../../controllerPqrs?action=readIdPqrs",
+            type: "post",
+            data: data,
+            dataSrc: "datos",
+            dataType: "json",
+            success: function (data) {
+                $('#bodyDetailsProduct').html("");
+                $('#detallesP').html("");
+                $.each(data.datos, function (i, field) {
+                    if (!field.evidence == ""){
+                        $('#detallesP').append("<span id='spanEvidencePqrs'style='display:block;margin:auto;font-size: 15px; color:black;'>Evidencia</span> <br><br><img style='display:block;margin:auto;'src='../../EvidencePqrs/" + field.evidence + "' width='20%' height='20%' alt='Evidencia de la pqrs'/><h3 style='font-size: 15px; color:black; text-align: justify;'id='evidencePqrs'><span id='titleDesPqrs'>Descripción</span><br><br>" + field.description + "</h3>");
+                    }else{
+                        $('#detallesP').append("<span id='spanEvidencePqrs'style='display:block;margin:auto;font-size: 15px; color:black;'>Evidencia</span><h3 style='font-size: 15px; color:black; text-align: justify;'id='evidencePqrs'>No hay evidencia adjunta a la "+field.type+"</h3><h3 style='font-size: 15px; color:black; text-align: justify;'id='evidencePqrs'><span id='titleDesPqrs'>Descripción</span><br><br>" + field.description + "</h3>");
+                    }
+                });
+            }
+        });
     });
 
 }

@@ -145,7 +145,7 @@ public class controllerPqrs extends HttpServlet {
                     item.addProperty("CUN", "LTC"+pqrs2.getCUN());
                     item.addProperty("idClient", pqrs2.getIdClient());
                     item.addProperty("type", pqrs2.getType());
-                    item.addProperty("accions", "<button title='Ver Detalles'id='" + pqrs2.getId() + "'class='btn btnDetallesProducto btn-primary fa fa-eye''></button><button title='Actualizar Produccto'id='" + pqrs2.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button>");
+                    item.addProperty("accions", "<button title='Ver Detalles'id='" + pqrs2.getId() + "'class='btn btnDetallesPqrs btn-primary fa fa-eye''></button><button title='Actualizar Produccto'id='" + pqrs2.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button>");
 
                     array1.add(item);
 
@@ -154,10 +154,10 @@ public class controllerPqrs extends HttpServlet {
 
                 out.print(gson1.toString());
                 break;
-            case "readId":
+            case "readIdPqrs":
                 JsonObject gson2 = new JsonObject();
                 JsonArray array2 = new JsonArray();
-                int idPqrs1 = Integer.parseInt(request.getParameter("idUser"));
+                int idPqrs1 = Integer.parseInt(request.getParameter("idPqrs"));
                 pqrsDAO modelo3 = new pqrsDAO();
                 Pqrs pqrs3 = (Pqrs) modelo3.listPqrsId(idPqrs1);
                 JsonObject item = new JsonObject();
@@ -168,7 +168,7 @@ public class controllerPqrs extends HttpServlet {
                 item.addProperty("CUN", pqrs3.getCUN());
                 item.addProperty("idClient", pqrs3.getIdClient());
                 item.addProperty("type", pqrs3.getType());
-                item.addProperty("accions", "<button title='Ver Detalles'id='" + pqrs3.getId() + "'class='btn btnDetallesProducto btn-primary fa fa-eye''></button><button title='Actualizar Produccto'id='" + pqrs3.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button>");
+                
 
                 array2.add(item);
                 gson2.add("datos", array2);

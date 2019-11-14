@@ -117,5 +117,32 @@
             </div>
         </div>
     </div>
+     <!-- Modal detalle pqrs -->
+
+    <div  class="modal fade" id="modalDetallePqrs" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="">
+                        <span class="fa fa-close close1" aria-hidden="true"></span>
+                    </button>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">PQR's</h5>
+                </div>
+                <div  class="modal-body">
+                    
+
+                    
+                    <div class="row">
+                        <div id="detallesP" style="padding: 5%;width: 100%; height: 20%;  font-size: 10px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="buttonCloseModal "type="button" style="color: white;"class="btn btn-secondary colorbtn" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del modal detalle pqrs -->
 </section>       
 <script src="Cliente/Js/pqrs.js"></script>

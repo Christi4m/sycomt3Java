@@ -107,7 +107,7 @@ public class pqrsDAO extends Conexion {
         ArrayList<Pqrs> pqrs = new ArrayList<>();//creando el arraylist de tipo producto
         ResultSet rs = null;// trae el resultado de lo que haga en la base de datos
         try {
-            String sql = "call listPqrsId(?)";//crea la sentencia sql que voy a mandar a la base de datos
+            String sql = "call listPqrsIdUser(?)";//crea la sentencia sql que voy a mandar a la base de datos
             pst = getConnection().prepareCall(sql);//abriendo la conexión a la base de datos y los parametros que le voy a enviar (sentencia sql)
             pst.setInt(1, id);
             rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
@@ -138,7 +138,7 @@ public class pqrsDAO extends Conexion {
         Pqrs pqrs = null;
 
         try {
-            String sql = "call listPqrsId(?)";
+            String sql = "call listPqrsID(?)";
             pst = getConnection().prepareCall(sql);
             pst.setInt(1, id);
             rs = pst.executeQuery();
