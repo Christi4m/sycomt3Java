@@ -15,7 +15,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.ComprasDao;
+import models.ComprasDAO;
 import models.ProductoDAO;
 
 @MultipartConfig
@@ -48,11 +48,11 @@ public class controllerCompras extends HttpServlet {
                 String annio = Integer.toString(c.get(Calendar.YEAR));
                 String fecha = dia + "-" + mes + "-" + annio;
                 //seccion de codigo para instanciar las clases compras y comprasDao
-                ComprasDao shopDao1 = new ComprasDao();
+                ComprasDAO shopDao1 = new ComprasDAO();
                 Compras shop1 = new Compras(0, fecha, request.getParameter("descripcionShop"), Double.parseDouble(request.getParameter("totalShop")), Integer.parseInt(request.getParameter("proveedorShop")), 0, 0, 0,"Realizada");
                 //condicional if para guardar la compra y tomar un decision depensiendo el resultado que arroje el modelo
                 if (shopDao1.newShop(shop1)) {
-                    ComprasDao shopDao2 = new ComprasDao();
+                    ComprasDAO shopDao2 = new ComprasDAO();
                     int idShop = shopDao2.idCompras();
                     
                     String[] arrOfStr = request.getParameter("detailsShop").split(";");
@@ -63,7 +63,7 @@ public class controllerCompras extends HttpServlet {
                         int cant = Integer.parseInt(misAtributos.nextToken().trim());
                         double precio = Double.parseDouble(misAtributos.nextToken().trim());
 
-                        ComprasDao shopDao3 = new ComprasDao();
+                        ComprasDAO shopDao3 = new ComprasDAO();
                         Compras shop2 = new Compras(idShop, "", "", 0, 0, idP, cant, precio,"");
                         
                         shopDao3.newDetailShop(shop2);
@@ -77,7 +77,7 @@ public class controllerCompras extends HttpServlet {
             case "listShop":
                 JsonObject gson = new JsonObject();
                 JsonArray array = new JsonArray();
-                ComprasDao shopDao4 = new ComprasDao();
+                ComprasDAO shopDao4 = new ComprasDAO();
                 for (Compras shop3 : shopDao4.getAllShop()) {
                     JsonObject item = new JsonObject();
                     item.addProperty("Codigo", shop3.getIdShop());
@@ -99,7 +99,7 @@ public class controllerCompras extends HttpServlet {
                  JsonObject gsonDV = new JsonObject();
                 JsonArray arrayDV = new JsonArray();
                 int idShop = Integer.parseInt(request.getParameter("idShop"));
-                ComprasDao shopDao5 = new ComprasDao();
+                ComprasDAO shopDao5 = new ComprasDAO();
                 for (Compras shop4 : shopDao5.getAllDetailsShop(idShop)) {
                     JsonObject item = new JsonObject();
                     ProductoDAO prDao = new ProductoDAO();

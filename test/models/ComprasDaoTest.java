@@ -40,13 +40,13 @@ public class ComprasDaoTest {
     }
 
     /**
-     * Test of newShop method, of class ComprasDao.
+     * Test of newShop method, of class ComprasDAO.
      */
     @Test
     public void testNewShop() {
         System.out.println("newShop");
         Compras c = new Compras(0, "07-10-2019", "Prueba testing", 20000.00, 7, 0, 0, 0, "Realizada");
-        ComprasDao instance = new ComprasDao();
+        ComprasDAO instance = new ComprasDAO();
         boolean expResult = true;
         boolean result = false;
         if(instance.newShop(c)){
@@ -58,13 +58,13 @@ public class ComprasDaoTest {
     }
 
     /**
-     * Test of newDetailShop method, of class ComprasDao.
+     * Test of newDetailShop method, of class ComprasDAO.
      */
     @Test
     public void testNewDetailShop() {
         System.out.println("newDetailShop");
         Compras c = new Compras(25, "", "", 0, 0, 28, 23, 50000, "");
-        ComprasDao instance = new ComprasDao();
+        ComprasDAO instance = new ComprasDAO();
         boolean expResult = true;
         boolean result = instance.newDetailShop(c);
         assertEquals(expResult, result);
@@ -73,12 +73,12 @@ public class ComprasDaoTest {
     }
 
     /**
-     * Test of idCompras method, of class ComprasDao.
+     * Test of idCompras method, of class ComprasDAO.
      */
     @Test
     public void testIdCompras() {
         System.out.println("idCompras");
-        ComprasDao instance = new ComprasDao();
+        ComprasDAO instance = new ComprasDAO();
         int expResult = 37;
         int result = instance.idCompras();
         assertEquals(expResult, result);
