@@ -261,7 +261,7 @@ listar = function () {
                 $('#detallesP').html("");
                 $.each(data.datos, function (i, field) {
                     $('#bodyDetailsProduct').append("<tr><td>" + field.Ubicacion + "</td><td>" + field.proveedor + "</td></tr>");
-                    $('#detallesP').append("<img src='../../" + field.imagen + "' width='20%' height='20%' alt='Imagen del Producto'/><h3 id='detallesProducto'>" + field.descripcion + "</h3>");
+                    $('#detallesP').append("<img style='display:block;margin:auto;'src='../../" + field.imagen + "' width='20%' height='20%' alt='Imagen del Producto'/><h3 style='font-size: 15px; color:black; text-align: justify;'id='detallesProducto'>" + field.descripcion + "</h3>");
                 });
             }
         });

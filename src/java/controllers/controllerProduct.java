@@ -10,8 +10,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.*;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -19,22 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.ProductoDAO;
 
-/**
- *
- * @author Christiam
- */
+
 @MultipartConfig
 public class controllerProduct extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");//para el trato de los caracteres especiales
@@ -53,12 +40,14 @@ public class controllerProduct extends HttpServlet {
                 //inputStream para crear el fichero en la carpeta del proyecto
                 InputStream inputStream = null;
                 OutputStream outputStream = null;
+                String rutaArchivo = "";
 
                 try {
                     inputStream = request.getPart("imagenProducto").getInputStream(); //leemos el fichero local
                     String fileName = request.getPart("imagenProducto").getSubmittedFileName();
                     // write the inputStream to a FileOutputStream
-                    outputStream = new FileOutputStream(new File("D:\\ADMIN\\Desktop\\Desarrollo\\Java\\SycomteJAVA\\web\\images\\productos\\" + fileName));
+                    rutaArchivo = getServletContext().getRealPath("")+ "\\images\\productos\\"+fileName;
+                    outputStream = new FileOutputStream(new File("C:\\Users\\ADMIN\\Documents\\sycomt3\\sycomt3Java\\web\\images\\productos\\"+fileName));
 
                     int read = 0;
                     byte[] bytes = new byte[1024];
@@ -67,7 +56,7 @@ public class controllerProduct extends HttpServlet {
                         outputStream.write(bytes, 0, read);
                     }
 
-                    Producto pr = new Producto(request.getParameter("nombreProducto"), request.getParameter("telajeProducto"),request.getParameter("decripcionProducto"), request.getParameter("ubicacionBodega"), Math.round(Double.parseDouble(request.getParameter("precioMC"))), Double.parseDouble(request.getParameter("stock")), "images/productos/" + fileName,Integer.parseInt(request.getParameter("proveedorProducto")));
+                    Producto pr = new Producto(request.getParameter("nombreProducto"),request.getParameter("decripcionProducto"), request.getParameter("telajeProducto"), request.getParameter("ubicacionBodega"), Math.round(Double.parseDouble(request.getParameter("precioMC"))), Double.parseDouble(request.getParameter("stock")), "images/productos/" + fileName,Integer.parseInt(request.getParameter("proveedorProducto")));
                     ProductoDAO mpc = new ProductoDAO();
                     if (mpc.crearProducto(pr)) {
                         out.print("1");

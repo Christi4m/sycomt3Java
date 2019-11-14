@@ -1,5 +1,6 @@
 var listar = "";
 var lang = "";
+var xx;
 
 var trans = function () {
 

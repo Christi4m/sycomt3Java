@@ -117,6 +117,11 @@ body::-webkit-scrollbar {
     background-color:#ebedf1;
 
 }
+#tableCrud{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
 @media screen and (max-width: 1100px) {
 
 
@@ -133,6 +138,8 @@ body::-webkit-scrollbar {
         display: flex;
         justify-content: center;
         align-items: center;
+
+
     }
     #tableCrud{
         width: 100%;
@@ -144,9 +151,13 @@ body::-webkit-scrollbar {
     #tableCrud td {
         border-bottom: 1px solid #ddd;
         display: block;
+    
+        margin-left: 0px;
         font-size: 1.2em;
         text-align: right;
         padding: 10px;
+        
+
     }
     #tableCrud td button{
         float: right;
@@ -158,11 +169,12 @@ body::-webkit-scrollbar {
         font-weight: bold;
         font-size: 1em;
         padding: 1px 5px;
+       
     }
 
-/*    table td:last-child{
-        text-align: center;
-    }*/
+    /*    table td:last-child{
+            text-align: center;
+        }*/
 
     .tabla {
         margin: 0;
@@ -183,11 +195,13 @@ body::-webkit-scrollbar {
 #tableCrud{
     color: black;
     width: 100%;
+   
 }
 
 @media screen and (max-heigth: 800px) {
     .div2{
         height: 100%;
         position: absolute;
+
     }
 }

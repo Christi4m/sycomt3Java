@@ -2,12 +2,10 @@ package models;
 
 import classes.Producto;
 import classes.Ventas;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+
 
 public class VentasDao extends Conexion {
 

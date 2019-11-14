@@ -163,13 +163,12 @@ public class controllerVenta extends HttpServlet {
                         item.addProperty("Cliente", "<a class='idCliente' id='" + ventas2.getIdCliente() + "' role=\"button\" href=\"#\">" + ventas2.getIdCliente() + " </a>");
                         item.addProperty("Factura", ventas2.getNumSerie());
                         item.addProperty("Estado", ventas2.getEstado());
-                        if (sesion.getAttribute("typeTercero").toString().equalsIgnoreCase("Administrador")) {
-                            item.addProperty("acciones", "<button id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
-                        } else if (sesion.getAttribute("typeTercero").toString().equalsIgnoreCase("Bodega-Jefe")) {
-                            item.addProperty("acciones", "<button id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button onclick=\"detailsPerson()\" id='" + ventas2.getId() + "' class='btn btnEliminar fa fa-check btn-success text-left'></button>");
-                        } else if (sesion.getAttribute("typeTercero").toString().equalsIgnoreCase("Cliente")) {
-                            item.addProperty("acciones", "<button id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
+                        if(ventas2.getEstado().equalsIgnoreCase("Entregada")){
+                            item.addProperty("acciones", "<button data-toggle=\"modal\" data-target=\"#modalDetalleComprasC\" title='Detalles de la compra' id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button title='Solicitar Garantia'id='" + ventas2.getId() + "'class='btn btnGarantia btn-danger far fa-calendar-times'></button>");
+                        }else{
+                            item.addProperty("acciones", "<button data-toggle=\"modal\" data-target=\"#modalDetalleComprasC\"title='Detalles de la compra' id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
                         }
+                    
 
                         array4.add(item);
                     }

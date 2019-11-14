@@ -179,6 +179,20 @@ listar = function () {
             {data: "Stock"},
             {data: "acciones"}
         ],
+        createdRow: function (row, data, dataIndex) {
+            $(row).find('td:eq(0)').attr('data-label', '#')
+            $(row).find('td:eq(1)').attr('data-label', 'Nombre')
+            $(row).find('td:eq(2)').attr('data-label', 'Telaje')
+            $(row).find('td:eq(3)').attr('data-label', 'Ubicación')
+            $(row).find('td:eq(4)').attr('data-label', 'Precio')
+            $(row).find('td:eq(5)').attr('data-label', 'Stock')
+            $(row).find('td:eq(6)').attr('data-label', 'Acciones')
+            
+             
+        
+        
+        
+        },
         language: idiomaEsp
     });
 };
@@ -253,8 +267,8 @@ $(function () {
                     validators: {
                         notEmpty: {message: 'Adjunte la imagen'},
                         file: {
-                            extension: 'jpeg,png',
-                            type: 'image/jpeg,image/png',
+                            extension: 'jpeg,png,jpg',
+                            type: 'image/jpeg,image/png,img/jpg',
                             maxSize: 2048 * 1024,
                             message: 'El archivo seleccionado no es valido'
                         }

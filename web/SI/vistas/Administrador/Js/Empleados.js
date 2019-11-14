@@ -205,8 +205,12 @@ listar = function () {
             $(row).find('td:eq(2)').attr('data-label', 'Cargo')
             $(row).find('td:eq(3)').attr('data-label', 'Estado')
             $(row).find('td:eq(4)').attr('data-label', 'Acciones')
-
-
+            $(row).find('td:eq(1)').css({'-ms-word-break':'break-all','word-break':'break-all','word-break':'break-word',
+                '-ms-hyphens':'auto','-moz-hyphens':'auto','-webkit-hyphens':'auto','hyphens':'auto'})
+             
+        
+        
+        
         },
         language: idiomaEsp
     });

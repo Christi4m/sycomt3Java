@@ -9,38 +9,40 @@
 
 %>
 <%    HttpSession sesion = request.getSession(true);
+    
+
     Object firstName = sesion.getAttribute("firstName") == null ? null : sesion.getAttribute("firstName");
     String htmlcode = "";
-   
+
     String list = "";
     if (firstName != null) {
-         String rol = "";
-         rol = sesion.getAttribute("typeTercero").toString();
-         if(rol.equalsIgnoreCase("Administrador") ||rol.equalsIgnoreCase("Bodega-Jefe") ||rol.equalsIgnoreCase("Mensajero")){
-             sesion.invalidate();
-             out.print("<script>location.reload()</script>");
-         }
+        String rol = "";
+        rol = sesion.getAttribute("typeTercero").toString();
+        if (rol.equalsIgnoreCase("Administrador") || rol.equalsIgnoreCase("Bodega-Jefe") || rol.equalsIgnoreCase("Mensajero")) {
+            sesion.invalidate();
+            out.print("<script>location.reload()</script>");
+        }
     }
 
     if (firstName != null) {
 
         list = "<li class=\"dropdown\">\n"
-                    + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">"+firstName+"<span class=\"caret\"></span></a>\n"
-                    + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
-                    + "<li><a href=\"LogoutUser\">Cerrar Sesión</a></li>\n"
-                    + "<li><a href=\"SI/vistas/Dashboard.jsp\">Mi Perfil</a></li>\n"                    
-                    + "</ul>\n"
-                    + "</li>";
+                + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">" + firstName + "<span class=\"caret\"></span></a>\n"
+                + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
+                + "<li><a href=\"LogoutUser\">Cerrar Sesión</a></li>\n"
+                + "<li><a href=\"SI/vistas/Dashboard.jsp\">Mi Perfil</a></li>\n"
+                + "</ul>\n"
+                + "</li>";
 
     } else {
-               list = "<li class=\"dropdown\">\n"
-                    + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Iniciar Sesión<span class=\"caret\"></span></a>\n"
-                    + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
-                    + "<li><a href=\"vistasAux/login.jsp\">Iniciar Sesión</a></li>\n"
-                    + "<li><a href=\"vistasAux/login.jsp\">Registrarme</a></li>\n"
-                    + "<li><a href=\"vistasAux/login.jsp\">Olvide Mi Contraseña</a></li>\n"
-                    + "</ul>\n"
-                    + "</li>";       
+        list = "<li class=\"dropdown\">\n"
+                + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Iniciar Sesión<span class=\"caret\"></span></a>\n"
+                + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
+                + "<li><a href=\"vistasAux/login.jsp\">Iniciar Sesión</a></li>\n"
+                + "<li><a href=\"vistasAux/login.jsp\">Registrarme</a></li>\n"
+                + "<li><a href=\"vistasAux/login.jsp\">Olvide Mi Contraseña</a></li>\n"
+                + "</ul>\n"
+                + "</li>";
     }
 %>
 <!DOCTYPE html>
@@ -72,6 +74,7 @@
                         <div class="col-sm-4">
                             <div class="contactinfo">
                                 <ul class="nav nav-pills">
+                                    
                                     <li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
                                     <li><a href=""><i class="fa fa-envelope"></i> info@lunatextil.com</a></li>
                                 </ul>
@@ -94,13 +97,13 @@
                                 <ul class="nav navbar-nav nav-pills" style="float: right">
 
                                     <li><a href="<%= request.getContextPath()%>/vistasAux/Nosotros.jsp">Nosotros</a></li>                                    
-                                    <%= list%>
+                                        <%= list%>
                                     <li title="Idioma"class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style="font-size: 20px;"class="fa fa-globe"></span> <span class="caret"></span></a>
                                         <ul class="dropdown-menu menuIdioma" aria-labelledby="about-us">
                                             <li><a href="#">Es</a></li>
                                             <li><a href="#">En</a></li>
-                                            
+
                                         </ul>
                                     </li>
                                 </ul>
@@ -220,9 +223,9 @@
                                 <div class="modal-body modalCPr">
                                     <div class="row">
                                         <div style="padding-top: 30px;"class="col-md-6 colImg"></div> 
-                                        
+
                                         <div class="col-md-6 colDetails"></div> 
-                                        
+
                                     </div>                                  
                                 </div>
                                 <div class="modal-footer">

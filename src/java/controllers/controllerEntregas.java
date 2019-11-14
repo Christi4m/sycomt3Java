@@ -16,7 +16,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.EntregasDao;
+import models.EntregasDAO;
 import models.VentasDao;
 
 @MultipartConfig
@@ -41,7 +41,7 @@ public class controllerEntregas extends HttpServlet {
         switch (action) {
             case "generarEntrega":
                 int res = 0;
-                EntregasDao modelo1 = new EntregasDao();
+                EntregasDAO modelo1 = new EntregasDAO();
                 Entregas entrega1 = new Entregas(request.getParameter("fechaEntrega"), Integer.parseInt(request.getParameter("Factura")), Integer.parseInt(request.getParameter("mesajeroAsignar")),"Asignada");
                 if (modelo1.generarEntrega(entrega1)) {
                     VentasDao modelo9 = new VentasDao();
@@ -59,7 +59,7 @@ public class controllerEntregas extends HttpServlet {
                 JsonObject gsonLE = new JsonObject();
                 JsonArray arrayLE = new JsonArray();
 
-                EntregasDao modelo8 = new EntregasDao();
+                EntregasDAO modelo8 = new EntregasDAO();
                 for (Entregas entregas4 : modelo8.getAllEntregasAsignadas(Integer.parseInt(request.getParameter("idFactura")))) {
                     JsonObject item = new JsonObject();
                     

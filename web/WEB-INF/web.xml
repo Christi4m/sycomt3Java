@@ -52,6 +52,10 @@
         <servlet-name>controllerCorreos</servlet-name>
         <servlet-class>controllers.controllerCorreos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>controllerPqrs</servlet-name>
+        <servlet-class>controllers.controllerPqrs</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controllerProduct</servlet-name>
         <url-pattern>/methodProduct</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>controllerCorreos</servlet-name>
         <url-pattern>/controllerCorreos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controllerPqrs</servlet-name>
+        <url-pattern>/controllerPqrs</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

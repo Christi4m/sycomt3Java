@@ -25,10 +25,10 @@
 
 %>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <%@include file="dependencias/dependenciasCss.jsp"%>
+    
     <body>
-        <%  out.print("<script>var idUser = "+idUser+";</script>");%>
         <%@include file="dependencias/header.jsp"%>     
         <%@include file="dependencias/Sidebar.jsp"%>   
         <%@include file="dependencias/Home.jsp"%>  

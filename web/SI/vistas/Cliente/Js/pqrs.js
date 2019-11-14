@@ -1,11 +1,108 @@
 $(document).ready(function () {
-    listar();
+    create();
+    read();
+});
+var create = function () {
+    //function to create pqrs's into system
+    $(document).on('click', '#btncrearpqrs', function (e) {
+        $('#formPqrs').bootstrapValidator({
+            feedbackIcons: {valid: 'glyphicon glyphicon-ok', invalid: 'glyphicon glyphicon-remove', validating: 'glyphicon glyphicon-refresh'},
+            fields: {               
+                typePqrs: {
+                    validators: {
+                        notEmpty: {message: 'Seleccione el el tipo de PQR\'s'},
+                        callback: {
+                            message: 'Seleccione el tipo de PQR\'s',
+                            callback: function (value, validator, $field) {
+                                if (value === '') {
+                                    return true;
+                                }
+                                return true;
+                            }
+                        }
+                    }
+                },
+                descriptionPqrs: {
+                    validators: {
+                        notEmpty: {message: 'Ingrese la descripción'}
+                    }
+                },
+               
+                imagenProducto: {
+                    validators: {
+                         
+                        file: {
+                            extension: 'jpeg,png,jpg',
+                            type: 'image/jpeg,image/png,img/jpg',
+                            maxSize: 2048 * 1024,
+                            message: 'El archivo seleccionado no es valido, seleccione la imagen que desea adjuntar'
+                        }
+                    }
+                }
+
+            }
+
+        });
+        $('#formPqrs').on('success.form.bv', function (e) {
+            // Prevent form submission
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var data = new FormData($('#formPqrs')[0]);
+
+            for (var entrie of data.entries()) {
+                console.log(entrie[0] + ': ' + entrie[1]);
+            }
+
+            $("#formPqrs")[0].reset();
+            $("#formPqrs").data('bootstrapValidator').resetForm();
+            $("#modalPqrs").modal("toggle");
+
+            $.ajax({
+                url: "../../controllerPqrs?action=create",
+                type: "post",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                    if (data != 0) {
+                        Swal.fire({
+                            //error
+                            type: 'success',
+                            title: '¡ PQR\'s radicada exitosamente ! ',
+                            html: '<h5>Su numero de radicado es el LTC'+data+'. Su PQR\'s sera respondida en un plazo no mayor a 15 días habiles</h5>',
+                            width: 500,
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 7000 //el tiempo que dura el mensaje en ms
+                        });
+
+                    } else if(data == 0){
+                        Swal.fire({
+                            //error
+                            type: 'error',
+                            title: '¡Error al Radicar! ',
+                            text: 'Intentelo de nuevo',
+                            width: 500,
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 4000 //el tiempo que dura el mensaje en ms
+                        });
+
+                    }
+//                    listar();
+                }
+            });
+
+        });
+
 
     
-});
-
-
-listar = function () {
+    });
+   
+}
+    //function to read the pqrs created by the user in the system
+var read = function () {
     function getBase64Image(img) {
         var canvas = document.createElement("canvas");
         canvas.width = img.width;
@@ -15,10 +112,6 @@ listar = function () {
         return canvas.toDataURL("image/png");
     }
     //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
-    var newImg = new Image();
-    newImg.src = '../img/LogoSycomt3FondoNegro.png';
-    var immm = getBase64Image(newImg).toString();
-    
     var myGlyph = new Image();
     myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
     var table = $("#tableCrud").DataTable({
@@ -30,7 +123,7 @@ listar = function () {
                 titleAttr: 'Copiar Datos',
                 className: 'btn btn-info',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1, 2, 3, 'visible']
                 }
             },
             {
@@ -38,9 +131,8 @@ listar = function () {
                 text: '<i style="font-size:25px;"class="fas fa-file-excel"></i>',
                 titleAttr: 'Exportar a Excel',
                 className: 'btn btn-success',
-                title: 'Ventas',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 'visible']
+                    columns: [0, 1, 2, 3, 'visible']
                 }
             },
             {
@@ -48,14 +140,13 @@ listar = function () {
                 text: '<i style="font-size:25px;" class="fas fa-file-pdf"></i>',
                 titleAttr: 'Exportar a Pdf',
                 className: 'btn btn-danger',
-                title: 'Ventas',
+                title: 'Stock',
                 exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
+                    columns: [0, 1, 2, 3],
                 },
                 customize: function (doc) {
-
                     //Dar el 100% de ancho a la tabla 
-                    doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    doc.content[1].table.widths = ['20%', '20%', '20%', '20%'];
                     //Funcion que convierte la imagen a mostrar a data uri base 64
                     doc.images = doc.images || {};
                     doc.images['myGlyph'] = getBase64Image(myGlyph);
@@ -100,8 +191,8 @@ listar = function () {
                                 {
                                     //Columna que muesta el titulo del reporte al lado derecho
                                     alignment: 'center',
-                                    fontSize: 12,
-                                    text: 'Listado de compras realizadas en el almacen'
+                                    fontSize: 14,
+                                    text: 'Listado del pqr\'s asignadas por '+nameUser+' al almacen'
                                 }
                             ],
                             margin: 20
@@ -134,7 +225,7 @@ listar = function () {
                 text: '<i style="font-size:25px;"class="fas fa-file-csv"></i>',
                 titleAttr: 'Exportar a Csv',
                 className: 'btn btn-warning',
-                title: 'Proveedores',
+                title: 'Stock',
                 exportOptions: {
                     columns: [0, 1, 2, 3],
 
@@ -150,83 +241,31 @@ listar = function () {
 
         ],
         destroy: true,
+        responsive: true,
         order: [[0, "desc"]],
         ajax: {
             method: "POST",
-            url: "../../processVenta?action=listVentasID&idUser="+idUser+"",
+            url: "../../controllerPqrs?action=readArrayId&idUser="+idUser+"",
             dataSrc: "datos"
         },
-       
         columns: [
+
+            {data: "id"},
+            {data: "datePqrs"},
+            {data: "CUN"},
+            {data: "type"},
+            {data: "accions"}
             
-            {data: "Codigo"},
-            {data: "Fecha"},
-            {data: "Valor"},
-            {data: "Factura"},
-            {data: "Estado"},
-            {data: "acciones"}
         ],
+        createdRow: function (row, data, dataIndex) {
+            $(row).find('td:eq(0)').attr('data-label', '#')
+            $(row).find('td:eq(1)').attr('data-label', 'Fecha')
+            $(row).find('td:eq(2)').attr('data-label', 'CUN')
+            $(row).find('td:eq(3)').attr('data-label', 'Tipo')
+            $(row).find('td:eq(4)').attr('data-label', 'Acciones')            
+        },
         language: idiomaEsp
     });
-    $(function () {
 
-        $(document).on('click', 'button.btnDetalles', function (e) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            var idVenta = $(this).parents("tr").find("td").eq(0).text();
-           
-            var idVenta = $(this).attr("id");
-
-            var dato = {idVenta: idVenta}
-            $.ajax({
-                url: "../../processVenta?action=detalleVentas",
-                type: "post",
-                data: dato,
-                dataSrc: "datos",
-                dataType: "json",
-                success: function (data) {
-                    $('#bodyDV').html("");
-                    $.each(data.datos, function (i, field) {                        
-                        $('#bodyDV').append("<tr><td>" + field.idProducto + "</td><td>" + field.nombreProducto + "</td><td>" + field.detalles + "</td><td>" + field.cantidad + "</td><td>" + field.precio + "</td></tr>");
-                        $("#modalDetalleVentas").modal("show");
-                    });
-//                    
-
-                }
-            });
-
-        });
-    })
-    $(document).on('click', 'button.btnDetallesProducto', function (e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        $("#modalDetalleProducto").modal("show");
-        var idProducto = $(this).attr('id');
-        var data = {idProducto: idProducto};
-        $.ajax({
-            url: "../../methodProduct?accion=modalUpdate",
-            type: "post",
-            data: data,
-            dataSrc: "datos",
-            dataType: "json",
-            success: function (data) {
-                $('#bodyDetailsProduct').html("");
-                $('#detallesP').html("");
-                $.each(data.datos, function (i, field) {                    
-                    $('#detallesP').append("<img style='display:block;margin:auto;'src='../../" + field.imagen + "' width='20%' height='20%' alt='Imagen del Producto'/><h3 style='font-size: 15px; color:black; text-align: justify;'id='detallesProducto'>" + field.descripcion + "</h3>");
-                });
-            }
-        });
-    });
-    $('#botonCerrarDV').click(function (e) {
-        $("#modalDetalleVentas").modal("toggle");
-        $('#bodyDV').html("");
-    });
 }
-
-
-
-
-
-
 

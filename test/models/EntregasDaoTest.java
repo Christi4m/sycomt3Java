@@ -40,13 +40,13 @@ public class EntregasDaoTest {
     }
 
     /**
-     * Test of generarEntrega method, of class EntregasDao.
+     * Test of generarEntrega method, of class EntregasDAO.
      */
     @Test
     public void testGenerarEntrega() {
         System.out.println("generarEntrega");
         Entregas entrega = new Entregas("2019-10-03", 1, 26, "Asignada");
-        EntregasDao instance = new EntregasDao();
+        EntregasDAO instance = new EntregasDAO();
         boolean expResult = true;
         boolean result = instance.generarEntrega(entrega);
         assertEquals(expResult, result);

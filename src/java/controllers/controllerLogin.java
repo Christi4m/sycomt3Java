@@ -5,7 +5,10 @@
  */
 package controllers;
 
+import classes.Producto;
 import classes.Tercero;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.ProductoDAO;
 import models.TerceroDAO;
 
 /**
@@ -74,8 +78,26 @@ public class controllerLogin extends HttpServlet {
                 out.print(sesion.getAttribute("typeTercero").toString());
                 break;
             case "logOut": {
-                    sesion.invalidate();
-                    out.print("1");                
+
+                sesion.invalidate();
+                out.print("1");
+            }
+            case "dateJson": {
+                JsonObject gson = new JsonObject();
+                JsonArray array = new JsonArray();
+                
+                JsonObject item = new JsonObject();
+                item.addProperty("typeTercero", sesion.getAttribute("typeTercero").toString()); // add property ,, agregar propiedad al objeto json 
+                item.addProperty("firstName", sesion.getAttribute("firstName").toString());
+                item.addProperty("idUser", sesion.getAttribute("idUser").toString());
+                item.addProperty("typeId", sesion.getAttribute("typeId").toString());
+                item.addProperty("numId", sesion.getAttribute("numId").toString());
+                item.addProperty("nameUser", sesion.getAttribute("nameUser").toString());
+
+                array.add(item);
+                gson.add("datos", array);
+
+                out.print(gson.toString());
             }
 
         }

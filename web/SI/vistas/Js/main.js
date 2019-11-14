@@ -32,6 +32,7 @@ function close() {
 }
 $(document).ready(function () {
     ready();
+   
 });
 var ready = function () {
     //main del usuario jefe bodega

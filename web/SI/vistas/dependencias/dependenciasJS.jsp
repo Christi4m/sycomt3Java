@@ -15,6 +15,7 @@
 
 <script src="<%= request.getContextPath()%>/lib/sweetAlert2/sweetalert2.all.min.js"></script>
 <script src="<%= request.getContextPath()%>/SI/vistas/Js/main.js"></script>
+<script src="<%= request.getContextPath()%>/SI/vistas/Js/Dates.js"></script>
 <script src="<%= request.getContextPath()%>/SI/vistas/Js/Translate.js"></script>
 <script src="<%= request.getContextPath()%>/SI/vistas/Js/logOut.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>

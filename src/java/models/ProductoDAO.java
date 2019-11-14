@@ -1,25 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package models;
 //llamando librerias o clases
 
 import classes.Producto;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Cristian
- */
+
+
 public class ProductoDAO extends Conexion {
 
     PreparedStatement pst = null;//Abre flujo y manda parametros
