@@ -79,12 +79,5 @@ public class EntregasDAO extends Conexion {
 
     }
 
-    public static void main(String[] args) {
-        EntregasDAO modelo8 = new EntregasDAO();
-                for (Entregas entregas4 : modelo8.getAllEntregasAsignadas(1)) {
-                 
-                    System.out.println(entregas4.getEmailMensajero());
-                 
-                    }
-    }
+    
 }
