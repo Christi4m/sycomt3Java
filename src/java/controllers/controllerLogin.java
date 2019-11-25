@@ -19,21 +19,10 @@ import javax.servlet.http.HttpSession;
 import models.ProductoDAO;
 import models.TerceroDAO;
 
-/**
- *
- * @author Aprendiz
- */
+
 public class controllerLogin extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -57,6 +46,7 @@ public class controllerLogin extends HttpServlet {
                     sesion.setAttribute("idUser", tercero.getId());
                     sesion.setAttribute("typeId", tercero.getTypeId());
                     sesion.setAttribute("numId", tercero.getNumId());
+                    sesion.setAttribute("address", tercero.getAddress());
                     sesion.setAttribute("nameUser", tercero.getFirstName() + " " + tercero.getSecondName() + " " + tercero.getFirstLastName() + " " + tercero.getSecondLastName());
 
                     out.print("1");
@@ -77,12 +67,12 @@ public class controllerLogin extends HttpServlet {
 
                 out.print(sesion.getAttribute("typeTercero").toString());
                 break;
-            case "logOut": {
+            case "logOut": 
 
                 sesion.invalidate();
                 out.print("1");
-            }
-            case "dateJson": {
+            break;  
+            case "dateJson": 
                 JsonObject gson = new JsonObject();
                 JsonArray array = new JsonArray();
                 
@@ -92,14 +82,16 @@ public class controllerLogin extends HttpServlet {
                 item.addProperty("idUser", sesion.getAttribute("idUser").toString());
                 item.addProperty("typeId", sesion.getAttribute("typeId").toString());
                 item.addProperty("numId", sesion.getAttribute("numId").toString());
+                item.addProperty("address", sesion.getAttribute("address").toString());
                 item.addProperty("nameUser", sesion.getAttribute("nameUser").toString());
 
                 array.add(item);
                 gson.add("datos", array);
 
                 out.print(gson.toString());
-            }
-
+            
+            break;
+           
         }
 
     }

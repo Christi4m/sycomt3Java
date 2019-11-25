@@ -241,7 +241,7 @@ $('#frmShop').on('success.form.bv', function (e) {
     var detailsShop = "";
     var totalShop = shoppingCart.totalCart();
     var proveedorShop = $('#proveedorShop').val();
-    var descripcionShop = $('#decripcionShop').val();
+    var descripcionShop = $('#descripcionShop').val();
     if (cartArrayOrder.length > 0) {
         for (var i in cartArrayOrder) {
             detailsShop += cartArrayOrder[i].idSis + "," + cartArrayOrder[i].count + "," + cartArrayOrder[i].total + ";";

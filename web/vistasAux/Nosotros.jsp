@@ -9,8 +9,9 @@
 
         htmlcode = " <li class=\"menu-has-children justify-content-center\"><a href=\"\" id=\"navIngresar\">" + firstName + "</a>\n"
                 + "            <ul>\n"
-                + "              <li><a href='LogoutUser' id=\"navLogOut\">Cerrar Sesión</a></li>\n"
-                + "              <li><a href=\"#\" id=\"navMiPerfil\">Mi Perfil</a></li>\n"
+                + "              <li><a href='../LogoutUser' id=\"navLogOut\">Cerrar Sesión</a></li>\n"
+                + "              <li><a href=\"../SI/vistas/Dashboard.jsp\" id=\"navMiPerfil\">Mi Perfil</a></li>\n"
+                + "              <li><a href=\"../index.jsp\" id=\"CartLinl\">Carrito</a></li>\n"
                 + "              <li class=\"dropdown-divider\"></li>\n"
                 + "            </ul>\n"
                 + "          </li>";

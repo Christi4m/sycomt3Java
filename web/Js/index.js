@@ -206,9 +206,8 @@ $('#btnOrderNow').click(function (e) {
     e.stopImmediatePropagation();
     var cartArrayOrder = shoppingCart.listCart();
     var detailsShop = "";
-    var totalShop = shoppingCart.totalCart();
-    var proveedorShop = $('#proveedorShop').val();
-    var descripcionShop = $('#decripcionShop').val();
+    var totalShop = shoppingCart.totalCartNeto();
+  
     if (cartArrayOrder.length > 0) {
         for (var i in cartArrayOrder) {
             detailsShop += cartArrayOrder[i].idSis + "," + cartArrayOrder[i].count + "," + cartArrayOrder[i].total + ";";
@@ -429,7 +428,25 @@ var shoppingCart = (function () {
         for (var item in cart) {
             totalCart += cart[item].price * cart[item].count;
         }
+        
         return Number(totalCart.toFixed(2));
+    }
+    obj.totalCartIva = function () {
+        var totalCart = 0;
+        for (var item in cart) {
+            totalCart += cart[item].price * cart[item].count;
+        }
+        var totalI = totalCart * 0.19
+        return Number(totalI.toFixed(2));
+    }
+    obj.totalCartNeto = function () {
+        var totalCart = 0;
+        for (var item in cart) {
+            totalCart += cart[item].price * cart[item].count;
+        }
+        var totalI = totalCart * 0.19
+        var totalN = totalCart +totalI;
+        return Number(totalN.toFixed(2));
     }
 
     // List cart
@@ -542,6 +559,8 @@ function displayCart() {
 
     $('.show-cart').html(output);
     $('.total-cart').html(shoppingCart.totalCart());
+    $('.total-cart-iva').html(shoppingCart.totalCartIva());
+    $('.total-cart-neto').html(shoppingCart.totalCartNeto());
     $('.total-count').html(shoppingCart.listCart().length);
 }
 

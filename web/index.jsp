@@ -263,7 +263,9 @@
                                         <table class="show-cart table">
 
                                         </table>
-                                        <div>Total: $<span class="total-cart"></span></div>
+                                        <div>Sub Total: $ <span class="total-cart"></span></div>
+                                        <div>Iva: $ <span class="total-cart-iva"></span></div>
+                                        <div>Total: $ <span class="total-cart-neto"></span></div>
                                     </form>
 
 

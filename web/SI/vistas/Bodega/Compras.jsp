@@ -138,7 +138,7 @@
                     </button>
                     <h5 id="details" class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
                 </div>
-                <div class="modal-body">
+                <div style="color: black;"class="modal-body">
                     
                     <!--tabla detalle Compra-->
                     <h2 id="purchasesDetails">Detalle Compra</h2>

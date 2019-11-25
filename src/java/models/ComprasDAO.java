@@ -4,6 +4,7 @@ import classes.Compras;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class ComprasDAO extends Conexion {
 
@@ -157,6 +158,26 @@ public class ComprasDAO extends Conexion {
         return detalleCompras;
     }
 
-   
+    public static void main(String[] args) {
+        ComprasDAO shopDao2 = new ComprasDAO();
+        int idShop = shopDao2.idCompras();
+        String detail = "28,1,12000.00;30,1,12000.00;31,1,13500.00;";
+                    
+                    String[] arrOfStr = detail.split(";");
+                    
+                    for (String a : arrOfStr) {
+                        StringTokenizer misAtributos = new StringTokenizer(a, ",");
+                        System.out.println(arrOfStr[1]);
+                        int idP = Integer.parseInt(misAtributos.nextToken().trim());
+                        int cant = Integer.parseInt(misAtributos.nextToken().trim());
+                        double precio = Double.parseDouble(misAtributos.nextToken().trim());
+                        System.out.println(precio);
+                        ComprasDAO shopDao3 = new ComprasDAO();
+                        Compras shop2 = new Compras(idShop, "", "", 0, 0, idP, cant, precio,"");
+                        
+                        shopDao3.newDetailShop(shop2);
+                    }
+    }
+           
 
 }

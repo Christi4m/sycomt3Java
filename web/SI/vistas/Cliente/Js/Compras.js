@@ -1,26 +1,64 @@
-$(document).ready(function () {
-    listar();
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    return canvas.toDataURL("image/png");
+}
 
-    
+//Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
+var newImg = new Image();
+newImg.src = '../img/LogoSycomt3FondoNegro.png';
+var immm = getBase64Image(newImg).toString();
+
+var myGlyph = new Image();
+myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
+
+//Parametros de creación del documento pdf
+
+//FUNCION DE INICIO
+var idFact
+var tot
+var idVen
+$(document).ready(function () {
+
+    listar();
+    factura();
+
+
 });
 
+factura = function () {
+    //funcion  para descargar la factura en formato pdf
+    $(document).on('click', '#buttonDownload', function (e) {
+           e.preventDefault();
+            e.stopImmediatePropagation();        
+        pdfMake.createPdf(campos(idFact,tot,idVen)).download('Factura-'+idFact+'');
+    });
+    //funcion para el despliegue de la factura en formato pdf
+    $(document).on('click', 'a.idVenta', function (e) {
+           e.preventDefault();
+            e.stopImmediatePropagation();
+        var numFactura = $(this).parents("tr").find("td").eq(3).text();
+        var total = $(this).parents("tr").find("td").eq(2).text();
+        var idVenta = $(this).attr('id');
+        
+        const pdfDocGenerator = pdfMake.createPdf(campos(numFactura,total,idVenta));
+        pdfDocGenerator.getBase64((data) => {
+            $('#pdfModalFactura').attr('src', "data:application/pdf;base64," + data);
+            idFact = numFactura;
+            tot = total;
+            idVen = idVenta;
+            $("#modalFacturaCompra").modal("show");
+        });
+
+    });
+
+}
 
 listar = function () {
-    function getBase64Image(img) {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        return canvas.toDataURL("image/png");
-    }
-    //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
-    var newImg = new Image();
-    newImg.src = '../img/LogoSycomt3FondoNegro.png';
-    var immm = getBase64Image(newImg).toString();
-    
-    var myGlyph = new Image();
-    myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
+
     var table = $("#tableCrud").DataTable({
         dom: 'Bfrtip',
         buttons: [
@@ -66,8 +104,7 @@ listar = function () {
                         }
                     }
                     //Crear una cadena de fecha que usamos en el pie y encabezado de página. El formato es dd-mm-aaaa
-                    var now = new Date();
-                    var jsDate = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
+                    
                     //Asignacion de estilos personalizados al reporte 
                     //margenes del page (seccion donde se encuentra la tabla)
                     doc.pageMargins = [20, 150, 20, 30];
@@ -153,12 +190,12 @@ listar = function () {
         order: [[0, "desc"]],
         ajax: {
             method: "POST",
-            url: "../../processVenta?action=listVentasID&idUser="+idUser+"",
+            url: "../../processVenta?action=listVentasID&idUser=" + idUser + "",
             dataSrc: "datos"
         },
-       
+
         columns: [
-            
+
             {data: "Codigo"},
             {data: "Fecha"},
             {data: "Valor"},
@@ -174,7 +211,7 @@ listar = function () {
             e.preventDefault();
             e.stopImmediatePropagation();
             var idVenta = $(this).parents("tr").find("td").eq(0).text();
-           
+
             var idVenta = $(this).attr("id");
 
             var dato = {idVenta: idVenta}
@@ -186,7 +223,7 @@ listar = function () {
                 dataType: "json",
                 success: function (data) {
                     $('#bodyDV').html("");
-                    $.each(data.datos, function (i, field) {                        
+                    $.each(data.datos, function (i, field) {
                         $('#bodyDV').append("<tr><td>" + field.idProducto + "</td><td>" + field.nombreProducto + "</td><td>" + field.detalles + "</td><td>" + field.cantidad + "</td><td>" + field.precio + "</td></tr>");
                         $("#modalDetalleVentas").modal("show");
                     });
@@ -212,7 +249,7 @@ listar = function () {
             success: function (data) {
                 $('#bodyDetailsProduct').html("");
                 $('#detallesP').html("");
-                $.each(data.datos, function (i, field) {                    
+                $.each(data.datos, function (i, field) {
                     $('#detallesP').append("<img style='display:block;margin:auto;'src='../../" + field.imagen + "' width='20%' height='20%' alt='Imagen del Producto'/><h3 style='font-size: 15px; color:black; text-align: justify;'id='detallesProducto'>" + field.descripcion + "</h3>");
                 });
             }

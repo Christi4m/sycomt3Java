@@ -11,7 +11,7 @@ public class Conexion {
     private String port = "3306";
     private String database = "sycomt3";
     private String classname = "com.mysql.jdbc.Driver";
-    private String url = "jdbc:mysql://"+hostname+":"+port+"/"+database;
+    private String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
     private Connection conn;
 
     public Conexion() {

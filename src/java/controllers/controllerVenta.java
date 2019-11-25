@@ -52,14 +52,14 @@ public class controllerVenta extends HttpServlet {
 
             case "newVenta":
                 //Linea de codigo que trae el id  del cliente que inicio sesion
-                int idCliente = Integer.parseInt(sesion.getAttribute("idCliente").toString());
-
+                int idCliente = Integer.parseInt(sesion.getAttribute("idUser").toString());
+                String detalleVenta = "";
                 //seccion de codigo que obtiene la fecha en la que se genera la venta
                 Calendar c = new GregorianCalendar();
                 String dia = Integer.toString(c.get(Calendar.DATE));
                 String mes = Integer.toString(c.get(Calendar.MONTH) + 1);
                 String annio = Integer.toString(c.get(Calendar.YEAR));
-                String fecha = dia + "-" + "06" + "-" + annio;
+                String fecha = dia + "-" + mes + "-" + annio;
 
                 String numeroSerie = "";
                 //instancia del modeloVentas Dao para acceder a sus metodos 
@@ -79,13 +79,13 @@ public class controllerVenta extends HttpServlet {
 
                 VentasDAO modelo2 = new VentasDAO();
 
-                if (modelo2.guardarVentas(ventas1)) {
+                if (!modelo2.guardarVentas(ventas1)) {
                     VentasDAO modelo3 = new VentasDAO();
                     int idVenta = Integer.parseInt(modelo3.idVentas());
 
                     // traer todos los datos de los productos ingresados en el carrito de compras
                     String[] arrOfStr = request.getParameter("detailsShop").split(";");
-                    String detalleVenta = "";
+
                     for (String a : arrOfStr) {
                         StringTokenizer misAtributos = new StringTokenizer(a, ",");
                         int idP = Integer.parseInt(misAtributos.nextToken().trim());
@@ -101,7 +101,6 @@ public class controllerVenta extends HttpServlet {
                         Ventas VDV = new Ventas(idVenta, idP, cant, precio);
                         modelo4.guardarDetalleVenta(VDV);
                     }
-
                     String cuerpo = "<h2>!Felicitaciones¡</h2>\n"
                             + "  <h4>Su compra se ha realizado exitosamente\n"
                             + "  <br>Su compra re ha realizado con:\n"
@@ -120,6 +119,43 @@ public class controllerVenta extends HttpServlet {
                     out.print("1");
 
                 } else {
+//                    VentasDAO modelo3 = new VentasDAO();
+//                    int idVenta = Integer.parseInt(modelo3.idVentas());
+//
+//                    // traer todos los datos de los productos ingresados en el carrito de compras
+//                    String[] arrOfStr = request.getParameter("detailsShop").split(";");
+//
+//                    for (String a : arrOfStr) {
+//                        StringTokenizer misAtributos = new StringTokenizer(a, ",");
+//                        int idP = Integer.parseInt(misAtributos.nextToken().trim());
+//                        double cant = Double.parseDouble(misAtributos.nextToken().trim());
+//                        double precio = Double.parseDouble(misAtributos.nextToken().trim());
+//
+//                        ProductoDAO mpuo = new ProductoDAO();
+//                        Producto prt = (Producto) mpuo.getProducto(idP);
+//
+//                        detalleVenta += "Producto: " + prt.getNombre() + " Cantidad: " + Math.round(cant) + " Valor Unitario: " + formateador.format(precio) + "<br>";
+//
+//                        VentasDAO modelo4 = new VentasDAO();
+//                        Ventas VDV = new Ventas(idVenta, idP, cant, precio);
+//                        modelo4.guardarDetalleVenta(VDV);
+//                    }
+//
+//                    String cuerpo = "<h2>!Felicitaciones¡</h2>\n"
+//                            + "  <h4>Su compra se ha realizado exitosamente\n"
+//                            + "  <br>Su compra re ha realizado con:\n"
+//                            + "  <br><Strong>Numero de facturacion: </Strong>" + numeroSerie + "\n"
+//                            + "  <br><Strong>Valor: </Strong>" + formateador.format(ValorGlobal) + " \n"
+//                            + "  <br>Detalle de la compra: \n"
+//                            + "  <br>" + detalleVenta + " \n"
+//                            + "  </h4>";
+//
+//                    TerceroDAO modelo5 = new TerceroDAO();
+//                    Tercero tercero2 = (Tercero) modelo5.getTerceroId(idCliente);
+//                    Correos cor = new Correos("sycomt3A@gmail.com", "ealvrtizdmmxvsgp", "", "", tercero2.getEmail(), "Compra Realizada LunaTextil.com", cuerpo);
+//
+//                    correosClass cco = new correosClass();
+//                    cco.correoUnitario(cor);
                     out.print("0");
                 }
 
@@ -161,14 +197,13 @@ public class controllerVenta extends HttpServlet {
                         item.addProperty("Fecha", ventas2.getFechaVenta());
                         item.addProperty("Valor", formateador.format(ventas2.getValorGlobal()));
                         item.addProperty("Cliente", "<a class='idCliente' id='" + ventas2.getIdCliente() + "' role=\"button\" href=\"#\">" + ventas2.getIdCliente() + " </a>");
-                        item.addProperty("Factura", ventas2.getNumSerie());
+                        item.addProperty("Factura", "<a style='color:black;'class='idVenta' id='" + ventas2.getId() + "' role=\"button\" href=\"#\">" + ventas2.getNumSerie() + " </a>");
                         item.addProperty("Estado", ventas2.getEstado());
-                        if(ventas2.getEstado().equalsIgnoreCase("Entregada")){
+                        if (ventas2.getEstado().equalsIgnoreCase("Entregada")) {
                             item.addProperty("acciones", "<button data-toggle=\"modal\" data-target=\"#modalDetalleComprasC\" title='Detalles de la compra' id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button title='Solicitar Garantia'id='" + ventas2.getId() + "'class='btn btnGarantia btn-danger far fa-calendar-times'></button>");
-                        }else{
+                        } else {
                             item.addProperty("acciones", "<button data-toggle=\"modal\" data-target=\"#modalDetalleComprasC\"title='Detalles de la compra' id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
                         }
-                    
 
                         array4.add(item);
                     }
