@@ -12,12 +12,12 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="date">Fecha</th>
+                            <th id="value">Valor</th>
+                            <th id="client">Cliente</th>
+                            <th id="invoice">Factura</th>
+                            <th id="state">Estado</th>
+                            <th id="actions">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,12 +26,12 @@
                     <tfoot>
                         <tr>
                             <th>#</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="date1">Fecha</th>
+                            <th id="value1">Valor</th>
+                            <th id="client1">Cliente</th>
+                            <th id="invoice1">Factura</th>
+                            <th id="state1">Estado</th>
+                            <th id="actions1">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -46,7 +46,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span class="fa fa-close close1"aria-hidden="true"></span>
                     </button>
-                    <h5 id="sellReport"class="modal-title" id="exampleModalLongTitle">ReporteVentas</h5>
+                    <h5 id="salesReport"class="modal-title" id="exampleModalLongTitle">ReporteVentas</h5>
                 </div>
                 <div class="modal-body" style="color: black;">
                     <div id="reporteVentas1" style="min-width: 310px; height: 700px; max-width: 800px; margin: 0 auto"></div>
@@ -66,20 +66,20 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="">
                         <span class="fa fa-close close1" aria-hidden="true"></span>
                     </button>
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                    <h5 id="details" class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
                 </div>
                 <div class="modal-body">
-                    <h2>Cliente</h2>
+                    <h2 id="client2">Cliente</h2>
                     <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Tipo Id</th>
-                                <th>Documento</th>
-                                <th>Nombre</th>
-                                <th>Correo</th>
-                                <th>Celular</th>
-                                <th>Dirección</th>
-                                <th>Detalles</th>
+                                <th id="typeId">Tipo Id</th>
+                                <th id="document">Documento</th>
+                                <th id="name">Nombre</th>
+                                <th id="correo">Correo</th>
+                                <th id="cellPhone">Celular</th>
+                                <th id="address">Dirección</th>
+                                <th id="details1">Detalles</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,16 +93,16 @@
                         </tbody>
                     </table>
                     <!--tabla detalle venta-->
-                    <h2>Detalle Venta</h2>
+                    <h2 id="detailSell">Detalle Venta</h2>
                     <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Id Producto</th>
-                                <th>Nombre P</th>
-                                <th>Detalles P</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
+                                <th id="idProduct">Id Producto</th>
+                                <th id="nameP">Nombre P</th>
+                                <th id="detailP">Detalles P</th>
+                                <th id="quantity">Cantidad</th>
+                                <th id="price">Precio</th>
                             </tr>
                         </thead>
                         <tbody id="bodyDV"> 

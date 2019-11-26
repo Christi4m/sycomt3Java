@@ -83,7 +83,7 @@ var translate = function () {
         $('#spanFoot').text('Todos los derechos reservados');
         $('#buttonLogout').text('Cerrar Sesión');
         $('#myPerfil').text('Mi Perfil');
-        //tradyccion compras admin   
+        //traducción compras admin   
         $('#dateShop').text('Fecha');
         $('#previeder').text('Proveedor');
         $('#obsShop').text('Observaciones');
@@ -307,6 +307,40 @@ var translate = function () {
         $('#botonCerrar2').text('Close');
         $('#btnUpdateP').text('Save');
         $('#editSupplier').text('Supplier Details');
+        $('#c').text('Acept');
+        
+        //Traducción ventas administrador
+        $('#historicalSales2').text('Sales');
+        $('#generateReport').text('Generate Report');
+        $('#date').text('Date');
+        $('#value').text('Value');
+        $('#client').text('Client');
+        $('#invoice').text('Invoice');
+        $('#state').text('State');
+        $('#actions').text('Actions');
+        $('#date1').text('Date');
+        $('#value1').text('Value');
+        $('#client1').text('Client');
+        $('#invoice1').text('Invoice');
+        $('#state1').text('State');
+        $('#actions1').text('Actions');
+        $('#salesReport').text('Sales Report');
+        $('#details').text('Details');
+        $('#client2').text('Client');
+        $('#typeId').text('Type Id');
+        $('#document').text('Document');
+        $('#name').text('Name');
+        $('#correo').text('Email');
+        $('#cellPhone').text('Cell Phone');
+        $('#address').text('Address');
+        $('#details1').text('Details');
+        $('#detailSell').text('Detail Sell');
+        $('#idProduct').text('Id Product');
+        $('#nameP').text('Name Product');
+        $('#detailP').text('Detail Product');
+        $('#quantity').text('Quantity');
+        $('#price').text('Price');
+        $('#botonCerrarDV').text('Close');
 
         //Traducción compras bodega
         $('#historicalPurchases').text('Purchases');
