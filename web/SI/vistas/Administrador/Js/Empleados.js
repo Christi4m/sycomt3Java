@@ -40,18 +40,8 @@ listar = function () {
         }
     });
 
-    //funcion que crea el cavas para poder convertir la imagen a data uri base 64
-    function getBase64Image(img) {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        return canvas.toDataURL("image/png");
-    }
-    //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
-    var myGlyph = new Image();
-    myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
+
+
     //funcion que lista todos los empleados utilizando el plugin datatable
     //trayendo los datos por medio de una funcion ajax que conecta con  el controlador 
     //terceros que es el que controla la gestion de los empleados, este a su vez
@@ -205,12 +195,12 @@ listar = function () {
             $(row).find('td:eq(2)').attr('data-label', 'Cargo')
             $(row).find('td:eq(3)').attr('data-label', 'Estado')
             $(row).find('td:eq(4)').attr('data-label', 'Acciones')
-            $(row).find('td:eq(1)').css({'-ms-word-break':'break-all','word-break':'break-all','word-break':'break-word',
-                '-ms-hyphens':'auto','-moz-hyphens':'auto','-webkit-hyphens':'auto','hyphens':'auto'})
-             
-        
-        
-        
+            $(row).find('td:eq(1)').css({'-ms-word-break': 'break-all', 'word-break': 'break-all', 'word-break': 'break-word',
+                '-ms-hyphens': 'auto', '-moz-hyphens': 'auto', '-webkit-hyphens': 'auto', 'hyphens': 'auto'})
+
+
+
+
         },
         language: idiomaEsp
     });
@@ -238,7 +228,15 @@ $(function () {
                 tipoIdentificacionEmpleado: {
                     validators: {
                         notEmpty: {message: 'Ingrese el tipo de identificación'},
-                        digits: {message: 'Ingrese solo numeros'}
+                        callback: {
+                            message: 'Ingrese el tipo de identificación',
+                            callback: function (value, validator, $field) {
+                                if (value === '') {
+                                    return true;
+                                }
+                                return true;
+                            }
+                        }
                     }
                 },
                 identificacionTercero: {
@@ -509,5 +507,84 @@ $(document).on('click', 'button.btnInsertUserAccess', function (e) {
     });
 });
 
+$(document).on('click', 'button.btnBloquear', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var idUser = $(this).attr('id');
+    var stateUser = "Bloqueado"
+    var data = "";
+    $.ajax({
+        url: "../../methodClient?accion=updateStateUser&idUser="+idUser+"&stateUser="+stateUser+"",
+        type: "post",
+        data: data,
+        dataSrc: "datos",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            if (data == 1) {
+                Swal.fire({
+                    type: 'success',
+                    title: '¡Acceso bloqueado Exitosamente! ',
+                    width: 500,
+                    padding: '5em',
+                    showConfirmButton: false,
+                    timer: 2000 //el tiempo que dura el mensaje en ms
+                });
+                listar();
+            } else {
+                Swal.fire({
+                    //error
+                    type: 'error',
+                    title: '¡Error al bloquear Acceso! ',
+                    text: 'Intentelo de nuevo',
+                    width: 500,
+                    padding: '5em',
+                    showConfirmButton: false,
+                    timer: 2000 //el tiempo que dura el mensaje en ms
+                });
+            }
+        }
+    });
 
+});
+$(document).on('click', 'button.btnActivar', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var idUser = $(this).attr('id');
+    var stateUser = "Activo"
+    var data = "";
+    $.ajax({
+        url: "../../methodClient?accion=updateStateUser&idUser="+idUser+"&stateUser="+stateUser+"",
+        type: "post",
+        data: data,
+        dataSrc: "datos",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            if (data == 1) {
+                Swal.fire({
+                    type: 'success',
+                    title: '¡Acceso activado exitosamente! ',
+                    width: 500,
+                    padding: '5em',
+                    showConfirmButton: false,
+                    timer: 2000 //el tiempo que dura el mensaje en ms
+                });
+                listar();
+            } else {
+                Swal.fire({
+                    //error
+                    type: 'error',
+                    title: '¡Error al activar Acceso! ',
+                    text: 'Intentelo de nuevo',
+                    width: 500,
+                    padding: '5em',
+                    showConfirmButton: false,
+                    timer: 2000 //el tiempo que dura el mensaje en ms
+                });
+            }
+        }
+    });
+
+});
 

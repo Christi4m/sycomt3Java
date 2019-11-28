@@ -52,9 +52,8 @@ public class EntregasDAO extends Conexion {
 
         ArrayList<Entregas> v = new ArrayList<>();
         try {
-            String sql = "call mensajeroAsignado(?)";//crea la sentencia sql que voy a mandar a la base de datos
+            String sql = "call entregasAsignadas()";//crea la sentencia sql que voy a mandar a la base de datos
             pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
-            pst.setInt(1, id);
             rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
             while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
                 v.add(new Entregas(rs.getString("fechaEntrega"),rs.getString("firstName"),rs.getString("firstLastName"),rs.getString("numCellPhone"), rs.getString("email")));

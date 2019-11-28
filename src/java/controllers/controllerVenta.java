@@ -119,43 +119,7 @@ public class controllerVenta extends HttpServlet {
                     out.print("1");
 
                 } else {
-//                    VentasDAO modelo3 = new VentasDAO();
-//                    int idVenta = Integer.parseInt(modelo3.idVentas());
-//
-//                    // traer todos los datos de los productos ingresados en el carrito de compras
-//                    String[] arrOfStr = request.getParameter("detailsShop").split(";");
-//
-//                    for (String a : arrOfStr) {
-//                        StringTokenizer misAtributos = new StringTokenizer(a, ",");
-//                        int idP = Integer.parseInt(misAtributos.nextToken().trim());
-//                        double cant = Double.parseDouble(misAtributos.nextToken().trim());
-//                        double precio = Double.parseDouble(misAtributos.nextToken().trim());
-//
-//                        ProductoDAO mpuo = new ProductoDAO();
-//                        Producto prt = (Producto) mpuo.getProducto(idP);
-//
-//                        detalleVenta += "Producto: " + prt.getNombre() + " Cantidad: " + Math.round(cant) + " Valor Unitario: " + formateador.format(precio) + "<br>";
-//
-//                        VentasDAO modelo4 = new VentasDAO();
-//                        Ventas VDV = new Ventas(idVenta, idP, cant, precio);
-//                        modelo4.guardarDetalleVenta(VDV);
-//                    }
-//
-//                    String cuerpo = "<h2>!Felicitaciones¡</h2>\n"
-//                            + "  <h4>Su compra se ha realizado exitosamente\n"
-//                            + "  <br>Su compra re ha realizado con:\n"
-//                            + "  <br><Strong>Numero de facturacion: </Strong>" + numeroSerie + "\n"
-//                            + "  <br><Strong>Valor: </Strong>" + formateador.format(ValorGlobal) + " \n"
-//                            + "  <br>Detalle de la compra: \n"
-//                            + "  <br>" + detalleVenta + " \n"
-//                            + "  </h4>";
-//
-//                    TerceroDAO modelo5 = new TerceroDAO();
-//                    Tercero tercero2 = (Tercero) modelo5.getTerceroId(idCliente);
-//                    Correos cor = new Correos("sycomt3A@gmail.com", "ealvrtizdmmxvsgp", "", "", tercero2.getEmail(), "Compra Realizada LunaTextil.com", cuerpo);
-//
-//                    correosClass cco = new correosClass();
-//                    cco.correoUnitario(cor);
+//                    
                     out.print("0");
                 }
 
@@ -170,8 +134,12 @@ public class controllerVenta extends HttpServlet {
                     item.addProperty("Codigo", ventas2.getId());
                     item.addProperty("Fecha", ventas2.getFechaVenta());
                     item.addProperty("Valor", formateador.format(ventas2.getValorGlobal()));
+                    item.addProperty("iva", formateador.format(ventas2.getValorGlobal() * 0.19));
+                    item.addProperty("subtotal", formateador.format(ventas2.getValorGlobal() - (ventas2.getValorGlobal() * 0.19)));
                     item.addProperty("Cliente", "<a class='idCliente' id='" + ventas2.getIdCliente() + "' role=\"button\" href=\"#\">" + ventas2.getIdCliente() + " </a>");
-                    item.addProperty("Factura", ventas2.getNumSerie());
+                    item.addProperty("idClienteP", ventas2.getIdCliente());
+                    item.addProperty("FacturaP", ventas2.getNumSerie());
+                    item.addProperty("Factura", "<a style='color:black;'class='idVenta' id='" + ventas2.getId() + "' role=\"button\" href=\"#\">" + ventas2.getNumSerie() + " </a>");
                     item.addProperty("Estado", ventas2.getEstado());
                     if (sesion.getAttribute("typeTercero").toString().equalsIgnoreCase("Administrador")) {
                         item.addProperty("acciones", "<button id='" + ventas2.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
@@ -196,6 +164,8 @@ public class controllerVenta extends HttpServlet {
                         item.addProperty("Codigo", ventas2.getId());
                         item.addProperty("Fecha", ventas2.getFechaVenta());
                         item.addProperty("Valor", formateador.format(ventas2.getValorGlobal()));
+                        item.addProperty("iva", formateador.format(ventas2.getValorGlobal() * 0.19));
+                        item.addProperty("subtotal", formateador.format(ventas2.getValorGlobal() - (ventas2.getValorGlobal() * 0.19)));
                         item.addProperty("Cliente", "<a class='idCliente' id='" + ventas2.getIdCliente() + "' role=\"button\" href=\"#\">" + ventas2.getIdCliente() + " </a>");
                         item.addProperty("Factura", "<a style='color:black;'class='idVenta' id='" + ventas2.getId() + "' role=\"button\" href=\"#\">" + ventas2.getNumSerie() + " </a>");
                         item.addProperty("Estado", ventas2.getEstado());
@@ -225,6 +195,9 @@ public class controllerVenta extends HttpServlet {
                     item.addProperty("detalles", ventas3.getDetallesProducto());
                     item.addProperty("cantidad", ventas3.getCantidadProducto());
                     item.addProperty("precio", formateador.format(ventas3.getValorProducto()));
+                    ProductoDAO prDao = new ProductoDAO();
+                     Producto pr = (Producto) prDao.getProducto(ventas3.getIdProducto());
+                    item.addProperty("precioUnitario", formateador.format(pr.getPrecio()));
                     item.addProperty("detalles", "<button alt='Imagen del Producto' id='" + ventas3.getIdProducto() + "'class='btn btnDetallesProducto btn-primary fa fa-eye'></button>");
                     arrayDV.add(item);
                 }

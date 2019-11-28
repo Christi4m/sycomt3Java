@@ -19,6 +19,7 @@ $("#botonVaciar").on('click', function () {
 //Function to login user into system
 $('#buttonLogin').click(function (e) {
     e.preventDefault();
+    e.stopImmediatePropagation();
     //variable to save user and user password
     var data = $('#formLogin').serialize();
     //function to validate if user are registered into system
@@ -27,30 +28,58 @@ $('#buttonLogin').click(function (e) {
         if (res === "1") {
             var data = "";
             //function to verify the user's role and redirect it to their profile
-            $.post("../loginUser?action=obtenerRol", data, function (res, est, jqXHR) {
-                console.log(res);
-                if (res === "Administrador" || res === "Bodega-Jefe" || res === "Mensajero") {
-                    setTimeout(function () {
-                        window.location = "../SI/vistas/Dashboard.jsp";
-                    }, 300);
-                } else if (res === "Cliente") {
-                    setTimeout(function () {
-                        window.location = "../index.jsp";
-                    }, 300);
-                } else {
-                    Swal.fire({
-                        //error
-                        type: 'error',
-                        confirmButtonColor: '#2f323a',
-                        title: accessDenied,
-                        html: '<h4 style="font-size:15px;">' + accessDeneidSub + '</4>',
-                        width: 500,
-                        padding: '5em',
-                        showConfirmButton: false,
-                        timer: 3000 //how long the message lasts in ms
-                    });
+
+            $.ajax({
+                url: "../loginUser?action=obtenerRol",
+                type: "post",
+                data: data,
+                dataSrc: "datos",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    console.log(data.datos[0].typeTercero);
+                    console.log(data.datos[0].stateUser);
+                    
+                    if (data.datos[0].stateUser === "Activo") {
+                        if (data.datos[0].typeTercero === "Administrador" || data.datos[0].typeTercero === "Bodega-Jefe" || data.datos[0].typeTercero === "Mensajero") {
+                            setTimeout(function () {
+                                window.location = "../SI/vistas/Dashboard.jsp";
+                            }, 300);
+                        } else if (data.datos[0].typeTercero === "Cliente") {
+                            setTimeout(function () {
+                                window.location = "../index.jsp";
+                            }, 300);
+                        } else {
+                            Swal.fire({
+                                //error
+                                type: 'error',
+                                confirmButtonColor: '#2f323a',
+                                title: accessDenied,
+                                html: '<h4 style="font-size:15px;">' + accessDeneidSub + '</4>',
+                                width: 500,
+                                padding: '5em',
+                                showConfirmButton: false,
+                                timer: 3000 //how long the message lasts in ms
+                            });
+                        }
+                    } else if (data.datos[0].stateUser === "Bloqueado") {
+                        Swal.fire({
+                            //error
+                            type: 'error',
+                            confirmButtonColor: '#2f323a',
+                            title: accessDenied,
+                            html: '<h4 style="font-size:15px;">' + accessDeneidSub + '</4>',
+                            width: 500,
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 3000 //how long the message lasts in ms
+                        });
+                    }
+
+
                 }
             });
+
         } else {
             Swal.fire({
                 //error

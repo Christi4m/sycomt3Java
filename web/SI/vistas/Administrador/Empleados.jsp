@@ -44,7 +44,7 @@
                 </button>
                 <h5 id = "botonAdd" class = "modal-title" id = "exampleModalLongTitle"> Agregar </h5>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="color: black">
                 <form  method="post" action="../../../methodClient?accion=crearEmpleado" style="margin-top: 30px;" name="frmCrearEmpleado" id="frmCrearEmpleado" enctype="multipart/form-data"  class="form-horizontal col-sm-12 text-center">
                     <div class="form-group text-center">
                         <h4 id = "productDates" class = "tituloDP"> Datos Del Empleado </h4>
@@ -204,7 +204,7 @@
                 </button>
                 <h5 id="editSell" class="modal-title" id="exampleModalCenterTitle">Detalles Empleado</h5>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"style="color: black">
                 <table id="example" class="table col-md-2 table-condensed  table-hover table-striped table-bordered">
                     <thead>
                         <tr>
@@ -246,7 +246,7 @@
                 </button>
                 <h5 id = "botonAdd1" class = "modal-title" id = "exampleModalLongTitle"> Asignar </h5>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"style="color: black">
                 <form method="post" action="../../../methodClient?accion=insertUserAccesEmpleado" style="margin-top: 30px;" name="frmUserAccesEmpleado" id="frmUserAccesEmpleado" enctype="multipart/form-data"  class="form-horizontal col-sm-12 text-center">
                     <div class="form-group text-center">
                         <h4 id = "productDates1" class = "tituloDP"> Datos de Acceso </h4>

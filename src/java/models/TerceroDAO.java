@@ -121,7 +121,7 @@ public class TerceroDAO extends Conexion {
             pst.setString(1, User);
             rs = pst.executeQuery();
             while (rs.next()) {
-                tercero = new Tercero(rs.getInt("idTercero"), rs.getString("typeTercero"), rs.getString("typeId"), rs.getInt("numId"), rs.getString("firstName"), rs.getString("secondName"), rs.getString("firstLastName"), rs.getString("secondLastName"), rs.getString("email"), rs.getString("numCellPhone"), rs.getString("numLandLine"), rs.getString("address"), rs.getString("detailsAddress"));
+                tercero = new Tercero(rs.getInt("idTercero"), rs.getString("typeTercero"), rs.getString("typeId"), rs.getInt("numId"), rs.getString("firstName"), rs.getString("secondName"), rs.getString("firstLastName"), rs.getString("secondLastName"), rs.getString("email"), rs.getString("numCellPhone"), rs.getString("numLandLine"), rs.getString("address"), rs.getString("detailsAddress"), rs.getString("estadoTercero"));
             }
 
         } catch (Exception e) {
@@ -272,8 +272,8 @@ public class TerceroDAO extends Conexion {
         return empleado;
     }
 //metodo para listar los emails de los clientes
-    
-     public ArrayList<Tercero> listEmailClientes() {//creo el metodo producto de tipo arraylist
+
+    public ArrayList<Tercero> listEmailClientes() {//creo el metodo producto de tipo arraylist
         ArrayList<Tercero> emailsClientes = new ArrayList<>();//creando el arraylist de tipo producto
         ResultSet rs = null;// trae el resultado de lo que haga en la base de datos
         try {
@@ -301,13 +301,8 @@ public class TerceroDAO extends Conexion {
         }
         return emailsClientes;
     }
-     
-     
-   
-    
-    
-//metodo para listar los datos detalles de un empleado
 
+//metodo para listar los datos detalles de un empleado
     public Tercero getDetailsEmpleado(int id) {
         Tercero empleadoDetails = null;
         PreparedStatement pst = null;
@@ -373,13 +368,14 @@ public class TerceroDAO extends Conexion {
         return flag;
 
     }
+
     public boolean updateZonaEntrega(int idMensajero, String zona) {
         boolean flag = false;
 
         try {
             String sql = "call asignarZonaEntrega(?,?)";
             pst = getConnection().prepareCall(sql);
-            pst.setString(1,zona);
+            pst.setString(1, zona);
             pst.setInt(2, idMensajero);
             if (pst.executeUpdate() == 1) {
                 flag = true;
@@ -400,13 +396,31 @@ public class TerceroDAO extends Conexion {
         return flag;
     }
 
-    public static void main(String[] args) {
-        ArrayList<String> email = new ArrayList<>();
+    public boolean updateStateUser(int idUser, String stateUser) {
 
-        TerceroDAO modelo4 = new TerceroDAO();
-        for (Tercero empleado1 : modelo4.getAllEmpleados()) {
-            email.add(empleado1.getEmail());
+        try {
+            String sql = "call updateStateUser(?,?)";
+            pst = getConnection().prepareCall(sql);
+            pst.setInt(1, idUser);
+            pst.setString(2, stateUser);
+            if (pst.executeUpdate() == 1) {
+                flag = true;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+            } catch (Exception e) {
+            }
         }
-        System.out.println(email.toString());
+        return flag;
     }
+
+    
 }

@@ -122,7 +122,7 @@ public class Tercero {
     }
 
     //Constructor para listar a un tercero en el sistema por su useerAcces
-    public Tercero(int id,String typeUser, String typeId, int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String numLandLine, String address, String detailsAddress) {
+    public Tercero(int id,String typeUser, String typeId, int numId, String firstName, String secondName, String firstLastName, String secondLastName, String email, String numCellPhone, String numLandLine, String address, String detailsAddress, String estadoTercero) {
         this.id = id;
         this.typeUser = typeUser;
         this.typeId = typeId;
@@ -135,7 +135,8 @@ public class Tercero {
         this.numCellPhone = numCellPhone;
         this.numLandLine = numLandLine;
         this.address = address;
-        this.detailsAddress = detailsAddress;        
+        this.detailsAddress = detailsAddress; 
+        this.estadoTercero = estadoTercero;
         
     }
     

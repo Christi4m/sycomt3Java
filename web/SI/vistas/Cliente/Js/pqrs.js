@@ -2,6 +2,37 @@ $(document).ready(function () {
     create();
     read();
 });
+var message1 = "Seleccione un tipo de PQR\'s";
+var message2 = "Ingrese la descripción";
+var message3 = "El archivo seleccionado no es valido, seleccione la imagen que desea adjuntar";
+$(document).on('click', '#en', function (e) {
+    e.preventDefault();
+    if ($('#formPqrs').on('init.form.bv').data('bootstrapValidator')) {
+        $("#formPqrs").data('bootstrapValidator').destroy();
+        message1 = "Select the type of PQR\'s";
+        message2 = "Enter the description";
+        message3 = "The selected file is not valid, select the image you want to attach";
+    } else {
+        message1 = "Select the type of PQR\'s";
+        message2 = "Enter the description";
+        message3 = "The selected file is not valid, select the image you want to attach";
+    }
+
+});
+$(document).on('click', '#es', function (e) {
+    e.preventDefault();
+    if ($('#formPqrs').on('init.form.bv').data('bootstrapValidator')) {
+        $("#formPqrs").data('bootstrapValidator').destroy();
+        message1 = "Seleccione un tipo de PQR\'s";
+        message2 = "Ingrese la descripción";
+        message3 = "El archivo seleccionado no es valido, seleccione la imagen que desea adjuntar";
+    } else {
+        message1 = "Seleccione un tipo de PQR\'s";
+        message2 = "Ingrese la descripción";
+        message3 = "El archivo seleccionado no es valido, seleccione la imagen que desea adjuntar";
+    }
+
+});
 var create = function () {
     //function to create pqrs's into system
     $(document).on('click', '#btncrearpqrs', function (e) {
@@ -10,9 +41,9 @@ var create = function () {
             fields: {
                 typePqrs: {
                     validators: {
-                        notEmpty: {message: 'Seleccione el el tipo de PQR\'s'},
+                        notEmpty: {message: message1},
                         callback: {
-                            message: 'Seleccione el tipo de PQR\'s',
+                            message: message1,
                             callback: function (value, validator, $field) {
                                 if (value === '') {
                                     return true;
@@ -24,7 +55,7 @@ var create = function () {
                 },
                 descriptionPqrs: {
                     validators: {
-                        notEmpty: {message: 'Ingrese la descripción'}
+                        notEmpty: {message: message2}
                     }
                 },
 
@@ -35,7 +66,7 @@ var create = function () {
                             extension: 'jpeg,png,jpg',
                             type: 'image/jpeg,image/png,img/jpg',
                             maxSize: 2048 * 1024,
-                            message: 'El archivo seleccionado no es valido, seleccione la imagen que desea adjuntar'
+                            message: message3
                         }
                     }
                 }
@@ -284,10 +315,10 @@ var read = function () {
                 $('#bodyDetailsProduct').html("");
                 $('#detallesP').html("");
                 $.each(data.datos, function (i, field) {
-                    if (!field.evidence == ""){
+                    if (!field.evidence == "") {
                         $('#detallesP').append("<span id='spanEvidencePqrs'style='display:block;margin:auto;font-size: 15px; color:black;'>Evidencia</span> <br><br><img style='display:block;margin:auto;'src='../../EvidencePqrs/" + field.evidence + "' width='20%' height='20%' alt='Evidencia de la pqrs'/><h3 style='font-size: 15px; color:black; text-align: justify;'id='evidencePqrs'><span id='titleDesPqrs'>Descripción</span><br><br>" + field.description + "</h3>");
-                    }else{
-                        $('#detallesP').append("<span id='spanEvidencePqrs'style='display:block;margin:auto;font-size: 15px; color:black;'>Evidencia</span><h3 style='font-size: 15px; color:black; text-align: justify;'id='evidencePqrs'>No hay evidencia adjunta a la "+field.type+"</h3><h3 style='font-size: 15px; color:black; text-align: justify;'id='evidencePqrs'><span id='titleDesPqrs'>Descripción</span><br><br>" + field.description + "</h3>");
+                    } else {
+                        $('#detallesP').append("<span id='spanEvidencePqrs'style='display:block;margin:auto;font-size: 15px; color:black;'>Evidencia</span><h3 style='font-size: 15px; color:black; text-align: justify;'id='evidencePqrs'>No hay evidencia adjunta a la " + field.type + "</h3><h3 style='font-size: 15px; color:black; text-align: justify;'id='evidencePqrs'><span id='titleDesPqrs'>Descripción</span><br><br>" + field.description + "</h3>");
                     }
                 });
             }

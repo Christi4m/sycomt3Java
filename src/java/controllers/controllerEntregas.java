@@ -43,9 +43,9 @@ public class controllerEntregas extends HttpServlet {
                 int res = 0;
                 EntregasDAO modelo1 = new EntregasDAO();
                 Entregas entrega1 = new Entregas(request.getParameter("fechaEntrega"), Integer.parseInt(request.getParameter("Factura")), Integer.parseInt(request.getParameter("mesajeroAsignar")),"Asignada");
-                if (modelo1.generarEntrega(entrega1)) {
+                if (!modelo1.generarEntrega(entrega1)) {
                     VentasDAO modelo9 = new VentasDAO();
-                    if (modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("Ventas")), "Asignada")) {
+                    if (!modelo9.ProcesarVenta(Integer.parseInt(request.getParameter("Ventas")), "Asignada")) {
                         res = 1;
                         out.print(res);
                     }else{
@@ -76,6 +76,28 @@ public class controllerEntregas extends HttpServlet {
                 gsonLE.add("datos", arrayLE);
 
                 out.print(gsonLE.toString());
+                break;
+            case"listEntregasAsignadas":
+                JsonObject gsonLE1 = new JsonObject();
+                JsonArray arrayLE1 = new JsonArray();
+
+                EntregasDAO modelo9 = new EntregasDAO();
+                for (Entregas entregas4 : modelo9.getAllEntregasAsignadas(Integer.parseInt(request.getParameter("idFactura")))) {
+                    JsonObject item = new JsonObject();
+                    
+                        item.addProperty("fechaEntrega", entregas4.getFechaEntrega());
+                        item.addProperty("name", entregas4.getNameMensajero()+" "+entregas4.getNameMensajero1());
+                        item.addProperty("numCellPhone", entregas4.getCelMensajero());
+                        item.addProperty("email", entregas4.getEmailMensajero());
+                        
+
+                        arrayLE1.add(item);
+                    }
+
+                
+                gsonLE1.add("datos", arrayLE1);
+
+                out.print(gsonLE1.toString());
                 break;
             default:
                 break;

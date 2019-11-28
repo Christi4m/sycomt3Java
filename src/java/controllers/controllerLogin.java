@@ -47,6 +47,7 @@ public class controllerLogin extends HttpServlet {
                     sesion.setAttribute("typeId", tercero.getTypeId());
                     sesion.setAttribute("numId", tercero.getNumId());
                     sesion.setAttribute("address", tercero.getAddress());
+                    sesion.setAttribute("stateUser", tercero.getEstadoTercero());
                     sesion.setAttribute("nameUser", tercero.getFirstName() + " " + tercero.getSecondName() + " " + tercero.getFirstLastName() + " " + tercero.getSecondLastName());
 
                     out.print("1");
@@ -64,8 +65,18 @@ public class controllerLogin extends HttpServlet {
                 }
                 break;
             case "obtenerRol":
+                  JsonObject gson0 = new JsonObject();
+                JsonArray array0 = new JsonArray();
+                
+                JsonObject item0 = new JsonObject();
+                item0.addProperty("typeTercero", sesion.getAttribute("typeTercero").toString()); // add property ,, agregar propiedad al objeto json 
+                item0.addProperty("stateUser", sesion.getAttribute("stateUser").toString());
+                
+                array0.add(item0);
+                gson0.add("datos", array0);
 
-                out.print(sesion.getAttribute("typeTercero").toString());
+                out.print(gson0.toString());
+                
                 break;
             case "logOut": 
 

@@ -157,6 +157,32 @@ public class ComprasDAO extends Conexion {
         }
         return detalleCompras;
     }
+     public boolean udateStateShop(int idCompra, String estadoCompra) {
+        
+        try {
+            String sql = "call udateStateShop(?,?)";
+            pst = getConnection().prepareCall(sql);
+            pst.setInt(1, idCompra);
+            pst.setString(2, estadoCompra);
+            if (pst.executeUpdate() == 1) {
+                flag = true;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+            } catch (Exception e) {
+            }
+        }
+        return flag;
+    }
+
 
     public static void main(String[] args) {
         ComprasDAO shopDao2 = new ComprasDAO();

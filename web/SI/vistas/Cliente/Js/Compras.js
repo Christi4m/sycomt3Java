@@ -1,61 +1,16 @@
-function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    return canvas.toDataURL("image/png");
-}
 
-//Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
-var newImg = new Image();
-newImg.src = '../img/LogoSycomt3FondoNegro.png';
-var immm = getBase64Image(newImg).toString();
 
-var myGlyph = new Image();
-myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
 
 //Parametros de creación del documento pdf
 
 //FUNCION DE INICIO
-var idFact
-var tot
-var idVen
-$(document).ready(function () {
 
+$(document).ready(function () {
     listar();
     factura();
-
-
+    translate();
+    trans();
 });
-
-factura = function () {
-    //funcion  para descargar la factura en formato pdf
-    $(document).on('click', '#buttonDownload', function (e) {
-           e.preventDefault();
-            e.stopImmediatePropagation();        
-        pdfMake.createPdf(campos(idFact,tot,idVen)).download('Factura-'+idFact+'');
-    });
-    //funcion para el despliegue de la factura en formato pdf
-    $(document).on('click', 'a.idVenta', function (e) {
-           e.preventDefault();
-            e.stopImmediatePropagation();
-        var numFactura = $(this).parents("tr").find("td").eq(3).text();
-        var total = $(this).parents("tr").find("td").eq(2).text();
-        var idVenta = $(this).attr('id');
-        
-        const pdfDocGenerator = pdfMake.createPdf(campos(numFactura,total,idVenta));
-        pdfDocGenerator.getBase64((data) => {
-            $('#pdfModalFactura').attr('src', "data:application/pdf;base64," + data);
-            idFact = numFactura;
-            tot = total;
-            idVen = idVenta;
-            $("#modalFacturaCompra").modal("show");
-        });
-
-    });
-
-}
 
 listar = function () {
 
@@ -104,7 +59,7 @@ listar = function () {
                         }
                     }
                     //Crear una cadena de fecha que usamos en el pie y encabezado de página. El formato es dd-mm-aaaa
-                    
+
                     //Asignacion de estilos personalizados al reporte 
                     //margenes del page (seccion donde se encuentra la tabla)
                     doc.pageMargins = [20, 150, 20, 30];

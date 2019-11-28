@@ -5,17 +5,7 @@ $(document).ready(function () {
 });
 //Funcion para listar los provedores registrados, usando el plugin dataTable.
 listar = function () {
-    function getBase64Image(img) {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        return canvas.toDataURL("image/png");
-    }
-    //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
-    var myGlyph = new Image();
-    myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
+   
     var table = $("#tableCrud").DataTable({
         dom: 'Bfrtip',
         buttons: [
@@ -418,5 +408,115 @@ $('#btnUpdateP').click(function (e) { //Funcion para validar el formulario
     });
 });
 
+$(document).on('click', 'button.btnBloquear', function (e) {
+    e.preventDefault();
+        e.stopImmediatePropagation();
+        var idProveedor = $(this).attr('id');
+        var estado = "Inactivo";
+        
 
+        Swal.fire({
+            title: 'Estás Seguro?',
+            text: "De cambiar el estado de este proveedor!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Cambialo!',
+            cancelButtonText: 'Cancelar',
+            width: 500,
+            padding: '5em',
+        }).then((result) => {
+            if (result.value) {
+                var data = {idProveedor: idProveedor,estado: estado};
+                $.ajax({
+                    url: "../../processProveedor?accion=updateState",
+                    type: "post",
+                    data: data,
+                    success: function (data) {
+                        if (data == 1) {
+                            Swal.fire({
+                                //error
+                                type: 'success',
+                                title: '<strong>¡ El estado de este proveedor se actualizo exitosamente ! </strong>',
+                                width: 500,
+                                padding: '5em',
+                                showConfirmButton: false,
+                                timer: 2000 //el tiempo que dura el mensaje en ms
+                            });
+                        } else {
+                            Swal.fire({
+                                //error
+                                type: 'error',
+                                title: '<strong>¡Error al cambiar el estado de este proveedor!</strong> ',
+                                html: '<h4 style="font-size:15px;">Intentelo nuevamente</4>',
+                                width: '62em',
+                                padding: '5em',
+                                showConfirmButton: false,
+                                timer: 7000 //el tiempo que dura el mensaje en ms
+                            });
+                        }
+                        listar();
+                    }
+                });
+            }
+        })
+
+    
+});
+$(document).on('click', 'button.btnActivar', function (e) {
+      e.preventDefault();
+        e.stopImmediatePropagation();
+        var idProveedor = $(this).attr('id');
+        var estado = "Activo";
+        
+
+        Swal.fire({
+            title: 'Estás Seguro?',
+            text: "De cambiar el estado de este proveedor!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Cambialo!',
+            cancelButtonText: 'Cancelar',
+            width: 500,
+            padding: '5em',
+        }).then((result) => {
+            if (result.value) {
+                var data = {idProveedor: idProveedor,estado: estado};
+                $.ajax({
+                    url: "../../processProveedor?accion=updateState",
+                    type: "post",
+                    data: data,
+                    success: function (data) {
+                        if (data == 1) {
+                            Swal.fire({
+                                //error
+                                type: 'success',
+                                title: '<strong>¡ El estado de este proveedor se actualizo exitosamente ! </strong>',
+                                width: 500,
+                                padding: '5em',
+                                showConfirmButton: false,
+                                timer: 2000 //el tiempo que dura el mensaje en ms
+                            });
+                        } else {
+                            Swal.fire({
+                                //error
+                                type: 'error',
+                                title: '<strong>¡Error al cambiar el estado de este proveedor!</strong> ',
+                                html: '<h4 style="font-size:15px;">Intentelo nuevamente</4>',
+                                width: '62em',
+                                padding: '5em',
+                                showConfirmButton: false,
+                                timer: 7000 //el tiempo que dura el mensaje en ms
+                            });
+                        }
+                        listar();
+                    }
+                });
+            }
+        })
+
+});
 

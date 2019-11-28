@@ -99,7 +99,7 @@
                             <div class="col-sm-6">
                                 <label id = "ProveedorTelaje" class = "col-md-4 control-label" para = "proveedorShop"> Proveedor </label>
                                 <select id="proveedorShop" name="proveedorShop" class="form-control">
-                                    <option  data-translate=""selected="selected">Seleccione un proveedor</option>
+                                    <option  value=""selected="selected">Seleccione un proveedor</option>
                                 </select>
                             </div>   
                             <div class="col-sm-6" style="display: none;">
@@ -138,7 +138,7 @@
                     </button>
                     <h5  data-translate=""class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body"style="color: black;">
                     
                     <!--tabla detalle Compra-->
                     <h2 data-translate="">Detalle Compra</h2>
@@ -170,7 +170,7 @@
             <div class="modal-header">                                    
                 <h5  data-translate=""id="editSupplier" class="modal-title" id="exampleModalCenterTitle">Detalles Proveedor</h5>
             </div>
-            <div class="modal-body" style="border: none;">
+            <div class="modal-body" style="border: none;color: black;">
                 <table id="tabledetailsProveedor" class="table col-md-2 table-condensed table-hover table-striped table-bordered text-center">
                     <thead>
                         <tr>

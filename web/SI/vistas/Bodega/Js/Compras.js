@@ -1,23 +1,14 @@
- $(document).ready(function () {
+$(document).ready(function () {
     listar();
     Print();
     listarProveedor();
     translate();
     trans();
 });
-var listar = function () {
-    function getBase64Image(img) {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        return canvas.toDataURL("image/png");
-    }
-    //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
-    var myGlyph = new Image();
-    myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
 
+
+listar = function () {
+    
     var table = $("#tableCrud").DataTable({
         dom: 'Bfrtip',
         buttons: [
@@ -185,7 +176,7 @@ var Print = function () {
         dataType: "json",
         success: function (data) {
             $.each(data.datos, function (i, field) {
-                $('#stockShop').append(' <div class="col-md-4"><div class="card"><img class="card-img-top" src="../../' + field.Imagen + '" alt="' + field.Nombre + '"><div class="card-block"><h4 class="card-title">' + field.Nombre + '</h4><p class="card-text">Precio: $' + field.Precio + ' Mt²</p><a href="#" id = "' + field.Codigo + '"data-name="' + field.Nombre + '" data-price="' + field.Precio + '" class="add-to-cart btn colorbtn btn-primary">Añadir al carrito</a></div></div></div>');
+                $('#stockShop').append(' <div class="col-md-4"><div class="card"><img class="card-img-top" src="../../' + field.Imagen + '" alt="' + field.Nombre + '"><div class="card-block"><h4 class="card-title">' + field.Nombre + '</h4><p class="card-text">Precio: $' + field.Precio + ' Mt</p><a href="#" id = "' + field.Codigo + '"data-name="' + field.Nombre + '" data-price="' + field.Precio + '" class="add-to-cart btn colorbtn btn-primary">Añadir al carrito</a></div></div></div>');
             });
         }
     });
@@ -202,7 +193,10 @@ var listarProveedor = function () {
         success: function (data) {
 
             $.each(data.datos, function (i, field) {
-                $('#proveedorShop').append(' <option value="' + field.idProveedor + '">' + field.razonSocial + '</option>')
+                if (field.estadoProveedor == "Activo") {
+
+                    $('#proveedorShop').append(' <option value="' + field.idProveedor + '">' + field.razonSocial + '</option>')
+                }
             });
         }
     });
@@ -262,15 +256,17 @@ $('#frmShop').on('success.form.bv', function (e) {
             success: function (data) {
                 console.log(data);
                 if (data == 1) {
-                    Swal.fire({
-                        //error
-                        type: 'success',
-                        title: '¡ Compra registrada exitosamente ! ',
-                        width: 500,
-                        padding: '5em',
-                        showConfirmButton: false,
-                        timer: 2000 //el tiempo que dura el mensaje en ms
-                    });
+                   
+                        Swal.fire({
+                            //error
+                            type: 'success',
+                            title: '¡Compra registrada exitosamente! ',
+                            width: 500,
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 2000 //el tiempo que dura el mensaje en ms
+                        });
+                   
                     $("#frmShop")[0].reset();
                     $("#frmShop").data('bootstrapValidator').resetForm();
                     $('#cart').modal('toggle');
@@ -309,6 +305,7 @@ $('#frmShop').on('success.form.bv', function (e) {
         $('#btnOrderNow').attr("disabled", false);
     }
 });
+
 $(document).on('click', '#closeModalCart', function (e) {
     $("#frmShop")[0].reset();
     $("#frmShop").data('bootstrapValidator').resetForm();
@@ -354,6 +351,49 @@ $(document).on('click', 'a.idproveedor', function (e) {
         }
     });
 });
+
+$(document).on('click', 'button.btnFinalizar', function (e) {
+     var data = "";
+    var idCompra = $(this).attr("id");
+    $.ajax({
+        url: "../../controllerCompras?accion=processShop&idCompra="+idCompra+"",
+        type: "post",
+        data: data,
+        dataSrc: "datos",
+        dataType: "json",
+        success: function (data) {
+            if (data == 0) {
+                   
+                        Swal.fire({
+                            //error
+                            type: 'success',
+                            title: '¡Compra recibida exitosamente! ',
+                            width: 500,
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 2000 //el tiempo que dura el mensaje en ms
+                        });
+                   
+                
+                    listar();
+                } else {
+                    Swal.fire({
+                        //error
+                        type: 'error',
+                        title: '¡Error al recibir! ',
+                        text: 'Intentelo de nuevo',
+                        width: 500,
+                        padding: '5em',
+                        showConfirmButton: false,
+                        timer: 4000 //el tiempo que dura el mensaje en ms
+                    });
+                   
+                    listar();
+                }
+        }
+    });
+});
+
 // ************************************************
 // Shopping Cart API
 // Seccion de cosigo para el carrito de compras
@@ -504,9 +544,13 @@ $(document).on('click', '.add-to-cart', function (e) {
     displayCart();
 });
 $(document).on('click', '#openCart', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
     $('#modalCompraNueva').modal('toggle');
 });
 $(document).on('click', '#closeModalCart', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
     $('#modalCompraNueva').modal('show');
 });
 // Clear items
@@ -527,9 +571,9 @@ function displayCart() {
         output += "<tr>"
                 + "<td id='tdName'>" + cartArray[i].name + "</td>"
                 + "<td>(" + cartArray[i].price + ")</td>"
-                + "<td><div class='input-group row'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
+                + "<td><div class='input-group'><span class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</span>"
                 + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
-                + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
+                + "<span class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</span></div></td>"
                 + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
                 + " = "
                 + "<td>" + Math.trunc(cartArray[i].total) + "</td>"
@@ -540,7 +584,7 @@ function displayCart() {
 
     $('.show-cart').html(output);
     $('.total-cart').html(shoppingCart.totalCart());
-    $('.total-count').html(shoppingCart.totalCount());
+    $('.total-count').html(shoppingCart.listCart().length);
 }
 
 // Delete item button

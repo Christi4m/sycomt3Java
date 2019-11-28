@@ -106,11 +106,11 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content modal-lg">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="">
-                        <span class="fa fa-close close1" aria-hidden="true"></span>
+                    <button style="float: right;background: #2f323a;border: none"type="button" class="" data-dismiss="modal" aria-label="">
+                        <span style="color: white; font-size: 25px; font-family: sans-serif"class="fa fa-close close1" aria-hidden="true">x</span>
                     </button>
-                    <button id="buttonDownload" style="color: black;background: white"class="btn colorbtn btn-secondary" >Aceptar</button>
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Factura</h5>
+                    <button id="buttonDownload" style="margin-right: 5px;color: black;background: white;float: left"class="btn colorbtn btn-secondary" ><span class="fa fas-arrow-circle-o-down"></span></button>
+                    <h5 style="float: left" class="modal-title" id="exampleModalCenterTitle">Factura</h5>
                 </div>
                 <div  class="modal-body">
 

@@ -81,13 +81,13 @@ public class ProveedoresDAO extends Conexion {
     }
 
     //metodo para actualizar el estado de un proveedor
-    public boolean UpdateEstadoProveedor(Proveedores p) {
+    public boolean UpdateEstadoProveedor(int idProveedor, String estado) {
         boolean flag = false;
         try {
             String sql = "call updateEstadoProveedor(?,?)";
             pst = getConnection().prepareStatement(sql);
-            pst.setInt(1, p.getId());
-            pst.setString(2, p.getEstadoProveedor());
+            pst.setInt(1, idProveedor);
+            pst.setString(2, estado);
 
             if (pst.executeUpdate() == 1) {
                 flag = true;

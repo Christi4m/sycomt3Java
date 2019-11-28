@@ -1,3 +1,4 @@
+//seccion de variables globales
 var typeTercero = "";
 var firstName = "";
 var idUser = "";
@@ -8,6 +9,37 @@ var nameUser = "";
 var docDefinition = "";
 var now = new Date();
 var jsDate = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
+var table = [];
+var value = [];
+var numFacD
+var totalD
+var idVentaD
+var ivaD
+var subD
+var idClienteP
+var typeIdF
+var numIdF
+var nameUserF
+var addressF
+var idVenta
+// funcion para adjuntar imagenes a documentos pdf en base64
+function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    return canvas.toDataURL("image/png");
+}
+
+//Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
+var newImg = new Image();
+newImg.src = '../img/LogoSycomt3FondoNegro.png';
+
+var myGlyph = new Image();
+myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
+
+//funcion que cargar otras funciones al iniciar la pagina
 $(document).ready(function () {
     var data = "";
     $.ajax({
@@ -31,35 +63,89 @@ $(document).ready(function () {
     });
 
 });
-//[                            
-//                                {
-//                                    text: 'Item 2',
-//                                    style: 'itemTitle'
-//                                },
-//                                
-//                           
-//                            {
-//                                text: '1',
-//                                style: 'itemNumber'
-//                            },
-//                            {
-//                                text: '$999.99',
-//                                style: 'itemNumber'
-//                            },
-//                            {
-//                                text: '0%',
-//                                style: 'itemNumber'
-//                            }
-//                        ],
+factura = function () {
+
+    //funcion  para descargar la factura en formato pdf
+    $(document).on('click', '#buttonDownload', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        listDatesInvoice(idVenta, 2);
+    });
+    //funcion para el despliegue de la factura en formato pdf
+    $(document).on('click', 'a.idVenta', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var numFactura
+        idVenta = $(this).attr('id');
+        
+        listDatesInvoice(idVenta, 1);
+
+    });
+
+}
+listDatesInvoice = function(idVenta, opc){
+     
+        var data = "";
+        $.ajax({
+            url: "../../processVenta?action=listVentas",
+            type: "post",
+            data: data,
+            dataSrc: "datos",
+            dataType: "json",
+            success: function (data) {
+                $.each(data.datos, function (i, field) {
+                    if (field.Codigo == idVenta) {
+                        numFactura = field.FacturaP;
+                        total = field.Valor;
+                        iva = field.iva;
+                        subtotal = field.subtotal;
+                        idClienteP = field.idClienteP;
+                    }
+                });
+                var date = "";
+                
+                $.ajax({
+                    url: "../../methodClient?accion=listClientId&idCliente=" + idClienteP + "",
+                    type: "post",
+                    data: date,
+                    dataSrc: "datos",
+                    dataType: "json",
+                    success: function (data) {
+                        $.each(data.datos, function (i, field) {
+                            typeIdF = field.typeId;
+                            numIdF = field.numId;
+                            nameUserF = field.name;
+                            addressF = field.address;
+                        });
+                        numFacD = numFactura;
+                        totalD = total;
+                        idVentaD = idVenta;
+                        ivaD = iva;
+                        subD = subtotal;
+                
+                if(opc == 1){
+                    campos(numFactura, total, idVenta, iva, subtotal, 1, nameUserF, addressF);
+                }else if(opc == 2){
+                    campos(numFactura, total, idVenta, iva, subtotal, 2, nameUserF, addressF);
+                }
+
+                
+
+                    }
+                });
+
+
+            }
+        });
+
+}
+
 //creacion de factura
-campos = function (numFactura, total, idVenta) {
-    var totalS = parseInt(total)
-    var iva = totalS * 0.19;
-    var totalN = totalS - iva;
+campos = function (numFactura, total, idVenta, iva, subtotal, opcion, nameUserF, addressF) {
+
+
+
     var dato = {idVenta: idVenta}
-    var obj = [];
-    var value = [];
-    var docDefinition;
 
     $.ajax({
         url: "../../processVenta?action=detalleVentas",
@@ -68,24 +154,9 @@ campos = function (numFactura, total, idVenta) {
         dataSrc: "datos",
         dataType: "json",
         success: function (data) {
-            console.log(data);
-
-            var name;
-            var cant;
-            var price;
-            var priceUni
-            obj = {headerRows: 1,
-                widths: ['*', 40, 'auto', 'auto'],
-
-                body:
-                        // Table Header
-
-                        // Items
-
-                        value
-                        // END Items
-
-            }
+            var body2 = [];
+            var aux = 1;
+            value = [];
             value.push([
                 {
                     text: 'DESCRIPCIÓN',
@@ -104,21 +175,41 @@ campos = function (numFactura, total, idVenta) {
                     text: 'MONTO',
                     style: ['itemsHeader', 'center']
                 }
-            ]);
+            ],
+                    );
             $.each(data.datos, function (i, field) {
                 value.push([{text: field.nombreProducto, style: 'itemTitle'}, {text: '' + field.cantidad + '', style: 'itemNumber'},
-                    {text: '$999.99', style: 'itemNumber'}, {text: field.precio, style: 'itemNumber'}]);
-
+                    {text: '' + field.precioUnitario + '', style: 'itemNumber'}, {text: field.precio, style: 'itemNumber'}]);
+                
             });
 
-            docDefinition = {
+
+
+
+
+            table = {headerRows: 1,
+                widths: ['*', 40, 'auto', 'auto'],
+
+                body:
+                        // Table Header
+
+                        // Items
+
+                        value
+
+                        // END Items
+
+            }
+
+
+            
+
+            var docDefinition = {
 
                 info: {
                     title: 'Factura: ' + numFactura,
-                    author: 'john doe',
-                    subject: 'subject of document',
-                    keywords: 'keywords for document',
-                    filename: 'gola'
+                    author: 'Sycomt3',
+
                 },
 
                 footer: function (currentPage, pageCount) {
@@ -207,7 +298,7 @@ campos = function (numFactura, total, idVenta) {
                                 style: 'invoiceBillingDetails'
                             },
                             {
-                                text: nameUser,
+                                text: nameUserF,
                                 style: 'invoiceBillingDetails'
                             },
                         ]
@@ -233,7 +324,7 @@ campos = function (numFactura, total, idVenta) {
                                 style: 'invoiceBillingAddress'
                             },
                             {
-                                text: address,
+                                text: addressF,
                                 style: 'invoiceBillingAddress'
                             },
                         ]
@@ -242,11 +333,8 @@ campos = function (numFactura, total, idVenta) {
                     '\n\n',
                     // Items
                     {
-                        table: {
-                            obj
-
-                        }, // table
-                        //  layout: 'lightHorizontalLines'
+                        table
+                                //  layout: 'lightHorizontalLines'
                     },
                     // TOTAL
                     {
@@ -264,7 +352,7 @@ campos = function (numFactura, total, idVenta) {
                                         style: 'itemsFooterSubTitle'
                                     },
                                     {
-                                        text: '$ ' + totalN.toString().replace(/\./g, ','),
+                                        text: '$ ' + subtotal,
                                         style: 'itemsFooterSubValue'
                                     }
                                 ],
@@ -274,7 +362,7 @@ campos = function (numFactura, total, idVenta) {
                                         style: 'itemsFooterSubTitle'
                                     },
                                     {
-                                        text: '$ ' + iva.toString().replace(/\./g, ','),
+                                        text: '$ ' + iva,
                                         style: 'itemsFooterSubValue'
                                     }
                                 ],
@@ -461,12 +549,25 @@ campos = function (numFactura, total, idVenta) {
                 }
             }
 
+            
+            if (opcion == 1) {
+                const pdfDocGenerator = pdfMake.createPdf(docDefinition);
+                pdfDocGenerator.getBase64((data) => {
+                    $('#pdfModalFactura').attr('src', "data:application/pdf;base64," + data);
+                   
+                    $("#modalFacturaCompra").modal("show");
+                });
+            } else if (opcion == 2) {
+                pdfMake.createPdf(docDefinition).download('Factura-' + numFactura + '');
+            }
+
+
+
 
         }
     });
 
 
 
-    return docDefinition;
-
 };
+

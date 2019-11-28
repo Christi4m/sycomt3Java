@@ -1,21 +1,16 @@
 $(document).ready(function () {
     listar();
     datosReporteVetas1();
+    factura();
+    translate();
+    trans();
 });
 
 
+
+
 listar = function () {
-    function getBase64Image(img) {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        return canvas.toDataURL("image/png");
-    }
-    //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
-    var myGlyph = new Image();
-    myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
+    
     var table = $("#tableCrud").DataTable({
         dom: 'Bfrtip',
         buttons: [

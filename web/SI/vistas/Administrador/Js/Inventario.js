@@ -3,8 +3,7 @@ $(document).ready(function () {
     listarProveedor();
     translate();
     trans();
-
-    
+    factura();
 
 });
 var listarProveedor = function () {
@@ -18,23 +17,16 @@ var listarProveedor = function () {
         success: function (data) {
 
             $.each(data.datos, function (i, field) {
+                if(field.estadoProveedor == "Activo"){
+                    
                 $('#proveedorProducto').append(' <option value="' + field.idProveedor + '">' + field.razonSocial + '</option>')
+                }
             });
         }
     });
 };
 listar = function () {
-    function getBase64Image(img) {
-        var canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-        return canvas.toDataURL("image/png");
-    }
-    //Variable para la cracion de la imagen en base 64 o data uri, necesario para mostrar la imagen en el reporte
-    var myGlyph = new Image();
-    myGlyph.src = '../img/LogoSycomt3FondoBlanco.png';
+    
     var table = $("#tableCrud").DataTable({
         dom: 'Bfrtip',
         buttons: [
@@ -187,11 +179,11 @@ listar = function () {
             $(row).find('td:eq(4)').attr('data-label', 'Precio')
             $(row).find('td:eq(5)').attr('data-label', 'Stock')
             $(row).find('td:eq(6)').attr('data-label', 'Acciones')
-            
-             
-        
-        
-        
+
+
+
+
+
         },
         language: idiomaEsp
     });
@@ -236,7 +228,7 @@ $(function () {
                     validators: {
                         notEmpty: {message: 'Seleccione el proveedor'},
                         callback: {
-                            message: 'Ingrese el numero de hijos del empleado',
+                            message: 'Seleccione un proveedor',
                             callback: function (value, validator, $field) {
                                 if (value === '') {
                                     return true;
@@ -416,50 +408,96 @@ $(function () {
     //funcion actualizar
 
     $('#botonUpdateModal').click(function (e) {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        $("#modalEdicion").modal("toggle");
-        var data = new FormData($('#frmUpdateProducto')[0]);
 
-        for (var entrie of data.entries()) {
-            console.log(entrie[0] + ': ' + entrie[1]);
-        }
+        $('#frmUpdateProducto').bootstrapValidator({
+            feedbackIcons: {valid: 'glyphicon glyphicon-ok', invalid: 'glyphicon glyphicon-remove', validating: 'glyphicon glyphicon-refresh'},
+            fields: {
+                nombreProducto: {
+                    validators: {
+                        notEmpty: {message: 'Ingrese el nombre'}
+                    }
+                },
 
+                telajeProducto: {
+                    validators: {
+                        notEmpty: {message: 'Ingrese el tipo de tela'},
+                        callback: {
+                            message: 'Ingrese el tipo de tela',
+                            callback: function (value, validator, $field) {
+                                if (value === '') {
+                                    return true;
+                                }
+                                return true;
+                            }
+                        }
+                    }
+                },
 
-
-        $.ajax({
-            url: "../../methodProduct?accion=update",
-            type: "post",
-            data: data,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                console.log(data);
-                if (data == 1) {
-                    Swal.fire({
-                        //error
-                        type: 'success',
-                        title: '¡ Producto Actualizado exitosamente ! ',
-                        width: 500,
-                        padding: '5em',
-                        showConfirmButton: false,
-                        timer: 2000 //el tiempo que dura el mensaje en ms
-                    });
-
-                } else {
-                    Swal.fire({
-                        //error
-                        type: 'error',
-                        title: '¡Error al Actualizar! ',
-                        text: 'Intentelo de nuevo',
-                        width: 500,
-                        padding: '5em',
-                        showConfirmButton: false,
-                        timer: 4000 //el tiempo que dura el mensaje en ms
-                    });
+                ubicacionBodega: {
+                    validators: {
+                        notEmpty: {message: 'Ingrese la ubicación'}
+                    }
+                },
+                precioMC: {
+                    validators: {
+                        notEmpty: {message: 'Ingrese el precio'},
+                        digits: {message: 'Ingrese un precio valido'}
+                    }
+                },
+                stock: {
+                    validators: {
+                        notEmpty: {message: 'Ingrese la cantidad del stock'},
+                        digits: {message: 'Ingrese solo numeros'}
+                    }
                 }
-                listar();
+
+
             }
+
+        });
+        $('#frmUpdateProducto').on('success.form.bv', function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            
+            var data = new FormData($('#frmUpdateProducto')[0]);
+
+            for (var entrie of data.entries()) {
+                console.log(entrie[0] + ': ' + entrie[1]);
+            }
+            $.ajax({
+                url: "../../methodProduct?accion=update",
+                type: "post",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                    if (data == 1) {
+                        Swal.fire({
+                            //error
+                            type: 'success',
+                            title: '¡ Producto Actualizado exitosamente ! ',
+                            width: 500,
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 2000 //el tiempo que dura el mensaje en ms
+                        });
+                        $("#modalEdicion").modal("toggle");
+                    } else {
+                        Swal.fire({
+                            //error
+                            type: 'error',
+                            title: '¡Error al Actualizar! ',
+                            text: 'Intentelo de nuevo',
+                            width: 500,
+                            padding: '5em',
+                            showConfirmButton: false,
+                            timer: 4000 //el tiempo que dura el mensaje en ms
+                        });
+                    }
+                    listar();
+                }
+            });
         });
     });
     //funcion para llamar los detalles de un producto dentro del detalle de ventas
@@ -490,4 +528,6 @@ $(function () {
 });
 
 
-
+function consultStcok (valorProducto, idProducto){
+    
+}

@@ -51,7 +51,13 @@ public class controllerProveedor extends HttpServlet {
                     item.addProperty("addressP", pr1.getAddressP());
                     item.addProperty("representanteLegal", pr1.getRepresentanteLegal());
                     item.addProperty("estadoProveedor", pr1.getEstadoProveedor());
-                    item.addProperty("acciones", "<button id='" + pr1.getId() + "'class='btn btnDetails btn-primary fa fa-eye' data-toggle='modal' data-target='#modalDetallesProveedor'><button id='" + pr1.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button><button id='" + pr1.getId() + "' class='btn btnEliminar fa fa-ban btn-danger text-left' data-toggle='modal' data-target='#modalEliminar'></button>");
+                    if(pr1.getEstadoProveedor().equalsIgnoreCase("Activo")){
+                        
+                    item.addProperty("acciones", "<button id='" + pr1.getId() + "'class='btn btnDetails btn-primary fa fa-eye' data-toggle='modal' data-target='#modalDetallesProveedor'><button id='" + pr1.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button><button id='" + pr1.getId() + "' class='btn btnBloquear fa fa-ban btn-danger text-left'></button>");
+                    }else if(pr1.getEstadoProveedor().equalsIgnoreCase("Inactivo")){
+                        
+                    item.addProperty("acciones", "<button id='" + pr1.getId() + "'class='btn btnDetails btn-primary fa fa-eye' data-toggle='modal' data-target='#modalDetallesProveedor'><button id='" + pr1.getId() + "'class='btn btnUpdate btn-warning fa fa-edit' data-toggle='modal' data-target='#modalEdicion'></button><button id='" + pr1.getId() + "' class='btn btnActivar fa fa-check btn-success text-left' ></button>");
+                    }
 
                     array.add(item);
 
@@ -117,6 +123,19 @@ public class controllerProveedor extends HttpServlet {
                 } else {
                     out.print("0");
                 }
+                break;
+            case "updateState":
+                ProveedoresDAO prv6 = new ProveedoresDAO();
+                String etsado = request.getParameter("estado");
+                int idPrv = Integer.parseInt(request.getParameter("idProveedor"));
+                if(prv6.UpdateEstadoProveedor(idPrv, etsado)){
+                    out.print("1");
+                }else{                    
+                    out.print("0");
+                }
+                break;
+            default:
+                out.print("Proceso no encontrado");
                 break;
         }
     }

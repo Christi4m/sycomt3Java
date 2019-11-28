@@ -51,7 +51,7 @@ public class controllerCompras extends HttpServlet {
                 ComprasDAO shopDao1 = new ComprasDAO();
                 Compras shop1 = new Compras(0, fecha, request.getParameter("descripcionShop"), Double.parseDouble(request.getParameter("totalShop")), Integer.parseInt(request.getParameter("proveedorShop")), 0, 0, 0,"Realizada");
                 //condicional if para guardar la compra y tomar un decision depensiendo el resultado que arroje el modelo
-                if (shopDao1.newShop(shop1)) {
+                if (!shopDao1.newShop(shop1)) {
                     ComprasDAO shopDao2 = new ComprasDAO();
                     int idShop = shopDao2.idCompras();
                     
@@ -86,7 +86,13 @@ public class controllerCompras extends HttpServlet {
                     item.addProperty("proveedor", "<a class='idproveedor' id='" + shop3.getIdProveedorShop()+ "' role=\"button\" href=\"#\">" + shop3.getIdProveedorShop() + " </a>");
                     item.addProperty("obs", shop3.getObsShop());
                     item.addProperty("Estado", shop3.getEstadoShop());
-                    item.addProperty("acciones", "<button id='" + shop3.getIdShop() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button id='" + shop3.getIdShop() + "' class='btn btnFinalizar fa fa-check btn-success text-left'></button><button id='" + shop3.getIdShop() + "' class='btn btnFinalizar fa fa-times btn-danger text-left'></button>");
+                    if(shop3.getEstadoShop().equalsIgnoreCase("Realizada")){
+                        
+                    item.addProperty("acciones", "<button id='" + shop3.getIdShop() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button id='" + shop3.getIdShop() + "' class='btn btnFinalizar fa fa-check btn-success text-left'></button>");
+                    }else{
+                    item.addProperty("acciones", "<button id='" + shop3.getIdShop() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
+                        
+                    }
 
                     array.add(item);
 
@@ -113,6 +119,32 @@ public class controllerCompras extends HttpServlet {
                 gsonDV.add("datos", arrayDV);
 
                 out.print(gsonDV.toString());
+                break;
+            case "processShop":
+                int res = 0;
+                
+                int idCompra = Integer.parseInt(request.getParameter("idCompra"));
+                int buc = 0;
+               
+                    ComprasDAO modeloDetails1 = new ComprasDAO();
+                    for (Compras compras4 : modeloDetails1.getAllDetailsShop(idCompra)) {
+                        ProductoDAO prDAO = new ProductoDAO();
+                        Producto pr1 = (Producto) prDAO.getProducto(compras4.getIdProductShop());
+                        ProductoDAO prDAO3 = new ProductoDAO();
+                        if(prDAO3.updateStockProducto(compras4.getIdProductShop(), pr1.getStock() + compras4.getCantProductShop())){
+                            buc += buc;
+                        }else{
+                             buc += 1;
+                        }
+                                                              
+                }
+                 ComprasDAO modelo1 = new ComprasDAO();   
+                 if(modelo1.udateStateShop(idCompra, "Recibida")){
+                      buc += buc;
+                 }else{
+                     buc += 1;
+                 }
+                out.print(res);
                 break;
             default:
                 out.print("Error");

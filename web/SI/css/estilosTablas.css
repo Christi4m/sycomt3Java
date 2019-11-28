@@ -57,20 +57,24 @@ body::-webkit-scrollbar {
     background: #2f323a;
     box-shadow:  4px 0px 10px #2f323a;
     border: none;
+    color: white;
 }
 .colorbtn:active{
     background: #2f323a;
     box-shadow:  4px 0px 10px #2f323a;
     border: none;
+    color: white;
 }
 .colorbtn:focus{
     background: #2f323a;
     box-shadow:  4px 0px 10px #2f323a;
     border: none;
+    color: white;
 }
 .colorbtn:hover{
     background: #4ECDC4;
     box-shadow:  4px 0px 10px #2f323a;
+    color: white;
 
 }
 .btnAgregar{

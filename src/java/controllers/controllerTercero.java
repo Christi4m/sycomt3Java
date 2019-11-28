@@ -71,8 +71,8 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                         request.getParameter("firstName"), request.getParameter("secondName"), request.getParameter("firstLastName"),
                         request.getParameter("secondLastName"), request.getParameter("email"), request.getParameter("numCellPhone"),
                         request.getParameter("numLandLine"), request.getParameter("localidadCliente"), request.getParameter("barrioCliente"),
-                        request.getParameter("address"), request.getParameter("detailsAddress"), request.getParameter("userAccess"), request.getParameter("passwordAccess"), zona);
-                if (modelo1.createClient(tercero1)) {
+                        request.getParameter("address"), request.getParameter("detailsAddress"), request.getParameter("username"), request.getParameter("password"), zona);
+                if (!modelo1.createClient(tercero1)) {
                     out.print("1");
                 } else {
                     out.print("0");
@@ -127,7 +127,13 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
                     itemLE.addProperty("numCellPhone", empleado1.getNumCellPhone());
                     itemLE.addProperty("typeTercero", empleado1.getTypeUser());
                     itemLE.addProperty("estadoTercero", empleado1.getEstadoTercero());
-                    itemLE.addProperty("acciones", "<button id='" + empleado1.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button id='" + empleado1.getId() + "'class='btn btnInsertUserAccess btn-light fa fa-key' style='border: solid gray 1px;'></button><button id='" + empleado1.getId() + "' class='btn btnEliminar fa fa-ban btn-danger text-left' data-toggle='modal' data-target='#modalEliminar'></button>");
+                    if (empleado1.getEstadoTercero().equalsIgnoreCase("Activo")) {
+
+                        itemLE.addProperty("acciones", "<button id='" + empleado1.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button id='" + empleado1.getId() + "'class='btn btnInsertUserAccess btn-light fa fa-key' style='border: solid gray 1px;'></button><button id='" + empleado1.getId() + "' class='btn btnBloquear fa fa-ban btn-danger text-left' ></button>");
+                    } else if (empleado1.getEstadoTercero().equalsIgnoreCase("Bloqueado")) {
+
+                        itemLE.addProperty("acciones", "<button id='" + empleado1.getId() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button id='" + empleado1.getId() + "'class='btn btnInsertUserAccess btn-light fa fa-key' style='border: solid gray 1px;'></button><button id='" + empleado1.getId() + "' class='btn btnActivar fa fa-check btn-success text-left' ></button>");
+                    }
                     arrayLE.add(itemLE);
 
                 }
@@ -204,6 +210,14 @@ public class controllerTercero extends HttpServlet { // CLASE DEL SERVLET //
             case "asignaZonaEntrega":
                 TerceroDAO modelo9 = new TerceroDAO();
                 if (modelo9.updateZonaEntrega(Integer.parseInt(request.getParameter("idMensajero")), request.getParameter("zona"))) {
+                    out.print("1");
+                } else {
+                    out.print("0");
+                }
+                break;
+            case "updateStateUser":
+                TerceroDAO modelo10 = new TerceroDAO();
+                if (modelo10.updateStateUser(Integer.parseInt(request.getParameter("idUser")), request.getParameter("stateUser"))) {
                     out.print("1");
                 } else {
                     out.print("0");
