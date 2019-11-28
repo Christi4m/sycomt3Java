@@ -234,11 +234,11 @@
                 </button>
             </div>
             <div  class="modal-body">
-                <h2>Producto</h2>
+                <h2 id="product">Producto</h2>
                 <table id="detalleProductoTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Proveedor</th>
+                            <th id="supplier">Proveedor</th>
                         </tr>
                     </thead>
                     <tbody id="bodyDetailsProduct">
@@ -251,7 +251,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="buttonCloseModal"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                <button id="acept"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>

@@ -2,17 +2,17 @@
     <div class="row">
         <div class="col-lg-12 col-xl-12 col-md-12  cont">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
-                <h2>Ventas</h2>
+                <h2 id="sales">Ventas</h2>
                 <table id="tableCrud" class="table  table-hover table-striped table-bordered" style="width:100%; color:black">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="date">Fecha</th>
+                            <th id="value">Valor</th>
+                            <th id="client">Cliente</th>
+                            <th id="invoice">Factura</th>
+                            <th id="state">Estado</th>
+                            <th id="accions">Acciones</th>
 
                         </tr>
                     </thead>
@@ -24,12 +24,12 @@
                     <tfoot>
                         <tr>
                             <th>#</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="date1">Fecha</th>
+                            <th id="value1">Valor</th>
+                            <th id="client1">Cliente</th>
+                            <th id="invoice1">Factura</th>
+                            <th id="state1">Estado</th>
+                            <th id="accions1">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -48,7 +48,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                <h5 class="detalles" id="exampleModalCenterTitle">Detalles</h5>
             </div>
             <div class="modal-body">
                 <h2>Cliente</h2>

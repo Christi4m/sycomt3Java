@@ -7,7 +7,7 @@
                     <thead>
                         <tr>
                             <th id="titleIdentification">#</th>
-                            <th id="titleIdentification">Identificación</th>
+                            <th id="titleIdentification3">Identificación</th>
                             <th id="titleName">Nombre</th>
                             <th id="titleEmail">Correo</th>
                             <th id="titleCellphone">Celular</th>                                            

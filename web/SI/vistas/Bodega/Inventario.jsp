@@ -3,7 +3,7 @@
         <div class="col-lg-12 col-xl-12 col-md-12  cont">
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
                 <h2>Stock</h2>
-                <button id="add" class="btn btnAgregar"data-toggle="modal" data-target="#modalNuevo">
+                <button id="add1" class="btn btnAgregar"data-toggle="modal" data-target="#modalNuevo">
                     agregar
                     <span class="fa fa-plus"></span>
                 </button>
@@ -115,38 +115,38 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 class="modal-title" id="exampleModalCenterTitle">Editar</h5>
+                <h5 id="edit" class="modal-title" id="exampleModalCenterTitle">Editar</h5>
             </div>
             <div class="modal-body">
 
                 <form id="frmUpdateProducto"class="form-horizontal col-sm-12 text-center"enctype="multipart/form-data">
                     <div class="form-group text-center">
-                        <h4 class="tituloDP">Datos Del Producto</h4>
+                        <h4 id="productDates1" class="tituloDP">Datos Del Producto</h4>
                         <div class="col-sm-6">
                             <label class="col-md-4 control-label" for="idProducto">Id</label>
                             <input id="idProductoA" readonly="readonly"  name="idProducto" type="text" placeholder="Id Producto" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6">
-                            <label class="col-md-4 control-label" for="nombreProducto">Nombre</label>
+                            <label id="name2" class="col-md-4 control-label" for="nombreProducto">Nombre</label>
                             <input id="nombreProductoA" name="nombreProducto" type="text" placeholder="Nombre Producto" class="form-control input-md" required="">
                         </div>
 
                         <div class="col-sm-6">
-                            <label class="col-md-4 control-label" for="telajeProducto">Telaje</label>
+                            <label id="weaving" class="col-md-4 control-label" for="telajeProducto">Telaje</label>
                             <select id="telajeProductoA" name="telajeProducto" class="form-control">
                                 <option value="0">---------------------</option>
-                                <option value="Paño">Paño</option>
-                                <option value="Lino">Lino</option>
-                                <option value="Seda">Seda</option>
-                                <option value="Uniforme">Uniforme</option>
+                                <option id="cloth" value="Paño">Paño</option>
+                                <option id="linen" value="Lino">Lino</option>
+                                <option id="silk" value="Seda">Seda</option>
+                                <option id="uniform" value="Uniforme">Uniforme</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
-                            <label class="col-md-4 control-label" for="ubicacionBodega">Ubicación</label>
+                            <label id="location1" class="col-md-4 control-label" for="ubicacionBodega">Ubicación</label>
                             <input id="ubicacionBodegaA" name="ubicacionBodega" type="text" placeholder="Ubicación Bodega" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6">
-                            <label id = "price" class = "col-md-4 control-label" para = "precioMC"> Precio </label>
+                            <label id = "price3" class = "col-md-4 control-label" para = "precioMC"> Precio </label>
                             <input id="precioMCA" name="precioMC" type="text" placeholder="Precio Metro Cuadrado" class="form-control input-md" required="">
                         </div>
                         <div class="col-sm-6">
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12" style="margin-top: 30px;">
-                        <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="botonCerra" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button id="botonUpdateModal" type="submit" name="botonEnviar" class="btnUpdateModal colorbtn btn btn-primary">Aceptar</button>
                     </div>
                 </form>
@@ -234,11 +234,11 @@
                 </button>
             </div>
             <div  class="modal-body">
-                <h2>Producto</h2>
+                <h2 id="product">Producto</h2>
                 <table id="detalleProductoTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Proveedor</th>
+                            <th id="supplier">Proveedor</th>
                         </tr>
                     </thead>
                     <tbody id="bodyDetailsProduct">
@@ -251,7 +251,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="buttonCloseModal"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                <button id="acept"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>

@@ -136,7 +136,7 @@ var translate = function () {
 
         $('#buttonLogout').text('Log Out');
         $('#myPerfil').text('My Profile');
-        //tradyccion compras admin   
+        //traducción compras admin   
         $('#dateShop').text('Date');
         $('#previeder').text('Previeder');
         $('#obsShop').text('Observations');
@@ -247,6 +247,9 @@ var translate = function () {
         $('#botonCerra').text('Close');
         $('#botonVacia').text('Clean');
         $('#btnCrearUserAccess').text('Save');
+        
+        //Traducción reportes admin
+       $('#historicalSales2').text('Reports');
 
         //Traducción inventario admin
         $('#add1').text('Add');
@@ -277,6 +280,9 @@ var translate = function () {
         $('#price3').text('Price');
         $('#botonCerrar1').text('Cancel');
         $('#botonUpdateModal').text('Acept');
+        $('#product').text('Product');
+        $('#supplier').text('Supplier');
+        $('#acept').text('Acept');
 
 
         //traducción proveedores admin
@@ -397,6 +403,44 @@ var translate = function () {
         $('#unitValue').text('Unit Value');
         $('#details2').text('Details');
         $('#botonCerrarDV').text('Acept');
-
+        
+        //Traducción entregas pendiente bodega
+        $('#delivieres').text('Delivieres');
+        $('#date').text('Date');
+        $('#value').text('Value');
+        $('#client').text('Client');
+        $('#invoice').text('Invoice');
+        $('#actions').text('Actions');
+        $('#date1').text('Date');
+        $('#value1').text('Value');
+        $('#client1').text('Client');
+        $('#invoice1').text('Invoice');
+        $('#actions1').text('Actions');
+        
+        //Traducción Inventario bodega
+        $('#edit').text('Edit');
+        $('#productDates1').text('Product Dates');
+        $('#name2').text('Name');
+        $('#weaving').text('weaving');
+        $('#cloth').text('Cloth');
+        $('#linen').text('Linen');
+        $('#silk').text('Silk');
+        $('#uniform').text('Uniform');
+        $('#location1').text('Location');
+        $('#price3').text('Price');
+        $('#botonCerra').text('Cancel');
+        $('#product').text('Product');
+        $('#supplier').text('Supplier');
+        $('#acept').text('Acept');
+        $('#add1').text('Add');
+        
+        //Traducción mensajero Bodega// igual no se tradujo or no notar cambios
+        $('#main').text('Messengers');
+        $('#titleIdentification3').text('Identification');
+        
+        
+        //
+        $('#detalles').text('Details');
+       
     }
 }
