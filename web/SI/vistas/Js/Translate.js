@@ -435,12 +435,11 @@ var translate = function () {
         $('#add1').text('Add');
         
         //Traducción mensajero Bodega// igual no se tradujo or no notar cambios
-        $('#main').text('Messengers');
-        $('#titleIdentification3').text('Identification');
+        $('#messengers').text('Messengers');
         
         
-        //
-        $('#detalles').text('Details');
+        
+        
        
     }
 }

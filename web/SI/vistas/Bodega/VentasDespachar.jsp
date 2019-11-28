@@ -48,21 +48,21 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 class="detalles" id="exampleModalCenterTitle">Detalles</h5>
+                <h5 id="details" class="details" id="exampleModalCenterTitle">Detalles</h5>
             </div>
             <div class="modal-body">
-                <h2>Cliente</h2>
+                <h2 id="client2">Cliente</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Tipo Id</th>
-                            <th>Documento</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Celular</th>
-                            <th>Dirección</th>
-                            <th>Detalles</th>
+                            <th id="typeId">Tipo Id</th>
+                            <th id="document">Documento</th>
+                            <th id="name">Nombre</th>
+                            <th id="correo">Correo</th>
+                            <th id="cellPhone">Celular</th>
+                            <th id="address">Dirección</th>
+                            <th id="details1">Detalles</th>
 
                         </tr>
                     </thead>
@@ -80,17 +80,17 @@
 
                 </table>
                 <!--tabla detalle venta-->
-                <h2>Detalle Venta</h2>
+                <h2 id="detailSell">Detalle Venta</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
 
-                            <th>Id Producto</th>
-                            <th>Nombre Producto</th>                                                
-                            <th>Cantidad</th>
-                            <th>Valor Unitario</th>
-                            <th>Detalles</th>
+                            <th id="idProduct">Id Producto</th>
+                            <th id="productName">Nombre Producto</th>                                                
+                            <th id="quantity">Cantidad</th>
+                            <th id="unitValue">Valor Unitario</th>
+                            <th id="details2">Detalles</th>
                         </tr>
                     </thead>
                     <tbody id="bodyDV"> 
@@ -101,7 +101,7 @@
 
             </div>
             <div class="modal-footer">
-                <button id="botonCerrarDV"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                <button id="acept"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
 
             </div>
         </div>
@@ -170,13 +170,13 @@
 
             </div>
             <div  class="modal-body">
-                <h2>Producto</h2>
+                <h2 id="product">Producto</h2>
 
                 <table id="detalleProductoTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Ubicación</th>
-                            <th>Proveedor</th>
+                            <th id="location">Ubicación</th>
+                            <th id="supplier">Proveedor</th>
 
 
                         </tr>
@@ -198,7 +198,7 @@
 
             </div>
             <div class="modal-footer">
-                <button id="buttonCloseModal "type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                <button id="botonCerrarDV "type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>

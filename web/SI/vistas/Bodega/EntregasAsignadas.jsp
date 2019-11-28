@@ -17,7 +17,7 @@
                             <th id="date">Fecha</th>
                             <th id="value">Valor</th>
                             <th id="client">Cliente</th>
-                            <th id="Envoice">Factura</th>
+                            <th id="invoice">Factura</th>
                             <th id="state">Estado</th>
                             <th id="actions">Acciones</th>
 
@@ -34,7 +34,7 @@
                             <th id="date1">Fecha</th>
                             <th id="value1">Valor</th>
                             <th id="client1">Cliente</th>
-                            <th id="Envoice1">Factura</th>
+                            <th id="invoice1">Factura</th>
                             <th id="state1">Estado</th>
                             <th id="actions1">Acciones</th>
                         </tr>
