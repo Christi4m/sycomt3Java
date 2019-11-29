@@ -7,7 +7,7 @@ var trans = function () {
     $(document).on('click', '#es', function (e) {
         e.preventDefault();
         lang = "es";
-        
+
         idiomaEsp = {
             "decimal": "",
             "emptyTable": "No hay datos",
@@ -68,7 +68,7 @@ var trans = function () {
         if ($.fn.DataTable.isDataTable('#tableCrud')) {
             listar();
         }
-        
+
         translate(lang);
     });
 
@@ -140,6 +140,52 @@ var translate = function () {
         $('#linkPqrsC').text("'PQR's Managment");
         $('#shopSpan').text("Shops");
         $('#linkCOmprasC').text("Shops Managment");
+        //Traduccion home cliente
+        $('#spanCompras').text("Shops");
+        //Traduccion compras cliente
+        $('#titleShopC').text("Shopping");
+        $('#dateC').text("Date");
+        $('#valorC').text("Value");
+        $('#facturaC').text("Invoice");
+        $('#estadoC').text("State");
+        $('#accions').text("Actions");
+        $('#dateC1').text("Date");
+        $('#valorC1').text("Value");
+        $('#facturaC1').text("Invoice");
+        $('#estadoC1').text("State");
+        $('#accions1').text("Actions");
+        $('#details').text("Details");
+        $('#detailsShopTitle').text("Purchase Detail");
+        $('#detailNom').text("P name");
+        $('#detailPP').text("Details P");
+        $('#detailCant').text("Quantity");
+        $('#detailPrice').text("Price");
+        $('#titleShopProduct').text("Product");
+        $('#buttonCloseModal').text("Accept");
+        $('#titleShopFacC').text("Invoice");
+        //Traduccion pqrs Cliente
+        $('#btnAgregarPq').text("Add");
+        $('#datePqC').text("Date");
+        $('#typePqC').text("Type");
+        $('#accions').text("Actions");
+        $('#datePqC1').text("Date");
+        $('#typePqC1').text("Type");
+        $('#accions1').text("Actions");
+        $('#alertPqrs').text("LunaTextilCom has provided this form to the service of our clients, as an alternative to facilitate the filing of PQRS that include matters such as: requests, complaints, claims and / or suggestions.");
+        $('#selectOption').text("Select an option");
+        $('#peticion').text("Petition");
+        $('#queja').text("Complain");
+        $('#reclamo').text("Claim");
+        $('#sugerencia').text("Suggestion");
+        $('#labelPqrsC').text("Description");
+        $('#AdvertenPqrsC').text("To ensure a better process when generating a response to your PQR's, you can attach an image that supports your request in case you have the image, the image is not mandatory but guarantees more accuracy when responding to your PQR's");
+        $('#labelEvidenPqC').text("Evidences");
+        $('#autorizaPqC').text("Authorize LunaTextilCom to communicate with you via the email provided and respond to your request. In advance, make sure your email is active.");
+        $('#botonCerrar').text("Close");
+        $('#botonVaciar').text("Clean");
+        $('#btncrearpqrs').text("Save");
+        $('#buttonCloseModal').text("Accept");
+
         //Traduccion Sidebar Bodega
         $('#dispatch').text('Dispatch');
         $('#linkDespachos').text('Dispatch Magnament');
@@ -263,9 +309,9 @@ var translate = function () {
         $('#botonCerra').text('Close');
         $('#botonVacia').text('Clean');
         $('#btnCrearUserAccess').text('Save');
-        
+
         //Traducción reportes admin
-       $('#historicalSales2').text('Reports');
+        $('#historicalSales2').text('Reports');
 
         //Traducción inventario admin
         $('#add1').text('Add');
@@ -330,7 +376,7 @@ var translate = function () {
         $('#btnUpdateP').text('Save');
         $('#editSupplier').text('Supplier Details');
         $('#c').text('Acept');
-        
+
         //Traducción ventas administrador
         $('#historicalSales2').text('Sales');
         $('#generateReport').text('Generate Report');
@@ -419,7 +465,7 @@ var translate = function () {
         $('#unitValue').text('Unit Value');
         $('#details2').text('Details');
         $('#botonCerrarDV').text('Acept');
-        
+
         //Traducción entregas pendiente bodega
         $('#delivieres').text('Delivieres');
         $('#date').text('Date');
@@ -432,7 +478,7 @@ var translate = function () {
         $('#client1').text('Client');
         $('#invoice1').text('Invoice');
         $('#actions1').text('Actions');
-        
+
         //Traducción Inventario bodega
         $('#edit').text('Edit');
         $('#productDates1').text('Product Dates');
@@ -449,13 +495,13 @@ var translate = function () {
         $('#supplier').text('Supplier');
         $('#acept').text('Acept');
         $('#add1').text('Add');
-        
+
         //Traducción mensajero Bodega// igual no se tradujo por no notar cambios
         $('#messengers').text('Messengers');
-        
-        
-        
-        
-       
+
+
+
+
+
     }
 }

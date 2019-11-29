@@ -186,7 +186,7 @@
                 + "                                                    <a id=\"tarjetaComprasC\"class=\" incono fa fa-cart-plus\" href=\"#\"></a>\n"
                 + "                                                </div>\n"
                 + "                                                <div>\n"
-                + "                                                    <a id=\"tarjetaComprasC\"href=\"#\" class=\"textIcono\">Compras</a>\n"
+                + "                                                    <a id=\"tarjetaComprasC\"href=\"#\" class=\"textIcono\"><span id='spanCompras'>Compras</span></a>\n"
                 + "                                                </div>\n"
                 + "\n"
                 + "                                            </div>\n"

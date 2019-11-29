@@ -4,17 +4,17 @@
             <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
                 <h2>PQR's</h2>
                 <button class="btn btnAgregar"data-toggle="modal" data-target="#modalPqrs">
-                    Agregar
+                    <span id="btnAgregarPq">Agregar</span>
                     <span class="fa fa-plus"></span>
                 </button>
                 <table id="tableCrud" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Fecha</th>
+                            <th id="datePqC">Fecha</th>
                             <th>CUN</th>
-                            <th>Tipo</th>
-                            <th>Acciones</th>
+                            <th id="typePqC">Tipo</th>
+                            <th id="accions">Acciones</th>
 
                         </tr>
                     </thead>
@@ -24,10 +24,10 @@
                     <tfoot>
                         <tr>
                             <th>#</th>
-                            <th>Fecha</th>
+                            <th id="datePqC1">Fecha</th>
                             <th>CUN</th>
-                            <th>Tipo</th>
-                            <th>Acciones</th>
+                            <th id="typePqC1">Tipo</th>
+                            <th id="accions1">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -48,38 +48,38 @@
                 <div class="modal-body">
                     <form id="formPqrs"class="form-horizontal">
                         <fieldset>
-                            <h4 style="font-size: 16px; text-align: justify;"> LunaTextilCom ha dispuesto este formulario al servicio de nuestros clientes,
+                            <h4 id="alertPqrs" style="font-size: 16px; text-align: justify;"> LunaTextilCom ha dispuesto este formulario al servicio de nuestros clientes,
                                 como una alternativa para facilitar la radicación de PQRS que comprenden 
                                 asuntos como: peticiones, quejas, reclamos y/o  sugerencias.  </h4>
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="typePqrs">Tipo de PQR's *</label>
+                                <label id="labelPqrsC"class="col-md-4 control-label" for="typePqrs">Tipo de PQR's *</label>
                                 <div class="col-md-6">
                                     <select id="typePqrs" name="typePqrs" class="form-control">
-                                        <option value="" selected>Seleccione una opción</option>
-                                        <option value="Petición">Petición</option>
-                                        <option value="Queja">Queja</option>
-                                        <option value="Reclamo">Reclamo</option>
-                                        <option value="Sugerencia">Sugerencia</option>
+                                        <option id="selectOption" value="" selected>Seleccione una opción</option>
+                                        <option id="peticion" value="Petición">Petición</option>
+                                        <option id="queja" value="Queja">Queja</option>
+                                        <option id="reclamo" value="Reclamo">Reclamo</option>
+                                        <option id="sugerencia" value="Sugerencia">Sugerencia</option>
                                     </select>
                                 </div>
                             </div>
 
                             <!-- Textarea -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="descriptionPqrs">Descripción</label>
+                                <label id="labelDesPqC"class="col-md-4 control-label" for="descriptionPqrs">Descripción</label>
                                 <div class="col-md-6">                     
                                     <textarea placeholder="Ingrese la descripción de su PQR's detallando punto por punto los detalles de su solicitud."rows="4" class="form-control" id="descriptionPqrs" name="descriptionPqrs"></textarea>
                                 </div>
                             </div>
-                             <h4 style="font-size: 12px; text-align: justify;">
+                             <h4 id="AdvertenPqrsC"style="font-size: 12px; text-align: justify;">
                              Para asegurar un mejor proceso a la hora de generar una respuesta a su PQR's puede 
                              adjuntar una imagen que soporte su solicitud en caso de tal de que cuente con la imagen, la
                              imagen no es obligatoria pero garantiza mas exactitud a la hora de dar respuesta a su PQR's
                              </h4>
                             <!-- File input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="filePqrs">Evidencias</label>  
+                                <label id="labelEvidenPqC"class="col-md-4 control-label" for="filePqrs">Evidencias</label>  
                                 <div class="col-md-6">
                                     <input id="filePqrs" name="filePqrs" type="file" placeholder="Adjunte archivos de evidencia" class="form-control input-md" >
 
@@ -91,9 +91,9 @@
                                     <div style="text-align: justify;"class="radio">
                                         <label for="radios-0">
                                             <input type="radio" name="radios" id="radios-0" value="si" >
-                                            Autoriza a LunaTextilCom para comunicarse con usted a través del correo 
+                                            <span id="autorizaPqC">Autoriza a LunaTextilCom para comunicarse con usted a través del correo 
                                             electrónico suministrado y responder a su solicitud. De antemano asegúrese 
-                                            de que su correo electrónico se encuentre activo.
+                                            de que su correo electrónico se encuentre activo.</span>
                                         </label>
                                     </div>
 

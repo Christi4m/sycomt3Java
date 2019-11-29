@@ -1,3 +1,24 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $(document).ready(function () {
     var condition = "All";
     var intemSearch = "";
@@ -74,11 +95,11 @@ var PrintAll = function () {
                         success: function (data) {
                             $('#stockShop').html("");
                             for (var h = (contador * page) - 10; h < contador2 * page; h++) {
-                                
+
                                 if (data.datos[h] != '\0') {
                                     $('#stockShop').append(' <div class="col-md-4" ><div class="card view overlay zoom"><a id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" class="btnCharacters" data-toggle="modal" data-target="#modalInsertCant"role="button"><img class="card-img-top img-fluid"  src="' + data.datos[h].Imagen + '" title="' + data.datos[h].Nombre + '"alt="' + data.datos[h].Nombre + '"></a><div class="card-block"><h4 style="font-size:13px;" class="card-title">' + data.datos[h].Nombre + '</h4><p class="card-text">Precio: $' + data.datos[h].Precio + ' Mt</p><a href="#" id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" style="background: #2f323a;color: white;border:none; margin-left:2px;" title="Ver Detalles"class="btn btnCharacters colorbtn btn-primary"data-toggle="modal" data-target="#modalInsertCant"><span class ="fa fa-eye"></span></a></div></div></div>');
                                 }
-                            console.clear();
+                                console.clear();
 
                             }
                         }
@@ -137,7 +158,7 @@ var search = function () {
                                 if (data.datos.length != 0) {
                                     $('#stockShop').append(' <div class="col-md-4" ><div class="card view overlay zoom"><a id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" class="btnCharacters" data-toggle="modal" data-target="#modalInsertCant"role="button"><img class="card-img-top img-fluid"  src="' + data.datos[h].Imagen + '" title="' + data.datos[h].Nombre + '"alt="' + data.datos[h].Nombre + '"></a><div class="card-block"><h4 style="font-size:13px;" class="card-title">' + data.datos[h].Nombre + '</h4><p class="card-text">Precio: $' + data.datos[h].Precio + ' Mt²</p><a href="#" id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" style="background: #2f323a;color: white;border:none; margin-left:2px;" title="Ver Detalles"class="btn btnCharacters colorbtn btn-primary"data-toggle="modal" data-target="#modalInsertCant"><span class ="fa fa-eye"></span></a></div></div></div>');
                                 } else {
-                                    $('#stockShop').html("<h4 style='text-align: center'>"+resulSer+"</h4>");
+                                    $('#stockShop').html("<h4 style='text-align: center'>" + resulSer + "</h4>");
                                 }
                             }
                         }
@@ -211,7 +232,7 @@ $('#btnOrderNow').click(function (e) {
     var cartArrayOrder = shoppingCart.listCart();
     var detailsShop = "";
     var totalShop = shoppingCart.totalCartNeto();
-  
+
     if (cartArrayOrder.length > 0) {
         for (var i in cartArrayOrder) {
             detailsShop += cartArrayOrder[i].idSis + "," + cartArrayOrder[i].count + "," + cartArrayOrder[i].total + ";";
@@ -224,7 +245,7 @@ $('#btnOrderNow').click(function (e) {
         }
 
         var data = "";
-      
+
         // validar si el usuario se encuentra logueado en el sistema
         $.post("loginUser?action=validarLogin", data, function (res, est, jqXHR) {
             if (res == 1) {
@@ -429,7 +450,7 @@ var shoppingCart = (function () {
         for (var item in cart) {
             totalCart += cart[item].price * cart[item].count;
         }
-        
+
         return Number(totalCart.toFixed(2));
     }
     obj.totalCartIva = function () {
@@ -446,7 +467,7 @@ var shoppingCart = (function () {
             totalCart += cart[item].price * cart[item].count;
         }
         var totalI = totalCart * 0.19
-        var totalN = totalCart +totalI;
+        var totalN = totalCart + totalI;
         return Number(totalN.toFixed(2));
     }
 
@@ -492,7 +513,7 @@ $(document).on('click', '.add-to-cart', function (e) {
             //error
             type: 'error',
             title: errorr,
-            html: '<strong style="font-size:15px;">'+ingreseCantVal+'</strong>',
+            html: '<strong style="font-size:15px;">' + ingreseCantVal + '</strong>',
             width: 500,
             padding: '5em',
             showConfirmButton: false,
