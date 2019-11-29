@@ -136,6 +136,22 @@ var translate = function () {
 
         $('#buttonLogout').text('Log Out');
         $('#myPerfil').text('My Profile');
+        //Traducción Sidebar Cliente
+        $('#linkPqrsC').text("'PQR's Managment");
+        $('#shopSpan').text("Shops");
+        $('#linkCOmprasC').text("Shops Managment");
+        //Traduccion Sidebar Bodega
+        $('#dispatch').text('Dispatch');
+        $('#linkDespachos').text('Dispatch Magnament');
+        $('#stock').text('Stock');
+        $('#linkInventario').text('Stock Magnament');
+        $('#shopping').text('Shopping');
+        $('#linkCompras').text('Shopping Magnament');
+        $('#deliveries').text('Deliveries');
+        $('#linkEntregasAsignadas').text('Assigned');
+        $('#linkEntregasPendientes').text('Slopes');
+        $('#messenger').text('Messenger');
+        $('#linkMensajeros').text('Messenger Management');
         //traducción compras admin   
         $('#dateShop').text('Date');
         $('#previeder').text('Previeder');
@@ -434,7 +450,7 @@ var translate = function () {
         $('#acept').text('Acept');
         $('#add1').text('Add');
         
-        //Traducción mensajero Bodega// igual no se tradujo or no notar cambios
+        //Traducción mensajero Bodega// igual no se tradujo por no notar cambios
         $('#messengers').text('Messengers');
         
         
