@@ -1,17 +1,26 @@
 <section class="wrapper">
+    
+
     <div class="row">
-        <div class="col-lg-12 col-xl-12 col-md-12 cont ">
-            <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
+
+        <div class="col-lg-12 col-xl-12 col-md-12  cont">
+
+            <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white; color:black;" >
+
+
                 <h2 id="deliveries">Entregas</h2>
-                <table id="tableCrud" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+
+                <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th id="code">#</th>
                             <th id="date">Fecha</th>
-                            <th id="value">Valor</th>
+                            <th id="value">Mensajero</th>
                             <th id="client">Cliente</th>
                             <th id="invoice">Factura</th>
+                            <th id="state">Estado</th>
                             <th id="actions">Acciones</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -21,17 +30,20 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>#</th>
+                            <th id="code1">#</th>
                             <th id="date1">Fecha</th>
-                            <th id="value1">Valor</th>
+                            <th id="value1">Mensajero</th>
                             <th id="client1">Cliente</th>
                             <th id="invoice1">Factura</th>
+                            <th id="state1">Estado</th>
                             <th id="actions1">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
+
         </div>
+
     </div>
 </div>
 <!-- Modal detalles -->
@@ -42,21 +54,21 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                <h5 id="details" class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
             </div>
-            <div class="modal-body">
-                <h2>Cliente</h2>
+            <div class="modal-body"style="color:black;">
+                <h2 id="client2">Cliente</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Tipo Id</th>
-                            <th>Documento</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Celular</th>
-                            <th>Dirección</th>
-                            <th>Detalles</th>
+                            <th id="typeId">Tipo Id</th>
+                            <th id="document">Documento</th>
+                            <th id="name">Nombre</th>
+                            <th id="email">Correo</th>
+                            <th id="cellPhone">Celular</th>
+                            <th id="address">Dirección</th>
+                            <th id="details1">Detalles</th>
 
                         </tr>
                     </thead>
@@ -74,17 +86,17 @@
 
                 </table>
                 <!--tabla detalle venta-->
-                <h2>Detalle Venta</h2>
+                <h2 id="saleDetail">Detalle Venta</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
 
-                            <th>Id Producto</th>                                                
-                            <th>Nombre Producto</th>                                                
-                            <th>Cantidad</th>
-                            <th>Valor Unitario</th>
-                            <th>Detalles</th>
+                            <th id="ip">Id Producto</th>                                                
+                            <th id="np">Nombre Producto</th>                                                
+                            <th id="quantity">Cantidad</th>
+                            <th id="unitValue">Valor Unitario</th>
+                            <th id="details2">Detalles</th>
                         </tr>
                     </thead>
                     <tbody id="bodyDV"> 
@@ -104,7 +116,7 @@
 <!-- Fin del modal Editar -->
 
 <!-- Modal Result -->
-
+<!--                    <a id="idCliente" role="button" data-toggle='modal' data-target='#modalResult' href="#"></a>-->
 <div  class="modal fade" id="modalResult" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content modal-lg">
@@ -114,8 +126,8 @@
                 </button>
 
             </div>
-            <div  class="modal-body">
-                <h2>Cliente</h2>
+            <div  class="modal-body" style="color:black;">
+                
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
@@ -123,7 +135,7 @@
                             <th>Tipo Id</th>
                             <th>Documento</th>
                             <th>Nombre</th>
-                            <th>Correo</th>
+                            <th>Correos</th>
                             <th>Celular</th>
                             <th>Dirección</th>
                             <th>Detalles</th>
@@ -163,7 +175,7 @@
                 </button>
 
             </div>
-            <div  class="modal-body">
+            <div  class="modal-body"style="color:black;">
                 <h2>Producto</h2>
 
                 <table id="detalleProductoTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
@@ -199,59 +211,6 @@
 </div>
 <!-- Fin del modal detalle producto -->
 
-<!-- Modal para asignar un mensajero a una entrega-->
-<div class="modal fade" id="ModalAsignarMensajero" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content modal-lg">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span class="fa fa-close close1"aria-hidden="true"></span>
-                </button>
-                <h5 id = "botonAdd" class = "modal-title" id = "exampleModalLongTitle"> Asignar </h5>
-            </div>
-            <div class="modal-body">
-                <form style="margin-top: 30px;" name="frmAsignarMensajero" id="frmAsignarMensajero" enctype="multipart/form-data"  class="form-horizontal col-sm-12 text-center">
-                    <div class="form-group text-center">
-                        <h4 id = "productDates" class = "tituloDP"> Datos de Entrega </h4>
-
-                        <div class="col-sm-6">
-                            <label class="col-md-9 text-left" for="fechaEntrega">Fecha de Entrega *</label>  
-                            <input id="fechaEntrega" name="fechaEntrega" type="date" placeholder="Fecha de entrega" class="form-control input-md" required="">
-                        </div>
-                        <div class="col-sm-6" style="display: none">
-                            <label class="col-md-9 text-left" for="Factura">Factura *</label>  
-                            <input id="Factura" name="Factura" type="text" placeholder="Factura" class="form-control input-md" required="">
-                        </div>
-                        <div class="col-sm-6" style="display: none">
-                            <label class="col-md-9 text-left" for="Ventas">Ventas *</label>  
-                            <input id="Ventas" name="Ventas" type="text" placeholder="Ventas" class="form-control input-md" required="">
-                        </div>
-                        <div class="col-sm-6" style="display: none">
-                            <label class="col-md-9 text-left" for="numVentas">Ventas *</label>  
-                            <input id="numVentas" name="numVentas" type="text" placeholder="numVentas" class="form-control input-md" required="">
-                        </div>
-                        <div class="col-sm-6">
-                            <label id = "labelMensajero" class = "col-md-4 control-label" para = "mesajeroAsignar"> Mensajero *</label>
-                            <select id="mesajeroAsignar" name="mesajeroAsignar" class="form-control">
-                                <option value="0">---------------------</option>
-                            </select>
-                        </div>
-
-                        <div class="col-sm-12" style="margin-top: 30px;">
-                            <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button id="botonVaciar" type="reset" name="botonVaciar" class="colorbtn btn btn-primary">Limpiar</button>
-                            <button id="btnAsignarM" type="submit" name="botonEnviar" class="colorbtn btn btn-primary">Guardar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fin del modal para asignar un mensajero a una entrega -->
 </section>
 
 <script src="Bodega/Js/EntregasPendientes.js"></script>

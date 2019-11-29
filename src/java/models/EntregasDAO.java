@@ -48,7 +48,7 @@ public class EntregasDAO extends Conexion {
         return flag;
     }
     
-    public ArrayList<Entregas> getAllEntregasAsignadas(int id) {
+    public ArrayList<Entregas> getAllEntregasAsignadas() {
 
         ArrayList<Entregas> v = new ArrayList<>();
         try {
@@ -56,7 +56,9 @@ public class EntregasDAO extends Conexion {
             pst = getConnection().prepareCall(sql);//abriendo la coneccion a la base de datos y los parametros que le voy a enviar (sentencia sql)
             rs = pst.executeQuery();//ejecutar la sentencia y trae un resultado
             while (rs.next()) {//ciclo repetitivo que llena el array list con los datos que trae la base de datos
-                v.add(new Entregas(rs.getString("fechaEntrega"),rs.getString("firstName"),rs.getString("firstLastName"),rs.getString("numCellPhone"), rs.getString("email")));
+                v.add(new Entregas(rs.getInt("idEntrega"), rs.getString("fechaEntrega"), rs.getInt("idFacturasVentas"),
+                        rs.getInt("idMensajeroFK1"), rs.getString("estadoOrdenVenta"), rs.getString("numFactura"),
+                        rs.getDouble("valorGlobal"), rs.getString("zona"), rs.getInt("idTerceroF1"),rs.getInt("idOrdenVenta")));
             }
         } catch (Exception e) {
 

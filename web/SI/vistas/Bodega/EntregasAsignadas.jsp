@@ -5,7 +5,7 @@
 
         <div class="col-lg-12 col-xl-12 col-md-12  cont">
 
-            <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
+            <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white; color:black;" >
 
 
                 <h2 id="deliveries">Entregas</h2>
@@ -13,9 +13,9 @@
                 <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th id="code">Codigo</th>
+                            <th id="code">#</th>
                             <th id="date">Fecha</th>
-                            <th id="value">Valor</th>
+                            <th id="value">Mensajero</th>
                             <th id="client">Cliente</th>
                             <th id="invoice">Factura</th>
                             <th id="state">Estado</th>
@@ -30,9 +30,9 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th id="code1">Codigo</th>
+                            <th id="code1">#</th>
                             <th id="date1">Fecha</th>
-                            <th id="value1">Valor</th>
+                            <th id="value1">Mensajero</th>
                             <th id="client1">Cliente</th>
                             <th id="invoice1">Factura</th>
                             <th id="state1">Estado</th>
@@ -56,7 +56,7 @@
                 </button>
                 <h5 id="details" class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
             </div>
-            <div class="modal-body">
+            <div class="modal-body"style="color:black;">
                 <h2 id="client2">Cliente</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
@@ -126,8 +126,8 @@
                 </button>
 
             </div>
-            <div  class="modal-body">
-                <h2>Cliente</h2>
+            <div  class="modal-body" style="color:black;">
+                
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
@@ -158,7 +158,7 @@
 
             </div>
             <div class="modal-footer">
-                <button id="buttonCloseModal"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptarw</button>
+                <button id="buttonCloseModal"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>
@@ -175,7 +175,7 @@
                 </button>
 
             </div>
-            <div  class="modal-body">
+            <div  class="modal-body"style="color:black;">
                 <h2>Producto</h2>
 
                 <table id="detalleProductoTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">

@@ -1,18 +1,26 @@
-<section class="wrapper">                
+<section class="wrapper">
+    
+
     <div class="row">
-        <div class="cl-lg-12 col-xl-12 col-md-12  ">
-            <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white" >
-                <h2>Entregas</h2>                              
-                <table id="tableCrud" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+
+        <div class="col-lg-12 col-xl-12 col-md-12  cont">
+
+            <div id="tabla1" class="div2 col-md-12 col-sm-12 col-xl-12 col-lg-12 " style="Background:white; color:black;" >
+
+
+                <h2 id="deliveries">Entregas</h2>
+
+                <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="code">#</th>
+                            <th id="date">Fecha</th>
+                            <th id="value">Mensajero</th>
+                            <th id="client">Cliente</th>
+                            <th id="invoice">Factura</th>
+                            <th id="state">Zona</th>
+                            <th id="actions">Acciones</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -22,13 +30,13 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Cliente</th>
-                            <th>Factura</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th id="code1">#</th>
+                            <th id="date1">Fecha</th>
+                            <th id="value1">Mensajero</th>
+                            <th id="client1">Cliente</th>
+                            <th id="invoice1">Factura</th>
+                            <th id="state1">Zona</th>
+                            <th id="actions1">Acciones</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -46,21 +54,21 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
-                <h5 class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
+                <h5 id="details" class="modal-title" id="exampleModalCenterTitle">Detalles</h5>
             </div>
-            <div class="modal-body">
-                <h2>Cliente</h2>
+            <div class="modal-body"style="color:black;">
+                <h2 id="client2">Cliente</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Tipo Id</th>
-                            <th>Documento</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Celular</th>
-                            <th>Dirección</th>
-                            <th>Detalles</th>
+                            <th id="typeId">Tipo Id</th>
+                            <th id="document">Documento</th>
+                            <th id="name">Nombre</th>
+                            <th id="email">Correo</th>
+                            <th id="cellPhone">Celular</th>
+                            <th id="address">Dirección</th>
+                            <th id="details1">Detalles</th>
 
                         </tr>
                     </thead>
@@ -78,17 +86,17 @@
 
                 </table>
                 <!--tabla detalle venta-->
-                <h2>Detalle Venta</h2>
+                <h2 id="saleDetail">Detalle Venta</h2>
 
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
 
-                            <th>Id Producto</th>                                                
-                            <th>Nombre Producto</th>                                                
-                            <th>Cantidad</th>
-                            <th>Valor Unitario</th>
-                            <th>Detalles</th>
+                            <th id="ip">Id Producto</th>                                                
+                            <th id="np">Nombre Producto</th>                                                
+                            <th id="quantity">Cantidad</th>
+                            <th id="unitValue">Valor Unitario</th>
+                            <th id="details2">Detalles</th>
                         </tr>
                     </thead>
                     <tbody id="bodyDV"> 
@@ -118,26 +126,36 @@
                 </button>
 
             </div>
-            <div  class="modal-body">
-                <h2>Cliente</h2>
+            <div  class="modal-body" style="color:black;">
+                
+
                 <table id="clientData" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
+                            <th>Tipo Id</th>
+                            <th>Documento</th>
                             <th>Nombre</th>
-                            <th>Correo</th>
+                            <th>Correos</th>
                             <th>Celular</th>
                             <th>Dirección</th>
                             <th>Detalles</th>
+
                         </tr>
                     </thead>
                     <tbody>
+                    <td id="TipoIdC"></td>
+                    <td id="DocumentoC"></td>
                     <td id="NombreC"></td>
                     <td id="CorreoC"></td>
                     <td id="CelularC"></td>
                     <td id="DirecciónC"></td>
                     <td id="DetallesC"></td>
+
+
                     </tbody>
+
                 </table>
+
             </div>
             <div class="modal-footer">
                 <button id="buttonCloseModal"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
@@ -155,30 +173,44 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="">
                     <span class="fa fa-close close1" aria-hidden="true"></span>
                 </button>
+
             </div>
-            <div  class="modal-body">
+            <div  class="modal-body"style="color:black;">
                 <h2>Producto</h2>
+
                 <table id="detalleProductoTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th>Ubicación</th>
                             <th>Proveedor</th>
+
+
                         </tr>
                     </thead>
                     <tbody id="bodyDetailsProduct">
+
+
+
                     </tbody>
+
                 </table>
                 <div class="row">
                     <div id="detallesP" style="margin: 0px,0px;padding: 0px,0px;width: 100%; height: 20%; text-align: center;">
+
+
                     </div>
+
                 </div>
+
             </div>
             <div class="modal-footer">
                 <button id="buttonCloseModal"type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>
-</div>                  <!-- Fin del modal detalle producto -->
+</div>
+<!-- Fin del modal detalle producto -->
+
 </section>
 
 <script src="Mensajero/Js/EntregasPendientes.js"></script>

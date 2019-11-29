@@ -25,16 +25,20 @@ $('.back-to-top').on('click', function (e) {
     e.preventDefault();
     $('html, body').animate({scrollTop: 0}, 700);
 });
-
+var Primera = "Primera";
+var Anterior = "Anterior";
+var Siguiente = "Siguiente";
+var Ultima = "Ultima";
+var resulSer = "Resultados de la busqueda: Ningún producto encontrado";
 var PrintAll = function () {
     var $pagination = $('#pagination');
     var defaultOpts = {
         totalPages: 1,
         visiblePages: 6,
-        first: 'Primera',
-        prev: 'Anterior',
-        next: 'Siguiente',
-        last: 'Ultima'
+        first: Primera,
+        prev: Anterior,
+        next: Siguiente,
+        last: Ultima
 
     };
     $pagination.twbsPagination(defaultOpts);
@@ -70,13 +74,13 @@ var PrintAll = function () {
                         success: function (data) {
                             $('#stockShop').html("");
                             for (var h = (contador * page) - 10; h < contador2 * page; h++) {
-                                console.clear();
+                                
                                 if (data.datos[h] != '\0') {
-                                    $('#stockShop').append(' <div class="col-md-4" ><div class="card view overlay zoom"><a id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" class="btnCharacters" data-toggle="modal" data-target="#modalInsertCant"role="button"><img class="card-img-top img-fluid"  src="' + data.datos[h].Imagen + '" title="' + data.datos[h].Nombre + '"alt="' + data.datos[h].Nombre + '"></a><div class="card-block"><h4 style="font-size:13px;" class="card-title">' + data.datos[h].Nombre + '</h4><p class="card-text">Precio: $' + data.datos[h].Precio + ' Mt²</p><a href="#" id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" style="background: #2f323a;color: white;border:none; margin-left:2px;" title="Ver Detalles"class="btn btnCharacters colorbtn btn-primary"data-toggle="modal" data-target="#modalInsertCant"><span class ="fa fa-eye"></span></a></div></div></div>');
+                                    $('#stockShop').append(' <div class="col-md-4" ><div class="card view overlay zoom"><a id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" class="btnCharacters" data-toggle="modal" data-target="#modalInsertCant"role="button"><img class="card-img-top img-fluid"  src="' + data.datos[h].Imagen + '" title="' + data.datos[h].Nombre + '"alt="' + data.datos[h].Nombre + '"></a><div class="card-block"><h4 style="font-size:13px;" class="card-title">' + data.datos[h].Nombre + '</h4><p class="card-text">Precio: $' + data.datos[h].Precio + ' Mt</p><a href="#" id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" style="background: #2f323a;color: white;border:none; margin-left:2px;" title="Ver Detalles"class="btn btnCharacters colorbtn btn-primary"data-toggle="modal" data-target="#modalInsertCant"><span class ="fa fa-eye"></span></a></div></div></div>');
                                 }
+                            console.clear();
 
                             }
-
                         }
                     });
                 }
@@ -90,10 +94,10 @@ var search = function () {
     var defaultOpts = {
         totalPages: 1,
         visiblePages: 6,
-        first: 'Primera',
-        prev: 'Anterior',
-        next: 'Siguiente',
-        last: 'Ultima'
+        first: Primera,
+        prev: Anterior,
+        next: Siguiente,
+        last: Ultima
 
     };
     $pagination.twbsPagination(defaultOpts);
@@ -133,7 +137,7 @@ var search = function () {
                                 if (data.datos.length != 0) {
                                     $('#stockShop').append(' <div class="col-md-4" ><div class="card view overlay zoom"><a id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" class="btnCharacters" data-toggle="modal" data-target="#modalInsertCant"role="button"><img class="card-img-top img-fluid"  src="' + data.datos[h].Imagen + '" title="' + data.datos[h].Nombre + '"alt="' + data.datos[h].Nombre + '"></a><div class="card-block"><h4 style="font-size:13px;" class="card-title">' + data.datos[h].Nombre + '</h4><p class="card-text">Precio: $' + data.datos[h].Precio + ' Mt²</p><a href="#" id = "' + data.datos[h].Codigo + '"data-name="' + data.datos[h].Nombre + '" data-price="' + data.datos[h].Precio + '" style="background: #2f323a;color: white;border:none; margin-left:2px;" title="Ver Detalles"class="btn btnCharacters colorbtn btn-primary"data-toggle="modal" data-target="#modalInsertCant"><span class ="fa fa-eye"></span></a></div></div></div>');
                                 } else {
-                                    $('#stockShop').html("<h4 style='text-align: center'>Resultados de la busqueda: Ningún producto encontrado</h4>");
+                                    $('#stockShop').html("<h4 style='text-align: center'>"+resulSer+"</h4>");
                                 }
                             }
                         }
@@ -220,22 +224,19 @@ $('#btnOrderNow').click(function (e) {
         }
 
         var data = "";
-        var ventaGuardada = "Venta guardada y en proceso, en un plazo no mayor a 2 dias se estara realizando la entrega de sus productos, en el caso de que ocurra alguna novedad se le informara a travez de correo electronico";
-        var iniciarSesion = "Para continuar debe iniciar sesion";
-        var cartVacio = "No hay articulos en el carrito! si desea continuar llene el carrito con los articulos de su gusto";
-        var errorVenta = "Error al generar su venta, vuelva a intentarlo por favor!";
+      
         // validar si el usuario se encuentra logueado en el sistema
         $.post("loginUser?action=validarLogin", data, function (res, est, jqXHR) {
             if (res == 1) {
                 Swal.fire({
-                    title: 'Estás Seguro?',
-                    text: "De realizar esta compra!",
+                    title: estaSegur,
+                    text: deRealizar,
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si, Realizala!',
-                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: siRealiza,
+                    cancelButtonText: cancelar,
                     width: 500,
                     padding: '5em',
                 }).then((result) => {
@@ -251,7 +252,7 @@ $('#btnOrderNow').click(function (e) {
                                 Swal.fire({
                                     //error
                                     type: 'success',
-                                    title: '¡ Compra registrada exitosamente ! ',
+                                    title: compraExi,
                                     width: 500,
                                     padding: '5em',
                                     showConfirmButton: false,
@@ -266,8 +267,8 @@ $('#btnOrderNow').click(function (e) {
                                 Swal.fire({
                                     //error
                                     type: 'error',
-                                    title: '¡Error al Registrar! ',
-                                    text: 'Intentelo de nuevo',
+                                    title: errorRegistrar,
+                                    text: intentelo,
                                     width: 500,
                                     padding: '5em',
                                     showConfirmButton: false,
@@ -284,7 +285,7 @@ $('#btnOrderNow').click(function (e) {
                 Swal.fire({
                     //error
                     type: 'warning',
-                    title: '¡ Para Continuar con la compra debe iniciar sesion ! ',
+                    title: iniciar,
                     width: 500,
                     padding: '5em',
                     showConfirmButton: false,
@@ -304,8 +305,8 @@ $('#btnOrderNow').click(function (e) {
         Swal.fire({
             //error
             type: 'error',
-            title: '¡El Carrito Esta Vacio! ',
-            text: 'Seleccione los productos que desea Comprar',
+            title: vacio,
+            text: seleccione,
             width: 500,
             padding: '10em',
             showConfirmButton: false,
@@ -490,8 +491,8 @@ $(document).on('click', '.add-to-cart', function (e) {
         Swal.fire({
             //error
             type: 'error',
-            title: '¡Error! ',
-            html: '<strong style="font-size:15px;">Ingrese una cantidad valida</strong>',
+            title: errorr,
+            html: '<strong style="font-size:15px;">'+ingreseCantVal+'</strong>',
             width: 500,
             padding: '5em',
             showConfirmButton: false,
@@ -506,7 +507,7 @@ $(document).on('click', '.add-to-cart', function (e) {
         Swal.fire({
             //error
             type: 'success',
-            title: '¡ Producto agregado exitosamente ! ',
+            title: agregaExi,
             width: 500,
             padding: '5em',
             showConfirmButton: false,

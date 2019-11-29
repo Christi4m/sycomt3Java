@@ -13,6 +13,11 @@ public class Entregas {
     private String nameMensajero1;
     private String celMensajero;
     private String emailMensajero;
+    private String numFactura;
+    private Double valorGlobal;
+    private String zona;
+    private int idCliente;
+    private int idOrdenVenta;
 
     public Entregas() {
     }
@@ -37,6 +42,67 @@ public class Entregas {
         this.nameMensajero1 = nameMensajero1;
         this.celMensajero = celMensajero;
         this.emailMensajero = emailMensajero;
+    }
+
+    public Entregas(int id, String fechaEntrega, int idFactura, int idMensajero, String estadoEntrega, String nameMensajero, String nameMensajero1, String celMensajero, String emailMensajero, String numFactura, Double valorGlobal, String zona, int idCliente) {
+        this.id = id;
+        this.fechaEntrega = fechaEntrega;
+        this.idFactura = idFactura;
+        this.idMensajero = idMensajero;
+        this.estadoEntrega = estadoEntrega;
+        this.nameMensajero = nameMensajero;
+        this.nameMensajero1 = nameMensajero1;
+        this.celMensajero = celMensajero;
+        this.emailMensajero = emailMensajero;
+        this.numFactura = numFactura;
+        this.valorGlobal = valorGlobal;
+        this.zona = zona;
+        this.idCliente = idCliente;
+    }
+ //constructor asignadas
+    public Entregas(int id, String fechaEntrega, int idFactura, int idMensajero, String estadoEntrega, String numFactura, Double valorGlobal, String zona, int idCliente, int idOrdenVenta) {
+        this.id = id;
+        this.fechaEntrega = fechaEntrega;
+        this.idFactura = idFactura;
+        this.idMensajero = idMensajero;
+        this.estadoEntrega = estadoEntrega;
+        this.numFactura = numFactura;
+        this.valorGlobal = valorGlobal;
+        this.zona = zona;
+        this.idCliente = idCliente;
+        this.idOrdenVenta = idOrdenVenta;
+    }
+
+    public String getNumFactura() {
+        return numFactura;
+    }
+
+    public void setNumFactura(String numFactura) {
+        this.numFactura = numFactura;
+    }
+
+    public Double getValorGlobal() {
+        return valorGlobal;
+    }
+
+    public void setValorGlobal(Double valorGlobal) {
+        this.valorGlobal = valorGlobal;
+    }
+
+    public String getZona() {
+        return zona;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
     
     
@@ -110,6 +176,14 @@ public class Entregas {
 
     public void setEmailMensajero(String emailMensajero) {
         this.emailMensajero = emailMensajero;
+    }
+
+    public int getIdOrdenVenta() {
+        return idOrdenVenta;
+    }
+
+    public void setIdOrdenVenta(int idOrdenVenta) {
+        this.idOrdenVenta = idOrdenVenta;
     }
     
     

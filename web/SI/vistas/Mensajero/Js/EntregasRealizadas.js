@@ -1,5 +1,7 @@
 $(document).ready(function () {
     listar();
+    translate();
+    trans();    
 });
 var listar = function () {
     var table = $("#example").DataTable({
@@ -8,16 +10,16 @@ var listar = function () {
         order: [[0, "desc"]],
         ajax: {
             method: "POST",
-            url: "../../processVenta?action=listEntregas",
+            url: "../../controllerEntregas?accion=listEntregasAsignadasFin&idMensajero="+idUser+"&Estado=Completada",
             dataSrc: "datos"
         },
         columns: [
-            {data: "Codigo"},
-            {data: "Fecha"},
-            {data: "Valor"},
+            {data: "idOrdenVenta"},
+            {data: "fechaEntrega"},
+            {data: "Mensajero"},
             {data: "Cliente"},
             {data: "Factura"},
-            {data: "Estado"},
+            {data: "zona"},
             {data: "acciones"}
         ],
         language: idiomaEsp
@@ -133,5 +135,10 @@ var listar = function () {
         $('#bodyDV').html("");
     });
 };
+
+
+
+
+
 
 

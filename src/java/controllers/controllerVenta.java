@@ -42,6 +42,14 @@ public class controllerVenta extends HttpServlet {
 
         DecimalFormat formateador = new DecimalFormat("###,###,###,###.##");
         switch (action) {
+            case "updateSale":
+                VentasDAO venDAO = new VentasDAO();
+                if(venDAO.UpdateEstadoVenta(Integer.parseInt(request.getParameter("idVenta")), request.getParameter("estado"))){
+                    out.print("1");
+                }else{
+                    out.print("0");                    
+                }
+                break;
             case "validarCarrito":
                 if (articulos != null) {
                     out.print("1");

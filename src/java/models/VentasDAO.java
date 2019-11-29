@@ -12,7 +12,34 @@ public class VentasDAO extends Conexion {
     PreparedStatement pst = null;//Abre flujo y manda parametros
     ResultSet rs = null;
     boolean flag = false;
+    
+     public boolean UpdateEstadoVenta(int idVenta, String estado) {
+        boolean flag = false;
+        try {
+            String sql = "call updateStateSale(?,?)";
+            pst = getConnection().prepareStatement(sql);
+            pst.setInt(1, idVenta);
+            pst.setString(2, estado);
 
+            if (pst.executeUpdate() == 1) {
+                flag = true;
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (getConnection() != null) {
+                    getConnection().close();
+                }
+            } catch (Exception e) {
+            }
+        }
+        return flag;
+    }
     //metodo para seleccionar el numero de serie "factura" de la ultima venta ingresada
     public String generarNumSerie() {
         String numSerie = "";
@@ -545,25 +572,6 @@ public class VentasDAO extends Conexion {
         return flag;
     }
 
-    public static void main(String[] args) {
-        int buc = 0;
-        VentasDAO modeloDetails = new VentasDAO();
-        for (Ventas ventas3 : modeloDetails.getAllDetallesVentas(33)) {
-            ProductoDAO prDAO = new ProductoDAO();
-            Producto pr = (Producto) prDAO.getProducto(ventas3.getIdProducto());
-
-            if (pr.getStock() > ventas3.getCantidadProducto()) {
-                buc += buc;
-            } else {
-                buc += 1;
-
-            }
-        }
-        if (buc != 0) {
-            System.out.println("No se puede despachar");
-        } else {
-            System.out.println("Si se puede despachar");
-        }
-    }
+    
 
 }

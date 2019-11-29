@@ -29,18 +29,18 @@
         list = "<li class=\"dropdown\">\n"
                 + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">" + firstName + "<span class=\"caret\"></span></a>\n"
                 + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
-                + "<li><a href=\"LogoutUser\">Cerrar Sesión</a></li>\n"
-                + "<li><a href=\"SI/vistas/Dashboard.jsp\">Mi Perfil</a></li>\n"
+                + "<li><a id='logOut'href=\"LogoutUser\">Cerrar Sesión</a></li>\n"
+                + "<li><a id='myProfile'href=\"SI/vistas/Dashboard.jsp\">Mi Perfil</a></li>\n"
                 + "</ul>\n"
                 + "</li>";
 
     } else {
         list = "<li class=\"dropdown\">\n"
-                + "<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Iniciar Sesión<span class=\"caret\"></span></a>\n"
+                + "<a id='logIn' href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Iniciar Sesión<span class=\"caret\"></span></a>\n"
                 + "<ul class=\"dropdown-menu\" aria-labelledby=\"about-us\">\n"
-                + "<li><a href=\"vistasAux/login.jsp\">Iniciar Sesión</a></li>\n"
-                + "<li><a href=\"vistasAux/login.jsp\">Registrarme</a></li>\n"
-                + "<li><a href=\"vistasAux/login.jsp\">Olvide Mi Contraseña</a></li>\n"
+                + "<li><a id='logIn'href=\"vistasAux/login.jsp\">Iniciar Sesión</a></li>\n"
+                + "<li><a id='register'href=\"vistasAux/login.jsp\">Registrarme</a></li>\n"
+                + "<li><a id='forgotPassword'href=\"vistasAux/login.jsp\">Olvide Mi Contraseña</a></li>\n"
                 + "</ul>\n"
                 + "</li>";
     }
@@ -96,13 +96,13 @@
                             <div class="menu" id="" >
                                 <ul class="nav navbar-nav nav-pills" style="float: right">
 
-                                    <li><a href="<%= request.getContextPath()%>/vistasAux/Nosotros.jsp">Nosotros</a></li>                                    
+                                    <li><a id="nosotros"href="<%= request.getContextPath()%>/vistasAux/Nosotros.jsp">Nosotros</a></li>                                    
                                         <%= list%>
                                     <li title="Idioma"class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style="font-size: 20px;"class="fa fa-globe"></span> <span class="caret"></span></a>
                                         <ul class="dropdown-menu menuIdioma" aria-labelledby="about-us">
-                                            <li><a href="#">Es</a></li>
-                                            <li><a href="#">En</a></li>
+                                            <li><a id="es"href="#">Es</a></li>
+                                            <li><a id="en"href="#">En</a></li>
 
                                         </ul>
                                     </li>
@@ -126,7 +126,7 @@
                         <div class="col-sm-6 rowHead">
                             <div class="flipkart-navbar-search smallsearch ">
                                 <div class="row itemRow">
-                                    <input class="flipkart-navbar-input inputSearch col-xs-11" type="" placeholder="Busque productos, marcas y más" name="">
+                                    <input id="inputSearchProduct"class="flipkart-navbar-input inputSearch col-xs-11" type="" placeholder="Busque productos, marcas y más" name="">
                                     <button class="flipkart-navbar-button buttonSearch col-xs-1">
 
                                         <span class="fa fa-search"></span>
@@ -153,24 +153,24 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="left-sidebar">
-                            <h2>Categorias</h2>
+                            <h2 id="categorias">Categorias</h2>
                             <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
                                                 <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                                Telas
+                                                <span id="telas">Telas</span>
                                             </a>
                                         </h4>
                                     </div>
                                     <div id="sportswear" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <ul id="listCategorias">
-                                                <li><a href="">Paño </a></li>
-                                                <li><a href="">Lino </a></li>
-                                                <li><a href="">Seda </a></li>
-                                                <li><a href="">Uniforme </a></li>
+                                                <li><a id="Paño" href="">Paño </a></li>
+                                                <li><a id="Lino" href="">Lino </a></li>
+                                                <li><a id="Seda" href="">Seda </a></li>
+                                                <li><a id="Uniforme" href="">Uniforme </a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@
 
                     <div class="col-sm-10 padding-right">
                         <div id="carProduct"class="features_items"><!--features_items-->
-                            <h2 class="title text-center">Stock -Telas</h2>
+                            <h2 id="titleStock"class="title text-center">Stock - Telas</h2>
                             <!--Cargar productos-->
                             <!-- Nav -->
                             <nav class="navbar  ">
@@ -229,7 +229,7 @@
                                     </div>                                  
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button id="botonCerrar"type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -239,7 +239,7 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h3 class="modal-title" id="exampleModalLabel">Carrito</h3>
+                                    <h3 class="modal-title" id="modalTitleCart">Carrito</h3>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -247,12 +247,12 @@
                                 <div class="modal-body" style="color: black; border: none">
                                     <form enctype="multipart/form-data" method="post" action="" name="frmShop" id="frmShop"  class="form-horizontal col-sm-12 text-center">
                                         <button type="submit" id="btnOrderNow"class="btn colorbtn btn-primary">Ordenar Ahora</button>
-                                        <button class="clear-cart btn btn-danger">Vaciar Carrito</button>
+                                        <button id="cleanCart"class="clear-cart btn btn-danger">Vaciar Carrito</button>
                                         <div class="form-group text-center">
 
 
                                             <div class="col-sm-6" style="display: none">
-                                                <label class="col-md-4 control-label" for="detailsShop">Detalle Compra</label>  
+                                                <label id="detailsShop"class="col-md-4 control-label" for="detailsShop">Detalle Compra</label>  
                                                 <input id="detailsShop" name="detailsShop" type="text" placeholder="Detalle Compra" class="form-control input-md" required="">
                                             </div>   
                                             <div class="col-sm-6" style="display: none">
@@ -292,7 +292,7 @@
                     <div class="col-sm-6">
                         <div class="companyinfo col-sm-12">
                             <h2><span>Luna</span>-Textil</h2>
-                            <p>Telas soñadas a un clic de distancia</p>
+                            <p id="footerText">Telas soñadas a un clic de distancia</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -310,46 +310,46 @@
 
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Servicios</h2>
+                            <h2 id="servicios">Servicios</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="">Ayuda en linea</a></li>
-                                <li><a href="">Contáctenos</a></li>
-                                <li><a href="">Estado del pedido</a></li>
-                                <li><a href="">Cambiar locación</a></li>
-                                <li><a href="">Preguntas frecuentes</a></li>
+                                <li><a id="ayuda"href="">Ayuda en linea</a></li>
+                                <li><a id="contactenos"href="">Contáctenos</a></li>
+                                <li><a id="estado"href="">Estado del pedido</a></li>
+                                <li><a id="cambiar"href="">Cambiar locación</a></li>
+                                <li><a id="preguntas"href="">Preguntas frecuentes</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Compra Rápida</h2>
+                            <h2 id="shopFast">Compra Rápida</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="">Paño</a></li>
-                                <li><a href="">Lino</a></li>
-                                <li><a href="">Seda</a></li>
-                                <li><a href="">Uniforme</a></li>
+                                <li><a id="Paño"href="">Paño</a></li>
+                                <li><a id="Lino"href="">Lino</a></li>
+                                <li><a id="Seda"href="">Seda</a></li>
+                                <li><a id="Uniforme"href="">Uniforme</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Políticas</h2>
+                            <h2 id="politicas">Políticas</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="">Términos de Uso</a></li>
-                                <li><a href="">Política de privacidad</a></li>
-                                <li><a href="">Politica de reembolso</a></li>
-                                <li><a href="">Sistema de cobranza</a></li>
-                                <li><a href="">Sistema de entradas</a></li>
+                                <li><a id="terminos" href="">Términos de Uso</a></li>
+                                <li><a id="privacidad" href="">Política de privacidad</a></li>
+                                <li><a id="reembolso" href="">Politica de reembolso</a></li>
+                                <li><a id="cobranza" href="">Sistema de cobranza</a></li>
+                                <li><a id="entradas" href="">Sistema de entradas</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Acerca de Luna Textil</h2>
+                            <h2 id="acerca">Acerca de Luna Textil</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="">Información de la empresa</a></li>
-                                <li><a href="">Ubicación de la tienda</a></li>
-                                <li><a href="">Copyright</a></li>
+                                <li><a id="infoEmpresa" href="">Información de la empresa</a></li>
+                                <li><a id="ubiTienda" href="">Ubicación de la tienda</a></li>
+                                <li><a id="" href="">Copyright</a></li>
                             </ul>
                         </div>
                     </div>
@@ -360,7 +360,7 @@
             </div>
             <div class="container containerCopyRiht">
                 <div class="copyright" id="Copyright">
-                    &copy; Copyright SiComT3. Todos los derechos reservados
+                    &copy; Copyright SyComT3. <span id="drechosReser">Todos los derechos reservados</span>
                 </div>
                 <div class="credits" id="Credits">
                     Diseñado por Gaes !8!
@@ -389,6 +389,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
 
 
+    <script src="vistasAux/Js/loginTranslate.js"></script>
     <script src="Js/index.js"></script>
 
 

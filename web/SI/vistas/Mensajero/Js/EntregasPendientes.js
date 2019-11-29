@@ -1,23 +1,25 @@
 $(document).ready(function () {
     listar();
+    translate();
+    trans();
 });
 var listar = function () {
-    var table = $("#tableCrud").DataTable({
+    var table = $("#example").DataTable({
 
         destroy: true,
         order: [[0, "desc"]],
         ajax: {
             method: "POST",
-            url: "../../processVenta?action=listEntregas",
+            url: "../../controllerEntregas?accion=listEntregasAsignadasFin&idMensajero=" + idUser + "&Estado=Asignada",
             dataSrc: "datos"
         },
         columns: [
-            {data: "Codigo"},
-            {data: "Fecha"},
-            {data: "Valor"},
+            {data: "idOrdenVenta"},
+            {data: "fechaEntrega"},
+            {data: "Mensajero"},
             {data: "Cliente"},
             {data: "Factura"},
-            {data: "Estado"},
+            {data: "zona"},
             {data: "acciones"}
         ],
         language: idiomaEsp
@@ -52,7 +54,7 @@ var listar = function () {
         });
         $(document).on('click', 'button.btnDetalles', function (e) {
             e.preventDefault();
-            var idVenta = $(this).parents("tr").find("td").eq(0).text();
+            var idVenta = $(this).attr("id");
             var idCliente = $(this).parents("tr").find("td").eq(3).text();
 
 
@@ -75,29 +77,29 @@ var listar = function () {
                         document.getElementById('Detalles').innerHTML = field.details;
                         $("#modalDetalleVentas").modal("show");
                     });
+//                 var data = ""
+                    $.ajax({
+                        url: "../../processVenta?action=detalleVentas&idVenta=" + idVenta + "",
+                        type: "post",
+                        data: data,
+                        dataSrc: "datos",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                            $.each(data.datos, function (i, field) {
+                                $('#bodyDV').html("");
+                                $('#bodyDV').append("<tr><td>" + field.idProducto + "</td><td>" + field.nombreProducto + "</td><td>" + field.cantidad + "</td><td>" + field.precio + "</td><td>" + field.detalles + "</td></tr>");
+                                $("#modalDetalleVentas").modal("show");
+                            });
 //                    
 
-                }
-            });
-            var idVenta = $(this).parents("tr").find("td").eq(0).text();
-            var dato = {idVenta: idVenta}
-            $.ajax({
-                url: "../../processVenta?action=detalleVentas",
-                type: "post",
-                data: dato,
-                dataSrc: "datos",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    $.each(data.datos, function (i, field) {
-                        $('#bodyDV').html("");
-                        $('#bodyDV').append("<tr><td>" + field.idProducto + "</td><td>" + field.nombreProducto + "</td><td>" + field.cantidad + "</td><td>" + field.precio + "</td><td>" + field.detalles + "</td></tr>");
-                        $("#modalDetalleVentas").modal("show");
+                        }
                     });
-//                    
 
                 }
             });
+
+
 
         });
     });
@@ -123,6 +125,46 @@ var listar = function () {
             }
         });
     });
+    $(document).on('click', 'button.btnCompletar', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var idVenta = $(this).attr('id');
+        var data = "";
+        $.ajax({
+            url: "../../processVenta?action=updateSale&idVenta=" + idVenta + "&estado=Completada",
+            type: "post",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data == 1) {
+                    Swal.fire({
+                        //error
+                        type: 'success',
+                        title: '¡ Venta completada exitosamente! ',
+                        width: 500,
+                        padding: '5em',
+                        showConfirmButton: false,
+                        timer: 2000 //el tiempo que dura el mensaje en ms
+                    });
+
+                } else {
+                    Swal.fire({
+                        //error
+                        type: 'error',
+                        title: '¡Error al completar! ',
+                        text: 'Intentelo de nuevo',
+                        width: 500,
+                        padding: '5em',
+                        showConfirmButton: false,
+                        timer: 4000 //el tiempo que dura el mensaje en ms
+                    });
+
+                }
+                listar();
+            }
+        });
+    });
     //funcion para asignar mensajero y generar entrega
     $(document).on('click', 'button.btnAsignarMensajero', function (e) {
         var idVenta = $(this).parents("tr").find("td").eq(4).find("a").attr('id');
@@ -133,4 +175,10 @@ var listar = function () {
         $('#bodyDV').html("");
     });
 };
+
+
+
+
+
+
 

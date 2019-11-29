@@ -21,11 +21,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Js/main.js</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Administrador/Empleados.jsp</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/models/TerceroDAO.java</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/models/ComprasDAO.java</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Administrador/Js/Empleados.js</file>
-            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/controllers/controllerTercero.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Mensajero/Js/EntregasPendientes.js</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/web/SI/vistas/Mensajero/Js/EntregasRealizadas.js</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/classes/Entregas.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/controllers/controllerVenta.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/models/VentasDAO.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/models/EntregasDAO.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/sycomt3/sycomt3Java/src/java/controllers/controllerEntregas.java</file>
         </group>
     </open-files>
 </project-private>
