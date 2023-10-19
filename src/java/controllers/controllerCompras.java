@@ -40,8 +40,8 @@ public class controllerCompras extends HttpServlet {
 
         switch (action) {
             case "newShop":
-                
-                //Seccion de codigo para capturar la fecha del dia para registrar la compra 
+
+                //Seccion de codigo para capturar la fecha del dia para registrar la compra
                 Calendar c = new GregorianCalendar();
                 String dia = Integer.toString(c.get(Calendar.DATE));
                 String mes = Integer.toString(c.get(Calendar.MONTH) + 1);
@@ -49,14 +49,14 @@ public class controllerCompras extends HttpServlet {
                 String fecha = dia + "-" + mes + "-" + annio;
                 //seccion de codigo para instanciar las clases compras y comprasDao
                 ComprasDAO shopDao1 = new ComprasDAO();
-                Compras shop1 = new Compras(0, fecha, request.getParameter("descripcionShop"), Double.parseDouble(request.getParameter("totalShop")), Integer.parseInt(request.getParameter("proveedorShop")), 0, 0, 0,"Realizada");
+                Compras shop1 = new Compras(0, fecha, request.getParameter("descripcionShops"), Double.parseDouble(request.getParameter("totalShop")), Integer.parseInt(request.getParameter("proveedorShop")), 0, 0, 0,"Realizada");
                 //condicional if para guardar la compra y tomar un decision depensiendo el resultado que arroje el modelo
                 if (!shopDao1.newShop(shop1)) {
                     ComprasDAO shopDao2 = new ComprasDAO();
                     int idShop = shopDao2.idCompras();
-                    
+
                     String[] arrOfStr = request.getParameter("detailsShop").split(";");
-                    
+
                     for (String a : arrOfStr) {
                         StringTokenizer misAtributos = new StringTokenizer(a, ",");
                         int idP = Integer.parseInt(misAtributos.nextToken().trim());
@@ -65,7 +65,7 @@ public class controllerCompras extends HttpServlet {
 
                         ComprasDAO shopDao3 = new ComprasDAO();
                         Compras shop2 = new Compras(idShop, "", "", 0, 0, idP, cant, precio,"");
-                        
+
                         shopDao3.newDetailShop(shop2);
                     }
 
@@ -87,11 +87,11 @@ public class controllerCompras extends HttpServlet {
                     item.addProperty("obs", shop3.getObsShop());
                     item.addProperty("Estado", shop3.getEstadoShop());
                     if(shop3.getEstadoShop().equalsIgnoreCase("Realizada")){
-                        
+
                     item.addProperty("acciones", "<button id='" + shop3.getIdShop() + "'class='btn btnDetalles btn-primary fa fa-eye''></button><button id='" + shop3.getIdShop() + "' class='btn btnFinalizar fa fa-check btn-success text-left'></button>");
                     }else{
                     item.addProperty("acciones", "<button id='" + shop3.getIdShop() + "'class='btn btnDetalles btn-primary fa fa-eye''></button>");
-                        
+
                     }
 
                     array.add(item);
@@ -113,7 +113,7 @@ public class controllerCompras extends HttpServlet {
                     item.addProperty("idProducto", shop4.getIdProductShop());
                     item.addProperty("nombreProducto", product.getNombre());
                     item.addProperty("cantidad", shop4.getCantProductShop());
-                    item.addProperty("precio", formateador.format(shop4.getValorUnitario()));                    
+                    item.addProperty("precio", formateador.format(shop4.getValorUnitario()));
                     arrayDV.add(item);
                 }
                 gsonDV.add("datos", arrayDV);
@@ -122,10 +122,10 @@ public class controllerCompras extends HttpServlet {
                 break;
             case "processShop":
                 int res = 0;
-                
+
                 int idCompra = Integer.parseInt(request.getParameter("idCompra"));
                 int buc = 0;
-               
+
                     ComprasDAO modeloDetails1 = new ComprasDAO();
                     for (Compras compras4 : modeloDetails1.getAllDetailsShop(idCompra)) {
                         ProductoDAO prDAO = new ProductoDAO();
@@ -136,9 +136,9 @@ public class controllerCompras extends HttpServlet {
                         }else{
                              buc += 1;
                         }
-                                                              
+
                 }
-                 ComprasDAO modelo1 = new ComprasDAO();   
+                 ComprasDAO modelo1 = new ComprasDAO();
                  if(modelo1.udateStateShop(idCompra, "Recibida")){
                       buc += buc;
                  }else{
